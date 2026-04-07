@@ -4,9 +4,8 @@ __pycache__/
 *.pyo
 
 # Large data / cache files
-_cache_*.pkl
 *.pkl
-!results/**/*.pkl
+_cache_*.pkl
 
 # OS
 .DS_Store

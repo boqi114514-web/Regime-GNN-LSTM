@@ -22,8 +22,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_bufferin
 
 # ==================== 路径 ====================
 ARIMAX_PROJECT = r"D:\desktop\有意思的事情\量化\项目\ARIMAX_LSTM行业轮动"
-PROJECT_DIR = r"D:\desktop\有意思的事情\量化\项目\Regime_GNN_LSTM"
-OUTPUT_DIR = os.path.join(PROJECT_DIR, "结果v2")
+PROJECT_DIR = r"D:\desktop\有意思的事情\量化\项目\Regime-GNN-LSTM"
+OUTPUT_DIR = os.path.join(PROJECT_DIR, "results")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # 数据路径
