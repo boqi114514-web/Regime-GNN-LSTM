@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Large data / cache files
+_cache_*.pkl
+*.pkl
+!results/**/*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude
+.claude/
