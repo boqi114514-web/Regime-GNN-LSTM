@@ -471,56 +471,59 @@ def run(dry_run: bool = False, force_months: int = 0,
 
     # processed 数据更新（较慢，仅在 --processed / 月末训练前使用）
     if processed:
-        # 增量更新个股日线
-        try:
-            from data_pipeline.download import update_stock_daily
-            results['stock_daily'] = update_stock_daily(dry_run)
-        except Exception as e:
-            results['stock_daily'] = {'error': str(e)}
-            print(f'[stock_daily] 失败: {e}')
+        import traceback
 
-        # 增量更新财务报表
-        try:
-            from data_pipeline.download import update_financial
-            results['financial'] = update_financial(dry_run)
-        except Exception as e:
-            results['financial'] = {'error': str(e)}
-            print(f'[financial] 失败: {e}')
+        def _step(name, fn, *args, **kwargs):
+            """带进度提示和完整错误输出的步骤包装"""
+            print(f'\n{"─"*60}')
+            print(f'  ▶ {name}')
+            print(f'{"─"*60}')
+            try:
+                r = fn(*args, **kwargs)
+                results[name] = r
+                print(f'  ✓ {name} 完成')
+                return r
+            except Exception as e:
+                results[name] = {'error': str(e)}
+                print(f'  ✗ {name} 失败: {e}')
+                traceback.print_exc()
+                return None
 
-        # 重算景气度指标
-        try:
-            from data_pipeline.prosperity import run as prosperity_run
-            results['prosperity'] = prosperity_run(dry_run)
-        except Exception as e:
-            results['prosperity'] = {'error': str(e)}
-            print(f'[prosperity] 失败: {e}')
+        # Step A: 增量更新个股日线（按交易日拉取，~60 次 API）
+        from data_pipeline.download import update_stock_daily
+        _step('stock_daily', update_stock_daily, dry_run)
 
-        # 增量更新价量因子（从上次最新月份开始）
-        try:
+        # Step B: 增量更新财务报表（按季度拉取）
+        from data_pipeline.download import update_financial
+        _step('financial', update_financial, dry_run)
+
+        # Step C: 重算景气度指标（纯本地计算，几分钟）
+        from data_pipeline.prosperity import run as prosperity_run
+        _step('prosperity', prosperity_run, dry_run)
+
+        # Step D: 增量更新价量因子
+        def _run_tech_factors():
             from data_pipeline.tech_factors import run as tf_run
-            # 读取现有数据的最新日期，用作增量起点
             pv_path = os.path.join(LOCAL_DATA_PROCESSED, 'price_volume_factors.pkl')
             since = None
             if os.path.exists(pv_path):
                 pv_old = pd.read_pickle(pv_path)
                 since = pv_old['date'].max().strftime('%Y-%m')
-            results['tech_factors'] = tf_run(since=since, dry_run=dry_run)
-        except Exception as e:
-            results['tech_factors'] = {'error': str(e)}
-            print(f'[tech_factors] 失败: {e}')
+                print(f'  增量起点: {since}')
+            return tf_run(since=since, dry_run=dry_run)
+        _step('tech_factors', _run_tech_factors)
 
-        # 增量更新走势复刻因子
-        try:
+        # Step E: 增量更新走势复刻因子
+        def _run_pattern_factors():
             from data_pipeline.pattern_factors import run as pf_run
             pt_path = os.path.join(LOCAL_DATA_PROCESSED, 'pattern_factors.pkl')
             since = None
             if os.path.exists(pt_path):
                 pt_old = pd.read_pickle(pt_path)
                 since = pt_old['date'].max().strftime('%Y-%m')
-            results['pattern_factors'] = pf_run(since=since, dry_run=dry_run)
-        except Exception as e:
-            results['pattern_factors'] = {'error': str(e)}
-            print(f'[pattern_factors] 失败: {e}')
+                print(f'  增量起点: {since}')
+            return pf_run(since=since, dry_run=dry_run)
+        _step('pattern_factors', _run_pattern_factors)
 
     print('\n' + '=' * 60)
     print('  汇总:')

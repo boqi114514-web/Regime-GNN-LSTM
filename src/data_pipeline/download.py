@@ -124,8 +124,22 @@ def migrate_from_arimax(dry_run=False):
 #  --update-daily: 增量更新个股日线
 # ============================================================
 
+def _get_trade_dates(pro, start_s, end_s):
+    """获取 [start_s, end_s] 之间的交易日列表"""
+    cal = _call(pro.trade_cal, exchange='SSE',
+                start_date=start_s, end_date=end_s,
+                fields='cal_date,is_open')
+    if cal is None or len(cal) == 0:
+        return []
+    return sorted(cal[cal['is_open'] == 1]['cal_date'].astype(str).tolist())
+
+
 def update_stock_daily(dry_run=False):
-    """在已有 stock_daily.pkl 基础上增量追加最新日线数据"""
+    """在已有 stock_daily.pkl 基础上增量追加最新日线数据。
+
+    策略：按交易日拉取（pro.daily(trade_date=xxx)），一次拿到全市场所有股票。
+    ~60 个交易日 ≈ 60 次 API 调用，比逐股票拉快 30 倍以上。
+    """
     print('=' * 60)
     print('  增量更新个股日K线')
     print('=' * 60)
@@ -134,7 +148,7 @@ def update_stock_daily(dry_run=False):
         print(f'[错误] {STOCK_DAILY_PKL} 不存在，请先 --migrate')
         return {'error': 'no_base_file'}
 
-    print('加载现有数据...')
+    print('[1/4] 加载现有数据...')
     with open(STOCK_DAILY_PKL, 'rb') as f:
         data = pickle.load(f)
     df = data['df_stock']
@@ -142,81 +156,93 @@ def update_stock_daily(dry_run=False):
     latest = df['date'].max()
     print(f'  现有: {len(df):,} 行, {df["code"].nunique()} 只股票, 最新 {latest.date()}')
 
-    # 需要更新的时间范围
     start_dt = latest + pd.Timedelta(days=1)
     end_dt = pd.Timestamp.today()
     if start_dt >= end_dt:
-        print('  已是最新')
+        print('  已是最新，无需更新')
         return {'new_rows': 0}
 
     start_s = start_dt.strftime('%Y%m%d')
     end_s = end_dt.strftime('%Y%m%d')
-    print(f'  拉取窗口: {start_s} → {end_s}')
 
     pro = _get_pro()
 
-    # 获取所有A股列表
-    stock_basic = _call(pro.stock_basic, exchange='', list_status='L',
-                        fields='ts_code,name')
-    all_ts_codes = stock_basic['ts_code'].tolist()
-    # 也包含已退市的
-    stock_d = _call(pro.stock_basic, exchange='', list_status='D',
-                    fields='ts_code,name')
-    if stock_d is not None and len(stock_d) > 0:
-        all_ts_codes.extend(stock_d['ts_code'].tolist())
+    print(f'\n[2/4] 获取交易日历 {start_s} → {end_s} ...')
+    trade_dates = _get_trade_dates(pro, start_s, end_s)
+    if not trade_dates:
+        print('  该窗口内无交易日')
+        return {'new_rows': 0}
+    print(f'  共 {len(trade_dates)} 个交易日: {trade_dates[0]} → {trade_dates[-1]}')
 
-    # 过滤：只拉主板和中小板（排除创业板300/科创板688/北交所8）
-    existing_codes = set(df['code'].unique())
-    codes_to_pull = []
-    for tc in all_ts_codes:
-        code = tc.split('.')[0]
-        if code.startswith(('300', '301', '688', '689', '8', '4', '9')):
-            continue
-        codes_to_pull.append(tc)
+    # 排除创业板/科创板/北交所的前缀
+    EXCLUDE_PREFIX = ('300', '301', '688', '689')
 
-    print(f'  待拉取股票数: {len(codes_to_pull)}')
-
+    print(f'\n[3/4] 按交易日拉取全市场日线（{len(trade_dates)} 天）...')
     new_rows = []
-    for i, ts_code in enumerate(codes_to_pull):
-        if (i + 1) % 200 == 0:
-            print(f'  [{i+1}/{len(codes_to_pull)}] 拉取中...')
+    total_records = 0
+    failed_dates = []
+
+    for i, td in enumerate(trade_dates):
+        print(f'  [{i+1:3d}/{len(trade_dates)}] {td}', end=' ', flush=True)
         try:
-            bar = _call(pro.daily, ts_code=ts_code,
-                        start_date=start_s, end_date=end_s)
-            if bar is not None and len(bar) > 0:
-                bar = bar.rename(columns={'trade_date': 'date', 'ts_code': 'ts_code_full'})
-                bar['code'] = ts_code.split('.')[0]
-                bar['date'] = pd.to_datetime(bar['date'], format='%Y%m%d')
-                for col in ('open', 'high', 'low', 'close', 'vol', 'amount'):
-                    if col in bar.columns:
-                        bar[col] = pd.to_numeric(bar[col], errors='coerce')
-                bar = bar.rename(columns={'vol': 'volume'})
-                new_rows.append(bar[['date', 'code', 'open', 'high', 'low',
-                                     'close', 'volume', 'amount']])
-        except Exception:
-            pass
+            bar = _call(pro.daily, trade_date=td)
+            if bar is None or len(bar) == 0:
+                print('(空)')
+                continue
+
+            # 转换格式：匹配现有 df 的列结构
+            bar['code'] = bar['ts_code'].str.split('.').str[0]
+            # 排除创业板/科创板（与原始数据口径一致）
+            bar = bar[~bar['code'].str.startswith(EXCLUDE_PREFIX)].copy()
+            # 排除北交所（8开头 / 4开头部分）
+            bar = bar[~bar['code'].str.startswith(('8', '4'))].copy()
+
+            bar['date'] = pd.to_datetime(bar['trade_date'], format='%Y%m%d')
+            bar = bar.rename(columns={'vol': 'volume'})
+
+            keep_cols = ['date', 'code', 'open', 'high', 'low', 'close', 'volume', 'amount']
+            for col in keep_cols:
+                if col not in bar.columns:
+                    bar[col] = np.nan
+            bar = bar[keep_cols].copy()
+
+            new_rows.append(bar)
+            total_records += len(bar)
+            print(f'+{len(bar):,} 只  (累计 {total_records:,})')
+        except Exception as e:
+            print(f'失败: {e}')
+            failed_dates.append(td)
+
+    if failed_dates:
+        print(f'\n  ⚠ {len(failed_dates)} 个交易日拉取失败: {failed_dates}')
 
     if not new_rows:
-        print('  未拉到新数据')
-        return {'new_rows': 0}
+        print('\n  未拉到任何新数据')
+        return {'new_rows': 0, 'failed_dates': failed_dates}
 
+    print(f'\n[4/4] 合并写入...')
     new_df = pd.concat(new_rows, ignore_index=True)
-    print(f'  新增 {len(new_df):,} 行')
+    print(f'  新增原始: {len(new_df):,} 行, {new_df["code"].nunique()} 只股票')
 
     combined = pd.concat([df, new_df], ignore_index=True)
     combined = combined.drop_duplicates(subset=['code', 'date'], keep='last')
     combined = combined.sort_values(['code', 'date']).reset_index(drop=True)
 
     added = len(combined) - len(df)
-    print(f'  合并后 {len(combined):,} 行, 净增 {added:,}')
+    new_latest = combined['date'].max()
+    print(f'  合并后: {len(combined):,} 行, 净增 {added:,}, 最新 {new_latest.date()}')
 
     if not dry_run and added > 0:
+        print(f'  写入 {STOCK_DAILY_PKL} ({os.path.getsize(STOCK_DAILY_PKL)/1024/1024:.0f}MB → ', end='')
         data['df_stock'] = combined
         with open(STOCK_DAILY_PKL, 'wb') as f:
             pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
-        print(f'  写入 {STOCK_DAILY_PKL}')
+        print(f'{os.path.getsize(STOCK_DAILY_PKL)/1024/1024:.0f}MB)')
+    elif dry_run:
+        print('  [dry-run] 未写入')
 
-    return {'new_rows': added}
+    return {'new_rows': added, 'latest': str(new_latest.date()),
+            'trade_days': len(trade_dates), 'failed': failed_dates}
 
 
 # ============================================================
