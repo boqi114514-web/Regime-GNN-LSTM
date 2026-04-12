@@ -20,19 +20,41 @@ import warnings
 warnings.filterwarnings('ignore')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_buffering=True)
 
-# ==================== 路径 ====================
-ARIMAX_PROJECT = r"D:\desktop\有意思的事情\量化\项目\ARIMAX_LSTM行业轮动"
+# ==================== 路径（Phase 1：项目数据自包含） ====================
 PROJECT_DIR = r"D:\desktop\有意思的事情\量化\项目\Regime-GNN-LSTM"
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "results")
-os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# 数据路径
-INDUSTRY_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\行业数据")
-EXISTING_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\已有数据")
-FACTOR_DIR = os.path.join(ARIMAX_PROJECT, r"结果\改进模型\因子数据")
+# 本项目自包含数据目录
+LOCAL_DATA_DIR = os.path.join(PROJECT_DIR, "data")
+LOCAL_DATA_RAW = os.path.join(LOCAL_DATA_DIR, "raw")              # tushare 原始下载
+LOCAL_DATA_PROCESSED = os.path.join(LOCAL_DATA_DIR, "processed")  # 景气度 / 技术因子
+LOCAL_DATA_CACHE = os.path.join(LOCAL_DATA_DIR, "cache")          # 推理结果缓存
+
+# 模型 / 状态 / 报告（实盘化使用）
+MODELS_DIR = os.path.join(PROJECT_DIR, "models")
+MODELS_CURRENT_DIR = os.path.join(MODELS_DIR, "current")
+MODELS_QUARTERLY_DIR = os.path.join(MODELS_DIR, "quarterly")
+MODELS_MONTHLY_DIR = os.path.join(MODELS_DIR, "monthly")
+REPORTS_DIR = os.path.join(PROJECT_DIR, "reports")
+STATE_DIR = os.path.join(PROJECT_DIR, "state")
+
+for _d in (OUTPUT_DIR, LOCAL_DATA_RAW, LOCAL_DATA_PROCESSED, LOCAL_DATA_CACHE,
+           MODELS_CURRENT_DIR, MODELS_QUARTERLY_DIR, MODELS_MONTHLY_DIR,
+           REPORTS_DIR, STATE_DIR):
+    os.makedirs(_d, exist_ok=True)
+
+# ==================== 个股日线与行业成分股（本地自包含） ====================
+STOCK_DAILY_PATH = os.path.join(LOCAL_DATA_RAW, "stock_daily.pkl")
+SW_MEMBERS_PATH = os.path.join(LOCAL_DATA_RAW, "ts_sw_members.csv")
 
 # ==================== 行业排除 ====================
 SW_EXCLUDE = ['801780.SI', '801790.SI']
+
+# ==================== 走势复刻因子参数 ====================
+PATTERN_WINDOW = 60        # 走势指纹窗口（交易日）
+PATTERN_TOP_K = 50         # Top-K 匹配
+PATTERN_MIN_CORR = 0.85    # 最低相似度
+PATTERN_GAP_MONTHS = 6     # 历史匹配的最近间隔（避免数据穿越）
 
 # ==================== Walk-Forward 参数 ====================
 TRAIN_MONTHS = 60       # 训练窗口（月）
@@ -86,7 +108,7 @@ SELECTED_INDICATORS = [
 
 def load_industry_monthly():
     """加载行业月度行情，返回 DataFrame"""
-    path = os.path.join(EXISTING_DATA_DIR, 'ts_sw_industry_monthly.csv')
+    path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_industry_monthly.csv')
     mkt = pd.read_csv(path)
     mkt = mkt[~mkt['ts_code'].isin(SW_EXCLUDE)].copy()
     mkt['date'] = pd.to_datetime(mkt['date'])
@@ -102,7 +124,7 @@ def load_prosperity_monthly():
     加载景气度指标（季度→月度映射，滞后一个季度）
     返回 DataFrame：ts_code, year, month, indicator1, ...
     """
-    path = os.path.join(INDUSTRY_DATA_DIR, 'prosperity_indicators_clean.pkl')
+    path = os.path.join(LOCAL_DATA_PROCESSED, 'prosperity_indicators_clean.pkl')
     indicators = pd.read_pickle(path)
 
     records = []
@@ -131,8 +153,8 @@ def load_prosperity_monthly():
 
 def load_tech_factors():
     """加载技术因子（价量 + 走势复刻）"""
-    pv_path = os.path.join(FACTOR_DIR, 'price_volume_factors.pkl')
-    pt_path = os.path.join(FACTOR_DIR, 'pattern_factors.pkl')
+    pv_path = os.path.join(LOCAL_DATA_PROCESSED, 'price_volume_factors.pkl')
+    pt_path = os.path.join(LOCAL_DATA_PROCESSED, 'pattern_factors.pkl')
 
     pv = pd.read_pickle(pv_path)
     pv['date'] = pd.to_datetime(pv['date'])
@@ -165,7 +187,7 @@ def get_available_months(mkt):
 
 def load_macro_factors():
     """加载宏观因子"""
-    path = os.path.join(EXISTING_DATA_DIR, 'ts_macro_factors.csv')
+    path = os.path.join(LOCAL_DATA_RAW, 'ts_macro_factors.csv')
     df = pd.read_csv(path)
     df['date'] = pd.to_datetime(df['date'])
     return df
@@ -173,10 +195,34 @@ def load_macro_factors():
 
 def load_csi300_monthly():
     """加载沪深300月度行情"""
-    path = os.path.join(EXISTING_DATA_DIR, 'ts_csi300_monthly.csv')
+    path = os.path.join(LOCAL_DATA_RAW, 'ts_csi300_monthly.csv')
     df = pd.read_csv(path)
     df['date'] = pd.to_datetime(df['date'], format='%Y%m%d')
     return df
+
+
+def load_stock_daily():
+    """全市场个股日K线（Phase 2 前跨项目读 ARIMAX）
+    返回 DataFrame: date, code, open, high, low, close, volume, amount
+    """
+    with open(STOCK_DAILY_PATH, 'rb') as f:
+        data = pickle.load(f)
+    df = data['df_stock'].copy()
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.sort_values(['code', 'date']).reset_index(drop=True)
+    return df
+
+
+def load_industry_members():
+    """个股-行业一级映射（Phase 2 前跨项目读 ARIMAX）
+    返回 DataFrame: l1_code, ts_code(带后缀), code(纯数字), in_date, out_date
+    """
+    mem = pd.read_csv(SW_MEMBERS_PATH)
+    mem = mem[~mem['l1_code'].isin(SW_EXCLUDE)].copy()
+    mem['code'] = mem['ts_code'].str.replace(r'\.\w+$', '', regex=True)
+    mem['in_date'] = pd.to_datetime(mem['in_date'], format='%Y%m%d', errors='coerce')
+    mem['out_date'] = pd.to_datetime(mem['out_date'], format='%Y%m%d', errors='coerce')
+    return mem[['l1_code', 'ts_code', 'code', 'in_date', 'out_date']].copy()
 
 
 def zscore_cross_section(df, cols, group_col='date'):
