@@ -56,6 +56,13 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
     """
     准备 LSTM-B 序列数据
 
+    对齐方式（修复数据滞后）：
+      - 技术因子和行情按 year-month 合并（避免最后交易日 vs 日历月末差 1 天导致丢行）
+      - features[t] = 月 t 的技术因子（月末已知）
+      - target = ret[t+1]（下月收益率，即持仓期收益）
+      - meta 中记录的 date = 下月（target 月份）的日期
+      - 这样在实盘中：月末观察到当月因子 → 预测下月收益 → 月初换仓
+
     参数：
         tech_df: 技术因子 DataFrame
         mkt: 行业月度行情
@@ -72,28 +79,48 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
     n_ind = len(industries)
     ind_to_idx = {code: i for i, code in enumerate(industries)}
 
-    factor_cols = [c for c in tech_df.columns if c not in ['ts_code', 'date']]
+    factor_cols = [c for c in tech_df.columns if c not in ['ts_code', 'date', 'ym']]
     n_factors = len(factor_cols)
 
-    ret_df = mkt[['ts_code', 'date', 'ret']].copy()
+    # 用 year-month 做合并键，解决最后交易日 vs 日历月末的日期错位
+    tech_ym = tech_df.copy()
+    tech_ym['ym'] = tech_ym['date'].dt.to_period('M')
+
+    ret_ym = mkt[['ts_code', 'date', 'ret']].copy()
+    ret_ym['ym'] = ret_ym['date'].dt.to_period('M')
 
     X_list, y_list, meta = [], [], []
     scalers_out = {}
 
     for ind_code in industries:
-        ind_tech = tech_df[(tech_df['ts_code'] == ind_code) &
-                           (tech_df['date'] >= date_range[0]) &
-                           (tech_df['date'] <= date_range[1])].sort_values('date')
-        ind_ret = ret_df[(ret_df['ts_code'] == ind_code) &
-                          (ret_df['date'] >= date_range[0]) &
-                          (ret_df['date'] <= date_range[1])].sort_values('date')
+        ind_tech = tech_ym[(tech_ym['ts_code'] == ind_code) &
+                           (tech_ym['date'] >= date_range[0]) &
+                           (tech_ym['date'] <= date_range[1])].sort_values('date')
+        ind_ret = ret_ym[(ret_ym['ts_code'] == ind_code) &
+                          (ret_ym['date'] >= date_range[0]) &
+                          (ret_ym['date'] <= date_range[1])].sort_values('date')
 
         if len(ind_tech) < lookback + 1:
             continue
 
-        merged = pd.merge(ind_tech, ind_ret[['ts_code', 'date', 'ret']],
-                          on=['ts_code', 'date'], how='inner')
-        if len(merged) < lookback + 1:
+        # 按 year-month 合并，保留行情侧的 date 作为 target_date
+        merged = pd.merge(
+            ind_tech.drop(columns='date'),
+            ind_ret[['ts_code', 'ym', 'date', 'ret']].rename(columns={'date': 'mkt_date'}),
+            on=['ts_code', 'ym'], how='inner'
+        )
+        merged = merged.sort_values('ym').reset_index(drop=True)
+
+        if len(merged) < lookback + 2:  # 需要至少 lookback + 1 个月（+1 给 fwd_ret）
+            continue
+
+        # 构造 fwd_ret：下月收益率
+        merged['fwd_ret'] = merged['ret'].shift(-1)
+        merged['fwd_date'] = merged['mkt_date'].shift(-1)
+        # 最后一行没有下月收益，去掉
+        merged = merged.dropna(subset=['fwd_ret']).reset_index(drop=True)
+
+        if len(merged) < lookback:
             continue
 
         # MinMax 归一化
@@ -108,26 +135,27 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
             factor_scaled = scaler.fit_transform(factor_values)
         scalers_out[ind_code] = scaler
 
-        ret_values = merged['ret'].values.astype(float)
-        dates = merged['date'].values
+        fwd_ret_values = merged['fwd_ret'].values.astype(float)
+        fwd_dates = merged['fwd_date'].values
 
         # one-hot
         onehot = np.zeros(n_ind, dtype=np.float32)
         onehot[ind_to_idx[ind_code]] = 1.0
 
-        for t in range(lookback, len(merged)):
-            # 如果指定了 target_start，只输出该日期之后的样本
-            if target_start is not None and dates[t] < target_start:
+        # 序列构建：features[t-lookback+1 : t+1] → predict fwd_ret[t]
+        # 即用 t 所在月（含）往前 lookback 个月的因子，预测 t 的下月收益
+        for t in range(lookback - 1, len(merged)):
+            if target_start is not None and fwd_dates[t] < target_start:
                 continue
 
             seq = np.zeros((lookback, n_factors + n_ind), dtype=np.float32)
             for k in range(lookback):
-                seq[k, :n_factors] = factor_scaled[t - lookback + k]
+                seq[k, :n_factors] = factor_scaled[t - lookback + 1 + k]
                 seq[k, n_factors:] = onehot
 
             X_list.append(seq)
-            y_list.append(ret_values[t])
-            meta.append((ind_code, dates[t]))
+            y_list.append(fwd_ret_values[t])
+            meta.append((ind_code, fwd_dates[t]))
 
     if not X_list:
         return None, None, None, scalers_out
@@ -232,12 +260,14 @@ def main():
     print(f"  行业数: {n_industries}")
     print(f"  技术因子: {n_factors} → 输入维度: {input_dim}")
 
-    # 可用月份（技术因子和行情都有的月份）
-    tech_months = set(tech['date'].unique())
-    mkt_months = set(mkt['date'].unique())
-    available_months = sorted(tech_months & mkt_months)
-    print(f"  可用月份: {len(available_months)} ({available_months[0].strftime('%Y-%m')} ~ "
-          f"{available_months[-1].strftime('%Y-%m')})")
+    # 可用月份：用 year-month period 取交集（避免日期差 1 天丢月份）
+    tech_periods = set(tech['date'].dt.to_period('M'))
+    mkt_periods = set(mkt['date'].dt.to_period('M'))
+    common_periods = sorted(tech_periods & mkt_periods)
+
+    # 转回 Timestamp（用月末日期），供 walk-forward 索引和 date_range 过滤
+    available_months = [p.to_timestamp('M') for p in common_periods]
+    print(f"  可用月份: {len(available_months)} ({common_periods[0]} ~ {common_periods[-1]})")
 
     # Walk-Forward
     total_window = TRAIN_MONTHS + VAL_MONTHS
