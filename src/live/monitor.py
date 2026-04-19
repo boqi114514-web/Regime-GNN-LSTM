@@ -194,6 +194,25 @@ def generate_report(current: dict, previous: Optional[dict]) -> str:
         lines.append('- 当前持仓与上期一致，**无需调仓**。')
     lines.append('')
 
+    # --- 个股持仓 ---
+    stock_df = current.get('stock_holdings')
+    if stock_df is not None and not stock_df.empty:
+        lines.append('## 📋 个股持仓（选股层）')
+        lines.append('')
+        lines.append(f'基于 Top-{len(current["top_k"])} 行业内 beta+动量+质量 复合选股，共 {len(stock_df)} 只：')
+        lines.append('')
+        lines.append('| 行业 | 代码 | β | 动量 | 综合分 |')
+        lines.append('|------|------|---|------|--------|')
+        for ind in stock_df['ind_code'].unique():
+            sub = stock_df[stock_df['ind_code'] == ind].sort_values('rank_in_ind')
+            ind_label = sub['ind_name'].iloc[0] if 'ind_name' in sub.columns else ind
+            for _, r in sub.iterrows():
+                mom_str  = f"{r['momentum']*100:+.1f}%" if 'momentum' in r and pd.notna(r['momentum']) else '-'
+                comp_str = f"{r['composite']:.3f}"      if 'composite' in r and pd.notna(r['composite']) else '-'
+                beta_str = f"{r['beta']:.2f}"           if 'beta'      in r and pd.notna(r['beta'])      else '-'
+                lines.append(f'| {ind_label} | {r["stock_code"]} | {beta_str} | {mom_str} | {comp_str} |')
+        lines.append('')
+
     lines.append('---')
     lines.append('*自动生成 by live/monitor.py · 周日晚 20:00 出报 · 人工复核后周一执行*')
 
@@ -203,9 +222,17 @@ def generate_report(current: dict, previous: Optional[dict]) -> str:
 # ---------- 主流程 ----------
 
 def run() -> str:
-    """推理 → 生成报告 → 发送 → 更新 state，返回 markdown 文本"""
+    """推理 → 选股 → 生成报告 → 发送 → 更新 state，返回 markdown 文本"""
     current = predict.infer_latest()
     previous = state.get_last_holdings()
+
+    # 选股层（失败不中断周报）
+    try:
+        import s4_beta_selection as s4
+        current['stock_holdings'] = s4.run_live()
+    except Exception as e:
+        print(f'  [选股] 跳过（{type(e).__name__}: {e}）')
+        current['stock_holdings'] = None
 
     report = generate_report(current, previous)
 
