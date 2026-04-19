@@ -131,15 +131,29 @@ def generate_report(current: dict, previous: Optional[dict]) -> str:
     lines.append('')
 
     # --- Top-K ---
+    # 行业代码 → 中文名映射（从选股层已加载的 ind_name 反查，或用内置表）
+    _SW_NAMES = {
+        '801010.SI':'农林牧渔','801020.SI':'采掘','801030.SI':'化工',
+        '801040.SI':'钢铁','801050.SI':'有色金属','801080.SI':'电子',
+        '801110.SI':'家用电器','801120.SI':'食品饮料','801130.SI':'纺织服饰',
+        '801140.SI':'轻工制造','801150.SI':'医药生物','801160.SI':'公用事业',
+        '801170.SI':'交通运输','801180.SI':'房地产','801200.SI':'商贸零售',
+        '801210.SI':'社会服务','801230.SI':'综合','801710.SI':'建筑材料',
+        '801720.SI':'建筑装饰','801730.SI':'电力设备','801740.SI':'国防军工',
+        '801750.SI':'计算机','801760.SI':'传媒','801770.SI':'通信',
+        '801780.SI':'银行','801790.SI':'非银金融','801880.SI':'汽车',
+        '801890.SI':'机械设备','801950.SI':'煤炭','801960.SI':'石油石化',
+        '801970.SI':'环保','801980.SI':'美容护理',
+    }
     lines.append(f'## 🎯 Top-{len(current["top_k"])} 推荐行业')
     lines.append('')
-    lines.append('| 排名 | 行业代码 | 集成得分 | 对比上次 |')
-    lines.append('|------|---------|---------|----------|')
+    lines.append('| 排名 | 行业代码 | 行业名称 | 集成得分 | 对比上次 |')
+    lines.append('|------|---------|---------|---------|----------|')
     for i, code in enumerate(current['top_k'], 1):
         s = current['scores'][code]
-        # score = N - rank 加权，越大越好；fallback 回 ensemble（负原始值）
         score_val = s.get('score', s.get('ensemble', 0.0))
-        lines.append(f'| {i} | {code} | {score_val:.2f} | {_arrow(deltas.get(code))} |')
+        ind_name  = _SW_NAMES.get(code, code)
+        lines.append(f'| {i} | {code} | {ind_name} | {score_val:.2f} | {_arrow(deltas.get(code))} |')
     lines.append('')
 
     # --- 持仓变动 ---
