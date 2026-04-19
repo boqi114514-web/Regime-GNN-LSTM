@@ -908,6 +908,14 @@ def run_live() -> pd.DataFrame:
     _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
     fund_dict                 = load_fundamental_features()
 
+    # 股票中文名映射
+    _stock_basic_path = r"D:\desktop\有意思的事情\量化\项目\天风选股模型\数据\ts_stock_basic.csv"
+    try:
+        _sb = pd.read_csv(_stock_basic_path)
+        code_to_name = dict(zip(_sb['symbol'].astype(str).str.zfill(6), _sb['name']))
+    except Exception:
+        code_to_name = {}
+
     for month in remaining:
         m_pred = pred_df[pred_df['date'] == month].sort_values(pred_col, ascending=False)
         top_k  = m_pred.head(TOP_K)
@@ -926,10 +934,8 @@ def run_live() -> pd.DataFrame:
         )
 
         if not selected.empty:
-            # 附上行业中文名
             selected['ind_name'] = selected['ind_code'].map(ind_to_name).fillna(selected['ind_code'])
-            # 附上股票名（从 stock_to_ind 的 code_to_name 如果有的话，否则用代码）
-            selected['name'] = selected['stock_code']
+            selected['name'] = selected['stock_code'].map(code_to_name).fillna(selected['stock_code'])
             all_selections.append(selected)
             prev_holdings = set(selected['stock_code'].tolist())
         else:

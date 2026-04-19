@@ -201,16 +201,17 @@ def generate_report(current: dict, previous: Optional[dict]) -> str:
         lines.append('')
         lines.append(f'基于 Top-{len(current["top_k"])} 行业内 beta+动量+质量 复合选股，共 {len(stock_df)} 只：')
         lines.append('')
-        lines.append('| 行业 | 代码 | β | 动量 | 综合分 |')
-        lines.append('|------|------|---|------|--------|')
+        lines.append('| 行业 | 代码 | 名称 | β | 动量 | 综合分 |')
+        lines.append('|------|------|------|---|------|--------|')
         for ind in stock_df['ind_code'].unique():
             sub = stock_df[stock_df['ind_code'] == ind].sort_values('rank_in_ind')
             ind_label = sub['ind_name'].iloc[0] if 'ind_name' in sub.columns else ind
             for _, r in sub.iterrows():
-                mom_str  = f"{r['momentum']*100:+.1f}%" if 'momentum' in r and pd.notna(r['momentum']) else '-'
-                comp_str = f"{r['composite']:.3f}"      if 'composite' in r and pd.notna(r['composite']) else '-'
-                beta_str = f"{r['beta']:.2f}"           if 'beta'      in r and pd.notna(r['beta'])      else '-'
-                lines.append(f'| {ind_label} | {r["stock_code"]} | {beta_str} | {mom_str} | {comp_str} |')
+                name_str = r.get('name', r['stock_code'])
+                mom_str  = f"{r['momentum']*100:+.1f}%" if pd.notna(r.get('momentum')) else '-'
+                comp_str = f"{r['composite']:.3f}"      if pd.notna(r.get('composite')) else '-'
+                beta_str = f"{r['beta']:.2f}"           if pd.notna(r.get('beta'))      else '-'
+                lines.append(f'| {ind_label} | {r["stock_code"]} | {name_str} | {beta_str} | {mom_str} | {comp_str} |')
         lines.append('')
 
     lines.append('---')
