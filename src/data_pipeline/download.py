@@ -258,11 +258,18 @@ def _current_periods():
     return periods
 
 
-def update_financial(dry_run=False):
-    """增量更新财务报表（只拉缺失的报告期）"""
+def update_financial(dry_run=False, force_period: str = None):
+    """增量更新财务报表（只拉缺失的报告期）。
+
+    Args:
+        force_period: 强制重拉某个报告期（如 '20260331'），会先删除该期已有行再重拉。
+                      用于季报披露期末补全（如 4 月底一季报陆续出齐）。
+    """
     print('=' * 60)
     print('  增量更新财务报表')
     print('=' * 60)
+    if force_period:
+        print(f'  [force-period] 将重拉 {force_period}')
 
     pro = _get_pro()
     all_periods = _current_periods()
@@ -292,6 +299,11 @@ def update_financial(dry_run=False):
         path = os.path.join(LOCAL_DATA_RAW, fname)
         if os.path.exists(path):
             old = pd.read_pickle(path)
+            # 强制重拉：先剔除该期已有行
+            if force_period:
+                before = len(old)
+                old = old[old['end_date'].astype(str) != force_period].copy()
+                print(f'\n[{fname}] 删除 {force_period} 旧行 {before - len(old)} 条')
             existing_periods = set(old['end_date'].astype(str).unique())
         else:
             old = pd.DataFrame()
@@ -450,6 +462,8 @@ def main():
     group.add_argument('--full', action='store_true',
                        help='全量更新（日线+财务+成分股）')
     parser.add_argument('--dry-run', action='store_true')
+    parser.add_argument('--force-period', type=str, default=None, metavar='YYYYMMDD',
+                        help='强制重拉指定报告期（如 20260331），与 --update-financial 配合使用')
     args = parser.parse_args()
 
     if args.migrate:
@@ -457,7 +471,7 @@ def main():
     elif args.update_daily:
         update_stock_daily(dry_run=args.dry_run)
     elif args.update_financial:
-        update_financial(dry_run=args.dry_run)
+        update_financial(dry_run=args.dry_run, force_period=args.force_period)
     elif args.update_members:
         update_sw_members(dry_run=args.dry_run)
     elif args.full:

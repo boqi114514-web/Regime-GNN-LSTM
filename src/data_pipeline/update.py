@@ -44,8 +44,8 @@ from live import state
 # 镜像列表：https://www.yuque.com/a493465197/fl1fxx/ixwtsutxwaf0chdc
 #   8.136.22.187:8010   已挂（2026-04 常返 502）
 #   121.40.135.59:8010  当前可用
-_DEFAULT_TOKEN = 'MUaodjDshtaMEDOeHgFmVYZefgmvgVaHUqyoAoHFXFWaFvoLUBPqNoqEoJkYMoUt'
-_DEFAULT_URL = 'http://121.40.135.59:8010/'
+_DEFAULT_TOKEN = 'lFBANChbeKVoRmIGVQPyvxuaDQIZNQAsUPBFZjtvAWegyEKOeNviEpinjclCOmgJ'
+_DEFAULT_URL = 'http://124.222.60.121:8020/'
 
 API_SLEEP = 0.3  # 每次调用后的间隔（秒）
 
@@ -298,6 +298,49 @@ def update_macro_factors(dry_run: bool = False, force_months: int = 0) -> dict:
     old['date'] = pd.to_datetime(old['date'])
     latest = old['date'].max()
     print(f'\n[macro_factors] 现有 {len(old)} 行, 最新 {latest.date()}')
+
+    # --- 回填已有数据中的 sf_yoy 空洞 ---
+    sf_holes = old[old['sf_yoy'].isna() & old['date'].dt.year >= 2015]
+    if len(sf_holes) > 0:
+        print(f'  发现 {len(sf_holes)} 个月 sf_yoy 为空，尝试回填...')
+        hole_periods = sf_holes['date'].dt.to_period('M')
+        # 为了算 yoy，需要往前拉一年
+        all_needed = set()
+        for p in hole_periods:
+            all_needed.add(p)
+            all_needed.add(p - 12)
+        all_needed = sorted(all_needed)
+
+        pro = get_pro()
+        sf_all_backfill = {}
+        for p in all_needed:
+            m_str = f'{p.year}{p.month:02d}'
+            try:
+                df = _call_with_retry(pro.sf_month, start_m=m_str, end_m=m_str,
+                                      fields='month,inc_month')
+                if df is not None and len(df) > 0:
+                    sf_all_backfill[m_str] = float(df.iloc[0]['inc_month'])
+            except Exception as e:
+                print(f'    sf_month {m_str} failed: {e}')
+
+        filled_count = 0
+        for idx_row, row in sf_holes.iterrows():
+            p = row['date'].to_period('M')
+            m_str = f'{p.year}{p.month:02d}'
+            prev = f'{p.year - 1}{p.month:02d}'
+            if m_str in sf_all_backfill and prev in sf_all_backfill and sf_all_backfill[prev] != 0:
+                yoy = (sf_all_backfill[m_str] - sf_all_backfill[prev]) / abs(sf_all_backfill[prev])
+                old.loc[idx_row, 'sf_yoy'] = yoy
+                old.loc[idx_row, 'sf_inc_month'] = sf_all_backfill[m_str]
+                filled_count += 1
+                print(f'    回填 {m_str} sf_yoy={yoy:.4f}')
+        print(f'  回填完成: {filled_count}/{len(sf_holes)} 个月')
+
+        if filled_count > 0 and not dry_run:
+            old.to_csv(path, index=False)
+            print(f'  已写入回填结果')
+        # 重新读取（回填后的 old 继续用于后续增量逻辑）
+    # --- 回填结束 ---
 
     if force_months > 0:
         start_period = (latest - pd.DateOffset(months=force_months - 1)).to_period('M')

@@ -96,6 +96,9 @@ TOP_K = 5
 RF_ANNUAL = 0.03
 RANDOM_SEED = 42
 
+# 集成模式：'regime'（Regime条件集成，扩张期GNN独占）| 'equal'（等权集成，分散化更强）
+ENSEMBLE_MODE = 'regime'
+
 # ==================== 景气度指标（预筛选结果）====================
 SELECTED_INDICATORS = [
     'totprofit', 'nptocostexpense', 'netprofitexcl', 'netprofitincl',

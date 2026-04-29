@@ -21,15 +21,19 @@ _SRC_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SRC_DIR not in sys.path:
     sys.path.insert(0, _SRC_DIR)
 
-from config import LOCAL_DATA_CACHE, MODELS_CURRENT_DIR, TOP_K
+from config import LOCAL_DATA_CACHE, MODELS_CURRENT_DIR, TOP_K, ENSEMBLE_MODE
 from live import state
 
 
-ENSEMBLE_PKL = 'predictions_ensemble.pkl'
+_PKL_MAP = {
+    'regime': 'predictions_ensemble.pkl',
+    'equal':  'predictions_ensemble_equal.pkl',
+}
 
 
-def _load_current_ensemble() -> pd.DataFrame:
-    path = os.path.join(MODELS_CURRENT_DIR, ENSEMBLE_PKL)
+def _load_current_ensemble(mode: str = ENSEMBLE_MODE) -> pd.DataFrame:
+    fname = _PKL_MAP.get(mode, _PKL_MAP['regime'])
+    path = os.path.join(MODELS_CURRENT_DIR, fname)
     if not os.path.exists(path):
         raise FileNotFoundError(
             f"没有找到 {path}\n"
@@ -51,14 +55,17 @@ def _current_model_label() -> Optional[str]:
         return None
 
 
-def infer_latest(top_k: int = TOP_K) -> dict:
+def infer_latest(top_k: int = TOP_K, mode: str = ENSEMBLE_MODE) -> dict:
     """提取 current 模型最新一个月的 Top-K 预测，缓存并更新 state。
+
+    Args:
+        mode: 'regime'（Regime条件集成）或 'equal'（等权集成），默认读 config.ENSEMBLE_MODE
 
     score 语义：s3 的 pred_ensemble = -(w_gnn·rank_gnn + w_lstm·rank_lstm)，取值
     [-N, -1]。我们转成 `score = N + pred_ensemble`，正数且越大越好（N = 当月
     进入 ensemble 的行业数），方便周报展示。
     """
-    ens = _load_current_ensemble()
+    ens = _load_current_ensemble(mode=mode)
     latest_date = ens['date'].max()
     latest = ens[ens['date'] == latest_date].copy()
     latest = latest.sort_values('pred_ensemble', ascending=False).reset_index(drop=True)

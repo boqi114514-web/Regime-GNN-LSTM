@@ -34,7 +34,7 @@ warnings.filterwarnings('ignore')
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(line_buffering=True)
 
-from config import OUTPUT_DIR, TOP_K, RF_ANNUAL
+from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, LOCAL_DATA_RAW
 
 ARIMAX_PROJECT = r"D:\desktop\有意思的事情\量化\项目\ARIMAX_LSTM行业轮动"
 
@@ -69,6 +69,7 @@ plt.rcParams['axes.unicode_minus'] = False
 RAW_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\原始数据")
 EXISTING_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\已有数据")
 STOCK_DATA_PATH = r"D:\desktop\有意思的事情\量化\项目\天风选股模型\数据\full_market_data_v18.pkl"
+_STOCK_DAILY_UPDATED = os.path.join(LOCAL_DATA_RAW, 'stock_daily.pkl')
 SW_MEMBERS_PATH = os.path.join(EXISTING_DATA_DIR, 'ts_sw_members.csv')
 SW_EXCLUDE = ['801780.SI', '801790.SI']
 
@@ -92,28 +93,57 @@ FACTOR_DIRECTIONS = {
 # ============================================================
 
 def load_stock_daily():
-    """加载个股日线数据（带缓存），返回 (df, stock_dict) 加速查询"""
+    """加载个股日线数据（带缓存），返回 (df, stock_dict) 加速查询。
+    若 data/raw/stock_daily.pkl 比缓存新，自动追加增量数据。
+    """
+    import pickle as _pkl
     cache_path = os.path.join(OUTPUT_DIR, '_cache_stock_daily.pkl')
+
     if os.path.exists(cache_path):
         print("  加载个股日线缓存...")
         df = pd.read_pickle(cache_path)
-        print(f"    {df['code'].nunique()} 只股票, "
-              f"{df['date'].min().strftime('%Y-%m-%d')} ~ "
-              f"{df['date'].max().strftime('%Y-%m-%d')}")
+        df['date'] = pd.to_datetime(df['date'])
     else:
         print("  加载个股日线原始数据（首次较慢）...")
-        data = pd.read_pickle(STOCK_DATA_PATH)
-        df = data['df_stock'].copy()
+        with open(STOCK_DATA_PATH, 'rb') as _f:
+            _raw = _pkl.load(_f)
+        df = _raw['df_stock'].copy()
         df['date'] = pd.to_datetime(df['date'])
         df = df.sort_values(['code', 'date']).reset_index(drop=True)
         df['ret'] = df.groupby('code')['close'].pct_change()
-
-        # 保存缓存（只保留需要的列，减小体积）
         df = df[['date', 'code', 'close', 'ret', 'amount']].copy()
         df.to_pickle(cache_path)
         print(f"    {df['code'].nunique()} 只股票, 缓存已保存")
 
-    # 按 code 分组建索引，查询 O(1)
+    # 合并增量日线（来自 data_pipeline.download --update-daily 生成的文件）
+    if os.path.exists(_STOCK_DAILY_UPDATED):
+        cache_latest = df['date'].max()
+        with open(_STOCK_DAILY_UPDATED, 'rb') as _f:
+            _upd = _pkl.load(_f)
+        upd_df = _upd['df_stock'] if isinstance(_upd, dict) else _upd
+        upd_df = pd.DataFrame(upd_df)
+        upd_df['date'] = pd.to_datetime(upd_df['date'])
+        new_rows = upd_df[upd_df['date'] > cache_latest][['date', 'code', 'close', 'amount']].copy()
+        if not new_rows.empty:
+            new_rows['ret'] = np.nan
+            combined = pd.concat(
+                [df[['date', 'code', 'close', 'ret', 'amount']], new_rows],
+                ignore_index=True
+            )
+            combined = combined.sort_values(['code', 'date']).reset_index(drop=True)
+            combined['ret'] = combined.groupby('code')['close'].pct_change()
+            df = combined
+            df.to_pickle(cache_path)
+            print(f"    缓存更新至 {df['date'].max().strftime('%Y-%m-%d')} (+{len(new_rows)} 行)")
+
+    # 写入 meta json（供 _get_daily_cutoff() 快速读取，避免每次加载大 pkl）
+    import json as _json
+    with open(os.path.join(OUTPUT_DIR, '_cache_stock_daily_meta.json'), 'w') as _f:
+        _json.dump({'max_date': df['date'].max().isoformat()}, _f)
+
+    print(f"    {df['code'].nunique()} 只股票, "
+          f"{df['date'].min().strftime('%Y-%m-%d')} ~ "
+          f"{df['date'].max().strftime('%Y-%m-%d')}")
     print("  构建股票索引...")
     stock_dict = {code: grp.set_index('date').sort_index()
                   for code, grp in df.groupby('code')}
@@ -122,11 +152,26 @@ def load_stock_daily():
 
 
 def load_industry_daily(df_stock, stock_to_ind):
-    """从个股日线计算行业日度收益率（等权），返回 (df, ind_dict) 加速查询"""
+    """从个股日线计算行业日度收益率（等权），返回 (df, ind_dict) 加速查询。
+    若 df_stock 比缓存新，只追加增量日期，避免全量重算。
+    """
     cache_path = os.path.join(OUTPUT_DIR, '_cache_ind_daily.pkl')
     if os.path.exists(cache_path):
         print("  加载行业日度缓存...")
         ind_daily = pd.read_pickle(cache_path)
+        ind_daily['date'] = pd.to_datetime(ind_daily['date'])
+        cache_latest = ind_daily['date'].max()
+        stock_latest = df_stock['date'].max()
+        if stock_latest > cache_latest:
+            new_df = df_stock[df_stock['date'] > cache_latest][['date', 'code', 'ret']].copy()
+            new_df['ind_code'] = new_df['code'].map(stock_to_ind)
+            new_df = new_df.dropna(subset=['ind_code', 'ret'])
+            if not new_df.empty:
+                new_ind = new_df.groupby(['date', 'ind_code'])['ret'].mean().reset_index()
+                new_ind.columns = ['date', 'ind_code', 'ind_ret']
+                ind_daily = pd.concat([ind_daily, new_ind], ignore_index=True)
+                ind_daily.to_pickle(cache_path)
+                print(f"    行业缓存更新至 {stock_latest.strftime('%Y-%m-%d')}")
     else:
         print("  计算行业日度收益率...")
         df = df_stock[['date', 'code', 'ret']].copy()
@@ -137,12 +182,31 @@ def load_industry_daily(df_stock, stock_to_ind):
         ind_daily.to_pickle(cache_path)
         print(f"    {ind_daily['ind_code'].nunique()} 个行业, {len(ind_daily)} 条")
 
-    # 按行业分组建索引
     print("  构建行业索引...")
     ind_dict = {code: grp.set_index('date')['ind_ret'].sort_index()
                 for code, grp in ind_daily.groupby('ind_code')}
     print(f"    {len(ind_dict)} 个行业已索引")
     return ind_daily, ind_dict
+
+
+def _get_daily_cutoff():
+    """返回个股日线缓存的最新日期（存为 meta json，快速读取）。"""
+    meta_path = os.path.join(OUTPUT_DIR, '_cache_stock_daily_meta.json')
+    cache_path = os.path.join(OUTPUT_DIR, '_cache_stock_daily.pkl')
+    if os.path.exists(meta_path):
+        try:
+            import json as _json
+            with open(meta_path, 'r') as _f:
+                return pd.Timestamp(_json.load(_f)['max_date'])
+        except Exception:
+            pass
+    if os.path.exists(cache_path):
+        try:
+            _df = pd.read_pickle(cache_path)
+            return pd.to_datetime(_df['date']).max()
+        except Exception:
+            pass
+    return None
 
 
 def load_stock_industry_map():
@@ -856,19 +920,30 @@ def main():
 #  实盘接口
 # ============================================================
 
-def run_live() -> pd.DataFrame:
+def run_live(pred_pkl: str = None, ckpt_suffix: str = '',
+             force_refresh_latest: bool = False) -> pd.DataFrame:
     """
     实盘模式：只处理尚未选股的月份，返回最新一期持仓 DataFrame。
     被 live/monitor.py 调用，依赖缓存，通常 < 3 分钟。
+
+    Args:
+        pred_pkl: 预测文件名（默认 predictions_ensemble.pkl）
+        ckpt_suffix: checkpoint 后缀，用于区分不同集成模式（如 '_equal'）
+        force_refresh_latest: True 时强制用最新日线重新选最后一个月
 
     返回列：stock_code, name, ind_code, ind_name, beta, momentum,
             quality, composite, month, ind_score, rank_in_ind
     没有新月份时返回空 DataFrame。
     """
-    print("  [选股] run_live 开始")
+    tag = f'[选股{ckpt_suffix}]'
+    print(f"  {tag} run_live 开始")
 
-    ensemble_path = os.path.join(OUTPUT_DIR, 'predictions_ensemble.pkl')
-    gnn_path      = os.path.join(OUTPUT_DIR, 'predictions_gnn.pkl')
+    if pred_pkl:
+        ensemble_path = os.path.join(OUTPUT_DIR, pred_pkl)
+    else:
+        ensemble_path = os.path.join(OUTPUT_DIR, 'predictions_ensemble.pkl')
+    gnn_path = os.path.join(OUTPUT_DIR, 'predictions_gnn.pkl')
+
     if os.path.exists(ensemble_path):
         pred_df  = pd.read_pickle(ensemble_path)
         pred_col = 'pred_ensemble'
@@ -876,12 +951,12 @@ def run_live() -> pd.DataFrame:
         pred_df  = pd.read_pickle(gnn_path)
         pred_col = 'pred_gnn'
     else:
-        print("  [选股] 未找到预测文件，跳过")
+        print(f"  {tag} 未找到预测文件，跳过")
         return pd.DataFrame()
 
     pred_df['date'] = pd.to_datetime(pred_df['date'])
 
-    ckpt_path      = os.path.join(OUTPUT_DIR, '_ckpt_beta.pkl')
+    ckpt_path = os.path.join(OUTPUT_DIR, f'_ckpt_beta{ckpt_suffix}.pkl')
     all_selections = []
     prev_holdings  = set()
     done_months    = set()
@@ -891,12 +966,53 @@ def run_live() -> pd.DataFrame:
         all_selections = ckpt.get('selections', [])
         prev_holdings  = ckpt.get('prev_holdings', set())
         done_months    = ckpt.get('done_months', set())
+        ckpt_daily_as_of = ckpt.get('stock_daily_as_of')
+    else:
+        ckpt_daily_as_of = None
 
     pred_months = sorted(pred_df['date'].unique())
+
+    # 自动检测日线数据更新，刷新被旧数据污染的月份
+    _cur_cutoff = _get_daily_cutoff()
+    if _cur_cutoff is not None:
+        if ckpt_daily_as_of is None:
+            # 旧 checkpoint 无记录，保守刷新所有 2026+ 月份
+            _stale = {m for m in done_months if m >= pd.Timestamp('2026-01-01')}
+        else:
+            _prev = pd.Timestamp(ckpt_daily_as_of)
+            # 某月 beta 的截止日 = pred_month - 1 天；若截止日 > 旧数据末尾则需刷新
+            _stale = {m for m in done_months
+                      if m - pd.Timedelta(days=1) > _prev}
+        if _stale:
+            done_months -= _stale
+            all_selections = [s for s in all_selections
+                              if not s.empty and s['month'].iloc[0] not in _stale]
+            if all_selections:
+                _h = pd.concat(all_selections, ignore_index=True)
+                prev_holdings = set(
+                    _h[_h['month'] == _h['month'].max()]['stock_code'].tolist())
+            else:
+                prev_holdings = set()
+            print(f"  {tag} 检测到日线更新，刷新 {len(_stale)} 个月的持仓")
+
+    # 强制刷新最新月份（每周例行更新 beta/动量）
+    if force_refresh_latest and pred_months:
+        latest_pred = max(pred_months)
+        if latest_pred in done_months:
+            done_months.discard(latest_pred)
+            all_selections = [s for s in all_selections
+                              if not s.empty and s['month'].iloc[0] != latest_pred]
+            if all_selections:
+                _hist = pd.concat(all_selections, ignore_index=True)
+                _pm   = _hist['month'].max()
+                prev_holdings = set(_hist[_hist['month'] == _pm]['stock_code'].tolist())
+            else:
+                prev_holdings = set()
+
     remaining   = [m for m in pred_months if m not in done_months]
 
     if not remaining:
-        print("  [选股] 无新月份，返回已有持仓")
+        print(f"  {tag} 无新月份，返回已有持仓")
         if all_selections:
             hist = pd.concat(all_selections, ignore_index=True)
             latest = hist['month'].max()
@@ -942,12 +1058,13 @@ def run_live() -> pd.DataFrame:
             prev_holdings = set()
 
         done_months.add(month)
-        print(f"  [选股] {pd.Timestamp(month).strftime('%Y-%m')} → {len(selected)} 只")
+        print(f"  {tag} {pd.Timestamp(month).strftime('%Y-%m')} → {len(selected)} 只")
 
     pd.to_pickle({
         'selections': all_selections,
         'prev_holdings': prev_holdings,
         'done_months': done_months,
+        'stock_daily_as_of': _cur_cutoff.isoformat() if _cur_cutoff is not None else None,
     }, ckpt_path)
 
     if not all_selections:
@@ -956,7 +1073,7 @@ def run_live() -> pd.DataFrame:
     hist   = pd.concat(all_selections, ignore_index=True)
     latest = hist['month'].max()
     result = hist[hist['month'] == latest].copy()
-    print(f"  [选股] 最新持仓 {latest.strftime('%Y-%m')}：{len(result)} 只")
+    print(f"  {tag} 最新持仓 {latest.strftime('%Y-%m')}：{len(result)} 只")
     return result
 
 

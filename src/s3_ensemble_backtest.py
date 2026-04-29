@@ -510,7 +510,7 @@ def main():
                           f"夏普: {metrics_dict['Regime集成']['sharpe_ratio']:.3f}, "
                           f"回撤: {metrics_dict['Regime集成']['max_drawdown']:.1%}")
 
-                    # 保存
+                    # 保存 Regime集成
                     regime_ens_df.to_pickle(os.path.join(OUTPUT_DIR, 'predictions_ensemble.pkl'))
 
                     # 分 regime 绩效
@@ -537,6 +537,10 @@ def main():
             # 没有 regime 时，保存自适应集成
             if adaptive_df is not None:
                 adaptive_df.to_pickle(os.path.join(OUTPUT_DIR, 'predictions_ensemble.pkl'))
+
+        # 保存等权集成（供 ENSEMBLE_MODE='equal' 使用）
+        if equal_df is not None:
+            equal_df.to_pickle(os.path.join(OUTPUT_DIR, 'predictions_ensemble_equal.pkl'))
 
     # ---- 汇总 ----
     print(f"\n{'='*60}")

@@ -381,6 +381,26 @@ def main():
         print(f"  IC>0:    {pos_ratio:.1%}")
         print(f"  月数:    {len(monthly_ics)}")
 
+    # 保存最后一个窗口的推理状态（供 live/infer_incremental.py 月度增量推理）
+    if n_windows > 0:
+        import pickle as _pkl
+        infer_state = {
+            'model_states': [
+                {k: v.clone().cpu() for k, v in m.state_dict().items()}
+                for m in seed_models
+            ],
+            'scalers': train_scalers,
+            'factor_cols': factor_cols,
+            'industries': industries,
+            'input_dim': input_dim,
+            'train_end_month': pd.Timestamp(train_months[-1]).strftime('%Y-%m-%d'),
+            'pred_end_month': pd.Timestamp(pred_months[-1]).strftime('%Y-%m-%d'),
+        }
+        _state_path = os.path.join(OUTPUT_DIR, 'lstm_b_inference_state.pkl')
+        with open(_state_path, 'wb') as _f:
+            _pkl.dump(infer_state, _f, protocol=4)
+        print(f"  LSTM-B 推理状态已保存 → {_state_path}")
+
     elapsed = time.time() - t0
     print(f"\nLSTM-B 训练完成，耗时 {elapsed/60:.1f} 分钟")
     print(f"预测保存至: {out_path}")
