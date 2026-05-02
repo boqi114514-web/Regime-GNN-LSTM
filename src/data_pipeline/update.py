@@ -22,7 +22,6 @@
 import argparse
 import os
 import sys
-import time
 from datetime import datetime
 from typing import Optional
 
@@ -34,55 +33,7 @@ if _SRC_DIR not in sys.path:
 
 from config import LOCAL_DATA_RAW, LOCAL_DATA_PROCESSED, SW_EXCLUDE
 from live import state
-
-
-# ============================================================
-#  tushare 客户端
-# ============================================================
-
-# 默认代理配置（可被环境变量覆盖）
-# 镜像列表：https://www.yuque.com/a493465197/fl1fxx/ixwtsutxwaf0chdc
-#   8.136.22.187:8010   已挂（2026-04 常返 502）
-#   121.40.135.59:8010  当前可用
-_DEFAULT_TOKEN = 'lFBANChbeKVoRmIGVQPyvxuaDQIZNQAsUPBFZjtvAWegyEKOeNviEpinjclCOmgJ'
-_DEFAULT_URL = 'http://124.222.60.121:8020/'
-
-API_SLEEP = 0.3  # 每次调用后的间隔（秒）
-
-_pro = None
-
-
-def get_pro():
-    """获取 tushare pro_api 实例（单例）"""
-    global _pro
-    if _pro is not None:
-        return _pro
-
-    import tushare as ts
-    token = os.environ.get('TUSHARE_TOKEN', _DEFAULT_TOKEN)
-    url = os.environ.get('TUSHARE_URL', _DEFAULT_URL)
-
-    _pro = ts.pro_api(token)
-    if url:
-        _pro._DataApi__http_url = url
-
-    print(f'[tushare] token={token[:8]}... url={url}')
-    return _pro
-
-
-def _call_with_retry(fn, *args, retries: int = 3, sleep: float = 2.0, **kwargs):
-    """带重试的 tushare 调用包装"""
-    last_err = None
-    for attempt in range(retries):
-        try:
-            df = fn(*args, **kwargs)
-            time.sleep(API_SLEEP)
-            return df
-        except Exception as e:
-            last_err = e
-            print(f'    [retry {attempt+1}/{retries}] {type(e).__name__}: {e}')
-            time.sleep(sleep * (attempt + 1))
-    raise RuntimeError(f'tushare 调用失败: {last_err}')
+from data_pipeline.tushare_config import get_pro, _call_with_retry
 
 
 # ============================================================

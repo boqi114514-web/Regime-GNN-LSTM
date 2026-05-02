@@ -423,6 +423,7 @@ def main():
 
         # 多 seed 训练
         all_seed_preds = []
+        window_models = []
         for s in range(GAT_N_SEEDS):
             seed = RANDOM_SEED + s * 100
             model, val_ic = train_gat_single(train_data, val_data, in_features, seed=seed)
@@ -431,6 +432,10 @@ def main():
             # 预测
             preds = predict_gat(model, pred_data)
             all_seed_preds.append(preds)
+            window_models.append(model)
+
+        # 记录最后一个窗口的模型（用于推理状态保存）
+        seed_models = window_models
 
         # 对多 seed 预测做排名平均
         for m_idx, m in enumerate(pred_months):

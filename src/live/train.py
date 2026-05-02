@@ -38,6 +38,14 @@ SNAPSHOT_FILES = (
 )
 
 
+def _run_processed_update() -> None:
+    """在全量训练前更新 processed 因子（价量、走势复刻、景气度）"""
+    print('\n[pre-train] 更新 processed 因子（price_volume / pattern / prosperity）...')
+    from data_pipeline.update import run as update_run
+    update_run(processed=True)
+    print('[pre-train] processed 因子更新完成\n')
+
+
 def _run_full_pipeline() -> None:
     """调用 run_all.py 跑 s0→s1→s2→s3 全量"""
     run_all_path = os.path.join(_SRC_DIR, 'run_all.py')
@@ -108,6 +116,7 @@ def train(mode: str) -> None:
     print(f'  live/train  mode={mode}  ts={now.strftime("%Y-%m-%d %H:%M:%S")}')
     print('=' * 60)
 
+    _run_processed_update()
     _run_full_pipeline()
 
     if mode == 'quarterly':

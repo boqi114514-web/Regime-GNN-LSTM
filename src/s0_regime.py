@@ -58,7 +58,12 @@ def build_regime_features(macro_df, csi300_df):
         on='ym', how='inner'
     )
     feature_cols = macro_cols + price_cols
-    merged = merged.dropna(subset=feature_cols).reset_index(drop=True)
+
+    # 前向填充缺失值（宏观指标偶尔缺月，用上期值比直接丢弃好）
+    merged = merged.sort_values('date').reset_index(drop=True)
+    merged[feature_cols] = merged[feature_cols].ffill()
+    # 仅丢弃前向填充后仍全空的行（序列开头无法 ffill 的部分）
+    merged = merged.dropna(subset=feature_cols, how='all').reset_index(drop=True)
     return merged, feature_cols
 
 
@@ -89,6 +94,16 @@ def rolling_hmm(features_df, feature_cols, train_window=HMM_TRAIN_WINDOW,
         train_slice = features_df.iloc[t - train_window:t]
         X_train = train_slice[feature_cols].values.astype(float)
         X_current = features_df.iloc[t:t + 1][feature_cols].values.astype(float)
+
+        # ffill 后仍可能有残余 NaN（序列开头），用列均值填充
+        col_means = np.nanmean(X_train, axis=0)
+        col_means = np.where(np.isnan(col_means), 0.0, col_means)
+        for j in range(X_train.shape[1]):
+            mask = np.isnan(X_train[:, j])
+            if mask.any():
+                X_train[mask, j] = col_means[j]
+            if np.isnan(X_current[0, j]):
+                X_current[0, j] = col_means[j]
 
         scaler = StandardScaler()
         X_train_s = scaler.fit_transform(X_train)

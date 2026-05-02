@@ -23,6 +23,8 @@ from config import LOCAL_DATA_PROCESSED, LOCAL_DATA_RAW
 from live import predict, state
 from notifier import get_notifier
 
+_ETF_MAPPING_PATH = os.path.join(LOCAL_DATA_RAW, 'etf_sw_mapping_v2.csv')
+
 
 # ---------- 数据源健康度 ----------
 
@@ -68,6 +70,79 @@ def _data_source_status() -> list:
 
 
 REGIME_NAMES = {-1: '未知', 0: '衰退', 1: '复苏', 2: '扩张', 3: '过热'}
+
+
+# ---------- ETF 执行载体 ----------
+
+def _load_etf_mapping() -> Optional[pd.DataFrame]:
+    if not os.path.exists(_ETF_MAPPING_PATH):
+        return None
+    try:
+        return pd.read_csv(_ETF_MAPPING_PATH, encoding='utf-8-sig')
+    except Exception:
+        return None
+
+
+_ETF_R2_WARN = 0.85   # 低于此 R² 标注 ⚠️，提示代理质量偏低
+
+
+def _best_etf_for_industry(sw_code: str, mapping: pd.DataFrame) -> Optional[dict]:
+    """取该行业 R² 最高的 ETF"""
+    sub = mapping[mapping['sw_code'] == sw_code].sort_values('r2', ascending=False)
+    if sub.empty:
+        return None
+    row = sub.iloc[0]
+    return {
+        'code': row['etf_code'],
+        'name': str(row.get('etf_name', '') or ''),
+        'r2':   float(row['r2']),
+        'beta': float(row['beta']),
+        'aum':  row.get('aum_亿'),
+    }
+
+
+def _etf_section_lines(top_k_codes: list, mapping: Optional[pd.DataFrame]) -> list:
+    """生成 ETF 执行载体章节（不区分板块，R²<阈值加警告）"""
+    if mapping is None or mapping.empty:
+        return ['## 🏦 ETF 执行载体', '', '> ETF 映射表未找到，请先运行 `data_pipeline.etf_mapping_v2`', '']
+
+    lines = ['## 🏦 ETF 执行载体', '']
+    lines.append('| 行业 | ETF代码 | ETF名称 | R² | β | 规模(亿) |')
+    lines.append('|------|---------|--------|-----|---|---------|')
+
+    for code in top_k_codes:
+        ind_name = _SW_NAMES.get(code, code)
+        etf = _best_etf_for_industry(code, mapping)
+        if etf is None:
+            lines.append(f'| {ind_name} | — | 无合适ETF | — | — | — |')
+            continue
+        aum_str  = f'{etf["aum"]:.1f}' if pd.notna(etf.get('aum')) else 'N/A'
+        warn     = ' ⚠️' if etf['r2'] < _ETF_R2_WARN else ''
+        name_str = etf['name'][:14] + warn
+        lines.append(
+            f'| {ind_name} | {etf["code"]} | {name_str} '
+            f'| {etf["r2"]:.3f} | {etf["beta"]:.2f} | {aum_str} |'
+        )
+
+    lines.append('')
+    lines.append(f'> ⚠️ R²<{_ETF_R2_WARN} 表示该 ETF 对行业的统计拟合偏低，慎用作执行载体')
+    lines.append('')
+    return lines
+
+
+# ---------- 股票板块判断 ----------
+
+_RESTRICT_THRESHOLD = 3   # 受限股票超过此数时展示主板备选表
+
+
+def _stock_board(stock_code: str) -> tuple:
+    """返回 (板块标签, is_restricted)"""
+    code = str(stock_code or '')
+    if code.startswith('688'):
+        return '科创', True
+    if code.startswith('300') or code.startswith('301'):
+        return '创业', True
+    return '主板', False
 
 
 # ---------- 对比工具 ----------
@@ -130,19 +205,61 @@ def _topk_table_lines(cur: dict, deltas: dict) -> list:
     return lines
 
 
-def _stock_table_lines(stock_df: pd.DataFrame) -> list:
+def _stock_table_lines(stock_df: pd.DataFrame, main_board_only: bool = False) -> list:
     lines = []
-    lines.append('| 行业 | 代码 | 名称 | β | 动量 | 综合分 |')
-    lines.append('|------|------|------|---|------|--------|')
+    lines.append('| 行业 | 代码 | 名称 | 板块 | β | 动量 | 综合分 |')
+    lines.append('|------|------|------|------|---|------|--------|')
     for ind in stock_df['ind_code'].unique():
         sub = stock_df[stock_df['ind_code'] == ind].sort_values('rank_in_ind')
         ind_label = sub['ind_name'].iloc[0] if 'ind_name' in sub.columns else ind
         for _, r in sub.iterrows():
-            name_str = r.get('name', r['stock_code'])
-            mom_str  = f"{r['momentum']*100:+.1f}%" if pd.notna(r.get('momentum')) else '-'
-            comp_str = f"{r['composite']:.3f}"      if pd.notna(r.get('composite')) else '-'
-            beta_str = f"{r['beta']:.2f}"           if pd.notna(r.get('beta'))      else '-'
-            lines.append(f'| {ind_label} | {r["stock_code"]} | {name_str} | {beta_str} | {mom_str} | {comp_str} |')
+            board, restricted = _stock_board(r['stock_code'])
+            if main_board_only and restricted:
+                continue
+            name_str  = r.get('name', r['stock_code'])
+            mom_str   = f"{r['momentum']*100:+.1f}%" if pd.notna(r.get('momentum')) else '-'
+            comp_str  = f"{r['composite']:.3f}"      if pd.notna(r.get('composite')) else '-'
+            beta_str  = f"{r['beta']:.2f}"           if pd.notna(r.get('beta'))      else '-'
+            lines.append(
+                f'| {ind_label} | {r["stock_code"]} | {name_str} '
+                f'| {board} | {beta_str} | {mom_str} | {comp_str} |'
+            )
+    return lines
+
+
+def _stock_section_lines(stock_df: pd.DataFrame, label: str) -> list:
+    """带板块标注 + 主板备选的个股持仓章节"""
+    n_total = len(stock_df)
+    restricted_mask = stock_df['stock_code'].apply(lambda c: _stock_board(c)[1])
+    n_restricted = restricted_mask.sum()
+
+    lines = [f'### {label}（{n_total} 只）', '']
+    lines += _stock_table_lines(stock_df)
+    lines.append('')
+
+    if n_restricted > 0:
+        boards = stock_df.loc[restricted_mask, 'stock_code'].apply(
+            lambda c: _stock_board(c)[0]
+        )
+        kechuang = (boards == '科创').sum()
+        chuangye  = (boards == '创业').sum()
+        parts = []
+        if kechuang:
+            parts.append(f'{kechuang} 只科创板')
+        if chuangye:
+            parts.append(f'{chuangye} 只创业板')
+        lines.append(f'> 含 {"、".join(parts)}（需对应交易权限）')
+        lines.append('')
+
+        if n_restricted >= _RESTRICT_THRESHOLD:
+            main_lines = _stock_table_lines(stock_df, main_board_only=True)
+            n_main = sum(1 for l in main_lines if l.startswith('|') and '---' not in l)
+            if n_main > 0:
+                lines.append(f'**主板备选（{n_main} 只，剔除科创/创业）：**')
+                lines.append('')
+                lines += main_lines
+                lines.append('')
+
     return lines
 
 
@@ -167,7 +284,8 @@ def _diff_summary_line(diff_r: dict, diff_e: dict, k: int) -> str:
 
 
 def generate_report(current: dict, previous: Optional[dict],
-                    current_equal: Optional[dict] = None) -> str:
+                    current_equal: Optional[dict] = None,
+                    etf_mapping: Optional[pd.DataFrame] = None) -> str:
     now = datetime.now()
     iso_year, iso_week, _ = now.isocalendar()
     K = len(current['top_k'])
@@ -230,7 +348,16 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('> ' + '　'.join(summary))
         lines.append('')
 
-    # ── 2. 持仓变动 ───────────────────────────────────────────
+    # ── 2. ETF 执行载体 ───────────────────────────────────────
+    # 合并两模式 top_k（去重，保持顺序：regime 优先，然后补等权独有）
+    combined_top_k = list(current['top_k'])
+    if has_eq:
+        for c in current_equal['top_k']:
+            if c not in combined_top_k:
+                combined_top_k.append(c)
+    lines += _etf_section_lines(combined_top_k, etf_mapping)
+
+    # ── 3. 持仓变动 ───────────────────────────────────────────
     lines.append('## 📊 持仓变动')
     lines.append('')
 
@@ -256,7 +383,7 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('> ' + _diff_summary_line(diff_r, diff_e, K))
         lines.append('')
 
-    # ── 3. 模型健康度（共用）─────────────────────────────────
+    # ── 4. 模型健康度（共用）─────────────────────────────────
     last_run = state.get_last_run()
     lines.append('## 📈 模型健康度')
     lines.append('')
@@ -278,7 +405,7 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append(f'- 上次月末微调：{last_run["last_monthly_train"]}  (label={last_run.get("monthly_label","?")})')
     lines.append('')
 
-    # ── 4. 执行建议 ───────────────────────────────────────────
+    # ── 5. 执行建议 ───────────────────────────────────────────
     lines.append('## 🔧 执行建议')
     lines.append('')
 
@@ -300,7 +427,7 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('> ' + ('两模型建议一致' if agree else '两模型建议不同，等权出现换手信号'))
         lines.append('')
 
-    # ── 5. 个股持仓 ───────────────────────────────────────────
+    # ── 6. 个股持仓 ───────────────────────────────────────────
     stock_r = current.get('stock_holdings')
     stock_e = current_equal.get('stock_holdings') if has_eq else None
     has_stock_r = stock_r is not None and not stock_r.empty
@@ -311,16 +438,10 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('')
 
         if has_stock_r:
-            lines.append(f'### Regime 集成（{len(stock_r)} 只）')
-            lines.append('')
-            lines += _stock_table_lines(stock_r)
-            lines.append('')
+            lines += _stock_section_lines(stock_r, 'Regime 集成')
 
         if has_stock_e:
-            lines.append(f'### 等权集成（{len(stock_e)} 只）')
-            lines.append('')
-            lines += _stock_table_lines(stock_e)
-            lines.append('')
+            lines += _stock_section_lines(stock_e, '等权集成')
 
         if has_stock_r and has_stock_e:
             r_codes = set(stock_r['stock_code'])
@@ -383,7 +504,8 @@ def run() -> str:
             print(f'  [选股 equal] 跳过（{type(e).__name__}: {e}）')
             current_equal['stock_holdings'] = None
 
-    report = generate_report(current, previous, current_equal)
+    etf_mapping = _load_etf_mapping()
+    report = generate_report(current, previous, current_equal, etf_mapping=etf_mapping)
 
     notifier = get_notifier()
     notifier.send_report(report)

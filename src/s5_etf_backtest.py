@@ -22,23 +22,18 @@ import sys
 import io
 import time
 import warnings
-import tushare as ts
-
 warnings.filterwarnings('ignore')
 
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
 
 from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, ARIMAX_PROJECT, EXISTING_DATA_DIR
+from data_pipeline.tushare_config import get_pro as _get_pro
 
 plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
-TUSHARE_TOKEN = "b007d905f49daa7551aef46aac24f0138e4797bde3d16924a042c5696c83"
-TUSHARE_URL = "http://lianghua.nanyangqiankun.top"
-ts.set_token(TUSHARE_TOKEN)
-pro = ts.pro_api(TUSHARE_TOKEN, timeout=30)
-pro._DataApi__http_url = TUSHARE_URL
+pro = _get_pro()
 
 # ==================== 申万行业 → ETF 映射 ====================
 # ⚠️ 已知问题（2026-04-04 审计）：
