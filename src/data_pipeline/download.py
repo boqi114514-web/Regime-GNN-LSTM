@@ -174,9 +174,6 @@ def update_stock_daily(dry_run=False):
         return {'new_rows': 0}
     print(f'  共 {len(trade_dates)} 个交易日: {trade_dates[0]} → {trade_dates[-1]}')
 
-    # 排除创业板/科创板/北交所的前缀
-    EXCLUDE_PREFIX = ('300', '301', '688', '689')
-
     print(f'\n[3/4] 按交易日拉取全市场日线（{len(trade_dates)} 天）...')
     new_rows = []
     total_records = 0
@@ -192,10 +189,6 @@ def update_stock_daily(dry_run=False):
 
             # 转换格式：匹配现有 df 的列结构
             bar['code'] = bar['ts_code'].str.split('.').str[0]
-            # 排除创业板/科创板（与原始数据口径一致）
-            bar = bar[~bar['code'].str.startswith(EXCLUDE_PREFIX)].copy()
-            # 排除北交所（8开头 / 4开头部分）
-            bar = bar[~bar['code'].str.startswith(('8', '4'))].copy()
 
             bar['date'] = pd.to_datetime(bar['trade_date'], format='%Y%m%d')
             bar = bar.rename(columns={'vol': 'volume'})
@@ -395,6 +388,114 @@ def update_financial(dry_run=False, force_period: str = None):
 
 
 # ============================================================
+#  --backfill: 补全缺失股票的完整历史（如创业板、北交所）
+# ============================================================
+
+def backfill_missing_stocks(dry_run=False):
+    """一次性补下 stock_daily.pkl 中缺失的股票历史（创业板/北交所等）。
+
+    策略：逐股拉取（pro.daily(ts_code=..., start_date=..., end_date=...)），
+    每只股票约 1 次 API 调用，完整历史一次到位。
+    """
+    print('=' * 60)
+    print('  补全缺失股票历史数据')
+    print('=' * 60)
+
+    if not os.path.exists(STOCK_DAILY_PKL):
+        print(f'[错误] {STOCK_DAILY_PKL} 不存在，请先 --migrate')
+        return {'error': 'no_base_file'}
+
+    print('[1/3] 加载现有数据...')
+    with open(STOCK_DAILY_PKL, 'rb') as f:
+        data = pickle.load(f)
+    df = data['df_stock']
+    df['date'] = pd.to_datetime(df['date'])
+    existing_codes = set(df['code'].unique())
+    end_date_str = df['date'].max().strftime('%Y%m%d')
+    print(f'  现有: {len(existing_codes)} 只股票, 最新 {df["date"].max().date()}')
+
+    pro = _get_pro()
+
+    print('\n[2/3] 获取全市场股票列表...')
+    all_stocks = []
+    for status in ('L', 'D', 'P'):
+        batch = _call(pro.stock_basic, exchange='', list_status=status,
+                      fields='ts_code,name,list_date,delist_date')
+        if batch is not None and not batch.empty:
+            all_stocks.append(batch)
+    all_df = pd.concat(all_stocks, ignore_index=True)
+    all_df['code'] = all_df['ts_code'].str[:6]
+
+    missing = all_df[~all_df['code'].isin(existing_codes)].copy()
+    print(f'  全市场 {len(all_df)} 只，缺失 {len(missing)} 只')
+    for prefix, label in [('300', '创业板300'), ('301', '创业板301'),
+                           ('688', '科创板688'), ('689', '科创板689'),
+                           ('8', '北交所8xx'), ('43', '北交所43x')]:
+        n = missing['code'].str.startswith(prefix).sum()
+        if n:
+            print(f'    {label}: {n}')
+
+    if missing.empty:
+        print('  无缺失，退出')
+        return {'backfilled': 0}
+
+    print(f'\n[3/3] 下载 {len(missing)} 只股票历史数据...')
+    new_rows_list = []
+    failed = []
+
+    for i, (_, row) in enumerate(missing.iterrows()):
+        ts_code = row['ts_code']
+        code    = row['code']
+        start_d = row['list_date'] if pd.notna(row.get('list_date')) and row['list_date'] else '20090101'
+        delist  = row.get('delist_date')
+        end_d   = min(str(delist), end_date_str) if pd.notna(delist) and delist else end_date_str
+
+        if (i + 1) % 100 == 0 or i < 3:
+            print(f'  [{i+1}/{len(missing)}] {ts_code} ({row.get("name","")}) '
+                  f'{start_d}→{end_d}', flush=True)
+
+        try:
+            bar = _call(pro.daily, ts_code=ts_code, start_date=start_d, end_date=end_d)
+            if bar is None or bar.empty:
+                continue
+            bar['code'] = code
+            bar['date'] = pd.to_datetime(bar['trade_date'], format='%Y%m%d')
+            bar = bar.rename(columns={'vol': 'volume'})
+            keep = ['date', 'code', 'open', 'high', 'low', 'close', 'volume', 'amount']
+            for col in keep:
+                if col not in bar.columns:
+                    bar[col] = np.nan
+            new_rows_list.append(bar[keep])
+        except Exception as e:
+            failed.append(ts_code)
+            if len(failed) <= 10:
+                print(f'  ✗ {ts_code}: {e}')
+
+    if not new_rows_list:
+        print('  未拉到数据')
+        return {'backfilled': 0, 'failed': failed}
+
+    new_df = pd.concat(new_rows_list, ignore_index=True)
+    print(f'\n  新增: {new_df["code"].nunique()} 只股票, {len(new_df):,} 条记录')
+
+    combined = pd.concat([df, new_df], ignore_index=True)
+    combined = combined.drop_duplicates(subset=['code', 'date'], keep='last')
+    combined = combined.sort_values(['code', 'date']).reset_index(drop=True)
+    print(f'  合并后: {combined["code"].nunique()} 只股票, {len(combined):,} 条')
+
+    if not dry_run:
+        print(f'  写入 {STOCK_DAILY_PKL}...')
+        data['df_stock'] = combined
+        with open(STOCK_DAILY_PKL, 'wb') as f:
+            pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+        print(f'  完成 ({os.path.getsize(STOCK_DAILY_PKL)/1024/1024:.0f}MB)')
+
+    if failed:
+        print(f'  ⚠ {len(failed)} 只下载失败: {failed[:20]}')
+    return {'backfilled': new_df['code'].nunique(), 'failed': failed}
+
+
+# ============================================================
 #  --update-members: 更新行业成分股
 # ============================================================
 
@@ -472,6 +573,8 @@ def main():
                        help='增量更新财务报表')
     group.add_argument('--update-members', action='store_true',
                        help='更新行业成分股')
+    group.add_argument('--backfill', action='store_true',
+                       help='补全缺失股票的完整历史（创业板/北交所，一次性操作）')
     group.add_argument('--full', action='store_true',
                        help='全量更新（日线+财务+成分股）')
     parser.add_argument('--dry-run', action='store_true')
@@ -487,6 +590,8 @@ def main():
         update_financial(dry_run=args.dry_run, force_period=args.force_period)
     elif args.update_members:
         update_sw_members(dry_run=args.dry_run)
+    elif args.backfill:
+        backfill_missing_stocks(dry_run=args.dry_run)
     elif args.full:
         update_stock_daily(dry_run=args.dry_run)
         update_financial(dry_run=args.dry_run)
