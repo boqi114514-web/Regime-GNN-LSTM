@@ -301,19 +301,6 @@ def main():
     n_industries = len(industries)
     print(f"  行业数: {n_industries}")
 
-    # 加载 regime 标签
-    regime_path = os.path.join(OUTPUT_DIR, 'regime_labels.pkl')
-    if os.path.exists(regime_path):
-        regime_df = pd.read_pickle(regime_path)
-        regime_df['date'] = pd.to_datetime(regime_df['date'])
-        print(f"  Regime: {len(regime_df)} 月, "
-              f"{regime_df['date'].min().strftime('%Y-%m')} ~ "
-              f"{regime_df['date'].max().strftime('%Y-%m')}")
-        has_regime = True
-    else:
-        print("  警告：未找到 regime_labels.pkl，不使用 regime 特征")
-        has_regime = False
-
     # 合并景气度指标到月度数据
     mkt_merged = pd.merge(
         mkt[['ts_code', 'date', 'year', 'month', 'ret', 'pe', 'pb']],
@@ -329,28 +316,10 @@ def main():
             lambda x: x.rolling(60, min_periods=12).rank(pct=True)
         )
 
-    # 合并 regime（one-hot 编码，对所有行业广播同一个月的 regime）
-    if has_regime:
-        regime_onehot = pd.get_dummies(regime_df[['date', 'regime']],
-                                        columns=['regime'], prefix='regime')
-        # 确保4个 regime 列都存在
-        for i in range(4):
-            col = f'regime_{i}'
-            if col not in regime_onehot.columns:
-                regime_onehot[col] = 0
-        regime_cols = [f'regime_{i}' for i in range(4)]
-        mkt_merged = pd.merge(mkt_merged, regime_onehot[['date'] + regime_cols],
-                               on='date', how='left')
-        # 未覆盖的月份填0
-        for col in regime_cols:
-            mkt_merged[col] = mkt_merged[col].fillna(0).astype(float)
-    else:
-        regime_cols = []
-
     # 特征列
-    feature_cols = SELECTED_INDICATORS + ['pe_pctile', 'pb_pctile'] + regime_cols
+    feature_cols = SELECTED_INDICATORS + ['pe_pctile', 'pb_pctile']
     in_features = len(feature_cols)
-    print(f"  GNN 特征数: {in_features} (含 {len(regime_cols)} 个 regime 特征)")
+    print(f"  GNN 特征数: {in_features}")
 
     # 截面 z-score
     mkt_merged = zscore_cross_section(mkt_merged, feature_cols)
@@ -516,8 +485,6 @@ def main():
             'feature_cols': feature_cols,
             'industries': industries,
             'in_features': in_features,
-            'has_regime': has_regime,
-            'regime_cols': regime_cols,
             'train_end_month': pd.Timestamp(train_months[-1]).strftime('%Y-%m-%d'),
             'pred_end_month': pd.Timestamp(pred_months[-1]).strftime('%Y-%m-%d'),
             'ret_pivot': ret_pivot.tail(GLASSO_ROLLING_MONTHS * 2).copy(),

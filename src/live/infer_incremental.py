@@ -37,8 +37,6 @@ _GNN_PKL    = os.path.join(OUTPUT_DIR, 'predictions_gnn.pkl')
 _LSTM_PKL   = os.path.join(OUTPUT_DIR, 'predictions_lstm_b.pkl')
 _ENS_PKL    = os.path.join(OUTPUT_DIR, 'predictions_ensemble.pkl')
 _EQENS_PKL  = os.path.join(OUTPUT_DIR, 'predictions_ensemble_equal.pkl')
-_REGIME_PKL = os.path.join(OUTPUT_DIR, 'regime_labels.pkl')
-
 
 # ─── 工具 ─────────────────────────────────────────────────────────────────────
 
@@ -82,8 +80,6 @@ def _infer_gnn(new_months, state, mkt, prosperity):
     """对 new_months 中的每个月运行 GNN forward pass，返回 row 列表。"""
     feature_cols = state['feature_cols']
     in_features  = state['in_features']
-    has_regime   = state['has_regime']
-    regime_cols  = state.get('regime_cols', [])
     industries   = state['industries']
     n_industries = len(industries)
     ret_pivot_saved = state.get('ret_pivot')
@@ -108,18 +104,6 @@ def _infer_gnn(new_months, state, mkt, prosperity):
         mkt_merged[f'{col}_pctile'] = mkt_merged.groupby('ts_code')[col].transform(
             lambda x: x.rolling(60, min_periods=12).rank(pct=True)
         )
-
-    if has_regime and os.path.exists(_REGIME_PKL):
-        regime_df = pd.read_pickle(_REGIME_PKL)
-        regime_df['date'] = pd.to_datetime(regime_df['date'])
-        roh = pd.get_dummies(regime_df[['date', 'regime']], columns=['regime'], prefix='regime')
-        for i in range(4):
-            c = f'regime_{i}'
-            if c not in roh.columns:
-                roh[c] = 0
-        mkt_merged = pd.merge(mkt_merged, roh[['date'] + regime_cols], on='date', how='left')
-        for c in regime_cols:
-            mkt_merged[c] = mkt_merged[c].fillna(0).astype(float)
 
     mkt_merged = zscore_cross_section(mkt_merged, feature_cols)
 

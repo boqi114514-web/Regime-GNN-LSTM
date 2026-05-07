@@ -44,7 +44,6 @@ def _data_source_status() -> list:
     targets = [
         ('raw: sw_industry', os.path.join(LOCAL_DATA_RAW, 'ts_sw_industry_monthly.csv')),
         ('raw: csi300',      os.path.join(LOCAL_DATA_RAW, 'ts_csi300_monthly.csv')),
-        ('raw: macro',       os.path.join(LOCAL_DATA_RAW, 'ts_macro_factors.csv')),
         ('proc: prosperity', os.path.join(LOCAL_DATA_PROCESSED, 'prosperity_indicators_clean.pkl')),
         ('proc: pv_factors', os.path.join(LOCAL_DATA_PROCESSED, 'price_volume_factors.pkl')),
         ('proc: pattern',    os.path.join(LOCAL_DATA_PROCESSED, 'pattern_factors.pkl')),
@@ -284,7 +283,6 @@ def _diff_summary_line(diff_r: dict, diff_e: dict, k: int) -> str:
 
 
 def generate_report(current: dict, previous: Optional[dict],
-                    current_equal: Optional[dict] = None,
                     etf_mapping: Optional[pd.DataFrame] = None) -> str:
     now = datetime.now()
     iso_year, iso_week, _ = now.isocalendar()
@@ -297,13 +295,6 @@ def generate_report(current: dict, previous: Optional[dict],
     diff_r = _diff_holdings(current['top_k'], prev_top)
     deltas_r = _rank_delta_map(current['all_ranked'], prev_all)
 
-    has_eq = current_equal is not None
-    if has_eq:
-        diff_e   = _diff_holdings(current_equal['top_k'], prev_top)
-        deltas_e = _rank_delta_map(current_equal['all_ranked'], prev_all)
-    else:
-        diff_e = deltas_e = None
-
     lines = []
 
     # ── 头部 ──────────────────────────────────────────────────
@@ -314,48 +305,16 @@ def generate_report(current: dict, previous: Optional[dict],
     lines.append(f'**数据月份**：{current["as_of"]}')
     if current.get('model_label'):
         lines.append(f'**模型版本**：{current["model_label"]}')
-    if current.get('regime') is not None:
-        lines.append(f'**HMM regime**：{REGIME_NAMES.get(current["regime"], current["regime"])}')
-    if current.get('w_gnn') is not None and current.get('w_lstm') is not None:
-        lines.append(f'**Regime集成权重**：GNN={current["w_gnn"]:.2f} / LSTM-B={current["w_lstm"]:.2f}')
     lines.append('')
 
     # ── 1. Top-K 推荐行业 ─────────────────────────────────────
     lines.append(f'## 🎯 Top-{K} 推荐行业')
     lines.append('')
-    lines.append('### Regime 集成')
-    lines.append('')
     lines += _topk_table_lines(current, deltas_r)
     lines.append('')
-    if has_eq:
-        lines.append('### 等权集成')
-        lines.append('')
-        lines += _topk_table_lines(current_equal, deltas_e)
-        lines.append('')
-        # 对比摘要
-        regime_set  = set(current['top_k'])
-        equal_set   = set(current_equal['top_k'])
-        consensus   = regime_set & equal_set
-        only_regime = regime_set - equal_set
-        only_equal  = equal_set  - regime_set
-        summary = []
-        if consensus:
-            summary.append('共识：' + '、'.join(_SW_NAMES.get(c, c) for c in sorted(consensus)))
-        if only_regime:
-            summary.append('仅 Regime：' + '、'.join(_SW_NAMES.get(c, c) for c in sorted(only_regime)))
-        if only_equal:
-            summary.append('仅等权：' + '、'.join(_SW_NAMES.get(c, c) for c in sorted(only_equal)))
-        lines.append('> ' + '　'.join(summary))
-        lines.append('')
 
     # ── 2. ETF 执行载体 ───────────────────────────────────────
-    # 合并两模式 top_k（去重，保持顺序：regime 优先，然后补等权独有）
-    combined_top_k = list(current['top_k'])
-    if has_eq:
-        for c in current_equal['top_k']:
-            if c not in combined_top_k:
-                combined_top_k.append(c)
-    lines += _etf_section_lines(combined_top_k, etf_mapping)
+    lines += _etf_section_lines(list(current['top_k']), etf_mapping)
 
     # ── 3. 持仓变动 ───────────────────────────────────────────
     lines.append('## 📊 持仓变动')
@@ -377,11 +336,8 @@ def generate_report(current: dict, previous: Optional[dict],
         bl.append('')
         return bl
 
-    lines += _holdings_block(diff_r, 'Regime 集成')
-    if has_eq:
-        lines += _holdings_block(diff_e, '等权集成')
-        lines.append('> ' + _diff_summary_line(diff_r, diff_e, K))
-        lines.append('')
+    lines += _holdings_block(diff_r, '等权集成')
+    lines.append('')
 
     # ── 4. 模型健康度（共用）─────────────────────────────────
     last_run = state.get_last_run()
@@ -467,15 +423,8 @@ def run() -> str:
     except Exception as e:
         print(f'  [增量推理] 跳过（{type(e).__name__}: {e}）')
 
-    current = predict.infer_latest(mode='regime')
+    current = predict.infer_latest(mode='equal')
     previous = state.get_last_holdings()
-
-    # 等权集成（失败不中断周报）
-    try:
-        current_equal = predict.infer_latest(mode='equal')
-    except Exception as e:
-        print(f'  [等权推理] 跳过（{type(e).__name__}: {e}）')
-        current_equal = None
 
     # 更新个股日线（取最新数据用于选股层 beta/动量计算）
     try:
@@ -484,28 +433,16 @@ def run() -> str:
     except Exception as e:
         print(f'  [日线更新] 跳过（{type(e).__name__}: {e}）')
 
-    # 选股层：regime 分支
+    # 选股层
     try:
         import s4_beta_selection as s4
         current['stock_holdings'] = s4.run_live(force_refresh_latest=True)
     except Exception as e:
-        print(f'  [选股 regime] 跳过（{type(e).__name__}: {e}）')
+        print(f'  [选股] 跳过（{type(e).__name__}: {e}）')
         current['stock_holdings'] = None
 
-    # 选股层：等权分支
-    if current_equal is not None:
-        try:
-            current_equal['stock_holdings'] = s4.run_live(
-                pred_pkl='predictions_ensemble_equal.pkl',
-                ckpt_suffix='_equal',
-                force_refresh_latest=True,
-            )
-        except Exception as e:
-            print(f'  [选股 equal] 跳过（{type(e).__name__}: {e}）')
-            current_equal['stock_holdings'] = None
-
     etf_mapping = _load_etf_mapping()
-    report = generate_report(current, previous, current_equal, etf_mapping=etf_mapping)
+    report = generate_report(current, previous, etf_mapping=etf_mapping)
 
     notifier = get_notifier()
     notifier.send_report(report)

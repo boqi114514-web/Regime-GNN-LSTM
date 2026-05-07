@@ -32,7 +32,6 @@ SNAPSHOT_FILES = (
     'predictions_lstm_b.pkl',
     'predictions_ensemble.pkl',
     'predictions_ensemble_equal.pkl',
-    'regime_labels.pkl',
     'gnn_inference_state.pkl',
     'lstm_b_inference_state.pkl',
 )

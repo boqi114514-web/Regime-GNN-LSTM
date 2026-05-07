@@ -457,12 +457,6 @@ def run(dry_run: bool = False, force_months: int = 0,
         results['csi300'] = {'error': str(e)}
         print(f'[csi300] 失败: {e}')
 
-    try:
-        results['macro'] = update_macro_factors(dry_run, force_months)
-    except Exception as e:
-        results['macro'] = {'error': str(e)}
-        print(f'[macro] 失败: {e}')
-
     # processed 数据更新（较慢，仅在 --processed / 月末训练前使用）
     if processed:
         import traceback
