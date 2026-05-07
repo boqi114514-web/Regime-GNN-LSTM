@@ -34,7 +34,19 @@ warnings.filterwarnings('ignore')
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(line_buffering=True)
 
-from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, ARIMAX_PROJECT
+from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, SW_MEMBERS_PATH as _CFG_SW_MEMBERS
+
+# ARIMAX_PROJECT is optional: only needed when fundamental cache is missing
+try:
+    from config import ARIMAX_PROJECT as _ARIMAX_PROJECT
+    RAW_DATA_DIR      = os.path.join(_ARIMAX_PROJECT, r"数据\原始数据")
+    EXISTING_DATA_DIR = os.path.join(_ARIMAX_PROJECT, r"数据\已有数据")
+    SW_MEMBERS_PATH   = os.path.join(EXISTING_DATA_DIR, 'ts_sw_members.csv')
+except ImportError:
+    _ARIMAX_PROJECT   = None
+    RAW_DATA_DIR      = None
+    EXISTING_DATA_DIR = None
+    SW_MEMBERS_PATH   = _CFG_SW_MEMBERS
 
 # ==================== 参数 ====================
 TOPN_PER_IND = 5           # 每个行业选 N 只（25只总持仓，兼顾集中与分散）
@@ -64,10 +76,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
 # ==================== 数据路径 ====================
-RAW_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\原始数据")
-EXISTING_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\已有数据")
 STOCK_DATA_PATH = r"D:\desktop\有意思的事情\量化\项目\天风选股模型\数据\full_market_data_v18.pkl"
-SW_MEMBERS_PATH = os.path.join(EXISTING_DATA_DIR, 'ts_sw_members.csv')
 SW_EXCLUDE = ['801780.SI', '801790.SI']
 
 # ==================== 基本面因子定义 ====================
@@ -848,6 +857,87 @@ def main():
     plot_stock_results(bt_results, ind_nav,
                        os.path.join(OUTPUT_DIR, 'stock_backtest_results.png'))
     print(f"  结果保存至 {OUTPUT_DIR}")
+
+
+def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
+             ckpt_suffix: str = '',
+             force_refresh_latest: bool = False) -> pd.DataFrame:
+    """Select stocks for the latest available month (called by monitor.run).
+
+    Returns a DataFrame with columns expected by monitor._stock_section_lines:
+    ind_code, ind_name, stock_code, name, beta, momentum, composite, rank_in_ind
+    """
+    ensemble_path = os.path.join(OUTPUT_DIR, pred_pkl)
+    if not os.path.exists(ensemble_path):
+        raise FileNotFoundError(f"预测文件不存在: {ensemble_path}")
+
+    pred_df = pd.read_pickle(ensemble_path)
+    pred_df['date'] = pd.to_datetime(pred_df['date'])
+    latest_month = pred_df['date'].max()
+
+    ckpt_path = os.path.join(OUTPUT_DIR, f'_ckpt_beta{ckpt_suffix}.pkl')
+
+    # Return from checkpoint cache if available and not forced
+    if not force_refresh_latest and os.path.exists(ckpt_path):
+        ckpt = pd.read_pickle(ckpt_path)
+        if latest_month in ckpt.get('done_months', set()):
+            sels = ckpt.get('selections', [])
+            if sels:
+                cached = pd.concat(sels, ignore_index=True)
+                month_rows = cached[cached['month'] == latest_month].copy()
+                if not month_rows.empty:
+                    if 'ind_name' not in month_rows.columns:
+                        _, ind_to_name = load_stock_industry_map()
+                        month_rows['ind_name'] = (
+                            month_rows['ind_code'].map(ind_to_name)
+                            .fillna(month_rows['ind_code'])
+                        )
+                    return month_rows
+
+    print(f'  [选股] 最新月份: {latest_month.strftime("%Y-%m")}')
+    stock_to_ind, ind_to_name = load_stock_industry_map()
+    df_stock,  stock_dict     = load_stock_daily()
+    _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
+    fund_dict                 = load_fundamental_features()
+
+    pred_col = next(
+        (c for c in ('pred_ensemble', 'pred_gnn') if c in pred_df.columns),
+        pred_df.columns[-1],
+    )
+    m_pred = (
+        pred_df[pred_df['date'] == latest_month]
+        .sort_values(pred_col, ascending=False)
+        .head(TOP_K)
+    )
+    top_inds   = m_pred['ts_code'].tolist()
+    ind_scores = dict(zip(m_pred['ts_code'], m_pred[pred_col]))
+
+    prev_holdings: set = set()
+    if os.path.exists(ckpt_path):
+        prev_holdings = pd.read_pickle(ckpt_path).get('prev_holdings', set())
+
+    result = select_stocks_for_month(
+        pred_month    = latest_month,
+        top_industries = top_inds,
+        stock_dict    = stock_dict,
+        ind_dict      = ind_dict,
+        stock_to_ind  = stock_to_ind,
+        fund_dict     = fund_dict,
+        ind_scores    = ind_scores,
+        prev_holdings = prev_holdings,
+    )
+
+    if result.empty:
+        return result
+
+    result['ind_name'] = (
+        result['ind_code'].map(ind_to_name).fillna(result['ind_code'])
+    )
+    # 'name' column (stock display name) defaults to stock_code when unavailable
+    if 'name' not in result.columns:
+        result['name'] = result['stock_code']
+
+    return result
 
 
 if __name__ == '__main__':
