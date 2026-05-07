@@ -34,7 +34,8 @@ warnings.filterwarnings('ignore')
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(line_buffering=True)
 
-from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, LOCAL_DATA_RAW, SW_MEMBERS_PATH as _CFG_SW_MEMBERS
+from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, SW_MEMBERS_PATH as _CFG_SW_MEMBERS, \
+    LOCAL_DATA_RAW, STOCK_DAILY_PATH
 
 # ARIMAX_PROJECT kept for backward compat; caches in results/ make it optional
 _ARIMAX_PROJECT   = r"D:\desktop\有意思的事情\量化\项目\ARIMAX_LSTM行业轮动"
@@ -106,8 +107,10 @@ def load_stock_daily():
         df = pd.read_pickle(cache_path)
         df['date'] = pd.to_datetime(df['date'])
     else:
-        print("  加载个股日线原始数据（首次较慢）...")
-        with open(STOCK_DATA_PATH, 'rb') as _f:
+        # 优先用 data/raw/stock_daily.pkl，兜底用旧版路径
+        raw_src = STOCK_DAILY_PATH if os.path.exists(STOCK_DAILY_PATH) else STOCK_DATA_PATH
+        print(f"  加载个股日线原始数据（{raw_src}）...")
+        with open(raw_src, 'rb') as _f:
             _raw = _pkl.load(_f)
         df = _raw['df_stock'].copy()
         df['date'] = pd.to_datetime(df['date'])
@@ -230,15 +233,30 @@ def load_fundamental_features():
     print("  加载个股基本面数据...")
 
     cache_path = os.path.join(OUTPUT_DIR, '_cache_fund_monthly.pkl')
+
+    # 优先用本项目 data/raw/ 的财报；若财报比缓存更新则自动重建
+    _fund_raw_dir = LOCAL_DATA_RAW if os.path.exists(
+        os.path.join(LOCAL_DATA_RAW, 'raw_income.pkl')) else RAW_DATA_DIR
+
+    if os.path.exists(cache_path) and _fund_raw_dir:
+        _income_src = os.path.join(_fund_raw_dir, 'raw_income.pkl')
+        if os.path.exists(_income_src) and \
+                os.path.getmtime(_income_src) > os.path.getmtime(cache_path):
+            print("    检测到财报数据已更新，重建基本面缓存...")
+            os.remove(cache_path)
+
     if os.path.exists(cache_path):
         print("    加载基本面缓存...")
         fund_dict = pd.read_pickle(cache_path)
         print(f"    {len(fund_dict)} 只股票")
         return fund_dict
 
-    income = pd.read_pickle(os.path.join(RAW_DATA_DIR, 'raw_income.pkl'))
-    balance = pd.read_pickle(os.path.join(RAW_DATA_DIR, 'raw_balancesheet.pkl'))
-    cashflow = pd.read_pickle(os.path.join(RAW_DATA_DIR, 'raw_cashflow.pkl'))
+    if not _fund_raw_dir:
+        raise FileNotFoundError("财报原始数据不可用：RAW_DATA_DIR 未配置且 data/raw/ 无财报文件")
+
+    income   = pd.read_pickle(os.path.join(_fund_raw_dir, 'raw_income.pkl'))
+    balance  = pd.read_pickle(os.path.join(_fund_raw_dir, 'raw_balancesheet.pkl'))
+    cashflow = pd.read_pickle(os.path.join(_fund_raw_dir, 'raw_cashflow.pkl'))
 
     for df in [income, balance, cashflow]:
         df['report_type'] = df['report_type'].astype(str).str.strip()
