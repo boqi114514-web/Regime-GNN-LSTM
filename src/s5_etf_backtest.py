@@ -27,7 +27,7 @@ warnings.filterwarnings('ignore')
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
 
-from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, ARIMAX_PROJECT, EXISTING_DATA_DIR
+from config import OUTPUT_DIR, TOP_K, RF_ANNUAL
 from data_pipeline.tushare_config import get_pro as _get_pro
 
 plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
@@ -494,7 +494,8 @@ def main():
         all_ind.extend(row['industries'])
     ind_counts = pd.Series(all_ind).value_counts().head(10)
     print(f"\n  最常选中的行业:")
-    sw = pd.read_csv(os.path.join(EXISTING_DATA_DIR, 'ts_sw_members.csv'))
+    from config import SW_MEMBERS_PATH as _SW_PATH
+    sw = pd.read_csv(_SW_PATH)
     cur = sw[sw['is_new'] == 'Y']
     ind_to_name = dict(zip(cur['l1_code'], cur['l1_name']))
     for ind, cnt in ind_counts.items():

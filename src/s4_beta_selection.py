@@ -119,8 +119,9 @@ def load_stock_daily():
         # 优先用 data/raw/stock_daily.pkl，兜底用旧版路径
         raw_src = STOCK_DAILY_PATH if os.path.exists(STOCK_DAILY_PATH) else STOCK_DATA_PATH
         print(f"  加载个股日线原始数据（{raw_src}）...")
+        import pickle as _pkl
         with open(raw_src, 'rb') as _f:
-            _raw = pickle.load(_f)
+            _raw = _pkl.load(_f)
         df = _raw['df_stock'].copy()
         df['date'] = pd.to_datetime(df['date'])
         df = df.sort_values(['code', 'date']).reset_index(drop=True)
