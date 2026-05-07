@@ -88,47 +88,65 @@ SW_TO_ETF = {
 #  数据下载
 # ============================================================
 
-def download_etf_daily(etf_codes, start_date='20170101', end_date='20260101'):
-    """批量下载ETF日线行情"""
+def download_etf_daily(etf_codes, start_date='20170101', end_date=None):
+    """批量下载ETF日线行情（支持增量日期更新）"""
+    if end_date is None:
+        end_date = pd.Timestamp.today().strftime('%Y%m%d')
+
     cache_path = os.path.join(OUTPUT_DIR, '_cache_etf_daily.pkl')
+    existing = None
+    incremental_start = start_date
+
     if os.path.exists(cache_path):
         print("  加载ETF日线缓存...")
-        df = pd.read_pickle(cache_path)
-        # 检查是否需要更新
-        cached_codes = set(df['ts_code'].unique())
-        missing = [c for c in etf_codes if c not in cached_codes]
-        if not missing:
-            print(f"    {len(df['ts_code'].unique())} 只ETF已缓存")
-            return df
-        print(f"    需补充下载 {len(missing)} 只ETF")
-        etf_codes = missing
-        existing = df
+        existing = pd.read_pickle(cache_path)
+        cached_codes = set(existing['ts_code'].unique())
+        missing_codes = [c for c in etf_codes if c not in cached_codes]
+
+        # 检查日期是否滞后（允许 5 天宽限）
+        cache_max = existing['trade_date'].max()
+        end_ts = pd.to_datetime(end_date, format='%Y%m%d')
+        is_stale = (end_ts - cache_max).days > 5
+
+        if not missing_codes and not is_stale:
+            print(f"    {len(cached_codes)} 只ETF已缓存, 最新 {cache_max.date()}")
+            return existing
+
+        if is_stale:
+            # 增量：对已有+新增 ETF 从缓存末日起拉新数据
+            incremental_start = (cache_max + pd.Timedelta(days=1)).strftime('%Y%m%d')
+            download_codes = list(cached_codes | set(etf_codes))
+            print(f"    数据截至 {cache_max.date()}, 增量补充至 {end_date} ({len(download_codes)} 只ETF)")
+        else:
+            download_codes = missing_codes
+            print(f"    需补充下载 {len(missing_codes)} 只新ETF")
     else:
-        existing = None
+        download_codes = etf_codes
 
     all_dfs = []
-    for i, code in enumerate(etf_codes):
+    for i, code in enumerate(download_codes):
         try:
-            df = pro.fund_daily(ts_code=code, start_date=start_date, end_date=end_date,
+            df = pro.fund_daily(ts_code=code, start_date=incremental_start, end_date=end_date,
                                 fields='ts_code,trade_date,open,high,low,close,pre_close,pct_chg,vol,amount')
             if df is not None and not df.empty:
                 all_dfs.append(df)
-                print(f"    [{i+1}/{len(etf_codes)}] {code}: {len(df)} 条")
+                print(f"    [{i+1}/{len(download_codes)}] {code}: +{len(df)} 条")
             else:
-                print(f"    [{i+1}/{len(etf_codes)}] {code}: 无数据")
-            time.sleep(0.3)  # 限频
+                print(f"    [{i+1}/{len(download_codes)}] {code}: 无新数据")
+            time.sleep(0.3)
         except Exception as e:
-            print(f"    [{i+1}/{len(etf_codes)}] {code}: 错误 {e}")
+            print(f"    [{i+1}/{len(download_codes)}] {code}: 错误 {e}")
             time.sleep(1)
 
     if all_dfs:
         new_df = pd.concat(all_dfs, ignore_index=True)
         if existing is not None:
             new_df = pd.concat([existing, new_df], ignore_index=True)
-        new_df['trade_date'] = pd.to_datetime(new_df['trade_date'], format='%Y%m%d')
-        new_df = new_df.sort_values(['ts_code', 'trade_date']).reset_index(drop=True)
+        new_df['trade_date'] = pd.to_datetime(new_df['trade_date'].astype(str), format='%Y%m%d', errors='coerce')
+        new_df = (new_df.drop_duplicates(subset=['ts_code', 'trade_date'])
+                  .sort_values(['ts_code', 'trade_date']).reset_index(drop=True))
         new_df.to_pickle(cache_path)
-        print(f"    共 {new_df['ts_code'].nunique()} 只ETF, 已缓存")
+        print(f"    共 {new_df['ts_code'].nunique()} 只ETF, 最新 {new_df['trade_date'].max().date()}, 已缓存")
         return new_df
 
     return existing if existing is not None else pd.DataFrame()
