@@ -394,18 +394,20 @@ def update_financial(dry_run=False, force_period: str = None):
 def backfill_missing_stocks(dry_run=False):
     """一次性补下 stock_daily.pkl 中缺失的股票历史（创业板/北交所等）。
 
-    策略：逐股拉取（pro.daily(ts_code=..., start_date=..., end_date=...)），
-    每只股票约 1 次 API 调用，完整历史一次到位。
+    策略：按交易日拉取（pro.daily(trade_date=xxx)），一次获得当天所有股票，
+    只保留缺失的那些。与 update_stock_daily 使用相同接口，无频率限制问题。
+    支持断点续传：进度存于 _backfill_ckpt.pkl，中断后重跑自动续接。
     """
+    import time as _time
     print('=' * 60)
-    print('  补全缺失股票历史数据')
+    print('  补全缺失股票历史数据（按交易日拉取）')
     print('=' * 60)
 
     if not os.path.exists(STOCK_DAILY_PKL):
         print(f'[错误] {STOCK_DAILY_PKL} 不存在，请先 --migrate')
         return {'error': 'no_base_file'}
 
-    print('[1/3] 加载现有数据...')
+    print('[1/4] 加载现有数据...')
     with open(STOCK_DAILY_PKL, 'rb') as f:
         data = pickle.load(f)
     df = data['df_stock']
@@ -416,7 +418,7 @@ def backfill_missing_stocks(dry_run=False):
 
     pro = _get_pro()
 
-    print('\n[2/3] 获取全市场股票列表...')
+    print('\n[2/4] 获取全市场股票列表...')
     all_stocks = []
     for status in ('L', 'D', 'P'):
         batch = _call(pro.stock_basic, exchange='', list_status=status,
@@ -439,44 +441,70 @@ def backfill_missing_stocks(dry_run=False):
         print('  无缺失，退出')
         return {'backfilled': 0}
 
-    print(f'\n[3/3] 下载 {len(missing)} 只股票历史数据...')
-    new_rows_list = []
-    failed = []
+    missing_codes = set(missing['code'])
+    # 最早上市日（从这一天起才有创业板股票）
+    valid_dates = missing['list_date'].dropna()
+    valid_dates = valid_dates[valid_dates.astype(str).str.match(r'^\d{8}$')]
+    start_date_str = valid_dates.min() if not valid_dates.empty else '20090101'
+    print(f'  下载区间: {start_date_str} → {end_date_str}')
 
-    for i, (_, row) in enumerate(missing.iterrows()):
-        ts_code = row['ts_code']
-        code    = row['code']
-        start_d = row['list_date'] if pd.notna(row.get('list_date')) and row['list_date'] else '20090101'
-        delist  = row.get('delist_date')
-        end_d   = min(str(delist), end_date_str) if pd.notna(delist) and delist else end_date_str
-
-        if (i + 1) % 100 == 0 or i < 3:
-            print(f'  [{i+1}/{len(missing)}] {ts_code} ({row.get("name","")}) '
-                  f'{start_d}→{end_d}', flush=True)
-
+    # 断点续传
+    ckpt_path = STOCK_DAILY_PKL.replace('.pkl', '_backfill_ckpt.pkl')
+    accumulated = []
+    done_dates  = set()
+    if os.path.exists(ckpt_path):
         try:
-            bar = _call(pro.daily, ts_code=ts_code, start_date=start_d, end_date=end_d)
-            if bar is None or bar.empty:
-                continue
-            bar['code'] = code
-            bar['date'] = pd.to_datetime(bar['trade_date'], format='%Y%m%d')
-            bar = bar.rename(columns={'vol': 'volume'})
-            keep = ['date', 'code', 'open', 'high', 'low', 'close', 'volume', 'amount']
-            for col in keep:
-                if col not in bar.columns:
-                    bar[col] = np.nan
-            new_rows_list.append(bar[keep])
+            with open(ckpt_path, 'rb') as f:
+                ckpt = pickle.load(f)
+            done_dates   = ckpt.get('done_dates', set())
+            accumulated  = ckpt.get('accumulated', [])
+            print(f'  恢复检查点: 已处理 {len(done_dates)} 个交易日')
+        except Exception:
+            done_dates, accumulated = set(), []
+
+    print('\n[3/4] 获取交易日历...')
+    trade_dates = _get_trade_dates(pro, start_date_str, end_date_str)
+    remaining   = [d for d in trade_dates if d not in done_dates]
+    print(f'  共 {len(trade_dates)} 个交易日，待处理 {len(remaining)} 个')
+
+    print(f'\n[4/4] 按交易日拉取（共 {len(remaining)} 天）...')
+    for i, td in enumerate(remaining):
+        if (i + 1) % 200 == 0 or i == 0:
+            print(f'  [{i+1}/{len(remaining)}] {td}  '
+                  f'(已收集 {sum(len(r) for r in accumulated):,} 行)', flush=True)
+        try:
+            bar = _call(pro.daily, trade_date=td)
+            if bar is not None and not bar.empty:
+                bar['code'] = bar['ts_code'].str.split('.').str[0]
+                bar = bar[bar['code'].isin(missing_codes)]
+                if not bar.empty:
+                    bar['date'] = pd.to_datetime(td, format='%Y%m%d')
+                    bar = bar.rename(columns={'vol': 'volume'})
+                    keep = ['date', 'code', 'open', 'high', 'low', 'close', 'volume', 'amount']
+                    for col in keep:
+                        if col not in bar.columns:
+                            bar[col] = np.nan
+                    accumulated.append(bar[keep])
         except Exception as e:
-            failed.append(ts_code)
-            if len(failed) <= 10:
-                print(f'  ✗ {ts_code}: {e}')
+            print(f'  ⚠ {td} 失败: {e}', flush=True)
 
-    if not new_rows_list:
+        done_dates.add(td)
+
+        # 每 200 天存一次检查点
+        if not dry_run and (i + 1) % 200 == 0:
+            with open(ckpt_path, 'wb') as f:
+                pickle.dump({'done_dates': done_dates, 'accumulated': accumulated}, f,
+                            protocol=pickle.HIGHEST_PROTOCOL)
+
+    if not accumulated:
         print('  未拉到数据')
-        return {'backfilled': 0, 'failed': failed}
+        if os.path.exists(ckpt_path):
+            os.remove(ckpt_path)
+        return {'backfilled': 0}
 
-    new_df = pd.concat(new_rows_list, ignore_index=True)
-    print(f'\n  新增: {new_df["code"].nunique()} 只股票, {len(new_df):,} 条记录')
+    print(f'\n  合并写入...')
+    new_df = pd.concat(accumulated, ignore_index=True)
+    print(f'  新增: {new_df["code"].nunique()} 只股票, {len(new_df):,} 条记录')
 
     combined = pd.concat([df, new_df], ignore_index=True)
     combined = combined.drop_duplicates(subset=['code', 'date'], keep='last')
@@ -489,10 +517,10 @@ def backfill_missing_stocks(dry_run=False):
         with open(STOCK_DAILY_PKL, 'wb') as f:
             pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
         print(f'  完成 ({os.path.getsize(STOCK_DAILY_PKL)/1024/1024:.0f}MB)')
+        if os.path.exists(ckpt_path):
+            os.remove(ckpt_path)
 
-    if failed:
-        print(f'  ⚠ {len(failed)} 只下载失败: {failed[:20]}')
-    return {'backfilled': new_df['code'].nunique(), 'failed': failed}
+    return {'backfilled': new_df['code'].nunique()}
 
 
 # ============================================================
