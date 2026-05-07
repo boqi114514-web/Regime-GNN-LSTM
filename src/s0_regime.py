@@ -59,10 +59,18 @@ def build_regime_features(macro_df, csi300_df):
     )
     feature_cols = macro_cols + price_cols
 
-    # 前向填充缺失值（宏观指标偶尔缺月，用上期值比直接丢弃好）
     merged = merged.sort_values('date').reset_index(drop=True)
-    merged[feature_cols] = merged[feature_cols].ffill()
-    # 仅丢弃前向填充后仍全空的行（序列开头无法 ffill 的部分）
+
+    # 宏观列：缺失时用扩展历史均值填充。
+    # 用 ffill 会把上期的特殊值（如月末负值）带入本期，与当月市场信号产生
+    # 虚假矛盾；用历史均值相当于给 HMM 一个"中性"信号，让市场特征主导判断。
+    for col in macro_cols:
+        merged[col] = merged[col].fillna(merged[col].expanding().mean())
+
+    # 价格列：前向填充（市场数据连续，偶尔缺月时适用）
+    merged[price_cols] = merged[price_cols].ffill()
+
+    # 仅丢弃仍全空的行（序列开头无法填充的部分）
     merged = merged.dropna(subset=feature_cols, how='all').reset_index(drop=True)
     return merged, feature_cols
 
