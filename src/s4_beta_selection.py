@@ -957,16 +957,19 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
     _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
     fund_dict                 = load_fundamental_features()
 
-    try:
+    code_to_name = {}
+    # 优先用独立的 stock_basic CSV，其次从 sw_members 取
+    _basic_path = os.path.join(LOCAL_DATA_RAW, 'ts_stock_basic.csv')
+    for _src in (_basic_path, SW_MEMBERS_PATH):
+        if not os.path.exists(_src):
+            continue
         try:
-            _sw = pd.read_csv(SW_MEMBERS_PATH, encoding='utf-8-sig')
+            _df = pd.read_csv(_src, encoding='utf-8-sig')
         except UnicodeDecodeError:
-            _sw = pd.read_csv(SW_MEMBERS_PATH, encoding='gbk')
-        if 'name' not in _sw.columns:
-            raise ValueError('no name column')
-        code_to_name = dict(zip(_sw['ts_code'].str[:6], _sw['name'].fillna('')))
-    except Exception:
-        code_to_name = {}
+            _df = pd.read_csv(_src, encoding='gbk')
+        if 'name' in _df.columns and 'ts_code' in _df.columns:
+            code_to_name = dict(zip(_df['ts_code'].str[:6], _df['name'].fillna('')))
+            break
 
     pred_col = next(
         (c for c in ('pred_ensemble', 'pred_gnn') if c in pred_df.columns),

@@ -572,6 +572,24 @@ def update_sw_members(dry_run=False):
         return {'error': 'no_data'}
 
     result = pd.concat(all_members, ignore_index=True)
+
+    # 用 stock_basic 补充股票中文名（index_member 不返回名称）
+    print('  拉取 stock_basic 补充股票名称...')
+    basic_frames = []
+    for status in ('L', 'D', 'P'):
+        b = _call(pro.stock_basic, exchange='', list_status=status,
+                  fields='ts_code,name')
+        if b is not None and not b.empty:
+            basic_frames.append(b)
+    if basic_frames:
+        basic = pd.concat(basic_frames, ignore_index=True).drop_duplicates('ts_code')
+        result = result.merge(basic, on='ts_code', how='left')
+        # 同时存一份全量 stock_basic 供其他模块使用
+        stock_basic_path = os.path.join(LOCAL_DATA_RAW, 'ts_stock_basic.csv')
+        if not dry_run:
+            basic.to_csv(stock_basic_path, index=False, encoding='utf-8-sig')
+            print(f'  写入 {stock_basic_path}（{len(basic)} 只）')
+
     # 保留关键列，顺序与旧格式兼容
     keep = ['l1_code', 'l1_name', 'ts_code', 'in_date', 'out_date', 'is_new']
     if 'name' in result.columns:
