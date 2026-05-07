@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-打包 launcher.py -> 启动Dashboard.exe
-用法: venv\Scripts\python build_launcher.py
+Package launcher.py -> launch_dashboard.exe
+Usage: python build_launcher.py
 """
-import os, sys, subprocess, shutil
+import sys, subprocess, shutil
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-PYTHON = ROOT / 'venv' / 'Scripts' / 'python.exe'
-OUTPUT = ROOT / '启动Dashboard.exe'
+ROOT   = Path(__file__).resolve().parent
+PYTHON = sys.executable          # whatever python is running this script
+OUTPUT = ROOT / 'launch_dashboard.exe'
 
 
 def run(*args, **kwargs):
@@ -17,21 +17,18 @@ def run(*args, **kwargs):
 
 def main():
     print("=" * 50)
-    print("  Regime Dashboard -- 打包启动器")
+    print("  Regime Dashboard -- build launcher")
     print("=" * 50)
+    print(f"  Python : {PYTHON}")
+    print(f"  Root   : {ROOT}")
 
-    if not PYTHON.exists():
-        sys.exit("[错误] 找不到 venv\\Scripts\\python.exe\n"
-                 "请先: python -m venv venv && venv\\Scripts\\pip install -r requirements.txt")
-
-    # 确保 PyInstaller 已安装
-    r = run(str(PYTHON), '-c', 'import PyInstaller', capture_output=True)
+    # ensure PyInstaller is installed
+    r = run(PYTHON, '-c', 'import PyInstaller', capture_output=True)
     if r.returncode != 0:
-        print("[安装] 正在安装 PyInstaller ...")
-        run(str(PYTHON), '-m', 'pip', 'install', 'pyinstaller', check=True)
-        print("[安装] 完成")
+        print("[INFO] Installing PyInstaller ...")
+        run(PYTHON, '-m', 'pip', 'install', 'pyinstaller', check=True)
 
-    # 可选：生成图标
+    # optional icon via Pillow
     icon_path = None
     try:
         from PIL import Image, ImageDraw
@@ -43,24 +40,24 @@ def main():
         ico = ROOT / '_tmp_icon.ico'
         img.save(str(ico))
         icon_path = ico
-        print("[图标] 已生成")
+        print("[INFO] Icon generated")
     except Exception:
-        print("[图标] Pillow 未安装或出错，跳过图标")
+        print("[INFO] Pillow not available, skipping icon")
 
-    # 清理旧产物
+    # clean previous build
     tmp = ROOT / '_pyinstaller_tmp'
     if tmp.exists():
         shutil.rmtree(tmp)
     if OUTPUT.exists():
         OUTPUT.unlink()
 
-    # 打包
-    print("\n[打包] 正在运行 PyInstaller ...")
+    # run PyInstaller
+    print("\n[BUILD] Running PyInstaller ...")
     cmd = [
-        str(PYTHON), '-m', 'PyInstaller',
+        PYTHON, '-m', 'PyInstaller',
         '--onefile',
         '--noconsole',
-        '--name', '启动Dashboard',
+        '--name', 'launch_dashboard',
         '--distpath', str(ROOT),
         '--workpath', str(tmp),
         '--specpath', str(tmp),
@@ -69,9 +66,9 @@ def main():
         cmd += ['--icon', str(icon_path)]
     cmd.append(str(ROOT / 'launcher.py'))
 
-    r = run(*cmd)
+    run(*cmd)
 
-    # 清理临时文件
+    # cleanup
     if tmp.exists():
         shutil.rmtree(tmp)
     if icon_path and icon_path.exists():
@@ -79,10 +76,10 @@ def main():
 
     print()
     if OUTPUT.exists():
-        print(f"[完成] 已生成: {OUTPUT.name}")
-        print("       双击启动Dashboard.exe 即可，无需控制台。")
+        print(f"[DONE] {OUTPUT.name} created")
+        print("       Double-click to launch Dashboard without a console window.")
     else:
-        print("[失败] 打包失败，请检查上方错误信息。")
+        print("[FAIL] Build failed. Check output above.")
         sys.exit(1)
 
 
