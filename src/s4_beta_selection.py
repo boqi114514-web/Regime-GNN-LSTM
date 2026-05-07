@@ -900,9 +900,9 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
     _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
     fund_dict                 = load_fundamental_features()
 
-    # stock code → display name from sw_members
+    # stock code → display name from sw_members (no encoding arg = system default, works on both UTF-8 and GBK)
     try:
-        _sw = pd.read_csv(SW_MEMBERS_PATH, encoding='utf-8-sig')
+        _sw = pd.read_csv(SW_MEMBERS_PATH)
         if 'name' not in _sw.columns:
             raise ValueError('no name column')
         code_to_name = dict(zip(_sw['ts_code'].str[:6], _sw['name'].fillna('')))
