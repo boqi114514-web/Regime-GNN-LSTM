@@ -34,9 +34,12 @@ warnings.filterwarnings('ignore')
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(line_buffering=True)
 
-from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, LOCAL_DATA_RAW
+from config import OUTPUT_DIR, TOP_K, RF_ANNUAL, LOCAL_DATA_RAW, SW_MEMBERS_PATH as _CFG_SW_MEMBERS
 
-ARIMAX_PROJECT = r"D:\desktop\有意思的事情\量化\项目\ARIMAX_LSTM行业轮动"
+# ARIMAX_PROJECT kept for backward compat; caches in results/ make it optional
+_ARIMAX_PROJECT   = r"D:\desktop\有意思的事情\量化\项目\ARIMAX_LSTM行业轮动"
+RAW_DATA_DIR      = os.path.join(_ARIMAX_PROJECT, r"数据\原始数据")
+EXISTING_DATA_DIR = os.path.join(_ARIMAX_PROJECT, r"数据\已有数据")
 
 # ==================== 参数 ====================
 TOPN_PER_IND = 5           # 每个行业选 N 只（25只总持仓，兼顾集中与分散）
@@ -66,11 +69,10 @@ plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
 # ==================== 数据路径 ====================
-RAW_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\原始数据")
-EXISTING_DATA_DIR = os.path.join(ARIMAX_PROJECT, r"数据\已有数据")
-STOCK_DATA_PATH = r"D:\desktop\有意思的事情\量化\项目\天风选股模型\数据\full_market_data_v18.pkl"
+STOCK_DATA_PATH      = r"D:\desktop\有意思的事情\量化\项目\天风选股模型\数据\full_market_data_v18.pkl"
 _STOCK_DAILY_UPDATED = os.path.join(LOCAL_DATA_RAW, 'stock_daily.pkl')
-SW_MEMBERS_PATH = os.path.join(EXISTING_DATA_DIR, 'ts_sw_members.csv')
+SW_MEMBERS_PATH      = os.path.join(EXISTING_DATA_DIR, 'ts_sw_members.csv') \
+                       if os.path.exists(EXISTING_DATA_DIR) else _CFG_SW_MEMBERS
 SW_EXCLUDE = ['801780.SI', '801790.SI']
 
 # ==================== 基本面因子定义 ====================
