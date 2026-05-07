@@ -185,6 +185,23 @@
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 8px rgba(26,115,232,0.12);
 }
 
+/* 持仓行业分组头 */
+.ind-group-header td {
+  background: rgba(26,115,232,0.08);
+  padding: 7px 12px;
+  border-top: 1px solid rgba(26,115,232,0.15);
+  border-bottom: 1px solid rgba(26,115,232,0.10);
+}
+.ind-group-header strong { font-size: 13px; color: var(--text-1); }
+.ind-count {
+  font-size: 11px;
+  color: var(--primary);
+  margin-left: 8px;
+  background: rgba(26,115,232,0.12);
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
 .board-tag {
   display: inline-flex;
   align-items: center;

@@ -900,6 +900,15 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
     _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
     fund_dict                 = load_fundamental_features()
 
+    # stock code → display name from sw_members
+    try:
+        _sw = pd.read_csv(SW_MEMBERS_PATH, encoding='utf-8-sig')
+        if 'name' not in _sw.columns:
+            raise ValueError('no name column')
+        code_to_name = dict(zip(_sw['ts_code'].str[:6], _sw['name'].fillna('')))
+    except Exception:
+        code_to_name = {}
+
     pred_col = next(
         (c for c in ('pred_ensemble', 'pred_gnn') if c in pred_df.columns),
         pred_df.columns[-1],
@@ -930,12 +939,8 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
     if result.empty:
         return result
 
-    result['ind_name'] = (
-        result['ind_code'].map(ind_to_name).fillna(result['ind_code'])
-    )
-    # 'name' column (stock display name) defaults to stock_code when unavailable
-    if 'name' not in result.columns:
-        result['name'] = result['stock_code']
+    result['ind_name'] = result['ind_code'].map(ind_to_name).fillna(result['ind_code'])
+    result['name']     = result['stock_code'].map(code_to_name).fillna(result['stock_code'])
 
     return result
 

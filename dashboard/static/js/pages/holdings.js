@@ -5,7 +5,6 @@ onPageShow('holdings', initHoldings);
 let _holdingsData = null;
 let _holdingsTab  = 'regime';
 let _boardFilter  = new Set(['科创', '创业', '主板']);
-let _indFilter    = new Set();
 let _sortCol      = 'score';
 let _sortAsc      = false;
 
@@ -14,7 +13,7 @@ async function initHoldings() {
   root.innerHTML = `
     <div class="page-header">
       <div class="page-title">个股持仓</div>
-      <div class="page-subtitle">来源：最新周报选股层</div>
+      <div class="page-subtitle">来源：最新周报选股层 · 按行业分组</div>
     </div>
 
     <div class="glass-card" style="margin-bottom:16px">
@@ -31,10 +30,6 @@ async function initHoldings() {
             <span class="filter-chip active" data-board="主板">主板</span>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="filter-label">行业</span>
-          <div class="filter-group" id="ind-filters"></div>
-        </div>
       </div>
     </div>
 
@@ -45,7 +40,6 @@ async function initHoldings() {
       <table class="data-table">
         <thead>
           <tr>
-            <th>行业</th>
             <th>代码</th>
             <th>名称</th>
             <th>板块</th>
@@ -64,27 +58,6 @@ async function initHoldings() {
       _holdingsData = await fetch('/api/holdings').then(r => r.json());
     } catch (e) { return; }
   }
-
-  // 初始化行业过滤
-  const allInds = [...new Set([
-    ..._holdingsData.regime.map(s => s.industry),
-    ..._holdingsData.equal.map(s => s.industry),
-  ])];
-  _indFilter = new Set(allInds);
-
-  const indContainer = document.getElementById('ind-filters');
-  allInds.forEach(ind => {
-    const chip = document.createElement('span');
-    chip.className = 'filter-chip active';
-    chip.dataset.ind = ind;
-    chip.textContent = ind;
-    chip.addEventListener('click', () => {
-      chip.classList.toggle('active');
-      _indFilter[chip.classList.contains('active') ? 'add' : 'delete'](ind);
-      renderHoldings();
-    });
-    indContainer.appendChild(chip);
-  });
 
   // Tab
   root.querySelectorAll('#holdings-tabs .tab-btn').forEach(btn => {
@@ -105,7 +78,7 @@ async function initHoldings() {
     });
   });
 
-  // 排序
+  // 排序（点列头改变组内排序列）
   root.querySelectorAll('th.sortable').forEach(th => {
     th.addEventListener('click', () => {
       const col = th.dataset.col;
@@ -119,17 +92,33 @@ async function initHoldings() {
 }
 
 function renderHoldings() {
-  const list = (_holdingsData[_holdingsTab] || [])
-    .filter(s => _boardFilter.has(s.board) && _indFilter.has(s.industry));
+  const all = (_holdingsData[_holdingsTab] || []);
+  if (!all.length) {
+    document.getElementById('holdings-count').textContent = '';
+    document.getElementById('holdings-tbody').innerHTML =
+      `<tr><td colspan="6" style="text-align:center;color:var(--text-3);padding:24px">
+         暂无选股数据，请先运行流水线生成周报
+       </td></tr>`;
+    return;
+  }
 
-  // 排序
-  list.sort((a, b) => {
-    const av = parseFloat(a[_sortCol]) || 0;
-    const bv = parseFloat(b[_sortCol]) || 0;
-    return _sortAsc ? av - bv : bv - av;
-  });
+  // 按行业分组（保持原始行业顺序）
+  const groups = {};
+  const indOrder = [];
+  for (const s of all) {
+    const ind = s.industry || '未知行业';
+    if (!groups[ind]) { groups[ind] = []; indOrder.push(ind); }
+    groups[ind].push(s);
+  }
 
-  document.getElementById('holdings-count').textContent = `(${list.length} 只)`;
+  // 组内按所选列排序
+  for (const ind of indOrder) {
+    groups[ind].sort((a, b) => {
+      const av = parseFloat(a[_sortCol]) || 0;
+      const bv = parseFloat(b[_sortCol]) || 0;
+      return _sortAsc ? av - bv : bv - av;
+    });
+  }
 
   const boardTag = b => {
     if (b === '科创') return `<span class="board-tag board-kcb">科创</span>`;
@@ -143,14 +132,33 @@ function renderHoldings() {
     return `<span class="${cls}">${s.momentum}</span>`;
   };
 
-  const tbody = document.getElementById('holdings-tbody');
-  tbody.innerHTML = list.map(s => `<tr>
-    <td>${s.industry}</td>
-    <td class="mono">${s.code}</td>
-    <td><strong>${s.name}</strong></td>
-    <td>${boardTag(s.board)}</td>
-    <td class="mono">${s.beta}</td>
-    <td class="mono">${momHtml(s)}</td>
-    <td class="mono"><strong>${s.score}</strong></td>
-  </tr>`).join('');
+  const rows = [];
+  let totalVisible = 0;
+
+  for (const ind of indOrder) {
+    const stocks = groups[ind].filter(s => _boardFilter.has(s.board));
+    if (!stocks.length) continue;
+    totalVisible += stocks.length;
+
+    rows.push(`<tr class="ind-group-header">
+      <td colspan="6">
+        <strong>${ind}</strong>
+        <span class="ind-count">${stocks.length} 只</span>
+      </td>
+    </tr>`);
+
+    for (const s of stocks) {
+      rows.push(`<tr>
+        <td class="mono">${s.code}</td>
+        <td><strong>${s.name}</strong></td>
+        <td>${boardTag(s.board)}</td>
+        <td class="mono">${s.beta}</td>
+        <td class="mono">${momHtml(s)}</td>
+        <td class="mono"><strong>${s.score}</strong></td>
+      </tr>`);
+    }
+  }
+
+  document.getElementById('holdings-count').textContent = `(${totalVisible} 只)`;
+  document.getElementById('holdings-tbody').innerHTML = rows.join('');
 }
