@@ -412,19 +412,27 @@ def update_sw_members(dry_run=False):
         print('  无法获取行业列表')
         return {'error': 'no_index'}
 
+    # 建立行业代码 → 名称映射（来自 index_classify 结果）
+    name_col = next((c for c in ('industry_name', 'name', 'index_name') if c in idx.columns), None)
+    ind_name_map = dict(zip(idx['index_code'], idx[name_col])) if name_col else {}
+
     all_members = []
     for _, row in idx.iterrows():
         code = row['index_code']
         if code in SW_EXCLUDE:
             continue
-        print(f'  {code} {row.get("industry_name", "")}', end=' ')
-        df = _call(pro.index_member, index_code=code,
-                   fields='index_code,index_name,con_code,con_name,in_date,out_date')
+        l1_name = ind_name_map.get(code, '')
+        print(f'  {code} {l1_name}', end=' ')
+        df = _call(pro.index_member, index_code=code)
         if df is not None and len(df) > 0:
-            df = df.rename(columns={
-                'index_code': 'l1_code', 'index_name': 'l1_name',
-                'con_code': 'ts_code', 'con_name': 'name',
-            })
+            # API 实际只返回 con_code / in_date / out_date，不带名称列
+            df = df.rename(columns={'con_code': 'ts_code', 'con_name': 'name',
+                                    'index_code': 'l1_code'})
+            df['l1_code'] = code
+            df['l1_name'] = l1_name
+            # 标记现役：out_date 为空/None/空串 → is_new = 'Y'
+            df['out_date'] = df['out_date'].replace('', pd.NA)
+            df['is_new'] = df['out_date'].isna().map({True: 'Y', False: 'N'})
             all_members.append(df)
             print(f'+{len(df)}')
         else:
@@ -434,6 +442,11 @@ def update_sw_members(dry_run=False):
         return {'error': 'no_data'}
 
     result = pd.concat(all_members, ignore_index=True)
+    # 保留关键列，顺序与旧格式兼容
+    keep = ['l1_code', 'l1_name', 'ts_code', 'in_date', 'out_date', 'is_new']
+    if 'name' in result.columns:
+        keep.insert(3, 'name')
+    result = result[[c for c in keep if c in result.columns]]
     result = result.drop_duplicates(subset=['l1_code', 'ts_code', 'in_date'], keep='last')
     print(f'\n  总计 {len(result)} 条映射, {result["l1_code"].nunique()} 个行业')
 
