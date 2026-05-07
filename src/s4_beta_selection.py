@@ -216,12 +216,23 @@ def _get_daily_cutoff():
 
 
 def load_stock_industry_map():
-    """加载股票 -> 申万一级行业映射"""
-    sw = pd.read_csv(SW_MEMBERS_PATH)
-    cur = sw[sw['is_new'] == 'Y'].copy()
+    """加载股票 -> 申万一级行业映射（兼容新旧 sw_members 格式）"""
+    try:
+        sw = pd.read_csv(SW_MEMBERS_PATH, encoding='utf-8-sig')
+    except UnicodeDecodeError:
+        sw = pd.read_csv(SW_MEMBERS_PATH, encoding='gbk')
+    # 兼容新格式（无 is_new）：out_date 为空 → 现役
+    if 'is_new' in sw.columns:
+        cur = sw[sw['is_new'] == 'Y'].copy()
+    else:
+        cur = sw[sw['out_date'].isna()].copy()
     cur['stock_code'] = cur['ts_code'].str[:6]
     stock_to_ind = dict(zip(cur['stock_code'], cur['l1_code']))
-    ind_to_name = dict(zip(cur['l1_code'], cur['l1_name']))
+    # ind_to_name: 兼容无 l1_name 列
+    if 'l1_name' in cur.columns:
+        ind_to_name = dict(zip(cur['l1_code'], cur['l1_name']))
+    else:
+        ind_to_name = {c: c for c in cur['l1_code'].unique()}
     print(f"  行业映射: {len(stock_to_ind)} 只股票 -> {len(ind_to_name)} 个行业")
     return stock_to_ind, ind_to_name
 
@@ -1066,11 +1077,14 @@ def run_live(pred_pkl: str = None, ckpt_suffix: str = '',
     _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
     fund_dict                 = load_fundamental_features()
 
-    # 股票中文名映射
-    _stock_basic_path = r"D:\desktop\有意思的事情\量化\项目\天风选股模型\数据\ts_stock_basic.csv"
     try:
-        _sb = pd.read_csv(_stock_basic_path)
-        code_to_name = dict(zip(_sb['symbol'].astype(str).str.zfill(6), _sb['name']))
+        try:
+            _sw = pd.read_csv(SW_MEMBERS_PATH, encoding='utf-8-sig')
+        except UnicodeDecodeError:
+            _sw = pd.read_csv(SW_MEMBERS_PATH, encoding='gbk')
+        if 'name' not in _sw.columns:
+            raise ValueError('no name column')
+        code_to_name = dict(zip(_sw['ts_code'].str[:6], _sw['name'].fillna('')))
     except Exception:
         code_to_name = {}
 
