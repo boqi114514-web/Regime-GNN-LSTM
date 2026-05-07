@@ -1,3 +1,4 @@
 @echo off
-python "%~dp0dashboard\main.py"
+cd /d "%~dp0"
+python dashboard\main.py
 if errorlevel 1 pause
