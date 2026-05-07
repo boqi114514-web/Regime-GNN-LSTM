@@ -26,7 +26,7 @@ from config import (
 )
 from s1_gnn_train import IndustryGAT, build_glasso_graph
 from s2_lstm_b_train import LSTMBModel
-from s3_ensemble_backtest import regime_ensemble, simple_rank_ensemble
+from s3_ensemble_backtest import simple_rank_ensemble
 
 
 # ─── 路径 ─────────────────────────────────────────────────────────────────────
@@ -272,19 +272,10 @@ def _infer_lstm_b(new_months, state, tech):
 # ─── 集成 + 同步 ───────────────────────────────────────────────────────────────
 
 def _rebuild_ensemble(gnn_df, lstm_df):
-    """重新生成 Regime 和等权集成 pkl（含新追加行）。"""
-    regime_df = None
-    if os.path.exists(_REGIME_PKL):
-        regime_df = pd.read_pickle(_REGIME_PKL)
-        regime_df['date'] = pd.to_datetime(regime_df['date'])
-
-    regime_ens = regime_ensemble(gnn_df, lstm_df, regime_df, ic_lookback=12)
-    if regime_ens is not None:
-        regime_ens.to_pickle(_ENS_PKL)
-        print(f"  [增量集成] Regime 集成更新 → {len(regime_ens)} 行")
-
+    """重新生成等权集成 pkl（含新追加行）。_ENS_PKL 与 _EQENS_PKL 均写等权结果。"""
     equal_ens = simple_rank_ensemble(gnn_df, lstm_df)
     if equal_ens is not None:
+        equal_ens.to_pickle(_ENS_PKL)
         equal_ens.to_pickle(_EQENS_PKL)
         print(f"  [增量集成] 等权集成更新 → {len(equal_ens)} 行")
 
