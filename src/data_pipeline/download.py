@@ -442,10 +442,11 @@ def backfill_missing_stocks(dry_run=False):
         return {'backfilled': 0}
 
     missing_codes = set(missing['code'])
-    # 最早上市日（从这一天起才有创业板股票）
+    # 最早上市日（创业板 2009-10 开板，北交所 2021-11 开市，不早于 20090101）
     valid_dates = missing['list_date'].dropna()
     valid_dates = valid_dates[valid_dates.astype(str).str.match(r'^\d{8}$')]
-    start_date_str = valid_dates.min() if not valid_dates.empty else '20090101'
+    raw_min = valid_dates.min() if not valid_dates.empty else '20090101'
+    start_date_str = max(raw_min, '20090101')
     print(f'  下载区间: {start_date_str} → {end_date_str}')
 
     # 断点续传
