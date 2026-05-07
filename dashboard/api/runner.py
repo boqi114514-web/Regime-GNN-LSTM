@@ -57,11 +57,30 @@ async def run_weekly():
     return _sse(_py("-m", "live.scheduler", "--once", "weekly"))
 
 
+@router.get("/run/fetch_data")
+async def run_fetch_data():
+    """拉取最新市场数据（行情 + 宏观 + 因子增量更新）"""
+    return _sse(_py("-c",
+        f"import sys; sys.path.insert(0,r'{SRC_DIR}'); "
+        "from data_pipeline import update; update.run()"))
+
+
 @router.get("/run/update")
 async def run_update():
     return _sse(_py("-c",
         f"import sys; sys.path.insert(0,r'{SRC_DIR}'); "
         "from data_pipeline import update; update.run()"))
+
+
+@router.get("/run/pipeline")
+async def run_pipeline(branch: str = "main"):
+    """切换到指定分支，跑完整流水线，生成周报，然后恢复 main。"""
+    allowed = {"main", "fix/macro-neutral-fill", "refactor/equal-weight-ensemble"}
+    if branch not in allowed:
+        from fastapi.responses import JSONResponse
+        return JSONResponse({"error": f"unknown branch: {branch}"}, status_code=400)
+    run_branch_py = os.path.join(SRC_DIR, "run_branch.py")
+    return _sse(_py(run_branch_py, branch))
 
 
 @router.get("/run/monitor")

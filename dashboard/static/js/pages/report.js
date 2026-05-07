@@ -2,8 +2,14 @@
 
 onPageShow('report', initReport);
 
-let _reportData = null;
-let _currentTab = 'regime'; // 'regime' | 'equal'
+let _reportData    = null;
+let _selectedBranch = 'main';
+
+const BRANCHES = [
+  { id: 'main',                         label: 'Main',     desc: '滚动HMM · Sharpe 1.38' },
+  { id: 'fix/macro-neutral-fill',       label: 'Fix',      desc: '全量HMM · Sharpe 1.29' },
+  { id: 'refactor/equal-weight-ensemble', label: 'Refactor', desc: '等权集成 · Sharpe 1.28' },
+];
 
 async function initReport() {
   const root = document.getElementById('page-report');
@@ -17,7 +23,7 @@ async function initReport() {
       <div class="regime-left">
         <div class="regime-label">当前市场机制</div>
         <div class="regime-value" id="regime-value">--</div>
-        <div class="regime-meta" id="regime-meta">--</div>
+        <div class="regime-meta"  id="regime-meta">--</div>
       </div>
       <div class="regime-right">
         <div class="regime-weights" id="regime-weights">--</div>
@@ -30,10 +36,7 @@ async function initReport() {
       <div class="glass-card col-span-2">
         <div class="card-header">
           <div class="card-title">Top-5 推荐行业</div>
-          <div class="tab-group">
-            <button class="tab-btn active" data-tab="regime">Regime 集成</button>
-            <button class="tab-btn" data-tab="equal">等权集成</button>
-          </div>
+          <div class="branch-source" id="branch-source"></div>
         </div>
         <table class="data-table">
           <thead>
@@ -51,18 +54,30 @@ async function initReport() {
       <!-- 操作面板 -->
       <div class="glass-card action-card">
         <div class="card-title">操作</div>
+
+        <!-- 分支选择器 -->
+        <div class="branch-selector" id="branch-selector">
+          ${BRANCHES.map(b => `
+            <button class="branch-btn${b.id === _selectedBranch ? ' active' : ''}"
+                    data-branch="${b.id}"
+                    title="${b.desc}">
+              <span class="branch-name">${b.label}</span>
+              <span class="branch-desc">${b.desc}</span>
+            </button>`).join('')}
+        </div>
+
         <div class="action-buttons">
-          <button class="btn btn-primary" id="btn-weekly">
+          <button class="btn btn-primary" id="btn-run-pipeline">
             <div class="spinner"></div>
-            <span class="btn-text">⚡ 一键周报流程</span>
+            <span class="btn-text">▶ 运行流水线</span>
           </button>
-          <button class="btn btn-secondary" id="btn-update">
+          <button class="btn btn-secondary" id="btn-fetch-data">
             <div class="spinner"></div>
-            <span class="btn-text">↓ 更新数据</span>
+            <span class="btn-text">↓ 拉取新数据</span>
           </button>
           <button class="btn btn-secondary" id="btn-monitor">
             <div class="spinner"></div>
-            <span class="btn-text">⊞ 生成周报</span>
+            <span class="btn-text">⊞ 仅生成周报</span>
           </button>
         </div>
         <div class="log-panel section-gap" id="action-log"></div>
@@ -75,12 +90,8 @@ async function initReport() {
       <table class="data-table">
         <thead>
           <tr>
-            <th>行业</th>
-            <th>ETF 代码</th>
-            <th>ETF 名称</th>
-            <th>R²</th>
-            <th>β</th>
-            <th>规模(亿)</th>
+            <th>行业</th><th>ETF 代码</th><th>ETF 名称</th>
+            <th>R²</th><th>β</th><th>规模(亿)</th>
           </tr>
         </thead>
         <tbody id="etf-tbody"></tbody>
@@ -94,34 +105,33 @@ async function initReport() {
     </div>
   `;
 
-  // Tab 切换
-  root.querySelectorAll('.tab-btn').forEach(btn => {
+  // 分支选择器
+  root.querySelectorAll('.branch-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      root.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      root.querySelectorAll('.branch-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      _currentTab = btn.dataset.tab;
-      if (_reportData) renderIndustries(_reportData);
+      _selectedBranch = btn.dataset.branch;
     });
   });
 
   // 操作按钮
-  const btns = [
-    document.getElementById('btn-weekly'),
-    document.getElementById('btn-update'),
-    document.getElementById('btn-monitor'),
-  ];
   const logEl = document.getElementById('action-log');
+  const btns  = ['btn-run-pipeline', 'btn-fetch-data', 'btn-monitor']
+                  .map(id => document.getElementById(id));
 
   const reloadAfterDone = () => { _reportData = null; initReport(); };
 
-  btns[0].addEventListener('click', () =>
-    runTask('/api/run/weekly',  { logEl, btns, onDone: reloadAfterDone }));
-  btns[1].addEventListener('click', () =>
-    runTask('/api/run/update',  { logEl, btns }));
-  btns[2].addEventListener('click', () =>
+  document.getElementById('btn-run-pipeline').addEventListener('click', () =>
+    runTask(`/api/run/pipeline?branch=${encodeURIComponent(_selectedBranch)}`,
+            { logEl, btns, onDone: reloadAfterDone }));
+
+  document.getElementById('btn-fetch-data').addEventListener('click', () =>
+    runTask('/api/run/fetch_data', { logEl, btns }));
+
+  document.getElementById('btn-monitor').addEventListener('click', () =>
     runTask('/api/run/monitor', { logEl, btns, onDone: reloadAfterDone }));
 
-  // 拉数据
+  // 拉报告数据
   if (!_reportData) {
     try {
       _reportData = await fetch('/api/report').then(r => r.json());
@@ -139,17 +149,23 @@ function renderReport(d) {
     return;
   }
 
-  // 元信息
   document.getElementById('report-meta').textContent =
     `${d.iso_week}  ·  数据月份: ${d.data_month}  ·  模型: ${d.model_version}  ·  生成: ${d.generated_at}`;
 
   // Regime 横幅
   const banner = document.getElementById('regime-banner');
   banner.dataset.regime = d.regime || 'unknown';
-  document.getElementById('regime-value').textContent = d.regime || '--';
-  document.getElementById('regime-meta').textContent  = d.data_month;
+  document.getElementById('regime-value').textContent   = d.regime || '--';
+  document.getElementById('regime-meta').textContent    = d.data_month;
   document.getElementById('regime-weights').textContent = d.regime_weights || '';
   if (d.consensus) document.getElementById('regime-consensus').style.display = 'inline-flex';
+
+  // 来源标签
+  const branchEl = document.getElementById('branch-source');
+  if (branchEl && d.branch_used) {
+    const meta = BRANCHES.find(b => b.id === d.branch_used) || { label: d.branch_used, desc: '' };
+    branchEl.textContent = `来源：${meta.label}  ${meta.desc}`;
+  }
 
   renderIndustries(d);
   renderEtf(d.etf_list || []);
@@ -157,8 +173,8 @@ function renderReport(d) {
 }
 
 function renderIndustries(d) {
-  const list = _currentTab === 'regime' ? d.industries_regime : d.industries_equal;
-  const tbody = document.getElementById('industry-tbody');
+  const list   = d.industries || d.industries_regime || d.industries_equal || [];
+  const tbody  = document.getElementById('industry-tbody');
   if (!tbody) return;
   const maxScore = Math.max(...list.map(r => parseFloat(r.score) || 0));
   tbody.innerHTML = list.map(r => {
@@ -186,9 +202,9 @@ function renderEtf(list) {
   const tbody = document.getElementById('etf-tbody');
   if (!tbody) return;
   tbody.innerHTML = list.map(r => {
-    const cls = r.warn_r2 ? 'warn-row' : (r.warn_scale ? 'warn-scale-row' : '');
-    const r2Cls = r.warn_r2 ? 'up' : 'down';
-    const r2Ico = r.warn_r2 ? ' ⚠' : '';
+    const cls    = r.warn_r2 ? 'warn-row' : (r.warn_scale ? 'warn-scale-row' : '');
+    const r2Cls  = r.warn_r2 ? 'up' : 'down';
+    const r2Ico  = r.warn_r2 ? ' ⚠' : '';
     return `<tr class="${cls}">
       <td>${r.industry}</td>
       <td class="mono">${r.etf_code}</td>
@@ -204,17 +220,19 @@ function renderTurnover(d) {
   const grid = document.getElementById('turnover-grid');
   if (!grid) return;
 
-  const section = (title, t) => {
-    if (!t || !t.rate) return `<div class="turnover-section"><h4>${title}</h4><div style="color:var(--text-3)">无数据</div></div>`;
-    const newChips = (t.new_in || []).map(n => `<span class="chip chip-in">${n}</span>`).join('');
-    const outChips = (t.kicked || []).map(n => `<span class="chip chip-out">${n}</span>`).join('');
-    return `<div class="turnover-section">
-      <h4>${title}</h4>
+  const t = d.turnover || d.turnover_regime || d.turnover_equal || {};
+  if (!t.rate) {
+    grid.innerHTML = `<div style="color:var(--text-3)">无换手数据</div>`;
+    return;
+  }
+  const newChips = (t.new_in || []).map(n => `<span class="chip chip-in">${n}</span>`).join('');
+  const outChips = (t.kicked  || []).map(n => `<span class="chip chip-out">${n}</span>`).join('');
+  grid.innerHTML = `
+    <div class="turnover-section">
       <div class="turnover-rate">${t.rate} <span>换手率</span></div>
-      ${newChips ? `<div style="margin-bottom:6px;font-size:12px;color:var(--text-2)">新进入</div><div class="chip-list" style="margin-bottom:10px">${newChips}</div>` : ''}
-      ${outChips ? `<div style="margin-bottom:6px;font-size:12px;color:var(--text-2)">踢出</div><div class="chip-list">${outChips}</div>` : ''}
+      ${newChips ? `<div style="margin-bottom:6px;font-size:12px;color:var(--text-2)">新进入</div>
+                    <div class="chip-list" style="margin-bottom:10px">${newChips}</div>` : ''}
+      ${outChips ? `<div style="margin-bottom:6px;font-size:12px;color:var(--text-2)">踢出</div>
+                    <div class="chip-list">${outChips}</div>` : ''}
     </div>`;
-  };
-
-  grid.innerHTML = section('Regime 集成', d.turnover_regime) + section('等权集成', d.turnover_equal);
 }

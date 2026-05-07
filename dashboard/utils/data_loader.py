@@ -63,6 +63,17 @@ def _parse_md_table(text: str, section_pattern: str) -> list:
 
 # ── 周报 ──────────────────────────────────────────────────────────────────
 
+def _get_last_branch() -> str:
+    import json as _json
+    p = os.path.join(RESULTS_DIR, "last_branch.json")
+    if os.path.exists(p):
+        try:
+            return _json.loads(Path(p).read_text())["branch"]
+        except Exception:
+            pass
+    return "main"
+
+
 def get_report_data() -> dict:
     path = os.path.join(REPORTS_DIR, "latest.md")
     if not os.path.exists(path):
@@ -142,13 +153,25 @@ def get_report_data() -> dict:
 
     consensus = bool(re.search(r"两模型建议一致", text))
 
+    branch_used = _get_last_branch()
+    inds_regime = parse_industries("Regime 集成")
+    inds_equal  = parse_industries("等权集成")
+    # 主展示列表：有 Regime 集成就用，否则（refactor 分支）用等权
+    industries_primary = inds_regime if inds_regime else inds_equal
+    turn_regime = parse_turnover("Regime 集成")
+    turn_equal  = parse_turnover("等权集成")
+    turnover_primary = turn_regime if turn_regime.get("rate") else turn_equal
+
     return {
         **info,
-        "industries_regime": parse_industries("Regime 集成"),
-        "industries_equal":  parse_industries("等权集成"),
+        "branch_used":       branch_used,
+        "industries":        industries_primary,
+        "industries_regime": inds_regime,
+        "industries_equal":  inds_equal,
         "etf_list":          etf_list,
-        "turnover_regime":   parse_turnover("Regime 集成"),
-        "turnover_equal":    parse_turnover("等权集成"),
+        "turnover":          turnover_primary,
+        "turnover_regime":   turn_regime,
+        "turnover_equal":    turn_equal,
         "consensus":         consensus,
     }
 

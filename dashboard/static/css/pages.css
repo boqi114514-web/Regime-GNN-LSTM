@@ -95,6 +95,40 @@
 .action-buttons { display: flex; flex-direction: column; gap: 8px; }
 .action-buttons .btn { justify-content: center; }
 
+/* 分支选择器 */
+.branch-selector { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+
+.branch-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.30);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+}
+.branch-btn:hover { background: rgba(255,255,255,0.22); }
+.branch-btn.active {
+  background: rgba(26,115,232,0.16);
+  border-color: rgba(26,115,232,0.40);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(26,115,232,0.12);
+}
+
+.branch-name { font-size: 13px; font-weight: 600; color: var(--text-1); }
+.branch-btn.active .branch-name { color: var(--primary); }
+
+.branch-desc { font-size: 11px; color: var(--text-3); font-family: var(--font-mono); margin-top: 2px; }
+.branch-btn.active .branch-desc { color: var(--primary); opacity: 0.75; }
+
+.branch-source { font-size: 12px; color: var(--text-3); font-family: var(--font-mono); }
+
 /* ETF 卡片 */
 .etf-card { margin-bottom: 16px; }
 

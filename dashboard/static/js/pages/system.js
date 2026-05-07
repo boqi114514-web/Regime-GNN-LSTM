@@ -24,6 +24,19 @@ async function initSystem() {
       </div>
     </div>
 
+    <!-- 数据更新 -->
+    <div class="glass-card" style="margin-bottom:16px">
+      <div class="card-title">数据更新</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px">
+        从 tushare 拉取最新行情、宏观、因子数据（增量更新，约 2-5 分钟）
+      </div>
+      <button class="btn btn-primary" id="btn-fetch-data-sys" style="width:100%;justify-content:center">
+        <div class="spinner"></div>
+        <span class="btn-text">↓ 拉取新数据</span>
+      </button>
+      <div class="log-panel section-gap" id="fetch-log"></div>
+    </div>
+
     <!-- 高危操作区 -->
     <div class="danger-zone">
       <div class="danger-zone-title">⚠ 高危操作</div>
@@ -50,6 +63,12 @@ async function initSystem() {
   } catch (e) {
     document.getElementById('data-health').innerHTML = `<div style="color:var(--up)">加载失败: ${e.message}</div>`;
   }
+
+  // 拉取新数据按钮
+  const fetchLogEl  = document.getElementById('fetch-log');
+  const btnFetchSys = document.getElementById('btn-fetch-data-sys');
+  btnFetchSys.addEventListener('click', () =>
+    runTask('/api/run/fetch_data', { logEl: fetchLogEl, btns: [btnFetchSys] }));
 
   // 高危按钮
   const logEl = document.getElementById('system-log');
