@@ -288,6 +288,7 @@ def compute_fund_score(stock_code, year, month, fund_dict):
     """
     计算某只股票某月的基本面综合得分
     按 FACTOR_DIRECTIONS 的方向加权
+    若精确月份无数据，回退到最近12个月内最新可用财报（防止财报发布滞后导致全零）
     """
     if stock_code not in fund_dict:
         return 0.0
@@ -295,9 +296,21 @@ def compute_fund_score(stock_code, year, month, fund_dict):
     df = fund_dict[stock_code]
     row = df[(df['year'] == year) & (df['month'] == month)]
     if row.empty:
-        return 0.0
-
-    row = row.iloc[0]
+        # fallback: most recent data within past 12 months
+        target_ym = year * 100 + month
+        df2 = df.copy()
+        df2['_ym'] = df2['year'] * 100 + df2['month']
+        past = df2[df2['_ym'] < target_ym].sort_values('_ym', ascending=False)
+        if past.empty:
+            return 0.0
+        latest_ym = past['_ym'].iloc[0]
+        ly, lm = divmod(latest_ym, 100)
+        gap_months = (year - ly) * 12 + (month - lm)
+        if gap_months > 12:
+            return 0.0
+        row = past.iloc[0]
+    else:
+        row = row.iloc[0]
     score = 0.0
     n = 0
     for col, direction in FACTOR_DIRECTIONS.items():
@@ -432,11 +445,19 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
             # 动量：过去 MOM_LOOKBACK 天累计收益
             mom = (1 + s_data['ret'].tail(MOM_LOOKBACK).fillna(0)).prod() - 1
 
-            # 质量因子：ROE + 现金流质量 + 毛利率（从fund_dict取）
+            # 质量因子：ROE + 现金流质量 + 毛利率（从fund_dict取，fallback到最近12个月）
             qual = 0.0
             if stock_code in fund_dict:
                 fdf = fund_dict[stock_code]
                 frow = fdf[(fdf['year'] == year) & (fdf['month'] == month)]
+                if frow.empty:
+                    fdf2 = fdf.copy()
+                    fdf2['_ym'] = fdf2['year'] * 100 + fdf2['month']
+                    past = fdf2[fdf2['_ym'] < year * 100 + month].sort_values('_ym', ascending=False)
+                    if not past.empty:
+                        ly, lm = divmod(past['_ym'].iloc[0], 100)
+                        if (year - ly) * 12 + (month - lm) <= 12:
+                            frow = past.head(1)
                 if not frow.empty:
                     frow = frow.iloc[0]
                     q_vals = []
