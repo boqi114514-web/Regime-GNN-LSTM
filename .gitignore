@@ -35,3 +35,4 @@ dist/
 # Local cache / state in results/
 results/_cache_*.json
 results/last_branch.json
+results/live_selections_*.csv
