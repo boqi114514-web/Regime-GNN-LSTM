@@ -298,7 +298,7 @@ def load_fundamental_features():
     cashflow = add_quarter_info(cashflow)
 
     merge_keys = ['stock_code', 'year', 'quarter']
-    merged = income[merge_keys + ['revenue', 'total_cogs', 'oper_cost',
+    merged = income[merge_keys + ['ann_date', 'revenue', 'total_cogs', 'oper_cost',
                                    'n_income', 'n_income_attr_p', 'total_profit',
                                    'ebit', 'int_exp']].merge(
         balance[merge_keys + ['total_assets', 'total_hldr_eqy_exc_min_int',
@@ -336,27 +336,28 @@ def load_fundamental_features():
         merged[col] = merged[col].clip(lower, upper)
         merged[col] = merged[col].fillna(0.0)
 
-    # 季频 -> 月频，按股票分组存入 dict
+    # 季频 -> 月频：以 ann_date 为可用性卡口，避免 Q2/Q4 前视
+    # 每条季报只在披露月的下月起记录一次，依赖 compute_fund_score 的回溯逻辑做月份覆盖
     records = []
     for _, row in merged.iterrows():
-        q, y = int(row['quarter']), int(row['year'])
-        if q == 1:
-            months = [(y, 4), (y, 5), (y, 6)]
-        elif q == 2:
-            months = [(y, 7), (y, 8), (y, 9)]
-        elif q == 3:
-            months = [(y, 10), (y, 11), (y, 12)]
-        elif q == 4:
-            months = [(y + 1, 1), (y + 1, 2), (y + 1, 3)]
-        else:
-            continue
-        for (my, mm) in months:
-            rec = {'stock_code': row['stock_code'], 'year': my, 'month': mm}
-            for col in factor_cols:
-                rec[col] = row[col]
-            records.append(rec)
+        ann = pd.to_datetime(row['ann_date'], errors='coerce')
+        if pd.isna(ann):
+            continue  # 缺披露日的记录直接丢弃，避免前视
+        avail = (ann + pd.offsets.MonthBegin(1))
+        rec = {'stock_code': row['stock_code'],
+               'year': int(avail.year), 'month': int(avail.month),
+               'ann_date': ann}
+        for col in factor_cols:
+            rec[col] = row[col]
+        records.append(rec)
 
     fund_df = pd.DataFrame(records)
+
+    # 同月可能有多份季报披露（极少数补丁公告），保留 ann_date 最新者
+    fund_df = (fund_df
+               .sort_values(['stock_code', 'year', 'month', 'ann_date'])
+               .drop_duplicates(['stock_code', 'year', 'month'], keep='last')
+               .drop(columns=['ann_date']))
 
     # 按股票分组存入 dict，加速查询
     fund_dict = {}
@@ -1069,7 +1070,12 @@ def run_live(pred_pkl: str = None, ckpt_suffix: str = '',
         if all_selections:
             hist = pd.concat(all_selections, ignore_index=True)
             latest = hist['month'].max()
-            return hist[hist['month'] == latest].copy()
+            result = hist[hist['month'] == latest].copy()
+            suffix = ckpt_suffix or ''
+            result.to_csv(os.path.join(OUTPUT_DIR,
+                          f'live_selections_latest{suffix}.csv'),
+                          index=False, encoding='utf-8-sig')
+            return result
         return pd.DataFrame()
 
     stock_to_ind, ind_to_name = load_stock_industry_map()
@@ -1129,6 +1135,16 @@ def run_live(pred_pkl: str = None, ckpt_suffix: str = '',
     hist   = pd.concat(all_selections, ignore_index=True)
     latest = hist['month'].max()
     result = hist[hist['month'] == latest].copy()
+
+    # 持久化：最新持仓固定文件 + 按月归档（覆盖写）
+    suffix = ckpt_suffix or ''
+    latest_path = os.path.join(OUTPUT_DIR, f'live_selections_latest{suffix}.csv')
+    result.to_csv(latest_path, index=False, encoding='utf-8-sig')
+    for m, grp in hist.groupby('month'):
+        ym = pd.Timestamp(m).strftime('%Y%m')
+        grp.to_csv(os.path.join(OUTPUT_DIR, f'live_selections_{ym}{suffix}.csv'),
+                   index=False, encoding='utf-8-sig')
+
     print(f"  {tag} 最新持仓 {latest.strftime('%Y-%m')}：{len(result)} 只")
     return result
 

@@ -25,3 +25,13 @@ Thumbs.db
 
 # Claude
 .claude/
+.playwright-mcp/
+
+# PyInstaller build artifacts
+launch_dashboard.exe
+build/
+dist/
+
+# Local cache / state in results/
+results/_cache_*.json
+results/last_branch.json

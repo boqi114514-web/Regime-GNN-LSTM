@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regime 行业轮动 Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/pages.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- 背景光晕层（独立 div，每个单独 drift 动画） -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+  <div class="bg-orb bg-orb-4"></div>
+  <div class="bg-orb bg-orb-5"></div>
+
+  <div class="app-layout">
+
+    <!-- 左侧导航 -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">R</div>
+        <div class="logo-text">
+          <div class="logo-main">Regime</div>
+          <div class="logo-sub">行业轮动</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item active" data-page="report" href="#">
+          <span class="nav-icon">◈</span>
+          <span class="nav-label">周报</span>
+        </a>
+        <a class="nav-item" data-page="holdings" href="#">
+          <span class="nav-icon">≡</span>
+          <span class="nav-label">持仓</span>
+        </a>
+        <a class="nav-item" data-page="backtest" href="#">
+          <span class="nav-icon">∿</span>
+          <span class="nav-label">回测</span>
+        </a>
+        <a class="nav-item" data-page="system" href="#">
+          <span class="nav-icon">⚙</span>
+          <span class="nav-label">系统</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="model-badge" id="sidebar-model">加载中...</div>
+      </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <div id="page-report"   class="page active"></div>
+      <div id="page-holdings" class="page"></div>
+      <div id="page-backtest" class="page"></div>
+      <div id="page-system"   class="page"></div>
+    </main>
+
+  </div>
+
+  <!-- app.js 必须最先加载，它定义 onPageShow / showPage -->
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/utils/sse.js"></script>
+  <script src="/static/js/utils/charts.js"></script>
+  <script src="/static/js/pages/report.js"></script>
+  <script src="/static/js/pages/holdings.js"></script>
+  <script src="/static/js/pages/backtest.js"></script>
+  <script src="/static/js/pages/system.js"></script>
+  <!-- 所有页面注册完后再初始化 -->
+  <script>_initSidebar(); showPage('report');</script>
+</body>
+</html>
