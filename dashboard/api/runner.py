@@ -49,7 +49,8 @@ def _sse(cmd: list) -> StreamingResponse:
 
 
 def _py(*args) -> list:
-    return [sys.executable, *args]
+    # -u: 关闭 stdout/stderr 块缓冲，让训练日志实时刷到 SSE
+    return [sys.executable, "-u", *args]
 
 
 @router.get("/run/weekly")
