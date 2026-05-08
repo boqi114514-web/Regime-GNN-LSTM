@@ -140,22 +140,8 @@ async function initReport() {
       initReport();
     } }));
 
-  // 首次：拉 latest.md（不带 branch），并按 branch_used 高亮对应按钮
-  if (!_reportData) {
-    try {
-      _reportData = await fetch('/api/report').then(r => r.json());
-    } catch (e) {
-      document.getElementById('report-meta').textContent = '加载失败: ' + e.message;
-      return;
-    }
-  }
-  if (_reportData.branch_used) {
-    _selectedBranch = _reportData.branch_used;
-    root.querySelectorAll('.branch-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.branch === _selectedBranch);
-    });
-  }
-  renderReport(_reportData);
+  // 永远按当前选中分支拉归档（无归档则 loadBranchReport 自己显示提示）
+  await loadBranchReport(_selectedBranch);
 }
 
 async function loadBranchReport(branch) {
