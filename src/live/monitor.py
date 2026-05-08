@@ -310,6 +310,8 @@ def generate_report(current: dict, previous: Optional[dict],
     # ── 1. Top-K 推荐行业 ─────────────────────────────────────
     lines.append(f'## 🎯 Top-{K} 推荐行业')
     lines.append('')
+    lines.append('### 等权集成')
+    lines.append('')
     lines += _topk_table_lines(current, deltas_r)
     lines.append('')
 
