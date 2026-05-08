@@ -3,7 +3,7 @@
 onPageShow('report', initReport);
 
 let _reportData    = null;
-let _selectedBranch = 'main';
+window._selectedBranch = window._selectedBranch || 'main';
 
 const BRANCHES = [
   { id: 'main',                         label: 'Main',     desc: '滚动HMM · Sharpe 1.38' },
@@ -58,7 +58,7 @@ async function initReport() {
         <!-- 分支选择器 -->
         <div class="branch-selector" id="branch-selector">
           ${BRANCHES.map(b => `
-            <button class="branch-btn${b.id === _selectedBranch ? ' active' : ''}"
+            <button class="branch-btn${b.id === window._selectedBranch ? ' active' : ''}"
                     data-branch="${b.id}"
                     title="${b.desc}">
               <span class="branch-name">${b.label}</span>
@@ -110,8 +110,8 @@ async function initReport() {
     btn.addEventListener('click', async () => {
       root.querySelectorAll('.branch-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      _selectedBranch = btn.dataset.branch;
-      await loadBranchReport(_selectedBranch);
+      window._selectedBranch = btn.dataset.branch;
+      await loadBranchReport(window._selectedBranch);
     });
   });
 
@@ -123,11 +123,11 @@ async function initReport() {
   // 跑完流水线 → 拉当前选中分支的归档（保留按钮高亮，不被 latest 覆盖）
   const reloadCurrentBranch = () => {
     _reportData = null;
-    loadBranchReport(_selectedBranch);
+    loadBranchReport(window._selectedBranch);
   };
 
   document.getElementById('btn-run-pipeline').addEventListener('click', () =>
-    runTask(`/api/run/pipeline?branch=${encodeURIComponent(_selectedBranch)}`,
+    runTask(`/api/run/pipeline?branch=${encodeURIComponent(window._selectedBranch)}`,
             { logEl, btns, onDone: reloadCurrentBranch }));
 
   document.getElementById('btn-fetch-data').addEventListener('click', () =>
@@ -141,7 +141,7 @@ async function initReport() {
     } }));
 
   // 永远按当前选中分支拉归档（无归档则 loadBranchReport 自己显示提示）
-  await loadBranchReport(_selectedBranch);
+  await loadBranchReport(window._selectedBranch);
 }
 
 async function loadBranchReport(branch) {
