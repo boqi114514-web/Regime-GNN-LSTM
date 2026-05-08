@@ -120,17 +120,25 @@ async function initReport() {
   const btns  = ['btn-run-pipeline', 'btn-fetch-data', 'btn-monitor']
                   .map(id => document.getElementById(id));
 
-  const reloadAfterDone = () => { _reportData = null; initReport(); };
+  // 跑完流水线 → 拉当前选中分支的归档（保留按钮高亮，不被 latest 覆盖）
+  const reloadCurrentBranch = () => {
+    _reportData = null;
+    loadBranchReport(_selectedBranch);
+  };
 
   document.getElementById('btn-run-pipeline').addEventListener('click', () =>
     runTask(`/api/run/pipeline?branch=${encodeURIComponent(_selectedBranch)}`,
-            { logEl, btns, onDone: reloadAfterDone }));
+            { logEl, btns, onDone: reloadCurrentBranch }));
 
   document.getElementById('btn-fetch-data').addEventListener('click', () =>
     runTask('/api/run/fetch_data', { logEl, btns }));
 
+  // monitor 只生成 latest.md（不归档分支），跑完重拉 latest
   document.getElementById('btn-monitor').addEventListener('click', () =>
-    runTask('/api/run/monitor', { logEl, btns, onDone: reloadAfterDone }));
+    runTask('/api/run/monitor', { logEl, btns, onDone: () => {
+      _reportData = null;
+      initReport();
+    } }));
 
   // 首次：拉 latest.md（不带 branch），并按 branch_used 高亮对应按钮
   if (!_reportData) {
