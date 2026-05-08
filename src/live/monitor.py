@@ -376,35 +376,16 @@ def generate_report(current: dict, previous: Optional[dict],
         bl.append('')
         return bl
 
-    lines += _advice(diff_r, 'Regime 集成')
-    if has_eq:
-        lines += _advice(diff_e, '等权集成')
-        agree = (diff_r['turnover'] > 0.01) == (diff_e['turnover'] > 0.01)
-        lines.append('> ' + ('两模型建议一致' if agree else '两模型建议不同，等权出现换手信号'))
-        lines.append('')
+    lines += _advice(diff_r, '等权集成')
 
     # ── 6. 个股持仓 ───────────────────────────────────────────
     stock_r = current.get('stock_holdings')
-    stock_e = current_equal.get('stock_holdings') if has_eq else None
     has_stock_r = stock_r is not None and not stock_r.empty
-    has_stock_e = stock_e is not None and not stock_e.empty
 
-    if has_stock_r or has_stock_e:
+    if has_stock_r:
         lines.append('## 📋 个股持仓（选股层）')
         lines.append('')
-
-        if has_stock_r:
-            lines += _stock_section_lines(stock_r, 'Regime 集成')
-
-        if has_stock_e:
-            lines += _stock_section_lines(stock_e, '等权集成')
-
-        if has_stock_r and has_stock_e:
-            r_codes = set(stock_r['stock_code'])
-            e_codes = set(stock_e['stock_code'])
-            overlap = r_codes & e_codes
-            lines.append(f'> 共同持仓 {len(overlap)} 只，Regime 独有 {len(r_codes-e_codes)} 只，等权独有 {len(e_codes-r_codes)} 只')
-            lines.append('')
+        lines += _stock_section_lines(stock_r, '等权集成')
 
     lines.append('---')
     lines.append('*自动生成 by live/monitor.py · 周日晚 20:00 出报 · 人工复核后周一执行*')
