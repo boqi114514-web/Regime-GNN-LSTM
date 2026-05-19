@@ -247,8 +247,15 @@ def update_macro_factors(dry_run: bool = False, force_months: int = 0) -> dict:
     path = os.path.join(LOCAL_DATA_RAW, 'ts_macro_factors.csv')
     old = pd.read_csv(path)
     old['date'] = pd.to_datetime(old['date'])
-    latest = old['date'].max()
-    print(f'\n[macro_factors] 现有 {len(old)} 行, 最新 {latest.date()}')
+    # ⚠️ date 列会被 shibor（日频、实时）推到当月，不能用它判断宏观是否"最新"
+    #    —— 否则 PMI/M1M2/社融（月中才发布）永远被误判为已最新而漏补。
+    #    改用 s0 真正用的月中发布指标 pmi_mfg/m1_m2_spread/sf_yoy 的最新非空月份，
+    #    取三者最小值（哪个指标落后就从哪补起）作为增量基线。
+    _lag_cols = [c for c in ('pmi_mfg', 'm1_m2_spread', 'sf_yoy') if c in old.columns]
+    _lag_dates = [old.loc[old[c].notna(), 'date'].max() for c in _lag_cols]
+    _lag_dates = [d for d in _lag_dates if pd.notna(d)]
+    latest = min(_lag_dates) if _lag_dates else old['date'].max()
+    print(f'\n[macro_factors] 现有 {len(old)} 行, 月中指标最新 {latest.date()}')
 
     # --- 回填已有数据中的 sf_yoy 空洞 ---
     sf_holes = old[old['sf_yoy'].isna() & old['date'].dt.year >= 2015]
