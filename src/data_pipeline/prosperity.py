@@ -16,6 +16,14 @@
 用法：
     python -m data_pipeline.prosperity              # 全量重算
     python -m data_pipeline.prosperity --dry-run     # 只打印不写文件
+    python -m data_pipeline.prosperity --level l2    # 方向2：二级行业景气度，产物 *_l2.pkl
+
+level 说明（方向2 Gate 3 Step 4）：
+    l1（默认）→ ts_sw_members.csv，行业=申万一级，产物 prosperity_indicators_clean.pkl
+    l2         → ts_sw_l2_members.csv，行业=申万二级，产物 prosperity_indicators_clean_l2.pkl
+    景气度链条（清洗/汇总/TTM/指标/一致预期/极端值清洗）完全不变。
+    实现上下游沿用列名 `l1_code` 作为"行业列"占位，L2 模式下该列装 l2_code 值，
+    ARIMAX / 指标算法零改动 —— 即文档所述"成分映射换 + 重跑"。
 """
 import argparse
 import os
@@ -85,14 +93,31 @@ ABS_VALUE_MAP = {
 #  Step 1: 加载原始数据 + 行业映射
 # ============================================================
 
-def _load_members():
-    """加载行业成分股映射，返回 {ts_code: (l1_code, l1_name)}"""
-    path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_members.csv')
-    members = pd.read_csv(path)
-    members = members[~members['l1_code'].isin(SW_EXCLUDE)]
+def _load_members(level='l1'):
+    """加载行业成分股映射，返回 {ts_code: (行业code, 行业name)}
+
+    level='l1' → ts_sw_members.csv，行业=申万一级（排除金融）
+    level='l2' → ts_sw_l2_members.csv，行业=申万二级（124 个，含金融子行业）
+                 个股按"当前成分(out_date 空)优先、否则 in_date 最新"取唯一行业归属。
+    返回字典的"行业 code"在 l2 模式下是 l2_code 值，但下游一律写入列名 `l1_code`
+    作为占位 —— 景气度链条逻辑因此无需改动。
+    """
+    if level == 'l1':
+        path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_members.csv')
+        members = pd.read_csv(path)
+        members = members[~members['l1_code'].isin(SW_EXCLUDE)]
+        ind_col, name_col = 'l1_code', 'l1_name'
+    else:
+        path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_l2_members.csv')
+        members = pd.read_csv(path)
+        # 一只股票横跨多个二级（再入/重分类）时取唯一归属：当前成分优先、再按 in_date 最新
+        members['_cur'] = members['out_date'].isna()
+        members = members.sort_values(['ts_code', '_cur', 'in_date'])
+        members = members.drop_duplicates(subset='ts_code', keep='last')
+        ind_col, name_col = 'l2_code', 'l2_name'
     mapping = {}
     for _, row in members.iterrows():
-        mapping[row['ts_code']] = (row['l1_code'], row.get('l1_name', ''))
+        mapping[row['ts_code']] = (row[ind_col], row.get(name_col, ''))
     return mapping
 
 
@@ -314,9 +339,10 @@ def _integrate_consensus(prosperity_df, members_map):
     ind_rat = stock_con.groupby(['l1_code', 'l1_name', 'forecast_year', 'report_month'])[ratio_cols].median().reset_index()
     ind_con = ind_abs.merge(ind_rat, on=['l1_code', 'l1_name', 'forecast_year', 'report_month'], how='outer')
 
-    # BPS 推算
+    # BPS 推算（roe=0 时分母置 NaN —— np.where 不短路，裸除会触发 ZeroDivisionError）
+    _roe_safe = ind_con['roe'].replace(0, np.nan)
     ind_con['bps'] = np.where(ind_con['roe'].abs() > 0.001,
-                               ind_con['eps'] / (ind_con['roe'] / 100), np.nan)
+                               ind_con['eps'] / (_roe_safe / 100), np.nan)
 
     # 同比增速 (yoy)
     calc_cols = ['np', 'tp', 'op_pr', 'op_rt', 'eps', 'roe', 'bps']
@@ -465,9 +491,13 @@ def _clean_outliers(df):
 #  主流程
 # ============================================================
 
-def run(dry_run=False):
+def run(dry_run=False, level='l1'):
+    if level not in ('l1', 'l2'):
+        raise ValueError(f"level 必须是 'l1' 或 'l2'，收到 {level!r}")
+    out_suffix = '' if level == 'l1' else '_l2'
+
     print('=' * 60)
-    print('  data_pipeline.prosperity  景气度指标全链路')
+    print(f'  data_pipeline.prosperity  景气度指标全链路  level={level}')
     print('=' * 60)
 
     # 检查原始数据
@@ -478,7 +508,7 @@ def run(dry_run=False):
             raise FileNotFoundError(
                 f'缺少 {p}\n请先运行: python -m data_pipeline.download --migrate')
 
-    members_map = _load_members()
+    members_map = _load_members(level)
     print(f'  行业映射: {len(members_map)} 只股票')
 
     # 加载 + 清洗
@@ -513,7 +543,8 @@ def run(dry_run=False):
     prosperity = _clean_outliers(prosperity)
 
     # 输出
-    out_path = os.path.join(LOCAL_DATA_PROCESSED, 'prosperity_indicators_clean.pkl')
+    out_path = os.path.join(LOCAL_DATA_PROCESSED,
+                            f'prosperity_indicators_clean{out_suffix}.pkl')
     if dry_run:
         print(f'\n[dry-run] 未写入 {out_path}')
     else:
@@ -544,8 +575,10 @@ def run(dry_run=False):
 def main():
     parser = argparse.ArgumentParser(description='景气度指标全链路')
     parser.add_argument('--dry-run', action='store_true')
+    parser.add_argument('--level', default='l1', choices=['l1', 'l2'],
+                        help='行业聚合粒度：l1=申万一级（默认），l2=申万二级（方向2）')
     args = parser.parse_args()
-    run(dry_run=args.dry_run)
+    run(dry_run=args.dry_run, level=args.level)
 
 
 if __name__ == '__main__':

@@ -16,7 +16,7 @@ import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from sklearn.covariance import GraphicalLassoCV
+from sklearn.covariance import GraphicalLassoCV, LedoitWolf
 import os
 import time
 
@@ -47,9 +47,15 @@ def build_glasso_graph(returns_matrix, top_k=GRAPH_TOP_K):
         return np.eye(N)
 
     try:
-        model = GraphicalLassoCV(cv=3, max_iter=200)
-        model.fit(returns_clean)
-        precision = np.abs(model.precision_)
+        if LEVEL == 'l2':
+            # 二级 124 节点 / 12 月窗，GLASSO 严重欠定（Gate 1 实测 72% 退化）
+            # → 改用 Ledoit-Wolf 收缩协方差，其 precision_ 喂给后续 Top-K 稀疏化
+            model = LedoitWolf().fit(returns_clean)
+            precision = np.abs(model.precision_)
+        else:
+            model = GraphicalLassoCV(cv=3, max_iter=200)
+            model.fit(returns_clean)
+            precision = np.abs(model.precision_)
     except Exception:
         # 回退到相关系数矩阵
         try:

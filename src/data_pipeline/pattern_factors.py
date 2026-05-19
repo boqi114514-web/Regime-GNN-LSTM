@@ -13,6 +13,12 @@
     python -m data_pipeline.pattern_factors                # 全量重算 (10+ 分钟)
     python -m data_pipeline.pattern_factors --smoke        # 仅 200 股 + 最近 6 月
     python -m data_pipeline.pattern_factors --since YYYY-MM
+    python -m data_pipeline.pattern_factors --level l2     # 方向2：二级行业聚合，产物 pattern_factors_l2.pkl
+
+level 说明（方向2 Gate 3 Step 3）：
+    l1（默认）→ ts_sw_members.csv，按 l1_code 聚合，产物 pattern_factors.pkl
+    l2         → ts_sw_l2_members.csv，按 l2_code 聚合，产物 pattern_factors_l2.pkl
+    指纹库 / 匹配算法完全不变，只换"个股→行业"的映射粒度，互不覆盖。
 """
 import argparse
 import os
@@ -27,7 +33,7 @@ if _SRC_DIR not in sys.path:
 
 from config import (LOCAL_DATA_PROCESSED, SW_EXCLUDE,
                     PATTERN_WINDOW, PATTERN_TOP_K, PATTERN_MIN_CORR, PATTERN_GAP_MONTHS,
-                    load_industry_members, load_stock_daily)
+                    load_industry_members, load_industry_members_l2, load_stock_daily)
 
 
 # ============================================================
@@ -137,10 +143,11 @@ def match_patterns_batch(current_fps: np.ndarray, current_date,
 # ============================================================
 
 def industry_factors_for_month(stock_signals: dict, members_df: pd.DataFrame,
-                               industries: list, ref_date) -> list:
+                               industries: list, ref_date,
+                               industry_col: str = 'l1_code') -> list:
     rows = []
     for ind in industries:
-        m = members_df[members_df['l1_code'] == ind]
+        m = members_df[members_df[industry_col] == ind]
         mask = m['in_date'] <= ref_date
         mask &= m['out_date'].isna() | (m['out_date'] > ref_date)
         codes = m.loc[mask, 'code'].unique()
@@ -166,9 +173,16 @@ def industry_factors_for_month(stock_signals: dict, members_df: pd.DataFrame,
 #  主流程
 # ============================================================
 
-def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
+def run(smoke: bool = False, since: str = None, dry_run: bool = False,
+        level: str = 'l1') -> dict:
+    if level not in ('l1', 'l2'):
+        raise ValueError(f"level 必须是 'l1' 或 'l2'，收到 {level!r}")
+    industry_col = 'l1_code' if level == 'l1' else 'l2_code'
+    out_suffix = '' if level == 'l1' else '_l2'
+
     print('=' * 60)
-    print(f'  data_pipeline.pattern_factors  smoke={smoke}  since={since}  dry={dry_run}')
+    print(f'  data_pipeline.pattern_factors  level={level}  smoke={smoke}  '
+          f'since={since}  dry={dry_run}')
     print('=' * 60)
 
     print('\n[1/5] 加载个股日K线...')
@@ -176,11 +190,11 @@ def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
     stock_daily = stock_daily[stock_daily['date'] >= '2010-01-01'].copy()
     print(f'  {len(stock_daily):,} 行, {stock_daily["code"].nunique()} 只股票')
 
-    print('\n[2/5] 加载行业映射...')
-    members = load_industry_members()
+    print(f'\n[2/5] 加载行业映射（{level}）...')
+    members = load_industry_members() if level == 'l1' else load_industry_members_l2()
     valid_codes = set(stock_daily['code'].unique())
     members = members[members['code'].isin(valid_codes)].copy()
-    industries = sorted([x for x in members['l1_code'].unique() if x not in SW_EXCLUDE])
+    industries = sorted([x for x in members[industry_col].unique() if x not in SW_EXCLUDE])
     print(f'  行业数：{len(industries)}')
 
     print('\n[3/5] 构建股票字典...')
@@ -245,7 +259,8 @@ def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
         signals = match_patterns_batch(current_fps, me_date, patterns, frets, p_dates)
         stock_signals = dict(zip(current_codes_list, signals))
 
-        all_rows.extend(industry_factors_for_month(stock_signals, members, industries, me_date))
+        all_rows.extend(industry_factors_for_month(stock_signals, members, industries,
+                                                   me_date, industry_col=industry_col))
 
     result = pd.DataFrame(all_rows)
     if result.empty:
@@ -259,8 +274,8 @@ def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
     for col in ['pattern_median', 'bullish_ratio', 'signal_strength']:
         print(f'  {col:20s}: {result[col].notna().mean():.1%}')
 
-    out_pkl = os.path.join(LOCAL_DATA_PROCESSED, 'pattern_factors.pkl')
-    out_csv = os.path.join(LOCAL_DATA_PROCESSED, 'pattern_factors.csv')
+    out_pkl = os.path.join(LOCAL_DATA_PROCESSED, f'pattern_factors{out_suffix}.pkl')
+    out_csv = os.path.join(LOCAL_DATA_PROCESSED, f'pattern_factors{out_suffix}.csv')
 
     if since and not smoke and os.path.exists(out_pkl):
         old = pd.read_pickle(out_pkl)
@@ -293,8 +308,10 @@ def main():
     parser.add_argument('--smoke', action='store_true', help='200 股 + 最近 6 月')
     parser.add_argument('--since', default=None, help='增量起始月份 YYYY-MM')
     parser.add_argument('--dry-run', action='store_true', help='不写文件')
+    parser.add_argument('--level', default='l1', choices=['l1', 'l2'],
+                        help='行业聚合粒度：l1=申万一级（默认），l2=申万二级（方向2）')
     args = parser.parse_args()
-    run(smoke=args.smoke, since=args.since, dry_run=args.dry_run)
+    run(smoke=args.smoke, since=args.since, dry_run=args.dry_run, level=args.level)
 
 
 if __name__ == '__main__':

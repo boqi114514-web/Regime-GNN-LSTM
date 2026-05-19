@@ -14,6 +14,12 @@
     python -m data_pipeline.tech_factors               # 全量重算 (几十分钟)
     python -m data_pipeline.tech_factors --smoke       # 只跑最近 6 个月 + 限制股票数，用于 smoke test
     python -m data_pipeline.tech_factors --since YYYY-MM  # 只补指定月之后
+    python -m data_pipeline.tech_factors --level l2    # 方向2：二级行业聚合，产物 price_volume_factors_l2.pkl
+
+level 说明（方向2 Gate 3 Step 2）：
+    l1（默认）→ ts_sw_members.csv，按 l1_code 聚合，产物 price_volume_factors.pkl
+    l2         → ts_sw_l2_members.csv，按 l2_code 聚合，产物 price_volume_factors_l2.pkl
+    个股因子算法完全不变，只换"个股→行业"的映射粒度，互不覆盖。
 
 Phase 2 实盘化说明：
     当前是全量重算版本。后续增量版本应：
@@ -33,7 +39,8 @@ if _SRC_DIR not in sys.path:
     sys.path.insert(0, _SRC_DIR)
 
 from config import (LOCAL_DATA_PROCESSED, SW_EXCLUDE,
-                    load_industry_members, load_stock_daily)
+                    load_industry_members, load_industry_members_l2,
+                    load_stock_daily)
 
 
 # 日K线需要的回溯交易日数
@@ -138,16 +145,19 @@ def compute_stock_factors(stock_data: pd.DataFrame) -> pd.DataFrame:
 # ============================================================
 
 def aggregate_to_industry(stock_factors_dict: dict, members_df: pd.DataFrame,
-                          month_dates: list) -> pd.DataFrame:
-    """个股因子 → 行业中位数"""
-    industries = sorted(members_df['l1_code'].unique())
+                          month_dates: list, industry_col: str = 'l1_code') -> pd.DataFrame:
+    """个股因子 → 行业中位数
+
+    industry_col: 'l1_code'（一级）或 'l2_code'（二级）。
+    """
+    industries = sorted(members_df[industry_col].unique())
     industries = [x for x in industries if x not in SW_EXCLUDE]
 
     all_rows = []
     for me_date in month_dates:
         period = me_date.to_period('M')
         for ind_code in industries:
-            m = members_df[members_df['l1_code'] == ind_code]
+            m = members_df[members_df[industry_col] == ind_code]
             mask = m['in_date'] <= me_date
             mask &= m['out_date'].isna() | (m['out_date'] > me_date)
             codes = m.loc[mask, 'code'].unique()
@@ -180,17 +190,24 @@ def aggregate_to_industry(stock_factors_dict: dict, members_df: pd.DataFrame,
 #  主流程
 # ============================================================
 
-def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
+def run(smoke: bool = False, since: str = None, dry_run: bool = False,
+        level: str = 'l1') -> dict:
+    if level not in ('l1', 'l2'):
+        raise ValueError(f"level 必须是 'l1' 或 'l2'，收到 {level!r}")
+    industry_col = 'l1_code' if level == 'l1' else 'l2_code'
+    out_suffix = '' if level == 'l1' else '_l2'
+
     print('=' * 60)
-    print(f'  data_pipeline.tech_factors  smoke={smoke}  since={since}  dry={dry_run}')
+    print(f'  data_pipeline.tech_factors  level={level}  smoke={smoke}  '
+          f'since={since}  dry={dry_run}')
     print('=' * 60)
 
     print('\n[1/4] 加载个股日K线...')
     stock_daily = load_stock_daily()
     print(f'  个股日K线：{len(stock_daily):,} 行, {stock_daily["code"].nunique()} 只股票')
 
-    print('\n[2/4] 加载行业成分股映射...')
-    members = load_industry_members()
+    print(f'\n[2/4] 加载行业成分股映射（{level}）...')
+    members = load_industry_members() if level == 'l1' else load_industry_members_l2()
     valid_codes = set(stock_daily['code'].unique())
     members = members[members['code'].isin(valid_codes)].copy()
     print(f'  有效映射：{len(members):,} 条')
@@ -240,7 +257,8 @@ def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
     print(f'  成功计算：{len(stock_factors)} 只股票')
 
     print('\n[4/4] 汇总为行业因子（中位数）...')
-    industry_factors = aggregate_to_industry(stock_factors, members, actual_month_ends)
+    industry_factors = aggregate_to_industry(stock_factors, members, actual_month_ends,
+                                             industry_col=industry_col)
     print(f'  行业因子：{len(industry_factors)} 行, {industry_factors["ts_code"].nunique()} 个行业')
     print(f'  时间范围：{industry_factors["date"].min().date()} ~ {industry_factors["date"].max().date()}')
 
@@ -249,8 +267,8 @@ def run(smoke: bool = False, since: str = None, dry_run: bool = False) -> dict:
         coverage = industry_factors[col].notna().mean()
         print(f'  {col:20s}: {coverage:.1%}')
 
-    out_pkl = os.path.join(LOCAL_DATA_PROCESSED, 'price_volume_factors.pkl')
-    out_csv = os.path.join(LOCAL_DATA_PROCESSED, 'price_volume_factors.csv')
+    out_pkl = os.path.join(LOCAL_DATA_PROCESSED, f'price_volume_factors{out_suffix}.pkl')
+    out_csv = os.path.join(LOCAL_DATA_PROCESSED, f'price_volume_factors{out_suffix}.csv')
 
     if since and not smoke:
         # 增量模式：merge 到已有 pkl
@@ -285,8 +303,10 @@ def main():
     parser.add_argument('--smoke', action='store_true', help='最近 6 个月 + 前 200 只股票，快速验证')
     parser.add_argument('--since', default=None, help='增量模式，从 YYYY-MM 开始')
     parser.add_argument('--dry-run', action='store_true', help='不写文件')
+    parser.add_argument('--level', default='l1', choices=['l1', 'l2'],
+                        help='行业聚合粒度：l1=申万一级（默认），l2=申万二级（方向2）')
     args = parser.parse_args()
-    run(smoke=args.smoke, since=args.since, dry_run=args.dry_run)
+    run(smoke=args.smoke, since=args.since, dry_run=args.dry_run, level=args.level)
 
 
 if __name__ == '__main__':

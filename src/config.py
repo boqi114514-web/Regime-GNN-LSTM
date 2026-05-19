@@ -22,7 +22,17 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_bufferin
 
 # ==================== 路径（Phase 1：项目数据自包含） ====================
 PROJECT_DIR = r"D:\desktop\有意思的事情\量化\项目\Regime-GNN-LSTM"
-OUTPUT_DIR = os.path.join(PROJECT_DIR, "results")
+
+# ===== 方向2：行业粒度开关 =====
+# 环境变量 REGIME_LEVEL=l2 启用申万二级行业流水线（124 行业）；
+# 默认 l1（申万一级，29 行业），一级 main 分支行为完全不变。
+# L2 模式下：数据读 *_l2 / 自建产物；产物输出隔离到 results/l2、models/*/l2。
+LEVEL = os.environ.get('REGIME_LEVEL', 'l1').strip().lower()
+if LEVEL not in ('l1', 'l2'):
+    LEVEL = 'l1'
+
+OUTPUT_DIR = os.path.join(PROJECT_DIR, "results", "l2") if LEVEL == 'l2' \
+             else os.path.join(PROJECT_DIR, "results")
 
 # 本项目自包含数据目录
 LOCAL_DATA_DIR = os.path.join(PROJECT_DIR, "data")
@@ -32,9 +42,10 @@ LOCAL_DATA_CACHE = os.path.join(LOCAL_DATA_DIR, "cache")          # 推理结果
 
 # 模型 / 状态 / 报告（实盘化使用）
 MODELS_DIR = os.path.join(PROJECT_DIR, "models")
-MODELS_CURRENT_DIR = os.path.join(MODELS_DIR, "current")
-MODELS_QUARTERLY_DIR = os.path.join(MODELS_DIR, "quarterly")
-MODELS_MONTHLY_DIR = os.path.join(MODELS_DIR, "monthly")
+_MODELS_BASE = os.path.join(MODELS_DIR, "l2") if LEVEL == 'l2' else MODELS_DIR
+MODELS_CURRENT_DIR = os.path.join(_MODELS_BASE, "current")
+MODELS_QUARTERLY_DIR = os.path.join(_MODELS_BASE, "quarterly")
+MODELS_MONTHLY_DIR = os.path.join(_MODELS_BASE, "monthly")
 REPORTS_DIR = os.path.join(PROJECT_DIR, "reports")
 STATE_DIR = os.path.join(PROJECT_DIR, "state")
 
@@ -46,6 +57,7 @@ for _d in (OUTPUT_DIR, LOCAL_DATA_RAW, LOCAL_DATA_PROCESSED, LOCAL_DATA_CACHE,
 # ==================== 个股日线与行业成分股（本地自包含） ====================
 STOCK_DAILY_PATH = os.path.join(LOCAL_DATA_RAW, "stock_daily.pkl")
 SW_MEMBERS_PATH = os.path.join(LOCAL_DATA_RAW, "ts_sw_members.csv")
+SW_L2_MEMBERS_PATH = os.path.join(LOCAL_DATA_RAW, "ts_sw_l2_members.csv")  # 方向2：二级成分股
 
 # ==================== 行业排除 ====================
 SW_EXCLUDE = ['801780.SI', '801790.SI']
@@ -110,10 +122,19 @@ SELECTED_INDICATORS = [
 # ==================== 数据加载 ====================
 
 def load_industry_monthly():
-    """加载行业月度行情，返回 DataFrame"""
-    path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_industry_monthly.csv')
-    mkt = pd.read_csv(path)
-    mkt = mkt[~mkt['ts_code'].isin(SW_EXCLUDE)].copy()
+    """加载行业月度行情，返回 DataFrame
+
+    LEVEL='l1' → ts_sw_industry_monthly.csv（申万一级官方指数）
+    LEVEL='l2' → sw_l2_monthly_synth.csv（自建二级行业月行情，流通市值加权）
+    """
+    if LEVEL == 'l2':
+        path = os.path.join(LOCAL_DATA_PROCESSED, 'sw_l2_monthly_synth.csv')
+        mkt = pd.read_csv(path)
+        # SW_EXCLUDE 是一级代码，对二级 universe 无意义，不过滤
+    else:
+        path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_industry_monthly.csv')
+        mkt = pd.read_csv(path)
+        mkt = mkt[~mkt['ts_code'].isin(SW_EXCLUDE)].copy()
     mkt['date'] = pd.to_datetime(mkt['date'])
     mkt['year'] = mkt['date'].dt.year
     mkt['month'] = mkt['date'].dt.month
@@ -127,7 +148,9 @@ def load_prosperity_monthly():
     加载景气度指标（季度→月度映射，滞后一个季度）
     返回 DataFrame：ts_code, year, month, indicator1, ...
     """
-    path = os.path.join(LOCAL_DATA_PROCESSED, 'prosperity_indicators_clean.pkl')
+    fname = 'prosperity_indicators_clean_l2.pkl' if LEVEL == 'l2' \
+            else 'prosperity_indicators_clean.pkl'
+    path = os.path.join(LOCAL_DATA_PROCESSED, fname)
     indicators = pd.read_pickle(path)
 
     records = []
@@ -156,8 +179,9 @@ def load_prosperity_monthly():
 
 def load_tech_factors():
     """加载技术因子（价量 + 走势复刻）"""
-    pv_path = os.path.join(LOCAL_DATA_PROCESSED, 'price_volume_factors.pkl')
-    pt_path = os.path.join(LOCAL_DATA_PROCESSED, 'pattern_factors.pkl')
+    _sfx = '_l2' if LEVEL == 'l2' else ''
+    pv_path = os.path.join(LOCAL_DATA_PROCESSED, f'price_volume_factors{_sfx}.pkl')
+    pt_path = os.path.join(LOCAL_DATA_PROCESSED, f'pattern_factors{_sfx}.pkl')
 
     pv = pd.read_pickle(pv_path)
     pv['date'] = pd.to_datetime(pv['date'])
@@ -226,6 +250,23 @@ def load_industry_members():
     mem['in_date'] = pd.to_datetime(mem['in_date'], format='%Y%m%d', errors='coerce')
     mem['out_date'] = pd.to_datetime(mem['out_date'], format='%Y%m%d', errors='coerce')
     return mem[['l1_code', 'ts_code', 'code', 'in_date', 'out_date']].copy()
+
+
+def load_industry_members_l2():
+    """个股-行业二级映射（方向2：申万二级行业轮动）
+
+    返回 DataFrame: l2_code, ts_code(带后缀), code(纯数字), in_date, out_date
+
+    与 load_industry_members 的差异：
+      - 行业列是 l2_code（124 个在用二级），不过滤 SW_EXCLUDE（方案 doc 定义
+        二级 universe = 124，含金融子行业）
+      - 来源文件 ts_sw_l2_members.csv 为当前成分快照，out_date 多为空
+    """
+    mem = pd.read_csv(SW_L2_MEMBERS_PATH)
+    mem['code'] = mem['ts_code'].str.replace(r'\.\w+$', '', regex=True)
+    mem['in_date'] = pd.to_datetime(mem['in_date'], format='%Y%m%d', errors='coerce')
+    mem['out_date'] = pd.to_datetime(mem['out_date'], format='%Y%m%d', errors='coerce')
+    return mem[['l2_code', 'ts_code', 'code', 'in_date', 'out_date']].copy()
 
 
 def zscore_cross_section(df, cols, group_col='date'):
