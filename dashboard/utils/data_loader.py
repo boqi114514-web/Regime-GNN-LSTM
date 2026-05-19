@@ -74,10 +74,20 @@ def _get_last_branch() -> str:
     return "main"
 
 
-def get_report_data() -> dict:
-    path = os.path.join(REPORTS_DIR, "latest.md")
-    if not os.path.exists(path):
-        return {"error": "报告文件不存在，请先运行周报流程"}
+def _branch_report_path(branch: str) -> str:
+    safe = branch.replace("/", "_")
+    return os.path.join(REPORTS_DIR, "branches", f"{safe}.md")
+
+
+def get_report_data(branch: Optional[str] = None) -> dict:
+    if branch:
+        path = _branch_report_path(branch)
+        if not os.path.exists(path):
+            return {"error": f"分支 {branch} 暂无周报，请点击「运行流水线」先生成"}
+    else:
+        path = os.path.join(REPORTS_DIR, "latest.md")
+        if not os.path.exists(path):
+            return {"error": "报告文件不存在，请先运行周报流程"}
 
     text = _read_md(path)
 
@@ -178,8 +188,11 @@ def get_report_data() -> dict:
 
 # ── 个股持仓 ──────────────────────────────────────────────────────────────
 
-def get_holdings_data() -> dict:
-    path = os.path.join(REPORTS_DIR, "latest.md")
+def get_holdings_data(branch: Optional[str] = None) -> dict:
+    if branch:
+        path = _branch_report_path(branch)
+    else:
+        path = os.path.join(REPORTS_DIR, "latest.md")
     if not os.path.exists(path):
         return {"regime": [], "equal": []}
 

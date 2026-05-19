@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 切换到指定分支，运行完整流水线（run_all.py），生成周报（monitor.run()），
-然后恢复 main 分支。由 dashboard/api/runner.py 作为子进程调用。
+跑完后恢复调用时所在分支。由 dashboard/api/runner.py 作为子进程调用。
 
 用法: python run_branch.py <branch_name>
 """
@@ -23,6 +23,14 @@ def main():
     proj_dir = os.path.dirname(src_dir)
     if src_dir not in sys.path:
         sys.path.insert(0, src_dir)
+
+    # 记录调用时所在分支，跑完恢复（不固定 main）
+    orig_proc = subprocess.run(
+        ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+        cwd=proj_dir, capture_output=True, text=True,
+    )
+    orig_branch = (orig_proc.stdout.strip() or 'main')
+    print(f"[分支] 调用时所在分支: {orig_branch}")
 
     # 暂存本地改动，防止 checkout 被拒
     subprocess.run(['git', 'stash'], cwd=proj_dir, capture_output=True)
@@ -63,9 +71,9 @@ def main():
             json.dump({'branch': branch}, f)
 
     finally:
-        subprocess.run(['git', 'checkout', 'main'], cwd=proj_dir, capture_output=True)
-        subprocess.run(['git', 'stash', 'pop'],    cwd=proj_dir, capture_output=True)
-        print('[OK] 已恢复 main 分支')
+        subprocess.run(['git', 'checkout', orig_branch], cwd=proj_dir, capture_output=True)
+        subprocess.run(['git', 'stash', 'pop'],          cwd=proj_dir, capture_output=True)
+        print(f'[OK] 已恢复 {orig_branch} 分支')
 
 
 if __name__ == '__main__':

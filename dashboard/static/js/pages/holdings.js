@@ -3,17 +3,27 @@
 onPageShow('holdings', initHoldings);
 
 let _holdingsData = null;
+let _holdingsBranch = null;  // 记录上次拉的分支，分支变了重拉
 let _holdingsTab  = 'regime';
 let _boardFilter  = new Set(['科创', '创业', '主板']);
 let _sortCol      = 'score';
 let _sortAsc      = false;
 
+const _BRANCH_LABELS = {
+  'main':                            'Main',
+  'fix/macro-neutral-fill':          'Fix',
+  'refactor/equal-weight-ensemble':  'Refactor',
+};
+
 async function initHoldings() {
   const root = document.getElementById('page-holdings');
+  const branch = window._selectedBranch || 'main';
+  const branchLabel = _BRANCH_LABELS[branch] || branch;
+
   root.innerHTML = `
     <div class="page-header">
       <div class="page-title">个股持仓</div>
-      <div class="page-subtitle">来源：最新周报选股层 · 按行业分组</div>
+      <div class="page-subtitle">来源：${branchLabel} 分支归档 · 按行业分组（在周报页切换分支）</div>
     </div>
 
     <div class="glass-card" style="margin-bottom:16px">
@@ -53,9 +63,11 @@ async function initHoldings() {
     </div>
   `;
 
-  if (!_holdingsData) {
+  if (!_holdingsData || _holdingsBranch !== branch) {
     try {
-      _holdingsData = await fetch('/api/holdings').then(r => r.json());
+      _holdingsData = await fetch('/api/holdings?branch=' + encodeURIComponent(branch))
+                        .then(r => r.json());
+      _holdingsBranch = branch;
     } catch (e) { return; }
   }
 

@@ -3,7 +3,7 @@
 onPageShow('report', initReport);
 
 let _reportData    = null;
-let _selectedBranch = 'main';
+window._selectedBranch = window._selectedBranch || 'main';
 
 const BRANCHES = [
   { id: 'main',                         label: 'Main',     desc: '滚动HMM · Sharpe 1.38' },
@@ -58,7 +58,7 @@ async function initReport() {
         <!-- 分支选择器 -->
         <div class="branch-selector" id="branch-selector">
           ${BRANCHES.map(b => `
-            <button class="branch-btn${b.id === _selectedBranch ? ' active' : ''}"
+            <button class="branch-btn${b.id === window._selectedBranch ? ' active' : ''}"
                     data-branch="${b.id}"
                     title="${b.desc}">
               <span class="branch-name">${b.label}</span>
@@ -105,12 +105,13 @@ async function initReport() {
     </div>
   `;
 
-  // 分支选择器
+  // 分支选择器：点击 → 拉该分支的归档周报
   root.querySelectorAll('.branch-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       root.querySelectorAll('.branch-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      _selectedBranch = btn.dataset.branch;
+      window._selectedBranch = btn.dataset.branch;
+      await loadBranchReport(window._selectedBranch);
     });
   });
 
@@ -119,28 +120,51 @@ async function initReport() {
   const btns  = ['btn-run-pipeline', 'btn-fetch-data', 'btn-monitor']
                   .map(id => document.getElementById(id));
 
-  const reloadAfterDone = () => { _reportData = null; initReport(); };
+  // 跑完流水线 → 拉当前选中分支的归档（保留按钮高亮，不被 latest 覆盖）
+  const reloadCurrentBranch = () => {
+    _reportData = null;
+    loadBranchReport(window._selectedBranch);
+  };
 
   document.getElementById('btn-run-pipeline').addEventListener('click', () =>
-    runTask(`/api/run/pipeline?branch=${encodeURIComponent(_selectedBranch)}`,
-            { logEl, btns, onDone: reloadAfterDone }));
+    runTask(`/api/run/pipeline?branch=${encodeURIComponent(window._selectedBranch)}`,
+            { logEl, btns, onDone: reloadCurrentBranch }));
 
   document.getElementById('btn-fetch-data').addEventListener('click', () =>
     runTask('/api/run/fetch_data', { logEl, btns }));
 
+  // monitor 只生成 latest.md（不归档分支），跑完重拉 latest
   document.getElementById('btn-monitor').addEventListener('click', () =>
-    runTask('/api/run/monitor', { logEl, btns, onDone: reloadAfterDone }));
+    runTask('/api/run/monitor', { logEl, btns, onDone: () => {
+      _reportData = null;
+      initReport();
+    } }));
 
-  // 拉报告数据
-  if (!_reportData) {
-    try {
-      _reportData = await fetch('/api/report').then(r => r.json());
-    } catch (e) {
-      document.getElementById('report-meta').textContent = '加载失败: ' + e.message;
+  // 永远按当前选中分支拉归档（无归档则 loadBranchReport 自己显示提示）
+  await loadBranchReport(window._selectedBranch);
+}
+
+async function loadBranchReport(branch) {
+  const metaEl = document.getElementById('report-meta');
+  if (metaEl) metaEl.textContent = `加载 ${branch} 分支周报...`;
+  try {
+    const data = await fetch(`/api/report?branch=${encodeURIComponent(branch)}`)
+                   .then(r => r.json());
+    _reportData = data;
+    if (data.error) {
+      // 清空主要内容区，显示提示
+      document.getElementById('industry-tbody').innerHTML =
+        `<tr><td colspan="4" style="text-align:center;color:var(--text-3);padding:40px">${data.error}</td></tr>`;
+      document.getElementById('etf-tbody').innerHTML = '';
+      document.getElementById('turnover-grid').innerHTML =
+        `<div style="color:var(--text-3)">${data.error}</div>`;
+      if (metaEl) metaEl.textContent = data.error;
       return;
     }
+    renderReport(data);
+  } catch (e) {
+    if (metaEl) metaEl.textContent = '加载失败: ' + e.message;
   }
-  renderReport(_reportData);
 }
 
 function renderReport(d) {

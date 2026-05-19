@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os, sys, asyncio
+import os, sys, shutil, asyncio
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 
@@ -49,7 +49,8 @@ def _sse(cmd: list) -> StreamingResponse:
 
 
 def _py(*args) -> list:
-    return [sys.executable, *args]
+    # -u: 关闭 stdout/stderr 块缓冲，让训练日志实时刷到 SSE
+    return [sys.executable, "-u", *args]
 
 
 @router.get("/run/weekly")
@@ -72,6 +73,50 @@ async def run_update():
         "from data_pipeline import update; update.run()"))
 
 
+async def _stream_pipeline(branch: str, cmd: list):
+    """跑流水线 + 跑完归档 reports/latest.md → reports/branches/{branch}.md。"""
+    global _running
+    if _running:
+        yield "data: [BUSY] 已有任务正在运行，请等待完成后再试\n\n"
+        return
+
+    _running = True
+    try:
+        env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONPATH": SRC_DIR}
+        proc = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.STDOUT,
+            cwd=SRC_DIR,
+            env=env,
+        )
+        async for raw in proc.stdout:
+            line = raw.decode("utf-8", errors="replace").rstrip()
+            if line:
+                yield f"data: {line}\n\n"
+        await proc.wait()
+        ok = proc.returncode == 0
+        status = "完成" if ok else f"失败 (exit={proc.returncode})"
+        yield f"data: [DONE] 任务{status}\n\n"
+
+        if ok:
+            src = os.path.join(PROJECT_DIR, "reports", "latest.md")
+            if os.path.exists(src):
+                dst_dir = os.path.join(PROJECT_DIR, "reports", "branches")
+                os.makedirs(dst_dir, exist_ok=True)
+                safe = branch.replace("/", "_")
+                dst = os.path.join(dst_dir, f"{safe}.md")
+                try:
+                    shutil.copyfile(src, dst)
+                    yield f"data: [ARCHIVE] 周报已归档 → reports/branches/{safe}.md\n\n"
+                except Exception as e:
+                    yield f"data: [ARCHIVE-ERROR] {e}\n\n"
+    except Exception as e:
+        yield f"data: [ERROR] {e}\n\n"
+    finally:
+        _running = False
+
+
 @router.get("/run/pipeline")
 async def run_pipeline(branch: str = "main"):
     """切换到指定分支，跑完整流水线，生成周报，然后恢复 main。"""
@@ -80,7 +125,10 @@ async def run_pipeline(branch: str = "main"):
         from fastapi.responses import JSONResponse
         return JSONResponse({"error": f"unknown branch: {branch}"}, status_code=400)
     run_branch_py = os.path.join(SRC_DIR, "run_branch.py")
-    return _sse(_py(run_branch_py, branch))
+    cmd = _py(run_branch_py, branch)
+    return StreamingResponse(_stream_pipeline(branch, cmd),
+                             media_type="text/event-stream",
+                             headers=_SSE_HEADERS)
 
 
 @router.get("/run/monitor")
