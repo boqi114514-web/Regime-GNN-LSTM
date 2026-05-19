@@ -27,8 +27,14 @@ from config import (
 
 def build_regime_features(macro_df, csi300_df):
     """构建 HMM 观测特征（宏观 + 大盘价格信号）"""
-    macro = macro_df.copy()
+    macro = macro_df.copy().sort_values('date').reset_index(drop=True)
     macro['pmi_chg'] = macro['pmi_mfg'].diff()
+    # sf_yoy 原列是"社融月度增量的同比"，季节性噪声极大（全样本标准差 ~1.5），
+    # 单月极端值（如 2026-04 的 -0.46）会把 HMM regime 带成虚假衰退。
+    # 改用 12 个月滚动社融总量的同比（= 滚动年度社融增速），消除季节性、
+    # 口径稳健（标准差降到 ~0.17），与宏观分析常用的社融增速口径一致。
+    _sf_roll12 = macro['sf_inc_month'].rolling(12).sum()
+    macro['sf_yoy'] = _sf_roll12 / _sf_roll12.shift(12) - 1.0
     macro_cols = ['pmi_chg', 'term_spread', 'm1_m2_spread', 'sf_yoy']
 
     csi = csi300_df[['date', 'close']].copy().sort_values('date')
