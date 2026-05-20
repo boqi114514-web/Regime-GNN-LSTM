@@ -53,7 +53,8 @@ except ImportError:
 TOPN_PER_IND = 5           # 每个行业选 N 只（25只总持仓，兼顾集中与分散）
 BETA_LOOKBACK = 252        # beta 估计回看交易日（约1年）
 BETA_MIN_OBS = 120         # 最少日度观测
-MOM_LOOKBACK = 120         # 动量回看天数（约6个月，更稳定的信号）
+MOM_LOOKBACK = 120         # 6 月动量回看天数
+REV_LOOKBACK = 21          # 1 月反转回看天数（A 股短反长动）
 COMMISSION_RATE = 0.0003   # 佣金率
 SLIPPAGE_BPS = 5           # 滑点（基点）
 ADV_MIN = 20000            # 最低日均成交额（千元，约2000万）
@@ -61,13 +62,15 @@ ADV_WINDOW = 20            # ADV 计算窗口
 HOLDING_INERTIA = 1.0      # 持仓惯性：强偏好保留现有持仓
 REPLACE_THRESHOLD = 0.15   # 换仓缓冲：新股必须比旧股高出此比例才替换
 
-# 多因子复合权重（beta + 动量 + 质量）
-W_BETA = 0.35              # beta 权重
-W_MOM  = 0.35              # 动量权重
-W_QUAL = 0.30              # 质量因子权重（ROE + 现金流 + 毛利率）
+# 多因子复合权重（β + 动量 + 质量 + 估值）
+W_BETA = 0.30              # beta 权重（配合 KF_GAMMA=0.2 的基本面驱动 β）
+W_MOM  = 0.30              # 动量权重（6 月）
+W_QUAL = 0.20              # 质量因子权重（ROE + 现金流 + 毛利率）
+W_VAL  = 0.20              # 估值因子权重（pe / pb 行业内反向 rank）
+# W_REV  实验失败已去掉：1 月反转和 6 月动量信号冲突，退步至 8.0% / Sharpe 0.234
 
 # 卡尔曼滤波参数
-KF_GAMMA = 0.95            # beta 日度惯性（日频用更高惯性）
+KF_GAMMA = 0.2             # beta 日度惯性：调降（原 0.95），让基本面 fund_score 每期主导 80%
 KF_Q_BETA = 1e-5           # beta 过程噪声（日频更小）
 KF_Q_ALPHA = 1e-6          # alpha 过程噪声
 KF_R = 0.005               # 观测噪声
@@ -320,6 +323,25 @@ def load_fundamental_features():
 #  基本面驱动的卡尔曼 beta 估计（日频）
 # ============================================================
 
+def load_stock_pe_pb():
+    """加载个股月末 pe/pb，返回 {code: DataFrame[year, month, pe, pb]}（估值因子用）"""
+    path = os.path.join(LOCAL_DATA_RAW, 'stock_pe_pb_monthly.csv')
+    if not os.path.exists(path):
+        print(f"  ⚠️ 未找到 {path}，估值因子置 0.5（中性）")
+        return None
+    print("  加载个股 pe/pb 月末数据...")
+    df = pd.read_csv(path)
+    df['trade_date'] = pd.to_datetime(df['trade_date'].astype(str), format='%Y%m%d')
+    df['year']  = df['trade_date'].dt.year
+    df['month'] = df['trade_date'].dt.month
+    df['code']  = df['ts_code'].str[:6]
+    pe_pb_dict = {}
+    for code, g in df.groupby('code'):
+        pe_pb_dict[code] = g[['year', 'month', 'pe', 'pb']].reset_index(drop=True)
+    print(f"    {len(pe_pb_dict)} 只股票")
+    return pe_pb_dict
+
+
 def compute_fund_score(stock_code, year, month, fund_dict):
     """
     计算某只股票某月的基本面综合得分
@@ -410,7 +432,7 @@ def kalman_beta_daily(stock_rets, ind_rets, fund_score=0.0,
 
 def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
                             stock_to_ind, fund_dict, ind_scores,
-                            prev_holdings=None):
+                            prev_holdings=None, pe_pb_dict=None):
     """
     对单个月份，在 Top-K 行业内用基本面卡尔曼 beta 选股（日频）
     """
@@ -478,8 +500,10 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
             if not np.isfinite(beta_last) or not np.isfinite(beta_std):
                 continue
 
-            # 动量：过去 MOM_LOOKBACK 天累计收益
+            # 动量：过去 MOM_LOOKBACK 天累计收益（6 月动量）
             mom = (1 + s_data['ret'].tail(MOM_LOOKBACK).fillna(0)).prod() - 1
+            # 短期反转：过去 REV_LOOKBACK 天累计收益（小好 → 后续反弹）
+            mom_1m = (1 + s_data['ret'].tail(REV_LOOKBACK).fillna(0)).prod() - 1
 
             # 质量因子：ROE + 现金流质量 + 毛利率（从fund_dict取，fallback到最近12个月）
             qual = 0.0
@@ -504,13 +528,29 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
                     if q_vals:
                         qual = np.mean(q_vals)
 
+            # 估值因子：pe / pb（亏损 pe<=0 或负净资产 pb<=0 视为缺失）
+            pe = pb = np.nan
+            if pe_pb_dict is not None and stock_code in pe_pb_dict:
+                pdf = pe_pb_dict[stock_code]
+                prow = pdf[(pdf['year'] == year) & (pdf['month'] == month)]
+                if not prow.empty:
+                    _pe = prow.iloc[0]['pe']
+                    _pb = prow.iloc[0]['pb']
+                    if np.isfinite(_pe) and _pe > 0:
+                        pe = float(_pe)
+                    if np.isfinite(_pb) and _pb > 0:
+                        pb = float(_pb)
+
             records.append({
                 'stock_code': stock_code,
                 'ind_code': ind_code,
                 'beta': beta_last,
                 'beta_std': beta_std,
                 'momentum': mom,
+                'mom_1m': mom_1m,
                 'quality': qual,
+                'pe': pe,
+                'pb': pb,
                 'fund_score': fs,
                 'nobs': len(aligned),
                 'adv': adv,
@@ -532,14 +572,23 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
         if cand_df.empty or len(cand_df) < 2:
             continue
 
-        # 多因子复合打分：beta + 动量 + 质量 → 行业内 rank 标准化后加权
+        # 多因子复合打分：beta + 6月动量 + 1月反转 + 质量 + 估值 → 行业内 rank 加权
         for col in ['beta', 'momentum', 'quality']:
-            r = cand_df[col].rank(pct=True)
-            cand_df[f'{col}_rank'] = r
+            cand_df[f'{col}_rank'] = cand_df[col].rank(pct=True)
+        # 短期反转：1 月累计收益小好 → 反向 rank
+        cand_df['reversal_rank'] = cand_df['mom_1m'].rank(pct=True, ascending=False).fillna(0.5)
+        # 估值因子：pe/pb 小好 → ascending=False 反向 rank；NaN（亏损/缺失）填 0.5 中性
+        if 'pe' in cand_df.columns and cand_df['pe'].notna().any():
+            cand_df['pe_rank'] = cand_df['pe'].rank(pct=True, ascending=False).fillna(0.5)
+            cand_df['pb_rank'] = cand_df['pb'].rank(pct=True, ascending=False).fillna(0.5)
+            cand_df['valuation_rank'] = (cand_df['pe_rank'] + cand_df['pb_rank']) / 2.0
+        else:
+            cand_df['valuation_rank'] = 0.5
 
         cand_df['composite'] = (W_BETA * cand_df['beta_rank'] +
                                 W_MOM  * cand_df['momentum_rank'] +
-                                W_QUAL * cand_df['quality_rank'])
+                                W_QUAL * cand_df['quality_rank'] +
+                                W_VAL  * cand_df['valuation_rank'])
 
         # 持仓惯性 + 换仓缓冲
         if prev_holdings and HOLDING_INERTIA > 0:
@@ -795,6 +844,7 @@ def main():
     df_stock, stock_dict = load_stock_daily()
     ind_daily, ind_dict = load_industry_daily(df_stock, stock_to_ind)
     fund_dict = load_fundamental_features()
+    pe_pb_dict = load_stock_pe_pb()
 
     # ---- 断点续传 ----
     ckpt_path = os.path.join(OUTPUT_DIR, '_ckpt_beta.pkl')
@@ -831,6 +881,7 @@ def main():
             fund_dict=fund_dict,
             ind_scores=ind_scores,
             prev_holdings=prev_holdings,
+            pe_pb_dict=pe_pb_dict,
         )
 
         if not selected.empty:
@@ -996,6 +1047,7 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
         fund_dict     = fund_dict,
         ind_scores    = ind_scores,
         prev_holdings = prev_holdings,
+        pe_pb_dict    = pe_pb_dict,
     )
 
     if result.empty:
