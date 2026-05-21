@@ -50,7 +50,7 @@ except ImportError:
     SW_MEMBERS_PATH   = _CFG_SW_MEMBERS
 
 # ==================== 参数 ====================
-TOPN_PER_IND = 5           # 每个行业选 N 只（25只总持仓，兼顾集中与分散）
+TOPN_PER_IND = 5           # 每个行业选 N 只（5 行业 × 5 = 25 只总持仓）
 BETA_LOOKBACK = 252        # beta 估计回看交易日（约1年）
 BETA_MIN_OBS = 120         # 最少日度观测
 MOM_LOOKBACK = 120         # 6 月动量回看天数
@@ -68,6 +68,11 @@ W_MOM  = 0.30              # 动量权重（6 月）
 W_QUAL = 0.20              # 质量因子权重（ROE + 现金流 + 毛利率）
 W_VAL  = 0.20              # 估值因子权重（pe / pb 行业内反向 rank）
 # W_REV  实验失败已去掉：1 月反转和 6 月动量信号冲突，退步至 8.0% / Sharpe 0.234
+
+# 主板过滤（只在选股候选阶段生效，不影响 s0-s3 行业轮动训练）
+# 主板：沪市 600/601/603/605，深市 000/001/002/003
+# 双创（创业板 300/301、科创板 688）仍参与行业指数构建，但不进入最终持仓
+MAIN_BOARD_ONLY = True
 
 # 卡尔曼滤波参数
 KF_GAMMA = 0.2             # beta 日度惯性：调降（原 0.95），让基本面 fund_score 每期主导 80%
@@ -432,15 +437,21 @@ def kalman_beta_daily(stock_rets, ind_rets, fund_score=0.0,
 
 def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
                             stock_to_ind, fund_dict, ind_scores,
-                            prev_holdings=None, pe_pb_dict=None):
+                            prev_holdings=None, pe_pb_dict=None,
+                            main_board_only_override=None):
     """
     对单个月份，在 Top-K 行业内用基本面卡尔曼 beta 选股（日频）
+
+    main_board_only_override: 若不为 None，覆盖全局 MAIN_BOARD_ONLY 设置。
+      True  → 强制只选主板；False → 强制不过滤板块。
     """
     cutoff = pred_month - pd.Timedelta(days=1)
     lookback_start = cutoff - pd.Timedelta(days=int(BETA_LOOKBACK * 1.6))
 
     year = pred_month.year
     month = pred_month.month
+
+    use_main_board = MAIN_BOARD_ONLY if main_board_only_override is None else main_board_only_override
 
     all_selected = []
 
@@ -453,8 +464,13 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
         if len(ind_ret_df) < BETA_MIN_OBS:
             continue
 
-        # 该行业成分股
+        # 该行业成分股（主板过滤：双创股参与行业日收益构建但不进持仓候选）
         ind_stocks = [s for s, i in stock_to_ind.items() if i == ind_code]
+        if use_main_board:
+            ind_stocks = [s for s in ind_stocks if s[:3] in (
+                '600', '601', '603', '605',        # 沪市主板
+                '000', '001', '002', '003',        # 深市主板
+            )]
         if not ind_stocks:
             continue
 
@@ -969,11 +985,15 @@ def main():
 
 def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
              ckpt_suffix: str = '',
-             force_refresh_latest: bool = False) -> pd.DataFrame:
+             force_refresh_latest: bool = False,
+             force_main_board: bool = False) -> pd.DataFrame:
     """Select stocks for the latest available month (called by monitor.run).
 
     Returns a DataFrame with columns expected by monitor._stock_section_lines:
     ind_code, ind_name, stock_code, name, beta, momentum, composite, rank_in_ind
+
+    force_main_board: 若为 True，强制只从主板选股（忽略全局 MAIN_BOARD_ONLY 设置），
+      保证每行业恰好选出 TOPN_PER_IND 只主板股。
     """
     ensemble_path = os.path.join(OUTPUT_DIR, pred_pkl)
     if not os.path.exists(ensemble_path):
@@ -1007,6 +1027,7 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
     df_stock,  stock_dict     = load_stock_daily()
     _,         ind_dict       = load_industry_daily(df_stock, stock_to_ind)
     fund_dict                 = load_fundamental_features()
+    pe_pb_dict                = load_stock_pe_pb()
 
     code_to_name = {}
     # 优先用独立的 stock_basic CSV，其次从 sw_members 取
@@ -1039,15 +1060,16 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
         prev_holdings = pd.read_pickle(ckpt_path).get('prev_holdings', set())
 
     result = select_stocks_for_month(
-        pred_month    = latest_month,
-        top_industries = top_inds,
-        stock_dict    = stock_dict,
-        ind_dict      = ind_dict,
-        stock_to_ind  = stock_to_ind,
-        fund_dict     = fund_dict,
-        ind_scores    = ind_scores,
-        prev_holdings = prev_holdings,
-        pe_pb_dict    = pe_pb_dict,
+        pred_month             = latest_month,
+        top_industries         = top_inds,
+        stock_dict             = stock_dict,
+        ind_dict               = ind_dict,
+        stock_to_ind           = stock_to_ind,
+        fund_dict              = fund_dict,
+        ind_scores             = ind_scores,
+        prev_holdings          = prev_holdings,
+        pe_pb_dict             = pe_pb_dict,
+        main_board_only_override = True if force_main_board else None,
     )
 
     if result.empty:

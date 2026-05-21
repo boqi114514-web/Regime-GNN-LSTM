@@ -30,7 +30,9 @@ async function initHoldings() {
       <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
         <div class="tab-group" id="holdings-tabs">
           <button class="tab-btn active" data-tab="regime">Regime 集成</button>
+          <button class="tab-btn" data-tab="regime_main">Regime·主板</button>
           <button class="tab-btn" data-tab="equal">等权集成</button>
+          <button class="tab-btn" data-tab="equal_main">等权·主板</button>
         </div>
         <div style="display:flex;align-items:center;gap:8px">
           <span class="filter-label">板块</span>

@@ -428,10 +428,14 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('')
 
     # ── 6. 个股持仓 ───────────────────────────────────────────
-    stock_r = current.get('stock_holdings')
-    stock_e = current_equal.get('stock_holdings') if has_eq else None
-    has_stock_r = stock_r is not None and not stock_r.empty
-    has_stock_e = stock_e is not None and not stock_e.empty
+    stock_r    = current.get('stock_holdings')
+    stock_r_mb = current.get('stock_holdings_mainboard')
+    stock_e    = current_equal.get('stock_holdings')    if has_eq else None
+    stock_e_mb = current_equal.get('stock_holdings_mainboard') if has_eq else None
+    has_stock_r    = stock_r    is not None and not stock_r.empty
+    has_stock_r_mb = stock_r_mb is not None and not stock_r_mb.empty
+    has_stock_e    = stock_e    is not None and not stock_e.empty
+    has_stock_e_mb = stock_e_mb is not None and not stock_e_mb.empty
 
     if has_stock_r or has_stock_e:
         lines.append('## 📋 个股持仓（选股层）')
@@ -449,6 +453,16 @@ def generate_report(current: dict, previous: Optional[dict],
             overlap = r_codes & e_codes
             lines.append(f'> 共同持仓 {len(overlap)} 只，Regime 独有 {len(r_codes-e_codes)} 只，等权独有 {len(e_codes-r_codes)} 只')
             lines.append('')
+
+    if has_stock_r_mb or has_stock_e_mb:
+        lines.append('## 📋 主板持仓（保证主板，每行业满额）')
+        lines.append('')
+
+        if has_stock_r_mb:
+            lines += _stock_section_lines(stock_r_mb, 'Regime 集成·主板')
+
+        if has_stock_e_mb:
+            lines += _stock_section_lines(stock_e_mb, '等权集成·主板')
 
     lines.append('---')
     lines.append('*自动生成 by live/monitor.py · 周日晚 20:00 出报 · 人工复核后周一执行*')
@@ -492,6 +506,17 @@ def run() -> str:
         print(f'  [选股 regime] 跳过（{type(e).__name__}: {e}）')
         current['stock_holdings'] = None
 
+    # 主板保证版（force_main_board=True，每行业恰好 TOPN 只主板股）
+    try:
+        current['stock_holdings_mainboard'] = s4.run_live(
+            force_refresh_latest=True,
+            force_main_board=True,
+            ckpt_suffix='_mb',
+        )
+    except Exception as e:
+        print(f'  [选股 regime 主板] 跳过（{type(e).__name__}: {e}）')
+        current['stock_holdings_mainboard'] = None
+
     # 选股层：等权分支
     if current_equal is not None:
         try:
@@ -503,6 +528,18 @@ def run() -> str:
         except Exception as e:
             print(f'  [选股 equal] 跳过（{type(e).__name__}: {e}）')
             current_equal['stock_holdings'] = None
+
+        # 等权主板保证版
+        try:
+            current_equal['stock_holdings_mainboard'] = s4.run_live(
+                pred_pkl='predictions_ensemble_equal.pkl',
+                ckpt_suffix='_equal_mb',
+                force_refresh_latest=True,
+                force_main_board=True,
+            )
+        except Exception as e:
+            print(f'  [选股 equal 主板] 跳过（{type(e).__name__}: {e}）')
+            current_equal['stock_holdings_mainboard'] = None
 
     etf_mapping = _load_etf_mapping()
     report = generate_report(current, previous, current_equal, etf_mapping=etf_mapping)

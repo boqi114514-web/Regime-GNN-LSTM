@@ -220,8 +220,10 @@ def get_holdings_data(branch: Optional[str] = None) -> dict:
         return result
 
     return {
-        "regime": parse_stocks(r"### Regime 集成（\d+ 只）"),
-        "equal":  parse_stocks(r"### 等权集成（\d+ 只）"),
+        "regime":      parse_stocks(r"### Regime 集成（\d+ 只）"),
+        "equal":       parse_stocks(r"### 等权集成（\d+ 只）"),
+        "regime_main": parse_stocks(r"### Regime 集成·主板（\d+ 只）"),
+        "equal_main":  parse_stocks(r"### 等权集成·主板（\d+ 只）"),
     }
 
 
@@ -250,6 +252,91 @@ def get_nav_data()          -> dict: return _load_nav_csv("backtest_nav.csv")
 def get_backtest_summary()  -> list: return _load_summary_csv("backtest_summary.csv")
 def get_etf_nav_data()      -> dict: return _load_nav_csv("etf_backtest.csv")
 def get_etf_backtest_summary() -> list: return _load_summary_csv("etf_backtest_summary.csv")
+
+
+# ── s4 股票选仓（主板）──────────────────────────────────────────────────────
+
+_STOCK_BRANCHES = [
+    ("bt_main_mainboard.csv",    "Regime集成"),
+    ("bt_fix_mainboard.csv",     "全量HMM"),
+    ("bt_refactor_mainboard.csv","等权50/50"),
+]
+
+
+def _load_branch_bt(filename: str) -> Optional[pd.DataFrame]:
+    path = os.path.join(RESULTS_DIR, filename)
+    if not os.path.exists(path):
+        return None
+    df = pd.read_csv(path)
+    df.columns = [c.lstrip("﻿") for c in df.columns]
+    df["date"] = pd.to_datetime(df["date"])
+    return df.sort_values("date")
+
+
+def _calc_metrics_from_series(ret: pd.Series) -> dict:
+    n = len(ret)
+    if n == 0:
+        return {}
+    ann_ret = float((1 + ret).prod() ** (12 / n) - 1)
+    vol     = float(ret.std() * (12 ** 0.5))
+    sharpe  = float((ann_ret - 0.03) / vol) if vol > 0 else 0.0
+    cum     = (1 + ret).cumprod()
+    peak    = cum.cummax()
+    max_dd  = float(((cum - peak) / peak).min())
+    win_rate = float((ret > 0).mean())
+    return {
+        "annual_return":     ann_ret,
+        "annual_volatility": vol,
+        "sharpe_ratio":      sharpe,
+        "max_drawdown":      max_dd,
+        "win_rate":          win_rate,
+        "n_months":          n,
+    }
+
+
+def get_stock_nav_data() -> dict:
+    dates: list = []
+    series: dict = {}
+    for fname, label in _STOCK_BRANCHES:
+        df = _load_branch_bt(fname)
+        if df is None:
+            continue
+        nav = (1 + df["ret_net"]).cumprod().round(4).tolist()
+        d   = df["date"].dt.strftime("%Y-%m").tolist()
+        if not dates:
+            dates = d
+        series[label] = nav
+    return {"dates": dates, "series": series}
+
+
+def get_stock_summary() -> list:
+    rows = []
+    for fname, label in _STOCK_BRANCHES:
+        df = _load_branch_bt(fname)
+        if df is None:
+            continue
+        m = _calc_metrics_from_series(df["ret_net"])
+        rows.append({"strategy": label, **m})
+    return rows
+
+
+def get_stock_annual() -> dict:
+    years_set: set = set()
+    branch_data: dict = {}
+    for fname, label in _STOCK_BRANCHES:
+        df = _load_branch_bt(fname)
+        if df is None:
+            continue
+        df = df.copy()
+        df["year"] = df["date"].dt.year
+        ann = (
+            df.groupby("year")["ret_net"]
+            .apply(lambda s: round(float((1 + s).prod() - 1), 6))
+            .to_dict()
+        )
+        branch_data[label] = {int(k): v for k, v in ann.items()}
+        years_set.update(branch_data[label].keys())
+    return {"years": sorted(years_set), "branches": branch_data}
 
 
 # ── 历史周报轨迹 ──────────────────────────────────────────────────────────
