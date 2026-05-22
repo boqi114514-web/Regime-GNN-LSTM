@@ -50,7 +50,9 @@ except ImportError:
     SW_MEMBERS_PATH   = _CFG_SW_MEMBERS
 
 # ==================== 参数 ====================
-TOPN_PER_IND = 5           # 每个行业选 N 只（5 行业 × 5 = 25 只总持仓）
+TOPN_PER_IND = 5           # 每个行业选 N 只（默认 5 行业 × 5 = 25 只总持仓）
+# 单行业持仓数覆盖：重仓电子（801080.SI 取 25 只，其余仍 5 只）
+TOPN_OVERRIDE = {'801080.SI': 25}
 BETA_LOOKBACK = 252        # beta 估计回看交易日（约1年）
 BETA_MIN_OBS = 120         # 最少日度观测
 MOM_LOOKBACK = 120         # 6 月动量回看天数
@@ -438,9 +440,12 @@ def kalman_beta_daily(stock_rets, ind_rets, fund_score=0.0,
 def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
                             stock_to_ind, fund_dict, ind_scores,
                             prev_holdings=None, pe_pb_dict=None,
-                            main_board_only_override=None):
+                            main_board_only_override=None, topn_override=None):
     """
     对单个月份，在 Top-K 行业内用基本面卡尔曼 beta 选股（日频）
+
+    topn_override: dict {ind_code: N}，单行业持仓数覆盖（如电子多列候选）。
+      仅展示用（run_live 传入），回测不传 → 全部按 TOPN_PER_IND。
 
     main_board_only_override: 若不为 None，覆盖全局 MAIN_BOARD_ONLY 设置。
       True  → 强制只选主板；False → 强制不过滤板块。
@@ -618,10 +623,13 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
         held_in_ind = [s for s in cand_df['stock_code'] if s in (prev_holdings or set())]
         new_candidates = cand_df[~cand_df['stock_code'].isin(prev_holdings or set())]
 
+        # 该行业目标持仓数（topn_override 仅展示用，回测不传 → 默认 TOPN_PER_IND）
+        topn = (topn_override or {}).get(ind_code, TOPN_PER_IND)
+
         selected_codes = []
         # 先保留还在候选池中的持仓股（不超过 TOPN）
         for code in held_in_ind:
-            if len(selected_codes) >= TOPN_PER_IND:
+            if len(selected_codes) >= topn:
                 break
             row_score = cand_df.loc[cand_df['stock_code'] == code, 'composite'].iloc[0]
             # 持仓股只要不在最差 25% 就保留
@@ -629,22 +637,22 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
                 selected_codes.append(code)
 
         # 用新候选补满剩余名额，但需超过持仓股最低分 + 阈值
-        if len(selected_codes) < TOPN_PER_IND and not new_candidates.empty:
+        if len(selected_codes) < topn and not new_candidates.empty:
             held_min_score = (cand_df.loc[cand_df['stock_code'].isin(selected_codes), 'composite'].min()
                               if selected_codes else -np.inf)
             threshold = held_min_score + REPLACE_THRESHOLD * cand_df['composite'].std() if selected_codes else -np.inf
             for _, row in new_candidates.iterrows():
-                if len(selected_codes) >= TOPN_PER_IND:
+                if len(selected_codes) >= topn:
                     break
                 if row['composite'] >= threshold or not selected_codes:
                     selected_codes.append(row['stock_code'])
 
         # 如果还没满（持仓股太少且新股不够好），放宽直接取top
-        if len(selected_codes) < TOPN_PER_IND:
+        if len(selected_codes) < topn:
             for _, row in cand_df.iterrows():
                 if row['stock_code'] not in selected_codes:
                     selected_codes.append(row['stock_code'])
-                if len(selected_codes) >= TOPN_PER_IND:
+                if len(selected_codes) >= topn:
                     break
 
         cand_df = cand_df[cand_df['stock_code'].isin(selected_codes)]
@@ -1072,6 +1080,7 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
         prev_holdings          = prev_holdings,
         pe_pb_dict             = pe_pb_dict,
         main_board_only_override = main_board_only,
+        topn_override          = TOPN_OVERRIDE,
     )
 
     if result.empty:
