@@ -516,21 +516,21 @@ def run() -> str:
     except Exception as e:
         print(f'  [日线更新] 跳过（{type(e).__name__}: {e}）')
 
-    # 选股层：主输出
+    # 选股层：主输出（常规=全市场含双创；主板=强制主板满额）
     try:
         import s4_beta_selection as s4
         current['stock_holdings'] = s4.run_live(
-            pred_pkl=primary_pkl, force_refresh_latest=True)
+            pred_pkl=primary_pkl, force_refresh_latest=True,
+            main_board_only=False)
     except Exception as e:
         print(f'  [选股 主输出] 跳过（{type(e).__name__}: {e}）')
         current['stock_holdings'] = None
 
-    # 主板保证版（force_main_board=True，每行业恰好 TOPN 只主板股）
     try:
         current['stock_holdings_mainboard'] = s4.run_live(
             pred_pkl=primary_pkl,
             force_refresh_latest=True,
-            force_main_board=True,
+            main_board_only=True,
             ckpt_suffix='_mb',
         )
     except Exception as e:
@@ -544,18 +544,18 @@ def run() -> str:
                 pred_pkl='predictions_ensemble_equal.pkl',
                 ckpt_suffix='_equal',
                 force_refresh_latest=True,
+                main_board_only=False,
             )
         except Exception as e:
             print(f'  [选股 equal] 跳过（{type(e).__name__}: {e}）')
             current_equal['stock_holdings'] = None
 
-        # 等权主板保证版
         try:
             current_equal['stock_holdings_mainboard'] = s4.run_live(
                 pred_pkl='predictions_ensemble_equal.pkl',
                 ckpt_suffix='_equal_mb',
                 force_refresh_latest=True,
-                force_main_board=True,
+                main_board_only=True,
             )
         except Exception as e:
             print(f'  [选股 equal 主板] 跳过（{type(e).__name__}: {e}）')

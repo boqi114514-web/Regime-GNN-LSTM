@@ -986,14 +986,16 @@ def main():
 def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
              ckpt_suffix: str = '',
              force_refresh_latest: bool = False,
-             force_main_board: bool = False) -> pd.DataFrame:
+             main_board_only=None) -> pd.DataFrame:
     """Select stocks for the latest available month (called by monitor.run).
 
     Returns a DataFrame with columns expected by monitor._stock_section_lines:
     ind_code, ind_name, stock_code, name, beta, momentum, composite, rank_in_ind
 
-    force_main_board: 若为 True，强制只从主板选股（忽略全局 MAIN_BOARD_ONLY 设置），
-      保证每行业恰好选出 TOPN_PER_IND 只主板股。
+    main_board_only: 覆盖全局 MAIN_BOARD_ONLY。
+      None  → 用全局设置；
+      True  → 强制只选主板（每行业满 TOPN 只主板股）；
+      False → 强制全市场（含双创）。
     """
     ensemble_path = os.path.join(OUTPUT_DIR, pred_pkl)
     if not os.path.exists(ensemble_path):
@@ -1069,7 +1071,7 @@ def run_live(pred_pkl: str = 'predictions_ensemble.pkl',
         ind_scores             = ind_scores,
         prev_holdings          = prev_holdings,
         pe_pb_dict             = pe_pb_dict,
-        main_board_only_override = True if force_main_board else None,
+        main_board_only_override = main_board_only,
     )
 
     if result.empty:
