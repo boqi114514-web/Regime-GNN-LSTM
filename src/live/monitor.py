@@ -285,10 +285,16 @@ def _diff_summary_line(diff_r: dict, diff_e: dict, k: int) -> str:
 
 def generate_report(current: dict, previous: Optional[dict],
                     current_equal: Optional[dict] = None,
-                    etf_mapping: Optional[pd.DataFrame] = None) -> str:
+                    etf_mapping: Optional[pd.DataFrame] = None,
+                    primary_mode: str = 'regime') -> str:
     now = datetime.now()
     iso_year, iso_week, _ = now.isocalendar()
     K = len(current['top_k'])
+
+    # 主输出标签随分支模式变化：regime 分支(main/fix)标 "Regime 集成"，
+    # equal 分支(refactor)标 "等权集成"
+    is_regime = (primary_mode == 'regime')
+    primary_label = 'Regime 集成' if is_regime else '等权集成'
 
     prev_top = previous['top_k'] if previous else None
     prev_all = previous.get('all_ranked') if previous else None
@@ -314,16 +320,16 @@ def generate_report(current: dict, previous: Optional[dict],
     lines.append(f'**数据月份**：{current["as_of"]}')
     if current.get('model_label'):
         lines.append(f'**模型版本**：{current["model_label"]}')
-    if current.get('regime') is not None:
+    if is_regime and current.get('regime') is not None:
         lines.append(f'**HMM regime**：{REGIME_NAMES.get(current["regime"], current["regime"])}')
-    if current.get('w_gnn') is not None and current.get('w_lstm') is not None:
+    if is_regime and current.get('w_gnn') is not None and current.get('w_lstm') is not None:
         lines.append(f'**Regime集成权重**：GNN={current["w_gnn"]:.2f} / LSTM-B={current["w_lstm"]:.2f}')
     lines.append('')
 
     # ── 1. Top-K 推荐行业 ─────────────────────────────────────
     lines.append(f'## 🎯 Top-{K} 推荐行业')
     lines.append('')
-    lines.append('### Regime 集成')
+    lines.append(f'### {primary_label}')
     lines.append('')
     lines += _topk_table_lines(current, deltas_r)
     lines.append('')
@@ -377,7 +383,7 @@ def generate_report(current: dict, previous: Optional[dict],
         bl.append('')
         return bl
 
-    lines += _holdings_block(diff_r, 'Regime 集成')
+    lines += _holdings_block(diff_r, primary_label)
     if has_eq:
         lines += _holdings_block(diff_e, '等权集成')
         lines.append('> ' + _diff_summary_line(diff_r, diff_e, K))
@@ -420,7 +426,7 @@ def generate_report(current: dict, previous: Optional[dict],
         bl.append('')
         return bl
 
-    lines += _advice(diff_r, 'Regime 集成')
+    lines += _advice(diff_r, primary_label)
     if has_eq:
         lines += _advice(diff_e, '等权集成')
         agree = (diff_r['turnover'] > 0.01) == (diff_e['turnover'] > 0.01)
@@ -442,7 +448,7 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('')
 
         if has_stock_r:
-            lines += _stock_section_lines(stock_r, 'Regime 集成')
+            lines += _stock_section_lines(stock_r, primary_label)
 
         if has_stock_e:
             lines += _stock_section_lines(stock_e, '等权集成')
@@ -451,7 +457,7 @@ def generate_report(current: dict, previous: Optional[dict],
             r_codes = set(stock_r['stock_code'])
             e_codes = set(stock_e['stock_code'])
             overlap = r_codes & e_codes
-            lines.append(f'> 共同持仓 {len(overlap)} 只，Regime 独有 {len(r_codes-e_codes)} 只，等权独有 {len(e_codes-r_codes)} 只')
+            lines.append(f'> 共同持仓 {len(overlap)} 只，{primary_label} 独有 {len(r_codes-e_codes)} 只，等权独有 {len(e_codes-r_codes)} 只')
             lines.append('')
 
     if has_stock_r_mb or has_stock_e_mb:
@@ -459,7 +465,7 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append('')
 
         if has_stock_r_mb:
-            lines += _stock_section_lines(stock_r_mb, 'Regime 集成·主板')
+            lines += _stock_section_lines(stock_r_mb, f'{primary_label}·主板')
 
         if has_stock_e_mb:
             lines += _stock_section_lines(stock_e_mb, '等权集成·主板')
@@ -481,15 +487,27 @@ def run() -> str:
     except Exception as e:
         print(f'  [增量推理] 跳过（{type(e).__name__}: {e}）')
 
-    current = predict.infer_latest(mode='regime')
+    # 主输出模式随分支：main/fix='regime'，refactor='equal'
+    try:
+        from config import ENSEMBLE_MODE as _ENS_MODE
+    except ImportError:
+        _ENS_MODE = 'regime'
+    primary_mode = _ENS_MODE if _ENS_MODE in ('regime', 'equal') else 'regime'
+    is_regime    = (primary_mode == 'regime')
+    primary_pkl  = 'predictions_ensemble.pkl' if is_regime else 'predictions_ensemble_equal.pkl'
+    print(f'  [模式] 主输出={primary_mode}  预测文件={primary_pkl}')
+
+    current = predict.infer_latest(mode=primary_mode)
     previous = state.get_last_holdings()
 
-    # 等权集成（失败不中断周报）
-    try:
-        current_equal = predict.infer_latest(mode='equal')
-    except Exception as e:
-        print(f'  [等权推理] 跳过（{type(e).__name__}: {e}）')
-        current_equal = None
+    # 仅 regime 分支才额外出等权对比（refactor 本身即等权，无需重复）
+    current_equal = None
+    if is_regime:
+        try:
+            current_equal = predict.infer_latest(mode='equal')
+        except Exception as e:
+            print(f'  [等权推理] 跳过（{type(e).__name__}: {e}）')
+            current_equal = None
 
     # 更新个股日线（取最新数据用于选股层 beta/动量计算）
     try:
@@ -498,26 +516,28 @@ def run() -> str:
     except Exception as e:
         print(f'  [日线更新] 跳过（{type(e).__name__}: {e}）')
 
-    # 选股层：regime 分支
+    # 选股层：主输出
     try:
         import s4_beta_selection as s4
-        current['stock_holdings'] = s4.run_live(force_refresh_latest=True)
+        current['stock_holdings'] = s4.run_live(
+            pred_pkl=primary_pkl, force_refresh_latest=True)
     except Exception as e:
-        print(f'  [选股 regime] 跳过（{type(e).__name__}: {e}）')
+        print(f'  [选股 主输出] 跳过（{type(e).__name__}: {e}）')
         current['stock_holdings'] = None
 
     # 主板保证版（force_main_board=True，每行业恰好 TOPN 只主板股）
     try:
         current['stock_holdings_mainboard'] = s4.run_live(
+            pred_pkl=primary_pkl,
             force_refresh_latest=True,
             force_main_board=True,
             ckpt_suffix='_mb',
         )
     except Exception as e:
-        print(f'  [选股 regime 主板] 跳过（{type(e).__name__}: {e}）')
+        print(f'  [选股 主输出 主板] 跳过（{type(e).__name__}: {e}）')
         current['stock_holdings_mainboard'] = None
 
-    # 选股层：等权分支
+    # 选股层：等权对比分支（仅 regime 模式）
     if current_equal is not None:
         try:
             current_equal['stock_holdings'] = s4.run_live(
@@ -542,7 +562,8 @@ def run() -> str:
             current_equal['stock_holdings_mainboard'] = None
 
     etf_mapping = _load_etf_mapping()
-    report = generate_report(current, previous, current_equal, etf_mapping=etf_mapping)
+    report = generate_report(current, previous, current_equal,
+                             etf_mapping=etf_mapping, primary_mode=primary_mode)
 
     notifier = get_notifier()
     notifier.send_report(report)
