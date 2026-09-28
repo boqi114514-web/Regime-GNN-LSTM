@@ -1,0 +1,52 @@
+{
+  "recipe": "price26_ridge100_gbdt7leaf_five_seed_half_rank",
+  "seeds": [
+    42,
+    142,
+    242,
+    342,
+    442
+  ],
+  "feature_columns": [
+    "mom_1",
+    "mom_2",
+    "mom_3",
+    "mom_6",
+    "mom_9",
+    "mom_12",
+    "mom_3_1",
+    "vol_3",
+    "bias_3",
+    "mom_6_1",
+    "vol_6",
+    "bias_6",
+    "mom_12_1",
+    "vol_12",
+    "bias_12",
+    "drawdown_6",
+    "drawdown_12",
+    "downside_6",
+    "positive_6",
+    "beta_12",
+    "residual_vol_12",
+    "market_return",
+    "market_mom3",
+    "market_mom6",
+    "market_vol6",
+    "market_breadth"
+  ],
+  "source_sha256": {
+    "src\\price_risk_pipeline.py": "791836f3205f43b4065140be7d8ab9919ff97fbde450a08d70a344b4e767d512",
+    "src\\research_improvements.py": "02180db556e440b9866c3434964a68cb517e352507734bd87e9dd09c2ad852d6",
+    "src\\config.py": "c98d48e5efd5bf5d437c0297eea7a56a1a7c39def06a09df243dc899119aea26",
+    "src\\s7_budget_portfolio.py": "a3101425148e594abc7ce2781b9b9d97bba199976ceefb2e061781372a6ff41b",
+    "src\\data_pipeline\\industry_monthly.py": "7fd82d0eae490063d0e18527e724e579abf09e36157808ee44838bdb50222423",
+    "data\\raw\\ts_sw_industry_monthly.csv": "50ab10bd01782478a9fb4fcb19e59ec3df629b57c1273d70a244d91f8843d80c"
+  },
+  "verified_research_return_match": true,
+  "n_realized_months": 91,
+  "last_signal_month": "2026-08",
+  "last_holding_month": "2026-08",
+  "account_backtest_status": "not_run_missing_corporate_actions_adjustments_limits",
+  "original_default_pipeline_changed": false
+}

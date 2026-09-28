@@ -22,11 +22,12 @@ if _SRC_DIR not in sys.path:
 from config import (
     OUTPUT_DIR, MODELS_CURRENT_DIR, LSTM_LOOKBACK, GLASSO_ROLLING_MONTHS,
     load_industry_monthly, load_prosperity_monthly, load_tech_factors,
-    get_industries, zscore_cross_section,
+    get_industries, zscore_cross_section, HMM_N_STATES,
+    FIXED_WEIGHT_VARIANTS,
 )
 from s1_gnn_train import IndustryGAT, build_glasso_graph
 from s2_lstm_b_train import LSTMBModel
-from s3_ensemble_backtest import regime_ensemble, simple_rank_ensemble
+from s3_ensemble_backtest import simple_rank_ensemble
 
 
 # ─── 路径 ─────────────────────────────────────────────────────────────────────
@@ -57,23 +58,18 @@ def _load_pred_df(path):
     return df
 
 
-def _find_new_months(gnn_df, tech):
-    """返回在 tech 中但尚未在 gnn_df 里有预测的月份列表（月末 Timestamp）。"""
+def _find_new_months(gnn_df, tech, mkt=None):
+    """只返回行情和技术因子均齐备、且已结束的自然月份。"""
     tech_c = tech.copy()
     tech_c['date'] = pd.to_datetime(tech_c['date'])
-    tech_latest = tech_c['date'].max()
-
     if gnn_df.empty:
         return []
-    gnn_latest = gnn_df['date'].max()
-
-    from pandas.tseries.offsets import MonthEnd
-    new = []
-    m = gnn_latest + MonthEnd(1)
-    while m <= tech_latest:
-        new.append(m)
-        m = m + MonthEnd(1)
-    return new
+    tech_periods = set(tech_c['date'].dt.to_period('M'))
+    mkt_periods = set(pd.to_datetime(mkt['date']).dt.to_period('M')) if mkt is not None else tech_periods
+    latest = pd.Timestamp(gnn_df['date'].max()).to_period('M')
+    current = pd.Timestamp.today().to_period('M')
+    return [p.to_timestamp('M') for p in sorted(tech_periods & mkt_periods)
+            if latest < p < current]
 
 
 # ─── GNN 推理 ──────────────────────────────────────────────────────────────────
@@ -113,7 +109,7 @@ def _infer_gnn(new_months, state, mkt, prosperity):
         regime_df = pd.read_pickle(_REGIME_PKL)
         regime_df['date'] = pd.to_datetime(regime_df['date'])
         roh = pd.get_dummies(regime_df[['date', 'regime']], columns=['regime'], prefix='regime')
-        for i in range(4):
+        for i in range(HMM_N_STATES):
             c = f'regime_{i}'
             if c not in roh.columns:
                 roh[c] = 0
@@ -210,6 +206,7 @@ def _infer_lstm_b(new_months, state, tech):
     tech_c = tech.copy()
     tech_c['date'] = pd.to_datetime(tech_c['date'])
     tech_c['ym']   = tech_c['date'].dt.to_period('M')
+    tech_c = tech_c.sort_values('date').drop_duplicates(['ts_code', 'ym'], keep='last')
 
     new_rows = []
     for month in new_months:
@@ -272,26 +269,24 @@ def _infer_lstm_b(new_months, state, tech):
 # ─── 集成 + 同步 ───────────────────────────────────────────────────────────────
 
 def _rebuild_ensemble(gnn_df, lstm_df):
-    """重新生成 Regime 和等权集成 pkl（含新追加行）。"""
-    regime_df = None
-    if os.path.exists(_REGIME_PKL):
-        regime_df = pd.read_pickle(_REGIME_PKL)
-        regime_df['date'] = pd.to_datetime(regime_df['date'])
-
-    regime_ens = regime_ensemble(gnn_df, lstm_df, regime_df, ic_lookback=12)
-    if regime_ens is not None:
-        regime_ens.to_pickle(_ENS_PKL)
-        print(f"  [增量集成] Regime 集成更新 → {len(regime_ens)} 行")
-
-    equal_ens = simple_rank_ensemble(gnn_df, lstm_df)
-    if equal_ens is not None:
-        equal_ens.to_pickle(_EQENS_PKL)
-        print(f"  [增量集成] 等权集成更新 → {len(equal_ens)} 行")
+    """重新生成三组固定权重；主输出为事先指定的 4:6。"""
+    for code, (w_gnn, w_lstm) in FIXED_WEIGHT_VARIANTS.items():
+        ens = simple_rank_ensemble(gnn_df, lstm_df, w_gnn, w_lstm)
+        if ens is None:
+            continue
+        ens.to_pickle(os.path.join(OUTPUT_DIR, f'predictions_ensemble_{code}.pkl'))
+        if code == '46':
+            ens.to_pickle(_ENS_PKL)
+        if code == '55':
+            ens.to_pickle(_EQENS_PKL)
+        print(f"  [增量集成] 固定 {code} 更新 → {len(ens)} 行")
 
 
 def _sync_to_current():
     for fname in ['predictions_gnn.pkl', 'predictions_lstm_b.pkl',
-                  'predictions_ensemble.pkl', 'predictions_ensemble_equal.pkl']:
+                  'predictions_ensemble.pkl', 'predictions_ensemble_equal.pkl',
+                  'predictions_ensemble_46.pkl', 'predictions_ensemble_55.pkl',
+                  'predictions_ensemble_64.pkl']:
         src = os.path.join(OUTPUT_DIR, fname)
         if os.path.exists(src):
             shutil.copy2(src, os.path.join(MODELS_CURRENT_DIR, fname))
@@ -317,7 +312,8 @@ def run() -> bool:
         return False
 
     tech       = load_tech_factors()
-    new_months = _find_new_months(gnn_df, tech)
+    mkt        = load_industry_monthly()
+    new_months = _find_new_months(gnn_df, tech, mkt)
 
     if not new_months:
         print(f"  [增量推理] 无新月份（当前最新：{gnn_df['date'].max().strftime('%Y-%m')}）")
@@ -325,7 +321,6 @@ def run() -> bool:
 
     print(f"  [增量推理] 发现新月份：{[m.strftime('%Y-%m') for m in new_months]}")
 
-    mkt        = load_industry_monthly()
     prosperity = load_prosperity_monthly()
 
     gnn_rows  = _infer_gnn(new_months, gnn_state, mkt, prosperity)

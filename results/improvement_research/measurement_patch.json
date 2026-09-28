@@ -1,0 +1,6 @@
+{
+  "file": "src\\research_improvements.py",
+  "before_sha256": "333eee9879ff1a4dd513a09591318f64a7caf408e70f6f7975be91bd88777fc9",
+  "after_sha256": "02180db556e440b9866c3434964a68cb517e352507734bd87e9dd09c2ad852d6",
+  "reason": "Measurement-only fix: preserve legacy prediction row order for tied scores. Training, candidates, parameters and pre-2023 selected strategy are unchanged. Original protocol is retained."
+}

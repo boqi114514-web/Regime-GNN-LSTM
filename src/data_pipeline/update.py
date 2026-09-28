@@ -4,7 +4,8 @@
 覆盖的数据：
   - ts_sw_industry_monthly.csv   (pro.index_monthly + pro.index_dailybasic)
   - ts_csi300_monthly.csv        (pro.index_monthly)
-  - ts_macro_factors.csv         (pro.cn_pmi + pro.cn_m + pro.cn_sf + pro.shibor)
+  - ts_global_indices_daily.csv (pro.index_global: KS11/SPX/IXIC)
+  - ts_macro_factors.csv         (旧模型兼容；当前 HMM 不使用)
 
 不覆盖（Phase 2 的活）：
   - prosperity_indicators_clean.pkl  (要重跑 ARIMAX 的 01→02→03→04 链条)
@@ -53,6 +54,12 @@ def _month_end(ts: pd.Timestamp) -> pd.Timestamp:
     return ts + pd.offsets.MonthEnd(0)
 
 
+def _last_completed_month_end(today: pd.Timestamp | None = None) -> pd.Timestamp:
+    """月频训练只能使用已经结束的自然月。"""
+    today = pd.Timestamp.today() if today is None else pd.Timestamp(today)
+    return today.normalize().replace(day=1) - pd.Timedelta(days=1)
+
+
 # ============================================================
 #  1. 申万一级行业月度
 # ============================================================
@@ -70,7 +77,7 @@ def update_sw_industry_monthly(dry_run: bool = False, force_months: int = 0) -> 
     else:
         start = latest + pd.Timedelta(days=1)
 
-    end = pd.Timestamp.today()
+    end = _last_completed_month_end()
     if start > end:
         print('  已是最新，无需更新')
         return {'new_rows': 0, 'latest': str(latest.date())}
@@ -150,10 +157,11 @@ def update_sw_industry_monthly(dry_run: bool = False, force_months: int = 0) -> 
     # 日期统一成月末（和 old 的格式一致）
     monthly['date'] = monthly['date'] + pd.offsets.MonthEnd(0)
 
-    # 去重合并
+    # 合并后按行业+月份去重，并统一 pct_chg 为百分数（原始历史和增量单位不同）。
+    from data_pipeline.industry_monthly import canonicalize_industry_monthly
     combined = pd.concat([old, monthly], ignore_index=True)
-    combined = combined.drop_duplicates(subset=['ts_code', 'date'], keep='last')
-    combined = combined.sort_values(['ts_code', 'date']).reset_index(drop=True)
+    combined = canonicalize_industry_monthly(combined)
+    combined = combined[old.columns.tolist()]
 
     added = len(combined) - len(old)
     new_latest = combined['date'].max()
@@ -463,6 +471,13 @@ def run(dry_run: bool = False, force_months: int = 0,
     except Exception as e:
         results['csi300'] = {'error': str(e)}
         print(f'[csi300] 失败: {e}')
+
+    try:
+        from data_pipeline.global_indices import update_global_indices
+        results['global_indices'] = update_global_indices(dry_run, force_months)
+    except Exception as e:
+        results['global_indices'] = {'error': str(e)}
+        print(f'[global_indices] 失败: {e}')
 
     try:
         results['macro'] = update_macro_factors(dry_run, force_months)

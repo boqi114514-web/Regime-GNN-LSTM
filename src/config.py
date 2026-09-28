@@ -75,10 +75,11 @@ STEP_MONTHS = 3         # 滚动步长（月）
 PREDICT_MONTHS = 3      # 预测步长（月）
 
 # ==================== HMM Regime 参数 ====================
-HMM_N_STATES = 4
-HMM_COVARIANCE = 'full'
+HMM_N_STATES = 3
+HMM_COVARIANCE = 'diag'
 HMM_N_ITER = 200
-HMM_TRAIN_WINDOW = 60  # 滚动窗口（月）
+HMM_TRAIN_WINDOW = 72  # 滚动窗口（月）
+MIN_LSTM_WEIGHT = 0.60  # 量价分支的结构性下限
 
 # ==================== GNN 参数 ====================
 GAT_HIDDEN_DIM = 16
@@ -108,8 +109,9 @@ TOP_K = 5
 RF_ANNUAL = 0.03
 RANDOM_SEED = 42
 
-# 集成模式：'regime'（Regime条件集成，扩张期GNN独占）| 'equal'（等权集成，分散化更强）
-ENSEMBLE_MODE = 'regime'
+# 当前不启用 HMM：三组 GNN:LSTM 固定权重做同口径对照。
+FIXED_WEIGHT_VARIANTS = {'46': (0.4, 0.6), '55': (0.5, 0.5), '64': (0.6, 0.4)}
+ENSEMBLE_MODE = 'fixed_46'  # 保留此前量价分支优先的配置为默认；不按回测赢家自动切换
 
 # ==================== 景气度指标（预筛选结果）====================
 SELECTED_INDICATORS = [
@@ -135,10 +137,10 @@ def load_industry_monthly():
         path = os.path.join(LOCAL_DATA_RAW, 'ts_sw_industry_monthly.csv')
         mkt = pd.read_csv(path)
         mkt = mkt[~mkt['ts_code'].isin(SW_EXCLUDE)].copy()
-    mkt['date'] = pd.to_datetime(mkt['date'])
+    from data_pipeline.industry_monthly import canonicalize_industry_monthly
+    mkt = canonicalize_industry_monthly(mkt)
     mkt['year'] = mkt['date'].dt.year
     mkt['month'] = mkt['date'].dt.month
-    mkt['ret'] = mkt['pct_chg'] / 100.0
     mkt = mkt.sort_values(['ts_code', 'date']).reset_index(drop=True)
     return mkt
 
@@ -177,8 +179,8 @@ def load_prosperity_monthly():
     return df
 
 
-def load_tech_factors():
-    """加载技术因子（价量 + 走势复刻）"""
+def load_tech_factors(include_market: bool = True):
+    """加载行业价量/走势因子；默认广播全市场成交额与广度因子。"""
     _sfx = '_l2' if LEVEL == 'l2' else ''
     pv_path = os.path.join(LOCAL_DATA_PROCESSED, f'price_volume_factors{_sfx}.pkl')
     pt_path = os.path.join(LOCAL_DATA_PROCESSED, f'pattern_factors{_sfx}.pkl')
@@ -196,6 +198,9 @@ def load_tech_factors():
         if col in tech.columns:
             tech[col] = tech[col].fillna(0.0)
 
+    if include_market:
+        from data_pipeline.market_factors import append_market_factors
+        tech = append_market_factors(tech)
     tech = tech.sort_values(['ts_code', 'date']).reset_index(drop=True)
     return tech
 

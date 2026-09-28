@@ -1,0 +1,53 @@
+{
+  "architecture_reference": "818423c",
+  "architecture": "macro HMM(4,full,60) + GLASSO/GAT + industry12 LSTM + regime historical IC",
+  "repairs": [
+    "canonical monthly data and close-derived decimal returns",
+    "forward labels with train/validation label cutoffs",
+    "all prediction months including partial final window",
+    "macro monthly deduplication and SHIBOR 1y-minus-1m definition",
+    "one-month lag for macro releases without publication timestamps",
+    "keep regime one-hot out of cross-sectional z-score"
+  ],
+  "hmm": {
+    "states": 4,
+    "covariance": "full",
+    "window": 60,
+    "iterations": 200,
+    "seed": 42
+  },
+  "weighting": {
+    "same_state_ic_observations": 12,
+    "lstm_floor": null
+  },
+  "top_k_industries": 5,
+  "inertia": 0.2,
+  "input_sha256": {
+    "src\\run_original_architecture.py": "1542ff16b816fe603f7aabb7938a592b1476dc35300f86ac18b6a874d0dd6e66",
+    "src\\config.py": "c98d48e5efd5bf5d437c0297eea7a56a1a7c39def06a09df243dc899119aea26",
+    "src\\s1_gnn_train.py": "bf9f0761eab7f36227c09645f537513bde8499304f5de3650bd4faa54d69edd8",
+    "src\\s2_lstm_b_train.py": "cf69d88597cb9e703b144eda19117a7de1bb97ff7a3bf6e00eb6ed290952893c",
+    "src\\s3_ensemble_backtest.py": "20b52b2f5ef9866e448549ac99bf546c6c4c0a918e23a65c4e28f1d4204ff74f",
+    "src\\data_pipeline\\industry_monthly.py": "7fd82d0eae490063d0e18527e724e579abf09e36157808ee44838bdb50222423",
+    "data\\raw\\ts_macro_factors.csv": "89bf4d68384aacd066b0e257c4143c78080626981933e704fd84d9945f8b25e2",
+    "data\\raw\\ts_csi300_monthly.csv": "4f8a10c47ae456a4e96b3994c2176afd633e6af75084b6fe24472d2bc2f85199",
+    "data\\raw\\ts_sw_industry_monthly.csv": "50ab10bd01782478a9fb4fcb19e59ec3df629b57c1273d70a244d91f8843d80c",
+    "data\\processed\\prosperity_indicators_clean.pkl": "6d636dc64760df78139169ffeb77a5cb9daf201444139db199db3a853d479fe9",
+    "data\\processed\\price_volume_factors.pkl": "3c096178345a85af082117c02766efc45b19d1fce2f9f5d69af17f93583fd7fc",
+    "data\\processed\\pattern_factors.pkl": "751b330ffc58a686a5a6ab7b00ba6b7739592df421b2e6baf487fcdaca0be12f",
+    "results\\predictions_gnn.pkl": "47a8c22c5a93e7fced2b21ec801e88cabefff390186f5703b406dab68fd6342c",
+    "results\\predictions_lstm_b.pkl": "26b53a9a9480ef46ba2779de6afad184412c5b6eea240469776b2e4aa1e5f249",
+    "results\\predictions_lstm_b_no_market.pkl": "9a7c215772a99ccfbdd87183960f32453cc76f6707db09908e1fc25ad1ca5285"
+  },
+  "prediction_sha256": {
+    "predictions_gnn.pkl": "2cd8305f70f4ed6a29f3a80d13b98794564de62f210366106797495adecf7c3b",
+    "predictions_lstm_b.pkl": "9a7c215772a99ccfbdd87183960f32453cc76f6707db09908e1fc25ad1ca5285",
+    "regime_labels.pkl": "17a9d4ea0d9aa22fc03e61782b1683409b5afbe13b820266feb61da560e42f5b"
+  },
+  "signal_start": "2019-01",
+  "signal_end": "2026-08",
+  "holding_start": "2019-02-28",
+  "holding_end": "2026-08-31",
+  "n_realized_months": 91,
+  "hmm_failure_months": 0
+}

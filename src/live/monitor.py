@@ -286,7 +286,7 @@ def _diff_summary_line(diff_r: dict, diff_e: dict, k: int) -> str:
 def generate_report(current: dict, previous: Optional[dict],
                     current_equal: Optional[dict] = None,
                     etf_mapping: Optional[pd.DataFrame] = None,
-                    primary_mode: str = 'regime') -> str:
+                    primary_mode: str = 'fixed_46') -> str:
     now = datetime.now()
     iso_year, iso_week, _ = now.isocalendar()
     K = len(current['top_k'])
@@ -294,7 +294,9 @@ def generate_report(current: dict, previous: Optional[dict],
     # 主输出标签随分支模式变化：regime 分支(main/fix)标 "Regime 集成"，
     # equal 分支(refactor)标 "等权集成"
     is_regime = (primary_mode == 'regime')
-    primary_label = 'Regime 集成' if is_regime else '等权集成'
+    primary_label = ('Regime 集成' if is_regime else
+                     f'固定权重 GNN:LSTM = {primary_mode[-2]}:{primary_mode[-1]}'
+                     if primary_mode.startswith('fixed_') else '等权集成')
 
     prev_top = previous['top_k'] if previous else None
     prev_all = previous.get('all_ranked') if previous else None
@@ -313,7 +315,7 @@ def generate_report(current: dict, previous: Optional[dict],
     lines = []
 
     # ── 头部 ──────────────────────────────────────────────────
-    lines.append(f'# 行业轮动周报 · {now.strftime("%Y-%m-%d")}(周日生成)')
+    lines.append(f'# 行业轮动周报 · {now.strftime("%Y-%m-%d")}生成')
     lines.append('')
     lines.append(f'**生成时间**：{now.strftime("%Y-%m-%d %H:%M:%S")}')
     lines.append(f'**ISO 周**：{iso_year}-W{iso_week:02d}')
@@ -324,6 +326,8 @@ def generate_report(current: dict, previous: Optional[dict],
         lines.append(f'**HMM regime**：{REGIME_NAMES.get(current["regime"], current["regime"])}')
     if is_regime and current.get('w_gnn') is not None and current.get('w_lstm') is not None:
         lines.append(f'**Regime集成权重**：GNN={current["w_gnn"]:.2f} / LSTM-B={current["w_lstm"]:.2f}')
+    if primary_mode.startswith('fixed_') and current.get('w_gnn') is not None:
+        lines.append(f'**固定集成权重**：GNN={current["w_gnn"]:.2f} / LSTM-B={current["w_lstm"]:.2f}')
     lines.append('')
 
     # ── 1. Top-K 推荐行业 ─────────────────────────────────────
@@ -491,10 +495,14 @@ def run() -> str:
     try:
         from config import ENSEMBLE_MODE as _ENS_MODE
     except ImportError:
-        _ENS_MODE = 'regime'
-    primary_mode = _ENS_MODE if _ENS_MODE in ('regime', 'equal') else 'regime'
+        _ENS_MODE = 'fixed_46'
+    primary_mode = _ENS_MODE if _ENS_MODE in ('fixed_46', 'fixed_55', 'fixed_64',
+                                              'regime', 'equal') else 'fixed_46'
     is_regime    = (primary_mode == 'regime')
-    primary_pkl  = 'predictions_ensemble.pkl' if is_regime else 'predictions_ensemble_equal.pkl'
+    primary_pkl  = (f'predictions_ensemble_{primary_mode[-2:]}.pkl'
+                    if primary_mode.startswith('fixed_') else
+                    'predictions_ensemble.pkl' if is_regime else
+                    'predictions_ensemble_equal.pkl')
     print(f'  [模式] 主输出={primary_mode}  预测文件={primary_pkl}')
 
     current = predict.infer_latest(mode=primary_mode)

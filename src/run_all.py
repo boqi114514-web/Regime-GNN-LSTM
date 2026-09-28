@@ -21,19 +21,15 @@ def main():
     print("  GNN + LSTM-B 行业轮动模型")
     print("=" * 60)
 
-    print("\n[1/4] HMM 宏观状态识别...")
-    from s0_regime import main as regime_main
-    regime_main()
-
-    print("\n\n[2/4] 训练 GNN 分支（含 Regime 特征）...")
+    print("\n[1/3] 训练 GNN 分支（无 HMM 特征）...")
     from s1_gnn_train import main as gnn_main
     gnn_main()
 
-    print("\n\n[3/4] 训练 LSTM-B 分支...")
+    print("\n\n[2/3] 训练 LSTM-B 分支（含全市场成交额量价特征）...")
     from s2_lstm_b_train import main as lstm_main
     lstm_main()
 
-    print("\n\n[4/4] 集成 + 回测...")
+    print("\n\n[3/3] 三组固定权重集成 + 回测...")
     from s3_ensemble_backtest import main as backtest_main
     backtest_main()
 

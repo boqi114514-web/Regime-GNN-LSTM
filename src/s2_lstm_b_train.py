@@ -52,7 +52,8 @@ class LSTMBModel(nn.Module):
 
 def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
                         target_start=None, lookback=LSTM_LOOKBACK,
-                        scaler_dict=None):
+                        scaler_dict=None, label_end=None,
+                        include_unlabeled=False):
     """
     准备 LSTM-B 序列数据
 
@@ -60,7 +61,7 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
       - 技术因子和行情按 year-month 合并（避免最后交易日 vs 日历月末差 1 天导致丢行）
       - features[t] = 月 t 的技术因子（月末已知）
       - target = ret[t+1]（下月收益率，即持仓期收益）
-      - meta 中记录的 date = 下月（target 月份）的日期
+      - meta 中记录的 date = 信号月 t；actual_ret = t+1 月收益
       - 这样在实盘中：月末观察到当月因子 → 预测下月收益 → 月初换仓
 
     参数：
@@ -85,8 +86,13 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
     # 用 year-month 做合并键，解决最后交易日 vs 日历月末的日期错位
     tech_ym = tech_df.copy()
     tech_ym['ym'] = tech_ym['date'].dt.to_period('M')
+    # 更新流水线可能留下同月中途与月末两条因子；每月只保留最后观测。
+    tech_ym = (tech_ym.sort_values('date')
+               .drop_duplicates(['ts_code', 'ym'], keep='last'))
 
-    ret_ym = mkt[['ts_code', 'date', 'ret']].copy()
+    ret_ym = mkt[['ts_code', 'date', 'ret']].copy().sort_values(['ts_code', 'date'])
+    ret_ym['fwd_ret'] = ret_ym.groupby('ts_code')['ret'].shift(-1)
+    ret_ym['fwd_date'] = ret_ym.groupby('ts_code')['date'].shift(-1)
     ret_ym['ym'] = ret_ym['date'].dt.to_period('M')
 
     X_list, y_list, meta = [], [], []
@@ -106,19 +112,10 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
         # 按 year-month 合并，保留行情侧的 date 作为 target_date
         merged = pd.merge(
             ind_tech.drop(columns='date'),
-            ind_ret[['ts_code', 'ym', 'date', 'ret']].rename(columns={'date': 'mkt_date'}),
+            ind_ret[['ts_code', 'ym', 'date', 'ret', 'fwd_ret', 'fwd_date']].rename(columns={'date': 'mkt_date'}),
             on=['ts_code', 'ym'], how='inner'
         )
         merged = merged.sort_values('ym').reset_index(drop=True)
-
-        if len(merged) < lookback + 2:  # 需要至少 lookback + 1 个月（+1 给 fwd_ret）
-            continue
-
-        # 构造 fwd_ret：下月收益率
-        merged['fwd_ret'] = merged['ret'].shift(-1)
-        merged['fwd_date'] = merged['mkt_date'].shift(-1)
-        # 最后一行没有下月收益，去掉
-        merged = merged.dropna(subset=['fwd_ret']).reset_index(drop=True)
 
         if len(merged) < lookback:
             continue
@@ -136,6 +133,7 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
         scalers_out[ind_code] = scaler
 
         fwd_ret_values = merged['fwd_ret'].values.astype(float)
+        signal_dates = merged['mkt_date'].values
         fwd_dates = merged['fwd_date'].values
 
         # one-hot
@@ -145,7 +143,10 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
         # 序列构建：features[t-lookback+1 : t+1] → predict fwd_ret[t]
         # 即用 t 所在月（含）往前 lookback 个月的因子，预测 t 的下月收益
         for t in range(lookback - 1, len(merged)):
-            if target_start is not None and fwd_dates[t] < target_start:
+            if target_start is not None and signal_dates[t] < target_start:
+                continue
+            if not include_unlabeled and (not np.isfinite(fwd_ret_values[t]) or
+                                          (label_end is not None and fwd_dates[t] > label_end)):
                 continue
 
             seq = np.zeros((lookback, n_factors + n_ind), dtype=np.float32)
@@ -155,7 +156,7 @@ def prepare_lstm_b_data(tech_df, mkt, industries, date_range,
 
             X_list.append(seq)
             y_list.append(fwd_ret_values[t])
-            meta.append((ind_code, fwd_dates[t]))
+            meta.append((ind_code, signal_dates[t]))
 
     if not X_list:
         return None, None, None, scalers_out
@@ -241,7 +242,9 @@ def train_lstm_b_single(X_train, y_train, X_val, y_val, input_dim, seed=42):
 #  Walk-Forward 主循环
 # ============================================================
 
-def main():
+def main(use_market_factors=True, output_suffix='', output_dir=None):
+    output_dir = output_dir or OUTPUT_DIR
+    os.makedirs(output_dir, exist_ok=True)
     t0 = time.time()
     print("=" * 60)
     print("  LSTM-B 分支：技术因子动量预测")
@@ -250,7 +253,7 @@ def main():
     # 加载数据
     print("\n加载数据...")
     mkt = load_industry_monthly()
-    tech = load_tech_factors()
+    tech = load_tech_factors(include_market=use_market_factors)
     industries = get_industries(mkt)
     n_industries = len(industries)
 
@@ -274,7 +277,9 @@ def main():
     all_preds = []
     n_windows = 0
 
-    for start_idx in range(0, len(available_months) - total_window - PREDICT_MONTHS + 1, STEP_MONTHS):
+    # 只要训练+验证窗后仍有月份就运行；最后不足 PREDICT_MONTHS 的尾窗
+    # 也必须保留，否则最新 1~2 个月会被静默漏掉。
+    for start_idx in range(0, len(available_months) - total_window, STEP_MONTHS):
         train_months = available_months[start_idx:start_idx + TRAIN_MONTHS]
         val_months = available_months[start_idx + TRAIN_MONTHS:start_idx + total_window]
         pred_months = available_months[start_idx + total_window:
@@ -292,7 +297,7 @@ def main():
         # 准备训练数据
         train_range = (train_months[0], train_months[-1])
         X_train, y_train, meta_train, train_scalers = prepare_lstm_b_data(
-            tech, mkt, industries, train_range)
+            tech, mkt, industries, train_range, label_end=train_months[-1])
 
         if X_train is None or len(X_train) < 50:
             print(f"  跳过（训练数据不足）")
@@ -304,7 +309,8 @@ def main():
         val_range = (val_feat_start, val_months[-1])
         X_val, y_val, meta_val, _ = prepare_lstm_b_data(
             tech, mkt, industries, val_range,
-            target_start=val_months[0], scaler_dict=train_scalers)
+            target_start=val_months[0], scaler_dict=train_scalers,
+            label_end=val_months[-1])
 
         if X_val is None or len(X_val) < 10:
             print(f"  跳过（验证数据不足）")
@@ -326,7 +332,8 @@ def main():
         pred_range = (pred_feat_start, pred_months[-1])
         X_pred, y_pred_actual, meta_pred, _ = prepare_lstm_b_data(
             tech, mkt, industries, pred_range,
-            target_start=pred_months[0], scaler_dict=train_scalers)
+            target_start=pred_months[0], scaler_dict=train_scalers,
+            include_unlabeled=True)
 
         if X_pred is None or len(X_pred) == 0:
             print("  预测数据不足，跳过")
@@ -355,7 +362,7 @@ def main():
     pred_df = pd.DataFrame(all_preds)
     pred_df['date'] = pd.to_datetime(pred_df['date'])
 
-    out_path = os.path.join(OUTPUT_DIR, 'predictions_lstm_b.pkl')
+    out_path = os.path.join(output_dir, f'predictions_lstm_b{output_suffix}.pkl')
     pred_df.to_pickle(out_path)
     pred_df.to_csv(out_path.replace('.pkl', '.csv'), index=False, encoding='utf-8-sig')
 
@@ -396,7 +403,7 @@ def main():
             'train_end_month': pd.Timestamp(train_months[-1]).strftime('%Y-%m-%d'),
             'pred_end_month': pd.Timestamp(pred_months[-1]).strftime('%Y-%m-%d'),
         }
-        _state_path = os.path.join(OUTPUT_DIR, 'lstm_b_inference_state.pkl')
+        _state_path = os.path.join(output_dir, f'lstm_b_inference_state{output_suffix}.pkl')
         with open(_state_path, 'wb') as _f:
             _pkl.dump(infer_state, _f, protocol=4)
         print(f"  LSTM-B 推理状态已保存 → {_state_path}")
@@ -407,4 +414,12 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--no-market-factors', action='store_true',
+                        help='消融实验：不加入全市场成交额/量价因子')
+    parser.add_argument('--output-suffix', default='',
+                        help='实验输出后缀，避免覆盖正式预测与推理状态')
+    args = parser.parse_args()
+    main(use_market_factors=not args.no_market_factors,
+         output_suffix=args.output_suffix)

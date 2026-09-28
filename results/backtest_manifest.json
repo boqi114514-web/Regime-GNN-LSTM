@@ -1,0 +1,32 @@
+{
+  "strategy": "fixed_weights_no_hmm",
+  "signal_start": "2019-01",
+  "signal_end": "2026-08",
+  "realized_holding_end": "2026-08",
+  "top_k": 5,
+  "inertia": 0.2,
+  "weights": {
+    "46": [
+      0.4,
+      0.6
+    ],
+    "55": [
+      0.5,
+      0.5
+    ],
+    "64": [
+      0.6,
+      0.4
+    ]
+  },
+  "sha256": {
+    "results\\predictions_gnn.pkl": "47a8c22c5a93e7fced2b21ec801e88cabefff390186f5703b406dab68fd6342c",
+    "results\\predictions_lstm_b.pkl": "26b53a9a9480ef46ba2779de6afad184412c5b6eea240469776b2e4aa1e5f249",
+    "results\\predictions_gnn.csv": "39e34349a5f3992dfeb2697842271a69097fe14c2a5c2c2618616cbd0ad4d06d",
+    "results\\predictions_lstm_b.csv": "1c5bea7451a125e5ff6ce6c66768057d860296a5272f184c649472a15d0fe5d6",
+    "src\\s3_ensemble_backtest.py": "20b52b2f5ef9866e448549ac99bf546c6c4c0a918e23a65c4e28f1d4204ff74f",
+    "src\\config.py": "c98d48e5efd5bf5d437c0297eea7a56a1a7c39def06a09df243dc899119aea26",
+    "src\\data_pipeline\\industry_monthly.py": "7fd82d0eae490063d0e18527e724e579abf09e36157808ee44838bdb50222423",
+    "data\\raw\\ts_sw_industry_monthly.csv": "50ab10bd01782478a9fb4fcb19e59ec3df629b57c1273d70a244d91f8843d80c"
+  }
+}

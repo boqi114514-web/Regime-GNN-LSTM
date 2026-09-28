@@ -2,6 +2,8 @@ numpy
 pandas
 torch
 scikit-learn
+scipy
+lightgbm
 hmmlearn
 matplotlib
 tushare

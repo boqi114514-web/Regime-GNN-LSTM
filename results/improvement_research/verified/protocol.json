@@ -1,0 +1,72 @@
+{
+  "status": "exploratory robustness, chosen after inspecting batch-1 evaluation",
+  "first_stage_locked_choice": "gbdt_tech12__vol_target",
+  "seeds": [
+    42,
+    142,
+    242,
+    342,
+    442
+  ],
+  "top_k_sensitivity": [
+    3,
+    5,
+    8
+  ],
+  "risk_sensitivity": [
+    "full",
+    "trend",
+    "vol_target"
+  ],
+  "families": [
+    "equal_rank_ridge_gbdt_price",
+    "lambdarank_price"
+  ],
+  "fixed_ensemble": "50% Ridge rank + 50% mean LightGBM rank across five seeds",
+  "training": "same 72-month rolling window and pre-signal label cutoff as batch 1",
+  "baseline_correction": "Replay original source row order; its tied scores were reordered by the batch-1 feature merge. New candidates and locked choice unchanged.",
+  "source_sha256": "b923c948387d9e60e2e8f011432f5f35942f3ea0eff4b5dd290be76c4fecadb8",
+  "batch1_input_sha256": {
+    "src\\research_improvements.py": "333eee9879ff1a4dd513a09591318f64a7caf408e70f6f7975be91bd88777fc9",
+    "src\\config.py": "c98d48e5efd5bf5d437c0297eea7a56a1a7c39def06a09df243dc899119aea26",
+    "src\\data_pipeline\\industry_monthly.py": "7fd82d0eae490063d0e18527e724e579abf09e36157808ee44838bdb50222423",
+    "data\\raw\\ts_sw_industry_monthly.csv": "50ab10bd01782478a9fb4fcb19e59ec3df629b57c1273d70a244d91f8843d80c",
+    "data\\processed\\price_volume_factors.pkl": "3c096178345a85af082117c02766efc45b19d1fce2f9f5d69af17f93583fd7fc",
+    "data\\processed\\pattern_factors.pkl": "751b330ffc58a686a5a6ab7b00ba6b7739592df421b2e6baf487fcdaca0be12f",
+    "results\\predictions_gnn.pkl": "47a8c22c5a93e7fced2b21ec801e88cabefff390186f5703b406dab68fd6342c",
+    "results\\predictions_lstm_b_no_market.pkl": "9a7c215772a99ccfbdd87183960f32453cc76f6707db09908e1fc25ad1ca5285",
+    "results\\original_architecture\\predictions_ensemble.pkl": "baafc65cbb008642824a55f87f9fc6274f79d7c124e87b0fd1717afc9086965a"
+  },
+  "measurement_corrected_input_sha256": {
+    "src\\research_improvements.py": "02180db556e440b9866c3434964a68cb517e352507734bd87e9dd09c2ad852d6",
+    "src\\config.py": "c98d48e5efd5bf5d437c0297eea7a56a1a7c39def06a09df243dc899119aea26",
+    "src\\data_pipeline\\industry_monthly.py": "7fd82d0eae490063d0e18527e724e579abf09e36157808ee44838bdb50222423",
+    "data\\raw\\ts_sw_industry_monthly.csv": "50ab10bd01782478a9fb4fcb19e59ec3df629b57c1273d70a244d91f8843d80c",
+    "data\\processed\\price_volume_factors.pkl": "3c096178345a85af082117c02766efc45b19d1fce2f9f5d69af17f93583fd7fc",
+    "data\\processed\\pattern_factors.pkl": "751b330ffc58a686a5a6ab7b00ba6b7739592df421b2e6baf487fcdaca0be12f",
+    "results\\predictions_gnn.pkl": "47a8c22c5a93e7fced2b21ec801e88cabefff390186f5703b406dab68fd6342c",
+    "results\\predictions_lstm_b_no_market.pkl": "9a7c215772a99ccfbdd87183960f32453cc76f6707db09908e1fc25ad1ca5285",
+    "results\\original_architecture\\predictions_ensemble.pkl": "baafc65cbb008642824a55f87f9fc6274f79d7c124e87b0fd1717afc9086965a"
+  },
+  "n_realized_months": 91,
+  "holding_start": "2019-02-28 00:00:00",
+  "holding_end": "2026-08-31 00:00:00",
+  "output_sha256": {
+    "annual_comparison.csv": "09b1487ca0c47c52fdaf0953dd8136f85dff5e624768a5dcdabb353982b082a4",
+    "conditional_bootstrap.csv": "74b648b2ff1ed0da4d95fc6b2500226dd8cf7b5d054d4a966824181010bf0ac6",
+    "ensemble_holdings.csv": "874783fd8b3d5e0b698bfdb538aa2eb3039ef58241aa0710a1c58d942cd12c8f",
+    "ensemble_predictions.pkl": "1fbd0c9e8475be67143214872690d7d952177d37c7d49655ba55375345f16fe4",
+    "ensemble_sensitivity.csv": "a29795483762a593305568418f872460c06025de39111376d6d239516acc65c9",
+    "monthly_rank_ic.csv": "07ac75a586d85c8d33c2370d79406b32dc8623e1cc7995d8238ffc66a272a09f",
+    "monthly_returns.csv": "ebda63e67fa87fbf9a671479273c0cb534df60bd153734c6c5d2fa3b321712c4",
+    "seed_annual_returns.csv": "726c79e5a9e981cc7f9ebebd4f655a1af909452bda172cd1af52b79ff4ff4f9a",
+    "seed_predictions.pkl": "8f318ac91456f8282c10ceb60c91afd1de839c2aebb3123b6d55b7377a1f91ec",
+    "seed_summary.csv": "32f5a276e9506f00cd31e99b6a0a1a92b37839ad514a91dd927779e0c0f72667",
+    "summary.csv": "ee574188785f20804c30f27e3030dcf154188341b59ab4c318864ebda9ce7cc9",
+    "training_audit_seed142.csv": "b288643b427464ba9703f664d56896c03e6f1347ffe30c80ffbfc2926ba794e8",
+    "training_audit_seed242.csv": "b288643b427464ba9703f664d56896c03e6f1347ffe30c80ffbfc2926ba794e8",
+    "training_audit_seed342.csv": "b288643b427464ba9703f664d56896c03e6f1347ffe30c80ffbfc2926ba794e8",
+    "training_audit_seed42.csv": "b288643b427464ba9703f664d56896c03e6f1347ffe30c80ffbfc2926ba794e8",
+    "training_audit_seed442.csv": "b288643b427464ba9703f664d56896c03e6f1347ffe30c80ffbfc2926ba794e8"
+  }
+}

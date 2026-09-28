@@ -1,0 +1,26 @@
+[
+  {
+    "strategy": "original",
+    "months": 45,
+    "trades": 370,
+    "corporate_events": 18,
+    "ending_equity": 14401.851599999998,
+    "status": "cash_shares_nav_reconciled"
+  },
+  {
+    "strategy": "new_full",
+    "months": 45,
+    "trades": 374,
+    "corporate_events": 7,
+    "ending_equity": 47817.46,
+    "status": "cash_shares_nav_reconciled"
+  },
+  {
+    "strategy": "new_vol",
+    "months": 45,
+    "trades": 374,
+    "corporate_events": 11,
+    "ending_equity": 43187.979,
+    "status": "cash_shares_nav_reconciled"
+  }
+]

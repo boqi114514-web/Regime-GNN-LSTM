@@ -74,7 +74,8 @@ W_VAL  = 0.20              # 估值因子权重（pe / pb 行业内反向 rank�
 # 主板过滤（只在选股候选阶段生效，不影响 s0-s3 行业轮动训练）
 # 主板：沪市 600/601/603/605，深市 000/001/002/003
 # 双创（创业板 300/301、科创板 688）仍参与行业指数构建，但不进入最终持仓
-MAIN_BOARD_ONLY = True
+# 候选学习保留全市场股票；账户权限只在末端组合模块约束。
+MAIN_BOARD_ONLY = False
 
 # 卡尔曼滤波参数
 KF_GAMMA = 0.2             # beta 日度惯性：调降（原 0.95），让基本面 fund_score 每期主导 80%
@@ -151,6 +152,12 @@ def load_stock_daily():
 def load_industry_daily(df_stock, stock_to_ind):
     """从个股日线计算行业日度收益率（等权），返回 (df, ind_dict) 加速查询"""
     cache_path = os.path.join(OUTPUT_DIR, '_cache_ind_daily.pkl')
+    stock_cache_path = os.path.join(OUTPUT_DIR, '_cache_stock_daily.pkl')
+    # 行业收益依赖个股日线；个股缓存更新后，旧行业缓存必须同步失效。
+    if os.path.exists(cache_path) and os.path.exists(stock_cache_path):
+        if os.path.getmtime(stock_cache_path) > os.path.getmtime(cache_path):
+            print("  检测到个股日线缓存已更新，重建行业日度缓存...")
+            os.remove(cache_path)
     if os.path.exists(cache_path):
         print("  加载行业日度缓存...")
         ind_daily = pd.read_pickle(cache_path)
@@ -450,7 +457,8 @@ def select_stocks_for_month(pred_month, top_industries, stock_dict, ind_dict,
     main_board_only_override: 若不为 None，覆盖全局 MAIN_BOARD_ONLY 设置。
       True  → 强制只选主板；False → 强制不过滤板块。
     """
-    cutoff = pred_month - pd.Timedelta(days=1)
+    # 月末收盘后形成信号、下一交易日执行；可使用信号日已收盘的价量数据。
+    cutoff = pred_month
     lookback_start = cutoff - pd.Timedelta(days=int(BETA_LOOKBACK * 1.6))
 
     year = pred_month.year
@@ -676,6 +684,10 @@ def backtest_stock_portfolio(monthly_selections, stock_dict):
     """回测个股组合：每月初等权建仓，持有一个月"""
     results = []
     prev_holdings = set()
+    latest_data_date = max(
+        (series.index.max() for series in stock_dict.values() if len(series) > 0),
+        default=pd.NaT,
+    )
 
     for month in sorted(monthly_selections['month'].unique()):
         sel = monthly_selections[monthly_selections['month'] == month]
@@ -687,6 +699,10 @@ def backtest_stock_portfolio(monthly_selections, stock_dict):
         # 当月收益：从 month 到 month+1个月
         month_end = month + pd.offsets.MonthEnd(0)
         next_month_end = (month + pd.DateOffset(months=1)) + pd.offsets.MonthEnd(0)
+
+        # 未结束月份只能作为实时 MTD 观察，不能混入完整月回测指标。
+        if pd.isna(latest_data_date) or next_month_end > latest_data_date:
+            continue
 
         stock_rets = []
         for code in stocks:

@@ -26,13 +26,16 @@ from live import state
 
 
 _PKL_MAP = {
+    'fixed_46': 'predictions_ensemble_46.pkl',
+    'fixed_55': 'predictions_ensemble_55.pkl',
+    'fixed_64': 'predictions_ensemble_64.pkl',
     'regime': 'predictions_ensemble.pkl',
     'equal':  'predictions_ensemble_equal.pkl',
 }
 
 
 def _load_current_ensemble(mode: str = ENSEMBLE_MODE) -> pd.DataFrame:
-    fname = _PKL_MAP.get(mode, _PKL_MAP['regime'])
+    fname = _PKL_MAP.get(mode, _PKL_MAP[ENSEMBLE_MODE])
     path = os.path.join(MODELS_CURRENT_DIR, fname)
     if not os.path.exists(path):
         raise FileNotFoundError(
@@ -59,7 +62,7 @@ def infer_latest(top_k: int = TOP_K, mode: str = ENSEMBLE_MODE) -> dict:
     """提取 current 模型最新一个月的 Top-K 预测，缓存并更新 state。
 
     Args:
-        mode: 'regime'（Regime条件集成）或 'equal'（等权集成），默认读 config.ENSEMBLE_MODE
+        mode: 'fixed_46' / 'fixed_55' / 'fixed_64'，默认读 config.ENSEMBLE_MODE
 
     score 语义：s3 的 pred_ensemble = -(w_gnn·rank_gnn + w_lstm·rank_lstm)，取值
     [-N, -1]。我们转成 `score = N + pred_ensemble`，正数且越大越好（N = 当月

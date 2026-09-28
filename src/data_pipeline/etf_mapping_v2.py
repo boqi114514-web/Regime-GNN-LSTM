@@ -31,12 +31,14 @@ _SRC_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SRC_DIR not in sys.path:
     sys.path.insert(0, _SRC_DIR)
 
-from config import LOCAL_DATA_RAW
+from config import LOCAL_DATA_RAW, SW_EXCLUDE
+from data_pipeline.industry_monthly import canonicalize_industry_monthly
 from data_pipeline.tushare_config import get_pro, _call_with_retry
 
 OUTPUT_PATH      = os.path.join(LOCAL_DATA_RAW, 'etf_sw_mapping_v2.csv')
 CACHE_PRICES     = os.path.join(LOCAL_DATA_RAW, '_cache_v2_etf_prices.pkl')
 SW_MONTHLY_PATH  = os.path.join(LOCAL_DATA_RAW, 'ts_sw_industry_monthly.csv')
+CSI_MONTHLY_PATH = os.path.join(LOCAL_DATA_RAW, 'ts_csi300_monthly.csv')
 
 MIN_OBS = 12   # 不足12个月历史的ETF跳过
 
@@ -61,10 +63,13 @@ def fetch_etf_basic(pro):
 # ─────────────────────────────────────────────
 
 def _get_month_end_dates():
-    """从申万行业月度CSV中提取月末交易日列表（已是实际交易日）"""
-    df = pd.read_csv(SW_MONTHLY_PATH)
-    dates = pd.to_datetime(df['date']).dt.strftime('%Y%m%d').unique()
-    return sorted(dates)
+    """用沪深300月线的实际最后交易日，避免向休市日请求 ETF 价格。"""
+    industry_months = set(pd.to_datetime(pd.read_csv(SW_MONTHLY_PATH)['date']).dt.to_period('M'))
+    calendar = pd.read_csv(CSI_MONTHLY_PATH)
+    calendar['date'] = pd.to_datetime(calendar['date'].astype(str), format='%Y%m%d')
+    calendar['ym'] = calendar['date'].dt.to_period('M')
+    calendar = calendar[calendar['ym'].isin(industry_months)]
+    return sorted(calendar['date'].dt.strftime('%Y%m%d').unique())
 
 
 def fetch_etf_prices(pro, refresh=False):
@@ -118,12 +123,10 @@ def load_sw_names(pro):
 
 
 def load_sw_returns():
-    """申万一级行业月度收益率（来自 ts_sw_industry_monthly.csv 的 pct_chg 列）"""
-    df = pd.read_csv(SW_MONTHLY_PATH)
-    df['date'] = pd.to_datetime(df['date'])
-    df = df.sort_values(['ts_code', 'date'])
-    pivot = df.pivot_table(index='date', columns='ts_code', values='pct_chg', aggfunc='last')
-    pivot = pivot / 100.0   # % → 小数
+    """与主回测共用去重后的收盘价收益，避免 pct_chg 混合单位。"""
+    df = canonicalize_industry_monthly(pd.read_csv(SW_MONTHLY_PATH))
+    df = df[~df['ts_code'].isin(SW_EXCLUDE)]
+    pivot = df.pivot_table(index='date', columns='ts_code', values='ret', aggfunc='last')
     # 排除综合指数和非一级行业（保留 801xxx.SI 格式）
     sw_cols = [c for c in pivot.columns if str(c).startswith('8') and str(c).endswith('.SI')]
     return pivot[sw_cols].sort_index()
@@ -154,6 +157,11 @@ def compute_r2_matrix(etf_returns, sw_returns):
     sw.index = sw.index.to_period('M')
     etf = etf_returns.copy()
     etf.index = pd.to_datetime(etf.index).to_period('M')
+
+    # 不同来源可能同时保存“实际最后交易日”和“日历月末”，转成 Period 后
+    # 会形成重复月份；统一取每月最后一条，保证两侧矩阵严格一月一行。
+    sw = sw.groupby(level=0).last().sort_index()
+    etf = etf.groupby(level=0).last().sort_index()
 
     common = sw.index.intersection(etf.index)
     sw = sw.loc[common]

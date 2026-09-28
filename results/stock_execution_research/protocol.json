@@ -1,0 +1,18 @@
+{
+  "stock_score": {
+    "mom12skip1": 0.5,
+    "mom6": 0.3,
+    "lowvol6": 0.2
+  },
+  "ranking": "all SH/SZ boards within historical industry",
+  "minimum_signal_day_amount_thousand": 20000,
+  "starting_cash": 25000,
+  "capital_cap": 25000,
+  "fees": 0,
+  "max_names": 5,
+  "min_names": 4,
+  "max_stock_weight": 0.3,
+  "training_or_tuning": "none at stock selection layer",
+  "comparison": "original sector model versus new full and vol-target; same stock layer",
+  "status": "candidate_generation_only_not_account_returns"
+}

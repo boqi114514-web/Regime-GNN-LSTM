@@ -41,7 +41,7 @@ _SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 if _SRC_DIR not in sys.path:
     sys.path.insert(0, _SRC_DIR)
 
-from config import MODELS_CURRENT_DIR, LOCAL_DATA_RAW, OUTPUT_DIR, TOP_K
+from config import MODELS_CURRENT_DIR, LOCAL_DATA_RAW, OUTPUT_DIR, TOP_K, load_industry_monthly
 
 plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
@@ -59,27 +59,26 @@ RF_ANNUAL        = 0.015   # 年化无风险利率
 
 def load_sw_returns() -> pd.DataFrame:
     """申万行业月度收益率，period 索引，列为 ts_code"""
-    df = pd.read_csv(SW_MONTHLY_PATH)
-    df['date'] = pd.to_datetime(df['date'])
-    pivot = df.pivot_table(index='date', columns='ts_code', values='pct_chg', aggfunc='last') / 100
+    df = load_industry_monthly()
+    pivot = df.pivot_table(index='date', columns='ts_code', values='ret', aggfunc='last')
     sw_cols = [c for c in pivot.columns if str(c).startswith('8') and str(c).endswith('.SI')]
     pivot = pivot[sw_cols].sort_index()
     pivot.index = pivot.index.to_period('M')
-    return pivot
+    return pivot.groupby(level=0).last().sort_index()
 
 
 def load_etf_returns() -> pd.DataFrame:
     """ETF月度收益率，period 索引"""
     prices = pd.read_pickle(ETF_PRICES_PATH)
     prices.index = pd.to_datetime(prices.index).to_period('M')
-    prices = prices.sort_index()
+    prices = prices.groupby(level=0).last().sort_index()
     returns = prices.pct_change(fill_method=None)
     return returns
 
 
-def load_ensemble(fname: str) -> pd.DataFrame:
+def load_ensemble(fname: str, prediction_dir: str = MODELS_CURRENT_DIR) -> pd.DataFrame:
     """加载 predictions_ensemble*.pkl，返回 (period, ts_code) 索引的 pred_ensemble"""
-    path = os.path.join(MODELS_CURRENT_DIR, fname)
+    path = os.path.join(prediction_dir, fname)
     df = pd.read_pickle(path)
     df['date'] = pd.to_datetime(df['date'])
     df['period'] = df['date'].dt.to_period('M')
@@ -153,6 +152,8 @@ def run_backtest(ens: pd.DataFrame, sw_returns: pd.DataFrame,
         if month_data.empty:
             continue
         top = month_data.nlargest(top_k, 'pred_ensemble')['ts_code'].tolist()
+        # 月末信号只能用于下一个月；输出日期标记实际持有月份。
+        return_period = period + 1
 
         # 三种收益计算
         idx_rets, etf_all_rets, etf_hq_rets = [], [], []
@@ -160,30 +161,30 @@ def run_backtest(ens: pd.DataFrame, sw_returns: pd.DataFrame,
 
         for sw_code in top:
             # 行业指数
-            if sw_code in sw_returns.columns and period in sw_returns.index:
-                idx_r = sw_returns.loc[period, sw_code]
+            if sw_code in sw_returns.columns and return_period in sw_returns.index:
+                idx_r = sw_returns.loc[return_period, sw_code]
                 if pd.notna(idx_r):
                     idx_rets.append(float(idx_r))
 
             # ETF（无门槛）
-            etf_r = _get_etf_ret(sw_code, period, etf_map, sw_returns, r2_threshold=0.0)
+            etf_r = _get_etf_ret(sw_code, return_period, etf_map, sw_returns, r2_threshold=0.0)
             etf_all_rets.append(etf_r)
 
             # ETF（高质量门槛）
-            etf_hq_r = _get_etf_ret(sw_code, period, etf_map, sw_returns, r2_threshold=r2_threshold)
+            etf_hq_r = _get_etf_ret(sw_code, return_period, etf_map, sw_returns, r2_threshold=r2_threshold)
             etf_hq_rets.append(etf_hq_r)
 
             # 统计真实用了ETF而非退回指数的比例
             if sw_code in etf_map:
                 for r2, code, ret_series in etf_map[sw_code]:
-                    if period in ret_series.index and pd.notna(ret_series[period]):
+                    if return_period in ret_series.index and pd.notna(ret_series[return_period]):
                         n_etf_used += 1
                         break
 
-        results['index'][period]   = np.nanmean(idx_rets)   if idx_rets   else np.nan
-        results['etf_all'][period] = np.nanmean([r for r in etf_all_rets if pd.notna(r)]) if etf_all_rets else np.nan
-        results['etf_hq'][period]  = np.nanmean([r for r in etf_hq_rets  if pd.notna(r)]) if etf_hq_rets  else np.nan
-        coverage[period] = n_etf_used / top_k
+        results['index'][return_period]   = np.nanmean(idx_rets)   if idx_rets   else np.nan
+        results['etf_all'][return_period] = np.nanmean([r for r in etf_all_rets if pd.notna(r)]) if etf_all_rets else np.nan
+        results['etf_hq'][return_period]  = np.nanmean([r for r in etf_hq_rets  if pd.notna(r)]) if etf_hq_rets  else np.nan
+        coverage[return_period] = n_etf_used / top_k
 
     coverage_rate = np.mean(list(coverage.values()))
     print(f'  ETF 数据覆盖率（Top-K 有 ETF 数据的月份比例）：{coverage_rate:.1%}')
@@ -235,7 +236,8 @@ def nav_from_returns(ret: pd.Series) -> pd.Series:
 # 主流程
 # ─────────────────────────────────────────────
 
-def main(top_k: int = TOP_K, r2_threshold: float = 0.85):
+def main(top_k: int = TOP_K, r2_threshold: float = 0.85,
+         prediction_dir: str = MODELS_CURRENT_DIR):
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
     print('加载数据...')
@@ -243,8 +245,8 @@ def main(top_k: int = TOP_K, r2_threshold: float = 0.85):
     etf_returns = load_etf_returns()
     mapping = load_mapping()
 
-    ens_regime = load_ensemble('predictions_ensemble.pkl')
-    ens_equal  = load_ensemble('predictions_ensemble_equal.pkl')
+    ensembles = {code: load_ensemble(f'predictions_ensemble_{code}.pkl', prediction_dir)
+                 for code in ('46', '55', '64')}
 
     print('构建ETF收益映射...')
     etf_map = build_etf_return_map(mapping, etf_returns)
@@ -252,23 +254,25 @@ def main(top_k: int = TOP_K, r2_threshold: float = 0.85):
     print(f'\n回测参数: Top-{top_k}  R²阈值={r2_threshold}')
     print('=' * 60)
 
-    print('\n[Regime集成]')
-    res_r = run_backtest(ens_regime, sw_returns, etf_map, top_k, r2_threshold)
-
-    print('\n[等权集成]')
-    res_e = run_backtest(ens_equal, sw_returns, etf_map, top_k, r2_threshold)
+    results = {}
+    for code, ensemble in ensembles.items():
+        print(f'\n[固定 {code[0]}:{code[1]} 集成]')
+        results[code] = run_backtest(ensemble, sw_returns, etf_map,
+                                     top_k, r2_threshold)
 
     # 公共时段
-    all_periods = sorted(set(res_r['index'].index) | set(res_e['index'].index))
+    all_periods = sorted(set().union(*(set(result['index'].index)
+                                      for result in results.values())))
     bench = build_benchmark(sw_returns, all_periods)
 
     # NAV 序列
     strategies = {
         '等权基准':         bench,
-        'Regime-指数':      res_r['index'],
-        'Regime-ETF':       res_r['etf_all'],
-        f'Regime-ETF(R²≥{r2_threshold})': res_r['etf_hq'],
-        '等权集成-ETF':     res_e['etf_all'],
+        '固定4:6-指数': results['46']['index'],
+        '固定4:6-ETF': results['46']['etf_all'],
+        f'固定4:6-ETF(R²≥{r2_threshold})': results['46']['etf_hq'],
+        '固定5:5-ETF': results['55']['etf_all'],
+        '固定6:4-ETF': results['64']['etf_all'],
     }
 
     # 绩效表
@@ -284,24 +288,26 @@ def main(top_k: int = TOP_K, r2_threshold: float = 0.85):
     # ── 绘图 ──────────────────────────────────────────────────
     fig, axes = plt.subplots(2, 1, figsize=(13, 9),
                              gridspec_kw={'height_ratios': [3, 1]})
-    fig.suptitle(f'ETF执行回测  Top-{top_k}  (Regime集成 vs 等权集成 vs 行业指数)',
+    fig.suptitle(f'ETF执行回测  Top-{top_k}  (固定4:6 / 5:5 / 6:4)',
                  fontsize=14, fontweight='bold')
 
     ax_nav, ax_dd = axes
 
     colors = {
         '等权基准':         '#888888',
-        'Regime-指数':      '#2166ac',
-        'Regime-ETF':       '#d73027',
-        f'Regime-ETF(R²≥{r2_threshold})': '#f46d43',
-        '等权集成-ETF':     '#1a9850',
+        '固定4:6-指数': '#2166ac',
+        '固定4:6-ETF': '#d73027',
+        f'固定4:6-ETF(R²≥{r2_threshold})': '#f46d43',
+        '固定5:5-ETF': '#1a9850',
+        '固定6:4-ETF': '#984ea3',
     }
     styles = {
         '等权基准':         '--',
-        'Regime-指数':      '-',
-        'Regime-ETF':       '-',
-        f'Regime-ETF(R²≥{r2_threshold})': '-.',
-        '等权集成-ETF':     '-',
+        '固定4:6-指数': '-',
+        '固定4:6-ETF': '-',
+        f'固定4:6-ETF(R²≥{r2_threshold})': '-.',
+        '固定5:5-ETF': '-',
+        '固定6:4-ETF': '-',
     }
 
     all_navs = {}
@@ -319,17 +325,17 @@ def main(top_k: int = TOP_K, r2_threshold: float = 0.85):
     ax_nav.grid(alpha=0.3)
     ax_nav.set_title('')
 
-    # 回撤（Regime-ETF）
-    nav_r = all_navs['Regime-ETF'].dropna()
+    # 回撤（固定 4:6 与 5:5 ETF）
+    nav_r = all_navs['固定4:6-ETF'].dropna()
     peak_r = nav_r.cummax()
     dd_r = (nav_r - peak_r) / peak_r
     ax_dd.fill_between(dd_r.index.to_timestamp(), dd_r.values, 0,
-                       alpha=0.5, color='#d73027', label='Regime-ETF 回撤')
-    nav_e = all_navs['等权集成-ETF'].dropna()
+                       alpha=0.5, color='#d73027', label='固定4:6-ETF 回撤')
+    nav_e = all_navs['固定5:5-ETF'].dropna()
     peak_e = nav_e.cummax()
     dd_e = (nav_e - peak_e) / peak_e
     ax_dd.fill_between(dd_e.index.to_timestamp(), dd_e.values, 0,
-                       alpha=0.35, color='#1a9850', label='等权集成-ETF 回撤')
+                       alpha=0.35, color='#1a9850', label='固定5:5-ETF 回撤')
     ax_dd.set_ylabel('回撤', fontsize=11)
     ax_dd.legend(fontsize=9)
     ax_dd.grid(alpha=0.3)
@@ -377,5 +383,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--topk', type=int, default=TOP_K)
     parser.add_argument('--r2-threshold', type=float, default=0.85)
+    parser.add_argument('--prediction-dir', default=MODELS_CURRENT_DIR,
+                        help='预测 pkl 所在目录；本次重训可指定 results')
     args = parser.parse_args()
-    main(top_k=args.topk, r2_threshold=args.r2_threshold)
+    main(top_k=args.topk, r2_threshold=args.r2_threshold,
+         prediction_dir=args.prediction_dir)

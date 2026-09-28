@@ -293,7 +293,14 @@ def predict_gat(model, data_list):
 #  Walk-Forward 主循环
 # ============================================================
 
-def main():
+def normalize_gnn_features(frame, feature_cols, regime_cols):
+    """Normalize industry-varying inputs without erasing shared state inputs."""
+    return zscore_cross_section(frame, [c for c in feature_cols if c not in regime_cols])
+
+
+def main(regime_df=None, output_dir=None):
+    output_dir = output_dir or OUTPUT_DIR
+    os.makedirs(output_dir, exist_ok=True)
     t0 = time.time()
     print("=" * 60)
     print("  GNN 分支：GAT + GLASSO 行业基本面联动")
@@ -302,32 +309,25 @@ def main():
     # 加载数据
     print("\n加载数据...")
     mkt = load_industry_monthly()
+    mkt = mkt.sort_values(['ts_code', 'date']).copy()
+    mkt['fwd_ret'] = mkt.groupby('ts_code')['ret'].shift(-1)
     prosperity = load_prosperity_monthly()
     industries = get_industries(mkt)
     n_industries = len(industries)
     print(f"  行业数: {n_industries}")
 
-    # 加载 regime 标签
-    regime_path = os.path.join(OUTPUT_DIR, 'regime_labels.pkl')
-    if os.path.exists(regime_path):
-        regime_df = pd.read_pickle(regime_path)
-        regime_df['date'] = pd.to_datetime(regime_df['date'])
-        print(f"  Regime: {len(regime_df)} 月, "
-              f"{regime_df['date'].min().strftime('%Y-%m')} ~ "
-              f"{regime_df['date'].max().strftime('%Y-%m')}")
-        has_regime = True
-    else:
-        print("  警告：未找到 regime_labels.pkl，不使用 regime 特征")
-        has_regime = False
+    # 默认仍为无 HMM；原架构实验必须显式传入，避免读入磁盘旧标签。
+    has_regime = regime_df is not None
 
     # 合并景气度指标到月度数据
     mkt_merged = pd.merge(
-        mkt[['ts_code', 'date', 'year', 'month', 'ret', 'pe', 'pb']],
+        mkt[['ts_code', 'date', 'year', 'month', 'ret', 'fwd_ret', 'pe', 'pb']],
         prosperity,
         on=['ts_code', 'year', 'month'],
         how='inner'
     )
     mkt_merged = mkt_merged.sort_values(['date', 'ts_code']).reset_index(drop=True)
+    # fwd_ret 在完整行情中构造，避免景气度缺月时错配非相邻月份。
 
     # 添加 PE/PB 分位数（60个月滚动）
     for col in ['pe', 'pb']:
@@ -335,31 +335,25 @@ def main():
             lambda x: x.rolling(60, min_periods=12).rank(pct=True)
         )
 
-    # 合并 regime（one-hot 编码，对所有行业广播同一个月的 regime）
+    regime_cols = []
     if has_regime:
-        regime_onehot = pd.get_dummies(regime_df[['date', 'regime']],
-                                        columns=['regime'], prefix='regime')
-        # 确保4个 regime 列都存在
-        for i in range(4):
-            col = f'regime_{i}'
-            if col not in regime_onehot.columns:
-                regime_onehot[col] = 0
         regime_cols = [f'regime_{i}' for i in range(4)]
-        mkt_merged = pd.merge(mkt_merged, regime_onehot[['date'] + regime_cols],
-                               on='date', how='left')
-        # 未覆盖的月份填0
-        for col in regime_cols:
-            mkt_merged[col] = mkt_merged[col].fillna(0).astype(float)
-    else:
-        regime_cols = []
+        states = regime_df[['date', 'regime']].copy()
+        states['date'] = pd.to_datetime(states['date'])
+        for i, col in enumerate(regime_cols):
+            states[col] = states['regime'].eq(i).astype(float)
+        mkt_merged = mkt_merged.merge(states[['date'] + regime_cols],
+                                    on='date', how='left', validate='many_to_one')
+        mkt_merged[regime_cols] = mkt_merged[regime_cols].fillna(0.0)
 
     # 特征列
     feature_cols = SELECTED_INDICATORS + ['pe_pctile', 'pb_pctile'] + regime_cols
     in_features = len(feature_cols)
-    print(f"  GNN 特征数: {in_features} (含 {len(regime_cols)} 个 regime 特征)")
+    print(f"  GNN 特征数: {in_features} (含 {len(regime_cols)} 个 HMM 状态特征)")
 
     # 截面 z-score
-    mkt_merged = zscore_cross_section(mkt_merged, feature_cols)
+    # 同月状态对各行业相同，不能截面标准化，否则独热列全部变为零。
+    mkt_merged = normalize_gnn_features(mkt_merged, feature_cols, regime_cols)
 
     # 所有可用月份
     available_months = sorted(mkt_merged['date'].unique())
@@ -376,7 +370,9 @@ def main():
     all_preds = []
 
     n_windows = 0
-    for start_idx in range(0, len(available_months) - total_window - PREDICT_MONTHS + 1, STEP_MONTHS):
+    # 只要训练+验证窗后仍有月份就运行；最后不足 PREDICT_MONTHS 的尾窗
+    # 也必须保留，否则最新 1~2 个月会被静默漏掉。
+    for start_idx in range(0, len(available_months) - total_window, STEP_MONTHS):
         train_months = available_months[start_idx:start_idx + TRAIN_MONTHS]
         val_months = available_months[start_idx + TRAIN_MONTHS:start_idx + total_window]
         pred_months = available_months[start_idx + total_window:
@@ -411,7 +407,7 @@ def main():
                 adj_t = torch.tensor(adj)
 
                 if need_returns:
-                    ret = m_data['ret'].values.astype(np.float32)
+                    ret = m_data['fwd_ret'].values.astype(np.float32)
                     ret = np.nan_to_num(ret, nan=0.0)
                     ret_t = torch.tensor(ret)
                     data.append((feat_t, adj_t, ret_t))
@@ -419,8 +415,9 @@ def main():
                     data.append((feat_t, adj_t))
             return data
 
-        train_data = month_to_tensors(train_months, need_returns=True)
-        val_data = month_to_tensors(val_months, need_returns=True)
+        # 边界月的下一月收益在当时尚不可得，不得用于拟合或验证。
+        train_data = month_to_tensors(train_months[:-1], need_returns=True)
+        val_data = month_to_tensors(val_months[:-1], need_returns=True)
         pred_data = month_to_tensors(pred_months, need_returns=False)
 
         if len(train_data) < 20 or len(val_data) < 3:
@@ -465,10 +462,12 @@ def main():
             avg_score = -avg_rank  # 排名越小分数越高
 
             # 获取实际收益
+            # 标签来自完整行情，而非基本面 inner-merge 后的稀疏面板。
+            # 否则有行情但缺基本面的一些行业会被错误标成“无收益”。
             m_actual = mkt[mkt['date'] == m].set_index('ts_code').reindex(industries)
 
             for i, code in enumerate(industries):
-                actual_ret = m_actual.loc[code, 'ret'] if code in m_actual.index else np.nan
+                actual_ret = m_actual.loc[code, 'fwd_ret'] if code in m_actual.index else np.nan
                 all_preds.append({
                     'ts_code': code,
                     'date': m,
@@ -479,9 +478,8 @@ def main():
     # 保存结果
     pred_df = pd.DataFrame(all_preds)
     pred_df['date'] = pd.to_datetime(pred_df['date'])
-    pred_df = pred_df.dropna(subset=['actual_ret'])
 
-    out_path = os.path.join(OUTPUT_DIR, 'predictions_gnn.pkl')
+    out_path = os.path.join(output_dir, 'predictions_gnn.pkl')
     pred_df.to_pickle(out_path)
     pred_df.to_csv(out_path.replace('.pkl', '.csv'), index=False, encoding='utf-8-sig')
 
@@ -528,7 +526,7 @@ def main():
             'pred_end_month': pd.Timestamp(pred_months[-1]).strftime('%Y-%m-%d'),
             'ret_pivot': ret_pivot.tail(GLASSO_ROLLING_MONTHS * 2).copy(),
         }
-        _state_path = os.path.join(OUTPUT_DIR, 'gnn_inference_state.pkl')
+        _state_path = os.path.join(output_dir, 'gnn_inference_state.pkl')
         with open(_state_path, 'wb') as _f:
             _pkl.dump(infer_state, _f, protocol=4)
         print(f"  GNN 推理状态已保存 → {_state_path}")
