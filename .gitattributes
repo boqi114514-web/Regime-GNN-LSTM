@@ -1,0 +1,4 @@
+# Preserve audited CSV bytes across Windows/Linux checkouts (verification SHA-256).
+results/leadership_research/*.csv -text whitespace=cr-at-eol
+results/market_state_research/*.csv -text whitespace=cr-at-eol
+results/market_state_board_complete/*.csv -text whitespace=cr-at-eol

@@ -1,0 +1,27 @@
+[
+  {
+    "strategy": "baseline_replay",
+    "account_sha256": "9c0a1175415c3871989dda9f6ca8f001b472ced51ecfb0d53038cf40d1219a1a",
+    "offline_identical": true
+  },
+  {
+    "strategy": "state_onset",
+    "account_sha256": "c5682e262634e023ebb0e533972062b4a8e3050a8a0d5704ed4a244159f6c7f3",
+    "offline_identical": true
+  },
+  {
+    "strategy": "soft_size",
+    "account_sha256": "5cabe7e82c00c3a2f188fad5b9e425638c6c38e0f405b598ed5387300c3b8ca9",
+    "offline_identical": true
+  },
+  {
+    "strategy": "leader_override",
+    "account_sha256": "0966d097ab6c237f274123cf66cde629557263b88c4b01d3e2324e09470684b9",
+    "offline_identical": true
+  },
+  {
+    "strategy": "soft_leader",
+    "account_sha256": "5429c3ef8b73ae8b1c7f84c17254a634ecfbbb7bb44ba92ca3ce9effb07760d4",
+    "offline_identical": true
+  }
+]

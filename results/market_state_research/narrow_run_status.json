@@ -1,0 +1,12 @@
+[
+  {
+    "strategy": "narrow_leader",
+    "status": "complete",
+    "ending_equity": 26306.300000000003
+  },
+  {
+    "strategy": "narrow_heat",
+    "status": "complete",
+    "ending_equity": 58138.9
+  }
+]

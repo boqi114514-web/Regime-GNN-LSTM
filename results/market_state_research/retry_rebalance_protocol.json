@@ -1,0 +1,10 @@
+{
+  "variants": [
+    "state_onset_retry",
+    "narrow_heat_retry"
+  ],
+  "purpose": "Correct deferred monthly liquidation; isolate execution from selection changes",
+  "rule": "If planned month-start sale cannot execute, keep a sell order for subsequent executable openings; retain full gap/limit risk; no mid-month replacement buys",
+  "unchanged": "All selection signals, budget, exit thresholds and current source prices",
+  "baseline": "state_onset and narrow_heat retain historical once-monthly blocked-sale convention for attribution"
+}

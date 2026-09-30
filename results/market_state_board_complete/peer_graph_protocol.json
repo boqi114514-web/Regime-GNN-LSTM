@@ -1,0 +1,15 @@
+{
+  "variants": [
+    "peer_graph_retry"
+  ],
+  "stage": "Exploratory follow-up, all 45 months already examined; no unseen-test claim",
+  "hypothesis": "Dated L2 industries can contain several unrelated subtrends; shared price behavior identifies a narrower contemporary peer group",
+  "graph": "Within each signal-date historical L2, correlate the last 12 complete calendar-month adjusted returns; no future rows; exclude self; strongest up to 10 peers with Pearson correlation>=.5; at least 4 required",
+  "features": "Equal-weight peer median adjusted mom1/mom3/mom6, positive-mom3 fraction; all candidate SH/SZ boards participate",
+  "score": "Peer composite = .2 rank(peer mom1)+.5 rank(peer mom3)+.3 rank(peer mom6); final score=.5 peer composite+.5 existing fast stock score",
+  "gate": "Own and peer mom1/mom3/mom6 positive, peer breadth>=.6, peer composite in highest 20%; classify advance",
+  "routing": "Replace selection only when L1 positive 3-month breadth<50% and a qualifying peer-group candidate exists; unchanged state_onset otherwise",
+  "unchanged": "Original state_onset exposure, monthly entry, original daily next-open exits, deferred sells, 25000 initial/new-investment cap, whole lots, no topups, mainboard purchases only, zero fees",
+  "source": "https://arxiv.org/abs/2110.13716",
+  "note": "Shared-information motivation only, not a HIST implementation; graph is linear correlation, not a trained GNN"
+}

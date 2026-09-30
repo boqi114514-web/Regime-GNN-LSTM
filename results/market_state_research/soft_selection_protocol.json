@@ -1,0 +1,17 @@
+{
+  "stage": "Third-stage exploration after state_onset results; all history previously examined",
+  "variants": [
+    "soft_size",
+    "leader_override",
+    "soft_leader"
+  ],
+  "fixed_before_new_account_results": true,
+  "unchanged": "state_onset exposure, whole-lot allocation, 25000 cap, monthly entry, next-open stops, all 45 months",
+  "soft_size": "Remove size-bucket eligibility gate; .95 existing leadership score + .05 preferred-style indicator",
+  "leader_override": "Keep size gate; allow strong stocks through retreat and promote range/retreat to advance",
+  "strong": "mom1>0, mom3>15%, mom6>0, within-month all-board mom3 percentile>=85%; L2 >=5 stocks, median mom3>0 and positive-mom3 breadth>55%",
+  "strong_score": "Same pre-existing advance score: .75*(.55 fast+.25 peer+.20 original)+.25 sector_rank",
+  "soft_leader": "Combine soft_size and leader_override; no stock/theme/month whitelist",
+  "overheat": "Keep existing overheat exclusion; no observation so far",
+  "evaluation": "All years, all months, daily drawdown and 7500 profit target; publish failures too"
+}

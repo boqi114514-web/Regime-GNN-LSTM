@@ -1,0 +1,17 @@
+{
+  "trigger": "User clarified target: rally-month profit >= 7500 RMB, profit divided by fixed 25000 budget, not total-account return",
+  "stage": "Exploratory second-stage proposals after sector 50/50 test; no untouched holdout claim",
+  "fixed_before_account_results": true,
+  "variants": ["conviction50", "conviction80"],
+  "sector_signal": "50% existing Ridge/LightGBM + 50% 1/3/6-month trend; top 5 with unchanged inertia",
+  "stock_score": "25% selected-sector rank + 37.5% original within-sector stock score + 37.5% new global peer/momentum stock score",
+  "stock_caps": [0.5, 0.8],
+  "sector_caps": [0.75, 0.8],
+  "names": [2, 3],
+  "max_names_per_L1": 2,
+  "capital_cap": 25000,
+  "initial_cash": 25000,
+  "no_external_topups": true,
+  "execution": "Same next-open, main-board, integer-lot ledger and corporate-action checks",
+  "evaluation": "All 45 months, all calendar years, Q2 2026 target-hit months, worst monthly loss; no ticker whitelist and no ex-post rally regime label"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "strategy": "baseline_replay",
+    "account_sha256": "9c0a1175415c3871989dda9f6ca8f001b472ced51ecfb0d53038cf40d1219a1a",
+    "offline_identical": true
+  },
+  {
+    "strategy": "baseline_stops",
+    "account_sha256": "1887a611ebfc1143cc85bac35cf4018985361242bfa8cbbed2f906a0cb04b193",
+    "offline_identical": true
+  },
+  {
+    "strategy": "state_only",
+    "account_sha256": "939c029bcefda32179ead73a0292946b42b511be4e6e74b33f3fd87af94237d1",
+    "offline_identical": true
+  },
+  {
+    "strategy": "state_stops",
+    "account_sha256": "97357e6bc67fb31479cc3571d41af92a8c4cf5c8aaaef021a12c0fe03a1fe6bf",
+    "offline_identical": true
+  },
+  {
+    "strategy": "core_stops",
+    "account_sha256": "f22b9a2b4581db62dce4a05852814869ecc383f2e512eea76003c579cff5b25b",
+    "offline_identical": true
+  },
+  {
+    "strategy": "state_onset",
+    "account_sha256": "c5682e262634e023ebb0e533972062b4a8e3050a8a0d5704ed4a244159f6c7f3",
+    "offline_identical": true
+  },
+  {
+    "strategy": "small_stops",
+    "account_sha256": "e1f056717a2c7d7daa3d96f6d77a176a3f87f449687ee454828936d96ff4aff5",
+    "offline_identical": true
+  }
+]

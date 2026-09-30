@@ -1,0 +1,15 @@
+{
+  "layer": "industry only, no individual stocks or integer lots",
+  "trend": ".5 rank(mom3) + .3 rank(mom6) + .2 rank(mom1)",
+  "trend_weights": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "top_k": 5,
+  "inertia": 0.2,
+  "stage": "additional exploration after inspecting the unblended trend result; no holdout claim",
+  "source": "verified monthly index closes; signal t predicts holding month t+1"
+}

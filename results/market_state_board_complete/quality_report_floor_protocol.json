@@ -1,0 +1,18 @@
+{
+  "variants": [
+    "state_report_quality_retry",
+    "daily_report_quality_retry"
+  ],
+  "stage": "Exploratory follow-up after a loss-making-company limit-down event in daily-pressure replay; not untouched validation",
+  "gate": "Latest available reported YTD attributable net profit>0 AND latest available attributable net assets>0; missing/stale report (>450 days) means ineligible",
+  "timing": "Snapshot at the previous monthly signal trading date; each statement becomes usable one calendar day after max(ann_date,f_ann_date); later statements/revisions cannot enter earlier snapshots",
+  "ttm": "TTM is diagnostic only, not used by this separate variant",
+  "scope": "Same generic gate for every stock and every year; no ticker, theme, ST-event-date or 2026-month whitelist",
+  "ranking": "No change to technical ranking, risk exposure, lot allocation or stop rules; fundamental data is only an eligibility floor",
+  "state_quality": "Gate the existing state_onset monthly candidates",
+  "daily_quality": "Same monthly floor, plus unchanged daily_pressure supplementary entries with the same previous-month floor",
+  "inputs": "Existing local original consolidated statements (report_type=1), dated availability; not a certified historical vendor-release archive",
+  "costs": "25000 initial/new-investment cap, no topups, zero costs, mainboard whole-lot buys",
+  "motivation": "Before any quality-account run, TTM coverage audit found only 378 local 2025 annual reports; gateway income_vip unavailable and income bulk query failed. Do not silently fill missing TTM or loosen its guard. This variant tests the separate latest-reported-profit rule, not TTM.",
+  "limitation": "YTD profit has seasonality and one-off items; this is a minimal loss-making-company screen, not a financial-distress predictor"
+}

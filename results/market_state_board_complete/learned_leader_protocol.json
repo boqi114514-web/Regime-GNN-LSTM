@@ -1,0 +1,49 @@
+{
+  "stage": "Exploration on previously examined history; no claim of untouched test",
+  "variants": [
+    "learned_leader_retry"
+  ],
+  "model": {
+    "n_estimators": 120,
+    "learning_rate": 0.03,
+    "num_leaves": 7,
+    "max_depth": 3,
+    "min_child_samples": 1000,
+    "reg_lambda": 50.0,
+    "n_jobs": 2,
+    "verbosity": -1,
+    "random_state": 42,
+    "deterministic": true,
+    "force_col_wise": true
+  },
+  "features": [
+    "mom1",
+    "mom3",
+    "mom6",
+    "mom12skip1",
+    "lowvol6",
+    "score",
+    "sector_rank",
+    "peer_rank",
+    "size_rank",
+    "high_proximity12",
+    "efficiency6",
+    "amount_expansion",
+    "relative_mom3",
+    "l2_breadth",
+    "l2_median",
+    "market_mom1",
+    "market_mom3",
+    "market_mom6",
+    "market_breadth",
+    "market_amount_ratio"
+  ],
+  "target": "Next calendar-month adjusted close-to-close cross-sectional return rank minus .5; not a fill-price return",
+  "training": "Rolling 36 signal months, at least 12 matured signal months, quarterly refit, label month <= month before first prediction; no random time split",
+  "weighting": "Each training month has equal total sample weight",
+  "fallback": "Use unchanged state_onset selection until 12 historical label months are available",
+  "selection": "All boards participate in training and prediction; positive predicted relative-return scores are eligible, divided by same-month maximum for MILP numerical scale; no industry-phase or size-bucket gate",
+  "exits": "Own mom1>0 and mom3>0 uses advance rules; other selected stocks use range rules",
+  "unchanged": "Monthly entries, state_onset exposure, corrected deferred liquidation, 25000 cap, no topups, existing mainboard/whole-lot execution and exit thresholds",
+  "missing_labels": "Missing future prices are not filled; retain coverage audit; no label from current/future prediction window"
+}

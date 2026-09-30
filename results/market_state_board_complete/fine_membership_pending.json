@@ -1,0 +1,6 @@
+[
+  {
+    "l1_code": "801780.SI",
+    "error": "801780.SI: ['index_member_all: transport ReadTimeout', 'Empty or incomplete membership response', 'index_member_all: HTTP 400', 'index_member_all: HTTP 400', 'index_member_all: HTTP 503', 'index_member_all: HTTP 503', 'Empty or incomplete membership response']"
+  }
+]

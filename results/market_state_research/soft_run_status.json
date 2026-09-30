@@ -1,0 +1,17 @@
+[
+  {
+    "strategy": "soft_size",
+    "status": "complete",
+    "ending_equity": 57360.51
+  },
+  {
+    "strategy": "leader_override",
+    "status": "complete",
+    "ending_equity": 42016.41
+  },
+  {
+    "strategy": "soft_leader",
+    "status": "complete",
+    "ending_equity": 36990.91
+  }
+]

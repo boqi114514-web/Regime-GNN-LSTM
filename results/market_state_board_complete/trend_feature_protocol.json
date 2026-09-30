@@ -1,0 +1,18 @@
+{
+  "stage": "Exploration on already examined 2023-2026 history; not untouched validation",
+  "variants": [
+    "trend_features_retry",
+    "trend_open_retry"
+  ],
+  "hypothesis": "Separate persistent individual leadership from sector and size hard gates",
+  "features": "Adjusted monthly-close proximity to 12-month endpoint high; signed 6-month log-price path efficiency; L2-relative 3-month momentum; mean daily amount / preceding 3-month mean",
+  "score": "30% mom3 rank + 15% mom6 rank + 15% high proximity rank + 15% path efficiency rank + 15% L2-relative rank + 10% amount expansion rank",
+  "rescore": "trend_features_retry preserves existing size and phase eligibility; replaces score only",
+  "open": "trend_open_retry also admits stocks with mom1>0, mom3>0, mom3 percentile>=85%, high proximity>=.9 and efficiency>0; admitted stocks use advance exits",
+  "missing": "A missing feature receives neutral .5 rank; missing high/efficiency cannot unlock the gate; no backward fill",
+  "unchanged": "Monthly entry, state_onset exposure, corrected deferred sells, existing whole-lot optimizer, 25000 initial/cap, zero costs, no topups, mainboard purchases only",
+  "sources": [
+    "https://github.com/microsoft/qlib/blob/main/qlib/contrib/data/loader.py",
+    "https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.2004.00695.x"
+  ]
+}

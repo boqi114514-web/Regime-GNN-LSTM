@@ -1,0 +1,9 @@
+{
+  "variant": "daily_pressure_retry",
+  "status": "completed",
+  "started_utc": "2026-09-30T04:30:14.887417+00:00",
+  "account_complete": true,
+  "months": 45,
+  "ending_equity": 48298.91,
+  "finished_utc": "2026-09-30T04:32:06.458005+00:00"
+}

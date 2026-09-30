@@ -1,0 +1,40 @@
+{
+  "hypothesis": "Hard L1 gate, slow defensive stock ranks, and 30% lot ceiling miss persistent leaders",
+  "scope": "2023-01 to 2026-09-24, all previously examined; not untouched out-of-sample",
+  "fast_score": {
+    "mom3_rank": 0.5,
+    "mom6_rank": 0.3,
+    "mom1_rank": 0.2
+  },
+  "peer_score": "75% fast score + 25% contemporaneous historical L2 median 3-month momentum rank",
+  "standard": {
+    "stock_cap": 0.3,
+    "l1_cap": 0.6,
+    "names": [
+      4,
+      5
+    ],
+    "max_names_per_l1": 2
+  },
+  "flexible": {
+    "stock_cap": 0.5,
+    "l1_cap": 0.75,
+    "names": [
+      2,
+      4
+    ],
+    "max_names_per_l1": 2
+  },
+  "universe": "Same original candidate rows; all boards in ranking; main board only in execution",
+  "optimizer": "Top 120 feasible scores; maximize sum(score**4 * invested_amount); no theme whitelist",
+  "variants": [
+    "fast_sector",
+    "global_fast",
+    "global_peer",
+    "global_peer_flexible"
+  ],
+  "fees": 0,
+  "capital_cap": 25000,
+  "selection": "Publish every variant and every year, do not select on 2026Q2 alone",
+  "attribution": "fast_sector isolates stock score; global variants also change allocation objective and concentration"
+}

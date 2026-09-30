@@ -1,0 +1,23 @@
+{
+  "candidate": "daily_guarded_retry",
+  "fixed_comparison_reference": "state_onset_retry",
+  "period": ["2023-01-01", "2026-09-24"],
+  "months": 45,
+  "trading_days": 905,
+  "initial_cash": 25000,
+  "new_investment_cap": 25000,
+  "ending_equity": 73537.51,
+  "profit_improvement": 14898.0,
+  "profit_improvement_2026": -48.0,
+  "target_hit_months": 3,
+  "april_may_2026_target_achieved": false,
+  "absolute_drawdown_improved": false,
+  "independent_daily_reconciliation": "passed",
+  "offline_all_month_replay": "passed",
+  "original_monthly_universe_and_scores_unchanged": true,
+  "daily_reentry_buys_verified": 30,
+  "tests_passed": 106,
+  "selection_stage": "Exploratory, repeatedly viewed history; not a fresh holdout",
+  "production_default_changed": false,
+  "github_pushed": false
+}

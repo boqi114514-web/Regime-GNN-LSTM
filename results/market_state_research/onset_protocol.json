@@ -1,0 +1,10 @@
+{
+  "variant": "state_onset",
+  "stage": "Second-stage exploration after completed state_stops/state_only/core_stops results; not independent holdout",
+  "hypothesis": "Persistent two-state clustering can keep normal broad early rallies at 35% exposure; add contemporaneous broadening/turnover onset override",
+  "change_only": "Override risk exposure to 100% when industry median mom1>0, fraction industries positive mom3>0.55, and market daily-average turnover / its trailing 6-month average >1.05",
+  "unchanged": "Same stock scores, historical size-style switching, 1-5 names with single-stock 100% permitted, daily exit rules, 25000 investment cap",
+  "timing": "All three onset inputs known at previous month end; no realized holding-month data",
+  "evaluation": "All 45 months and all years; compare against state_stops including 2026 July and 2025 missed rallies; no selective month substitution",
+  "fixed_before_this_variant_account_results": true
+}

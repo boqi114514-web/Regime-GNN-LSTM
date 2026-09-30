@@ -1,0 +1,9 @@
+{
+  "variant": "daily_report_quality_retry",
+  "status": "completed",
+  "started_utc": "2026-09-30T04:34:11.082054+00:00",
+  "account_complete": true,
+  "months": 45,
+  "ending_equity": 60852.61,
+  "finished_utc": "2026-09-30T04:37:42.539795+00:00"
+}

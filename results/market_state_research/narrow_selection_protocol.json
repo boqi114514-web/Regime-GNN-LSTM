@@ -1,0 +1,16 @@
+{
+  "stage": "Fourth-stage exploration after all three soft-selection accounts; not an unseen test",
+  "variants": [
+    "narrow_leader",
+    "narrow_heat"
+  ],
+  "fixed_before_new_account_results": true,
+  "hypothesis": "Unconditional fast ranking hurts broad/ordinary markets; local leadership must bypass both sector and size penalties only in narrow markets",
+  "narrow": "Previous-month fraction of positive-three-month L1 industries <50%",
+  "strong": "mom1>0, mom3>15%, mom6>0, all-board mom3 percentile>=85%, L2 count>=5; either L2 median>0 and breadth>55%, or stock mom3 exceeds L2 median by >=20pp",
+  "score": "For promoted stocks only: .60 fast_score + .40 within-month rank(stock mom3 - L2 median mom3); no L1 penalty",
+  "eligibility": "Preserve state_onset size/phase gate for other stocks; promoted stocks may bypass it and use advance exits",
+  "heat_ablation": "narrow_heat excludes stocks with mom3>150% AND mom1>30% only in narrow markets; narrow_leader has no new heat exclusion",
+  "unchanged": "state_onset exposure, 25000 initial and investment cap, no topup, all original exit thresholds, whole-lot mainboard execution",
+  "evaluation": "All 45 months, every year and daily drawdown, not just 2026 April-May"
+}

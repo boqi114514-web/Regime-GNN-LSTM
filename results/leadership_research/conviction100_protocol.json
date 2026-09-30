@@ -1,0 +1,19 @@
+{
+  "trigger": "User allows the full 25000 RMB budget in one stock, without mandatory diversification",
+  "interpretation": "25000 remains the total investment cap; only stock/industry concentration restrictions are removed",
+  "stage": "Exploratory; same previously examined history, not an untouched holdout",
+  "fixed_before_account_results": true,
+  "variant": "conviction100",
+  "sector_signal": "50% existing Ridge/LightGBM + 50% 1/3/6-month trend; top 5 with unchanged inertia",
+  "stock_score": "25% selected-sector rank + 37.5% original within-sector stock score + 37.5% global peer/momentum score",
+  "stock_cap": 1.0,
+  "sector_cap": 1.0,
+  "names": [1, 5],
+  "max_names_per_L1": null,
+  "allocation": "Top 120 feasible candidates, maximize score^4 times capital; one stock permitted but not forced",
+  "capital_cap": 25000,
+  "initial_cash": 25000,
+  "no_external_topups": true,
+  "execution": "Unchanged next-open, main-board, 100-share lot and corporate-action ledger",
+  "evaluation": "All 45 months through 2026-09-24, monthly profit/25000, target profit >=7500, all losing months"
+}

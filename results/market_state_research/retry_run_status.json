@@ -1,0 +1,12 @@
+[
+  {
+    "strategy": "state_onset_retry",
+    "status": "complete",
+    "ending_equity": 58639.51
+  },
+  {
+    "strategy": "narrow_heat_retry",
+    "status": "complete",
+    "ending_equity": 43415.3
+  }
+]

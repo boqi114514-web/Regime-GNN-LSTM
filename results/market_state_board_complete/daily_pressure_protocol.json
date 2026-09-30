@@ -1,0 +1,16 @@
+{
+  "variants": [
+    "daily_pressure_retry"
+  ],
+  "stage": "Exploration on already viewed 2023-2026 history; no untouched holdout claim",
+  "objective": "Supplement monthly selection when at least half the risk budget is available as idle cash, fewer than 5 holdings and no pending sells; retain residual holdings, no midmonth liquidation",
+  "timing": "Signal after close; next trading session open; wait at least 5 sessions after last sale; no same-day use of closing features",
+  "universe": "Previous calendar-month candidate universe and historical L2; all boards in features, mainboard only for buys",
+  "features": "5/20-session products of close/open minus 1 (intraday pressure, NOT total returns), mean close location in daily range over 5 sessions, mean 5-day amount / preceding 20-day mean amount, L2 median 20-day pressure",
+  "eligibility": "All 25 sessions present; pressure5>5%, pressure20>10%, mean5 close-location>=.65, amount expansion>=1.2; L2 at least 5 stocks with median pressure20>0 and positive-pressure20 breadth>=.6",
+  "score": "25% pressure5 percentile +25% pressure20 percentile +30% L2 pressure percentile +20% amount expansion percentile",
+  "unchanged": "Original state_onset monthly entries/exposure, original daily hard/trailing exits, corrected deferred sales, 25000 initial/new-investment cap, no topups, mainboard whole lots, zero costs",
+  "replacement_phase": "advance; no extra leverage or cancellation of pending exits",
+  "provenance": "Hypothesis inspired by price/volume feature families, not a published-performance replication",
+  "source": "https://github.com/microsoft/qlib/blob/main/qlib/contrib/data/loader.py"
+}

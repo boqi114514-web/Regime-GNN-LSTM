@@ -1,0 +1,9 @@
+{
+  "variant": "daily_guarded_retry",
+  "status": "completed",
+  "started_utc": "2026-09-30T04:36:31.751813+00:00",
+  "account_complete": true,
+  "months": 45,
+  "ending_equity": 73537.51000000001,
+  "finished_utc": "2026-09-30T04:37:38.408944+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "research_reference": "state_onset_retry",
+  "input_status": "Board-level daily coverage repaired; 82 dates including 79 STAR-board gaps in 2026; no remaining detected board coverage gap",
+  "selection_policy": "state_onset",
+  "period_end": "2026-09-24",
+  "initial_cash": 25000,
+  "investment_cap": 25000,
+  "original_raw_overwritten": false,
+  "all_45_reference_month_end_equities_unchanged_after_input_repair": true,
+  "selection_experiments_promoted": false,
+  "production_default_changed": false,
+  "github_pushed": false
+}

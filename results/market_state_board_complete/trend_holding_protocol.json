@@ -1,0 +1,12 @@
+{
+  "variants": [
+    "state_hold_retry",
+    "narrow_hold_retry"
+  ],
+  "stage": "Exploration on already examined history; same rule for every month, no theme/stock whitelist",
+  "hypothesis": "Monthly forced turnover can cut off the medium-term trend captured by stock selection",
+  "rule": "At rebalance retain a holding only if its last completed signal month has positive adjusted mom1, mom3 and mom6; a pre-existing pending exit is never cancelled",
+  "exits": "Existing close-trigger hard/trailing/take-profit rules remain unchanged; no new signal may cancel them",
+  "budget": "Appreciated retained positions need not be cut to 25000; new buys use cash and nonnegative residual of the existing risk budget",
+  "baseline": "state_hold uses state_onset entries; narrow_hold uses narrow_heat entries; only month-start liquidation differs"
+}

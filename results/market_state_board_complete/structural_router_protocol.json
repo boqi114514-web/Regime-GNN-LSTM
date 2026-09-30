@@ -1,0 +1,15 @@
+{
+  "variants": [
+    "structural_router_retry",
+    "structural_reentry_retry"
+  ],
+  "stage": "Exploratory follow-up on already examined history, not untouched validation; no stock/theme/calendar whitelist",
+  "state": "Candidate-pool 3-month momentum median<0, 99th percentile>50%, positive L1-industry breadth<50%, SH/SZ amount ratio>=1",
+  "meaning": "A small leading tail is strong while the typical stock/industry is weak and aggregate turnover is not contracting",
+  "selection": "Use existing narrow_heat stock selection only in this state; otherwise use unchanged state_onset selection",
+  "exposure": "Keep state_onset exposure unchanged; no extra capital or leverage",
+  "holding": "Monthly rebalancing and original daily stop rules; no continuation override",
+  "delayed_replacement": "structural_reentry_retry may allocate available cash at the same executable opening that finally clears a deferred monthly sell; use the same previous-month signal, actual opening and verified daily price limits",
+  "no_reentry": "No same-day repurchase after a close-triggered stop; ordinary stop sales do not trigger replacement",
+  "capital": "25000 initial and new-investment cap, no topups, mainboard 100-share buys, zero costs"
+}

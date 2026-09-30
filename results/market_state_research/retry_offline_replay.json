@@ -1,0 +1,17 @@
+[
+  {
+    "strategy": "narrow_heat",
+    "account_sha256": "0a0c09b1e8e2c27f03d028a78392a2dc1aca5b4627da45e87e72e4f06de6af2f",
+    "offline_identical": true
+  },
+  {
+    "strategy": "state_onset_retry",
+    "account_sha256": "cace5c54af4856c1742ac5cac572a2396349da9cfb06009677c3f1c6f5e3d617",
+    "offline_identical": true
+  },
+  {
+    "strategy": "narrow_heat_retry",
+    "account_sha256": "82655d7291d3435d967dd302d299ebcb3f14732bfc0c702d11eb57fb65da1435",
+    "offline_identical": true
+  }
+]

@@ -16,6 +16,9 @@ reports/*
 !reports/improvement_research_*.md
 !reports/price_risk_pipeline_*.md
 !reports/small_account_results_*.md
+!reports/leadership_research_*.md
+!reports/market_state_research_*.md
+results/market_state_board_complete/daily_pressure_feature_manifest.json
 
 # Local browser traces, packaged launcher, and regenerable research caches
 .playwright-mcp/

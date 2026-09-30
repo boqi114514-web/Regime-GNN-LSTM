@@ -1,0 +1,11 @@
+{
+  "research_reference": "state_onset_retry",
+  "input_status": "Historical snapshot only: 2026 Jan-May daily input has a whole-STAR-board gap; rebuilding in results/market_state_board_complete",
+  "selection_policy": "state_onset",
+  "execution_policy": "retry blocked monthly liquidation at subsequent executable openings; no mid-month replacement buys",
+  "period_end": "2026-09-24",
+  "reason": "Selection alternatives did not improve full-period profit and drawdown; retain selection but correct deferred execution",
+  "supersedes_execution_claim_for": "state_onset",
+  "production_default_changed": false,
+  "github_pushed": false
+}
