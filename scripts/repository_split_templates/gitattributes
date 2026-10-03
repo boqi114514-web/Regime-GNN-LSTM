@@ -1,0 +1,6 @@
+# Preserve frozen code and result bytes; historical audit hashes are byte-based.
+* -text
+*.py whitespace=cr-at-eol
+*.csv whitespace=cr-at-eol
+*.json whitespace=cr-at-eol
+*.md whitespace=cr-at-eol
