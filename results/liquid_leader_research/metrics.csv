@@ -1,0 +1,4 @@
+strategy,ending_equity,total_profit,total_return_pct,daily_drawdown_pct,target_hit_months,losing_months,stop_exits,deferred_rebalance_exits
+liquid_leader_retry,54920.38919999999,29920.38919999999,119.68155679999994,-40.209023005358134,2,23,71,1
+liquid_leader_hold_retry,54895.38919999999,29895.38919999999,119.58155679999996,-39.57724202276543,2,23,71,1
+liquid_phase_router_retry,79685.98919999998,54685.98919999998,218.74395679999995,-45.26262599980726,3,23,72,1

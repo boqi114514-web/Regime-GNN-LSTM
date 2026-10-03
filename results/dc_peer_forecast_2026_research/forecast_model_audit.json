@@ -1,0 +1,82 @@
+{
+  "protocol": {
+    "version": "peer_context_v1",
+    "features": [
+      "mom1",
+      "mom3",
+      "mom6",
+      "volatility3",
+      "volatility6",
+      "positive_fraction6",
+      "momentum_acceleration",
+      "mom1_percentile",
+      "mom3_percentile",
+      "mom6_percentile",
+      "amount_percentile",
+      "pressure5",
+      "pressure20",
+      "location5",
+      "amount_ratio5_vs_prior20",
+      "peer_mom1",
+      "peer_mom3",
+      "peer_mom6",
+      "peer_positive3"
+    ],
+    "estimator": "HistGradientBoostingRegressor",
+    "parameters": {
+      "loss": "squared_error",
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "max_depth": null,
+      "l2_regularization": 10,
+      "learning_rate": 0.05,
+      "random_state": 42
+    },
+    "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+    "training_window": "Expanding complete-feature stock observations; at least 12 distinct label months",
+    "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+    "label": "Next calendar-month adjusted close / signal adjusted close - 1; clipped to [-.50,.50] only in fitting",
+    "ranking": "Forecast magnitude, linear expected-profit whole-lot allocation; dated DC price association remains an eligibility gate only",
+    "daily_features": "Complete 25-session gap-invariant intraday pressure and amount windows, not close-to-close total return",
+    "first_feature_month": "2023-01",
+    "minimum_liquidity_days": 10,
+    "context": "Past 60-session gap-neutral intraday-pressure cohorts; fixed MiniBatchKMeans20, seed42, three initializations, maxiter60, batch1024; >=10 complete-history stocks; cohort adjusted-momentum medians and positive3 breadth; not industry membership"
+  },
+  "quarterly_models": [
+    {
+      "quarter": "2025Q4",
+      "model_fit_cutoff": "2025-12-31",
+      "train_label_end": "2025-11-28",
+      "train_rows": 156460,
+      "train_label_months": 32,
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q1",
+      "model_fit_cutoff": "2026-01-30",
+      "train_label_end": "2025-12-31",
+      "train_rows": 161447,
+      "train_label_months": 33,
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q2",
+      "model_fit_cutoff": "2026-04-30",
+      "train_label_end": "2026-03-31",
+      "train_rows": 176372,
+      "train_label_months": 36,
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q3",
+      "model_fit_cutoff": "2026-07-31",
+      "train_label_end": "2026-06-30",
+      "train_rows": 191147,
+      "train_label_months": 39,
+      "status": "fitted"
+    }
+  ],
+  "feature_rows": 206492,
+  "prediction_rows": 44679,
+  "train_label_purge_verified": true
+}

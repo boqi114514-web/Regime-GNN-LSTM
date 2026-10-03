@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "scope": "2026",
+  "aggregate": {
+    "file": "theme_features.pkl",
+    "sha256": "73dc277b48b3dc3eb7996c06b2f38e952a98f7e3a93c71509a72a2992352e079",
+    "rows": 4059
+  },
+  "source_inputs": {
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\dc_theme_research\\catalogs.pkl": "270c81b84ea84444990ef286c2df9240231c275d49b2c808dbb1777174b71128",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\dc_theme_research\\catalog_manifest.json": "0783edb963b521102b1ee539bd2250c380bdb609fad4c6a22712a055a4868a07",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\dc_theme_research\\daily_market_2026_manifest.json": "bf8ee28372eb63a769c2bb9df37f68a95604f3ad633d194aff0ff0553f1d5b5a",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\scripts\\fetch_dc_theme_research.py": "4654571b865899d7c0687d75f5465cb98578c38f3d7ae87848e1029e3b1a2d17",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\dc_theme_research\\daily_market_2026.pkl": "4b8f36fcef6318c01c57a6bbc0102dcb5b500dd4d5073e595cf7823f68deba75"
+  }
+}

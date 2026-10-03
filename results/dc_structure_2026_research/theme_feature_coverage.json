@@ -1,0 +1,1491 @@
+{
+  "source": "dated_dc_catalog_and_dc_index_prices",
+  "scope": "2026",
+  "catalog_rows": 4306,
+  "feature_rows": 4059,
+  "unavailable": [
+    {
+      "signal_date": "20251231",
+      "ts_code": "BK1628.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20251231",
+      "ts_code": "BK1199.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20251231",
+      "ts_code": "BK1198.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260130",
+      "ts_code": "BK1629.DC",
+      "observations": 10,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1642.DC",
+      "observations": 11,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1641.DC",
+      "observations": 11,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1640.DC",
+      "observations": 11,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1639.DC",
+      "observations": 11,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1638.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1637.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1636.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1635.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1633.DC",
+      "observations": 13,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1632.DC",
+      "observations": 13,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1631.DC",
+      "observations": 13,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1630.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1629.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1029.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK1017.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0733.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0730.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0729.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0485.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0480.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0477.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0470.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0447.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0429.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260227",
+      "ts_code": "BK0425.DC",
+      "observations": 4,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1659.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1658.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1657.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1656.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1655.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1654.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1653.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1652.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1651.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1650.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1649.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1648.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1647.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1646.DC",
+      "observations": 12,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1645.DC",
+      "observations": 13,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1644.DC",
+      "observations": 22,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1643.DC",
+      "observations": 22,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1642.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1641.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1640.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1639.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1638.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1637.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1636.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1635.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1633.DC",
+      "observations": 35,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1632.DC",
+      "observations": 35,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1631.DC",
+      "observations": 35,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1630.DC",
+      "observations": 36,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1629.DC",
+      "observations": 46,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1029.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK1017.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0733.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0730.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0729.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0485.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0480.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0477.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0470.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0447.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0429.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260331",
+      "ts_code": "BK0425.DC",
+      "observations": 26,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1682.DC",
+      "observations": 9,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1681.DC",
+      "observations": 9,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1680.DC",
+      "observations": 9,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1679.DC",
+      "observations": 9,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1678.DC",
+      "observations": 9,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1677.DC",
+      "observations": 9,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1676.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1675.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1674.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1673.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1672.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1671.DC",
+      "observations": 14,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1670.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1669.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1668.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1667.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1666.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1665.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1664.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1663.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1662.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1661.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1660.DC",
+      "observations": 18,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1659.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1658.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1657.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1656.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1655.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1654.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1653.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1652.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1651.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1650.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1649.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1648.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1647.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1646.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1645.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1644.DC",
+      "observations": 43,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1643.DC",
+      "observations": 43,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1642.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1641.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1640.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1639.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1638.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1637.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1636.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1635.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1633.DC",
+      "observations": 56,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1632.DC",
+      "observations": 56,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1631.DC",
+      "observations": 56,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1630.DC",
+      "observations": 57,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1029.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK1017.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0733.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0730.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0729.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0485.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0480.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0477.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0470.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0447.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0429.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260430",
+      "ts_code": "BK0425.DC",
+      "observations": 47,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1682.DC",
+      "observations": 27,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1681.DC",
+      "observations": 27,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1680.DC",
+      "observations": 27,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1679.DC",
+      "observations": 27,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1678.DC",
+      "observations": 27,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1677.DC",
+      "observations": 27,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1676.DC",
+      "observations": 32,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1675.DC",
+      "observations": 32,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1674.DC",
+      "observations": 32,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1673.DC",
+      "observations": 32,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1672.DC",
+      "observations": 32,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1671.DC",
+      "observations": 32,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1670.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1669.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1668.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1667.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1666.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1665.DC",
+      "observations": 33,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1664.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1663.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1662.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1661.DC",
+      "observations": 34,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1660.DC",
+      "observations": 36,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1659.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1658.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1657.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1656.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1655.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1654.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1653.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1652.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1651.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1650.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1649.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1648.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1647.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1646.DC",
+      "observations": 51,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260529",
+      "ts_code": "BK1645.DC",
+      "observations": 52,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1717.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1716.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1715.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1714.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1713.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1712.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1711.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1710.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1682.DC",
+      "observations": 48,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1681.DC",
+      "observations": 48,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1680.DC",
+      "observations": 48,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1679.DC",
+      "observations": 48,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1678.DC",
+      "observations": 48,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1677.DC",
+      "observations": 48,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1676.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1675.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1674.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1673.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1672.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1671.DC",
+      "observations": 53,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1670.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1669.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1668.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1667.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1666.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1665.DC",
+      "observations": 54,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1664.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1663.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1662.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1661.DC",
+      "observations": 55,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260630",
+      "ts_code": "BK1660.DC",
+      "observations": 57,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1753.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1752.DC",
+      "observations": 15,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1751.DC",
+      "observations": 16,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1750.DC",
+      "observations": 19,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1749.DC",
+      "observations": 22,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1743.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1723.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1722.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1721.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1717.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1716.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1715.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1714.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1713.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1712.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1711.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1710.DC",
+      "observations": 39,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1700.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1699.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1698.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260731",
+      "ts_code": "BK1693.DC",
+      "observations": 3,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1753.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1752.DC",
+      "observations": 36,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1751.DC",
+      "observations": 37,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1750.DC",
+      "observations": 40,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1749.DC",
+      "observations": 43,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1743.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1723.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1722.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1721.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1717.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1716.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1715.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1714.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1713.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1712.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1711.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1710.DC",
+      "observations": 60,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1700.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1699.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1698.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1693.DC",
+      "observations": 24,
+      "reason": "insufficient_warmup"
+    },
+    {
+      "signal_date": "20260831",
+      "ts_code": "BK1675.DC",
+      "observations": 91,
+      "reason": "incomplete_61_session_calendar"
+    }
+  ],
+  "no_current_membership_backfill": true
+}

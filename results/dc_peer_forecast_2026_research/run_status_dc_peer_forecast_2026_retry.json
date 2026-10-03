@@ -1,0 +1,9 @@
+{
+  "variant": "dc_peer_forecast_2026_retry",
+  "status": "completed",
+  "started_utc": "2026-10-01T17:02:06.904849+00:00",
+  "account_complete": true,
+  "months": 9,
+  "ending_equity": 32621.0,
+  "finished_utc": "2026-10-01T17:02:21.675216+00:00"
+}

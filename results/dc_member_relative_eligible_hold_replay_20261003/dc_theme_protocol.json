@@ -1,0 +1,67 @@
+{
+  "stage": "Fixed top-five-percent amount and rank-first allocation after ten new accounts; exploratory previously examined period, no holdout",
+  "membership": "Exact dated top-five DC highest-theme de-duplicated member mapping; not a complete multi-theme graph and not price-affinity membership",
+  "theme_history": "At least 61 valid index observations, all at or before the actual signal session",
+  "theme_comparability": "Names matching ^(?:\u6628\u65e5|\u8fd1\u65e5)|^\u6700\u8fd1.*\u677f$|^\u4e1c\u65b9\u8d22\u5bcc\u70ed\u80a1$ are rolling recent-performance/popularity baskets: retain as sentiment observations but exclude from monthly theme percentile baselines and entries; apply this rule before account results, with no industry/style/dividend/size exclusion",
+  "theme_gate": "ret20>0 OR ret60>0; all three ranking inputs finite",
+  "theme_score": "The same dated-theme percentile score of the price-associated theme, supplied by the fixed affinity helper; no top-five membership gate",
+  "stock_universe": "All SH/SZ stock month-end quotes; all boards participate in stock ranking; no inherited industry candidate universe",
+  "stock_history": "Close times adjustment factor; calendar-month reindex before 1/3/6-month momentum; missing months are never skipped",
+  "stock_liquidity": "Mean positive traded daily amount in the signal calendar month, at or before each stock actual month-end quote date; at least 10 observations",
+  "stock_gate": "Same moderate member gates, plus completed-signal all-board amount_percentile>=.95; no changed scoring/peer population or threshold search",
+  "stock_score": "Advance: original .45 all-board mom1 percentile + .35 all-board mom3 percentile + .20 all-board amount percentile; pullback/range: .45 amount percentile + .35 mom1 percentile + .20 mom3 percentile within liquid top decile",
+  "ranking": "Stock geometric acceleration minus exact-member group median and log-momentum minus group median, ranked across all feature-complete matched boards; group>=5 before momentum/heat/extension gates; 50/35/15 plus amount",
+  "phase": "Every qualified entry remains advance for the original unchanged stop rules; theme_phase is a selection-routing audit field",
+  "exposure": 1.0,
+  "initial_cash": 25000,
+  "capital_cap": 25000,
+  "fees": 0,
+  "external_topups": false,
+  "daily_supplementary_entries": false,
+  "execution": "Original mainboard whole-lot optimizer, next-opening hard/trailing exits, deferred lower-limit sales, suspension valuation and corporate-action ledger",
+  "evaluation": "Every account month in the declared period, calendar-year profit and daily drawdown; no best-month splicing",
+  "variant": "dc_member_relative_leader_2026_retry",
+  "variants": [
+    "dc_member_relative_leader_2026_retry"
+  ],
+  "period": "2026-01-01 through 2026-09-24",
+  "previous_mark": "2025-12-31",
+  "expected_months": 9,
+  "signal_months": [
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07",
+    "2026-08"
+  ],
+  "scope": "The same complete nine-month account; no stock/theme/month whitelist; no untouched holdout claim",
+  "affinity_gate": "Price-affinity correlation >=.30 with at least 40 paired observations; helper sees only index and stock observations at or before each completed signal session",
+  "affinity_source": "Feature-manifest-bound data/raw/dc_theme_research/daily_market_2026.pkl; association is recomputed from dated theme audit and stock daily prices",
+  "selection_scope": "The same dated-theme phase rule in every month; no named stocks, industry whitelist, manually selected months or market-breadth switch",
+  "theme_phase": "Price-associated dated theme ret20>=.15 AND ret60>=.15 is advance; otherwise ret20<=0 is pullback, and the remainder is range; underlying qualified-theme positive ret20 OR ret60 gate remains unchanged",
+  "liquidity_gate": "Advance themes permit all stocks passing the original stock_qualifies gates, including at least 10 positive amount observations; pullback/range themes require the unchanged all-board liquid top-decile gate",
+  "specialist": {
+    "stage": "Fixed liquid/rank-first follow-up after viewing ten completed new accounts; explicitly exploratory, NOT an untouched holdout or a paper-proven return claim",
+    "modes": [
+      "member_liquid_leader",
+      "member_relative_liquid_leader"
+    ],
+    "base_modes": {
+      "member_liquid_leader": "member_not_extended",
+      "member_relative_liquid_leader": "member_relative_moderate"
+    },
+    "inputs": "Existing exact completed-session top-five dated member_theme_code/score/name plus the complete DC theme audit; no current-member backfill or future labels",
+    "association": "Exact dated top-five membership using the existing highest-selected-theme single mapping per stock; not a complete overlapping multi-theme graph; no SW inputs",
+    "base_scoring": "Reuse the complete corresponding member_not_extended or member_relative_moderate output without recalculating score percentiles, mapped-peer medians or any base entry gate",
+    "liquidity_gate": "Add only final eligibility amount_percentile>=0.95, inclusive, using the existing completed-signal monthly mean-positive-amount percentile across all SH/SZ boards with at least 10 positive observations; fixed top-five-percent rule, NOT an optimal or paper-proven threshold",
+    "stock_gate": "All corresponding base momentum, exact-member, heat, valid-peer-group and fixed mom1<=0.50 gates remain unchanged; apply liquidity only after the base scoring population is frozen",
+    "execution": "Downstream rank-first single-stock allocator chooses the highest fixed leadership score among permitted, opening-executable mainboards with an affordable 100-share lot; stable stock-code tie break, maximum affordable lots of that stock only, unused cash allowed; original account budget, no topups and advance exits unchanged",
+    "selection_scope": "One fixed rule for every signal; no stock, named theme or date whitelist, no subsequent-month labels consulted by the selector, no liquidity-threshold grid search or unseen-validation claim"
+  },
+  "specialist_mode": "member_relative_liquid_leader",
+  "optimizer": "At most one new stock per monthly allocation: highest causal score among permitted executable affordable mainboard lots, then maximum affordable 100-share lots; residual cash allowed; existing retained positions and available budget respected"
+}

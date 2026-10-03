@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "scope": "2026",
+  "requested": 45,
+  "failures": [],
+  "selected": {
+    "file": "theme_selected.pkl",
+    "sha256": "295669f9b1c8ca426e9d1b4a025fa1c0e25b3694a9d5361a54230007aaed4ee2",
+    "rows": 45
+  },
+  "feature_sha256": "73dc277b48b3dc3eb7996c06b2f38e952a98f7e3a93c71509a72a2992352e079",
+  "aggregate": {
+    "file": "theme_members.pkl",
+    "sha256": "0d445e2cf8b571bb65885425f03e5ae1e09090509b1faa4b8169d6d3e7388a2d",
+    "rows": 2194,
+    "directory": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_theme_2026_research"
+  },
+  "source_inputs": {
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\dc_theme_research\\catalogs.pkl": "270c81b84ea84444990ef286c2df9240231c275d49b2c808dbb1777174b71128",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_theme_2026_research\\theme_feature_manifest.json": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\scripts\\fetch_dc_theme_research.py": "4654571b865899d7c0687d75f5465cb98578c38f3d7ae87848e1029e3b1a2d17",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\src\\research_dc_themes.py": "f86629e684d86f56a09ce9db56c1c4b1e79dc9d14f06913039b02c189a4f1a7b"
+  },
+  "coverage_check": "At least dated catalogue up_num+down_num; this is a lower bound, not an independent membership census"
+}

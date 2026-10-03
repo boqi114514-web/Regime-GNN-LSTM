@@ -1,0 +1,41 @@
+{
+  "stage": "Exploration on previously examined history; not a new untouched holdout",
+  "period": "2023-01-01 through 2026-09-24",
+  "initial_cash": 25000,
+  "capital_cap": 25000,
+  "variants": [
+    "baseline_stops",
+    "state_only",
+    "state_stops",
+    "core_stops",
+    "small_stops"
+  ],
+  "fees": 0,
+  "external_topups": false,
+  "market_model": "2-state discrete jump model, monthly past 72 observations, penalty 5, quarterly refit",
+  "features": [
+    "industry median mom1",
+    "industry median mom3",
+    "industry median mom6",
+    "industry 6-month volatility median",
+    "fraction industries positive mom3",
+    "SH/SZ amount 1/6-month ratio"
+  ],
+  "inference": "Standardization and centroids fit before prediction; online prefix costs; no future path smoothing",
+  "sector_phase": "advance: mom3>15%, mom1>0, stock breadth>55%, amount ratio>1.05; retreat: mom1<-8% and mom3<0; otherwise range",
+  "overheat": "mom1>30% and stock breadth<50%; keep out of new concentrated entries",
+  "exposure": "market favorable 100%, unfavorable 35%; no leverage",
+  "stock_score": "advance .55 fast+.25 peer+.20 original; range .70 original+.30 lowvol; .75 stock+.25 sector hybrid rank",
+  "size": "historical L2 circ_mv rank: core top30%, small bottom30%, middle remainder; no current market cap backfill",
+  "adaptive": "small bucket only when its median mom1 exceeds core by >3pp and its median mom3 is positive; otherwise core",
+  "allocation": "1-5 names, no stock or sector capital cap, same whole-lot optimizer, top120 feasible scores",
+  "hard_stop": 0.08,
+  "trailing_activation": 0.2,
+  "advance_trail": 0.15,
+  "range_trail": 0.1,
+  "range_take_profit": 0.3,
+  "advance_take_profit": null,
+  "exit_execution": "Close signal, subsequent executable opening quote; gap loss retained, lower-limit exits deferred; no intraday high/low ordering assumptions",
+  "reentry": "No new entries after a stop until next monthly rebalance",
+  "evaluation": "All months, calendar-year profits, daily drawdown, monthly profit/25000 and 7500 target hits; report all completed variants"
+}

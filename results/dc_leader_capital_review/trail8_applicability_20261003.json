@@ -1,0 +1,1364 @@
+{
+  "status": "complete",
+  "source": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research",
+  "account_variant": "dc_member_relative_leader_2026_retry",
+  "hypothesis": "Only advance trailing distance .15 -> .08; activation +20%, hard stop -8%, entry/exit execution and all selection unchanged",
+  "positions": 9,
+  "activated_positions": 2,
+  "original_risk_signals": 3,
+  "changed_first_signals": 0,
+  "proposed_additional_signals": 0,
+  "conclusion": "Zero signal change: same full-account trading path under this single isolated stop alteration",
+  "holdings": [
+    {
+      "held_sessions": 20,
+      "entry_price": 27.39,
+      "phase": "advance",
+      "first_held_close_date": "2026-01-05",
+      "last_held_close_date": "2026-01-30",
+      "actual_maximum_raw_close": 28.71,
+      "maximum_adjusted_peak_gain": 0.052033711982411246,
+      "ending_adjusted_entry": 27.29,
+      "ending_adjusted_peak": 28.71,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": null,
+      "proposed_first_risk_signal": null,
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-01-05",
+          "close": 27.58,
+          "adjusted_entry": 27.39,
+          "adjusted_peak": 27.58,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-01-06",
+          "close": 26.79,
+          "adjusted_entry": 27.39,
+          "adjusted_peak": 27.58,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.028643944887599693
+        },
+        {
+          "date": "2026-01-07",
+          "close": 27.56,
+          "adjusted_entry": 27.39,
+          "adjusted_peak": 27.58,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0007251631617113397
+        },
+        {
+          "date": "2026-01-08",
+          "close": 27.1,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 27.479999999999997,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.013828238719068242
+        },
+        {
+          "date": "2026-01-09",
+          "close": 27.55,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 27.55,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-01-12",
+          "close": 27.4,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 27.55,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.005444646098003658
+        },
+        {
+          "date": "2026-01-13",
+          "close": 26.02,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 27.55,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05553539019963705
+        },
+        {
+          "date": "2026-01-14",
+          "close": 26.1,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 27.55,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05263157894736836
+        },
+        {
+          "date": "2026-01-15",
+          "close": 28.71,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-01-16",
+          "close": 28.05,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.02298850574712641
+        },
+        {
+          "date": "2026-01-19",
+          "close": 28.6,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.003831417624521105
+        },
+        {
+          "date": "2026-01-20",
+          "close": 26.69,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.07035876001393238
+        },
+        {
+          "date": "2026-01-21",
+          "close": 27.4,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0456287008011147
+        },
+        {
+          "date": "2026-01-22",
+          "close": 27.55,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.04040404040404044
+        },
+        {
+          "date": "2026-01-23",
+          "close": 26.81,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06617903169627315
+        },
+        {
+          "date": "2026-01-26",
+          "close": 26.72,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06931382793451768
+        },
+        {
+          "date": "2026-01-27",
+          "close": 26.88,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0637408568443052
+        },
+        {
+          "date": "2026-01-28",
+          "close": 25.9,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.09787530477185657
+        },
+        {
+          "date": "2026-01-29",
+          "close": 25.84,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.09996516893068619
+        },
+        {
+          "date": "2026-01-30",
+          "close": 28.42,
+          "adjusted_entry": 27.29,
+          "adjusted_peak": 28.71,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.010101010101010055
+        }
+      ],
+      "code": "601208.SH",
+      "buy_date": "2026-01-05",
+      "shares": 900,
+      "actual_exit": {
+        "date": "2026-02-02",
+        "reason": "rebalance",
+        "price": 29.0
+      }
+    },
+    {
+      "held_sessions": 14,
+      "entry_price": 9.88,
+      "phase": "advance",
+      "first_held_close_date": "2026-02-02",
+      "last_held_close_date": "2026-02-27",
+      "actual_maximum_raw_close": 11.07,
+      "maximum_adjusted_peak_gain": 0.12044534412955454,
+      "ending_adjusted_entry": 9.88,
+      "ending_adjusted_peak": 11.07,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": null,
+      "proposed_first_risk_signal": null,
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-02-02",
+          "close": 9.84,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 9.88,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.004048582995951455
+        },
+        {
+          "date": "2026-02-03",
+          "close": 10.31,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-02-04",
+          "close": 10.09,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.02133850630455869
+        },
+        {
+          "date": "2026-02-05",
+          "close": 9.93,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.036857419980601436
+        },
+        {
+          "date": "2026-02-06",
+          "close": 9.7,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05916585838991284
+        },
+        {
+          "date": "2026-02-09",
+          "close": 10.14,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.016488845780795347
+        },
+        {
+          "date": "2026-02-10",
+          "close": 10.04,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.026188166828322146
+        },
+        {
+          "date": "2026-02-11",
+          "close": 9.98,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.03200775945683798
+        },
+        {
+          "date": "2026-02-12",
+          "close": 10.18,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.012609117361784716
+        },
+        {
+          "date": "2026-02-13",
+          "close": 9.93,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.036857419980601436
+        },
+        {
+          "date": "2026-02-24",
+          "close": 10.15,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.31,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.015518913676042745
+        },
+        {
+          "date": "2026-02-25",
+          "close": 10.57,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.57,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-02-26",
+          "close": 10.9,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 10.9,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-02-27",
+          "close": 11.07,
+          "adjusted_entry": 9.88,
+          "adjusted_peak": 11.07,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        }
+      ],
+      "code": "002195.SZ",
+      "buy_date": "2026-02-02",
+      "shares": 2500,
+      "actual_exit": {
+        "date": "2026-03-02",
+        "reason": "rebalance",
+        "price": 10.76
+      }
+    },
+    {
+      "held_sessions": 12,
+      "entry_price": 71.0,
+      "phase": "advance",
+      "first_held_close_date": "2026-03-02",
+      "last_held_close_date": "2026-03-17",
+      "actual_maximum_raw_close": 74.62,
+      "maximum_adjusted_peak_gain": 0.05098591549295772,
+      "ending_adjusted_entry": 71.0,
+      "ending_adjusted_peak": 74.62,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": {
+        "date": "2026-03-17",
+        "reason": "hard_stop"
+      },
+      "proposed_first_risk_signal": {
+        "date": "2026-03-17",
+        "reason": "hard_stop"
+      },
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-03-02",
+          "close": 74.62,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-03-03",
+          "close": 70.45,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05588314124899496
+        },
+        {
+          "date": "2026-03-04",
+          "close": 70.05,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0612436344143662
+        },
+        {
+          "date": "2026-03-05",
+          "close": 71.48,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.042079871348164044
+        },
+        {
+          "date": "2026-03-06",
+          "close": 69.54,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06807826320021437
+        },
+        {
+          "date": "2026-03-09",
+          "close": 67.77,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.09179844545698213
+        },
+        {
+          "date": "2026-03-10",
+          "close": 73.01,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.02157598499061908
+        },
+        {
+          "date": "2026-03-11",
+          "close": 72.35,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0304207987134818
+        },
+        {
+          "date": "2026-03-12",
+          "close": 70.75,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05186277137496653
+        },
+        {
+          "date": "2026-03-13",
+          "close": 68.7,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.07933529884749402
+        },
+        {
+          "date": "2026-03-16",
+          "close": 67.36,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0972929509514876
+        },
+        {
+          "date": "2026-03-17",
+          "close": 63.73,
+          "adjusted_entry": 71.0,
+          "adjusted_peak": 74.62,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.14593942642723134
+        }
+      ],
+      "code": "002008.SZ",
+      "buy_date": "2026-03-02",
+      "shares": 300,
+      "actual_exit": {
+        "date": "2026-03-18",
+        "reason": "hard_stop",
+        "price": 64.02
+      }
+    },
+    {
+      "held_sessions": 21,
+      "entry_price": 107.5,
+      "phase": "advance",
+      "first_held_close_date": "2026-04-01",
+      "last_held_close_date": "2026-04-30",
+      "actual_maximum_raw_close": 187.9,
+      "maximum_adjusted_peak_gain": 0.7479069767441862,
+      "ending_adjusted_entry": 107.5,
+      "ending_adjusted_peak": 187.9,
+      "trailing_activation_date": "2026-04-09",
+      "minimum_drawdown_after_activation": -0.031462060456508345,
+      "original_first_risk_signal": null,
+      "proposed_first_risk_signal": null,
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-04-01",
+          "close": 109.0,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 109.0,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-02",
+          "close": 106.25,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 109.0,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.025229357798165153
+        },
+        {
+          "date": "2026-04-03",
+          "close": 110.55,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 110.55,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-07",
+          "close": 109.01,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 110.55,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.013930348258706426
+        },
+        {
+          "date": "2026-04-08",
+          "close": 119.91,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 119.91,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-09",
+          "close": 131.9,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 131.9,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-10",
+          "close": 143.55,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 143.55,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-13",
+          "close": 146.83,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 146.83,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-14",
+          "close": 146.0,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 146.83,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.0056527957501874004
+        },
+        {
+          "date": "2026-04-15",
+          "close": 145.8,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 146.83,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.007014915208063743
+        },
+        {
+          "date": "2026-04-16",
+          "close": 149.55,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 149.55,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-17",
+          "close": 162.1,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 162.1,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-20",
+          "close": 157.0,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 162.1,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.031462060456508345
+        },
+        {
+          "date": "2026-04-21",
+          "close": 169.4,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 169.4,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-22",
+          "close": 186.34,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 186.34,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-23",
+          "close": 186.66,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 186.66,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-24",
+          "close": 187.9,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 187.9,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-04-27",
+          "close": 186.7,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 187.9,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.006386375731772365
+        },
+        {
+          "date": "2026-04-28",
+          "close": 183.9,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 187.9,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.021287919105907438
+        },
+        {
+          "date": "2026-04-29",
+          "close": 184.25,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 187.9,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.019425226184140554
+        },
+        {
+          "date": "2026-04-30",
+          "close": 186.73,
+          "adjusted_entry": 107.5,
+          "adjusted_peak": 187.9,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.006226716338478044
+        }
+      ],
+      "code": "002384.SZ",
+      "buy_date": "2026-04-01",
+      "shares": 200,
+      "actual_exit": {
+        "date": "2026-05-06",
+        "reason": "rebalance",
+        "price": 191.8
+      }
+    },
+    {
+      "held_sessions": 18,
+      "entry_price": 29.65,
+      "phase": "advance",
+      "first_held_close_date": "2026-05-06",
+      "last_held_close_date": "2026-05-29",
+      "actual_maximum_raw_close": 38.68,
+      "maximum_adjusted_peak_gain": 0.3058744091829846,
+      "ending_adjusted_entry": 29.619999999999997,
+      "ending_adjusted_peak": 38.68,
+      "trailing_activation_date": "2026-05-25",
+      "minimum_drawdown_after_activation": -0.045943817274875065,
+      "original_first_risk_signal": null,
+      "proposed_first_risk_signal": null,
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-05-06",
+          "close": 29.47,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 29.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.006070826306914023
+        },
+        {
+          "date": "2026-05-07",
+          "close": 32.42,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 32.42,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-05-08",
+          "close": 32.01,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 32.42,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.012646514497224093
+        },
+        {
+          "date": "2026-05-11",
+          "close": 33.17,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 33.17,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-05-12",
+          "close": 33.45,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 33.45,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-05-13",
+          "close": 34.19,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-05-14",
+          "close": 32.71,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.043287510968119225
+        },
+        {
+          "date": "2026-05-15",
+          "close": 31.49,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.07897045919859602
+        },
+        {
+          "date": "2026-05-18",
+          "close": 33.61,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.016964024568587255
+        },
+        {
+          "date": "2026-05-19",
+          "close": 32.83,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.039777712781515095
+        },
+        {
+          "date": "2026-05-20",
+          "close": 33.54,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.019011406844106404
+        },
+        {
+          "date": "2026-05-21",
+          "close": 33.29,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 34.19,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.02632348639953197
+        },
+        {
+          "date": "2026-05-22",
+          "close": 35.42,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 35.42,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-05-25",
+          "close": 38.12,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 38.12,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-05-26",
+          "close": 38.11,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 38.12,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.0002623294858341563
+        },
+        {
+          "date": "2026-05-27",
+          "close": 37.02,
+          "adjusted_entry": 29.65,
+          "adjusted_peak": 38.12,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.02885624344176274
+        },
+        {
+          "date": "2026-05-28",
+          "close": 36.34,
+          "adjusted_entry": 29.619999999999997,
+          "adjusted_peak": 38.089999999999996,
+          "trailing_active": true,
+          "drawdown_from_peak": -0.045943817274875065
+        },
+        {
+          "date": "2026-05-29",
+          "close": 38.68,
+          "adjusted_entry": 29.619999999999997,
+          "adjusted_peak": 38.68,
+          "trailing_active": true,
+          "drawdown_from_peak": 0.0
+        }
+      ],
+      "code": "002436.SZ",
+      "buy_date": "2026-05-06",
+      "shares": 800,
+      "actual_exit": {
+        "date": "2026-06-01",
+        "reason": "rebalance",
+        "price": 38.5
+      }
+    },
+    {
+      "held_sessions": 6,
+      "entry_price": 19.65,
+      "phase": "advance",
+      "first_held_close_date": "2026-06-01",
+      "last_held_close_date": "2026-06-08",
+      "actual_maximum_raw_close": 19.26,
+      "maximum_adjusted_peak_gain": 0.0,
+      "ending_adjusted_entry": 19.65,
+      "ending_adjusted_peak": 19.65,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": {
+        "date": "2026-06-08",
+        "reason": "hard_stop"
+      },
+      "proposed_first_risk_signal": {
+        "date": "2026-06-08",
+        "reason": "hard_stop"
+      },
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-06-01",
+          "close": 18.43,
+          "adjusted_entry": 19.65,
+          "adjusted_peak": 19.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06208651399491094
+        },
+        {
+          "date": "2026-06-02",
+          "close": 18.33,
+          "adjusted_entry": 19.65,
+          "adjusted_peak": 19.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06717557251908401
+        },
+        {
+          "date": "2026-06-03",
+          "close": 19.16,
+          "adjusted_entry": 19.65,
+          "adjusted_peak": 19.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.024936386768447782
+        },
+        {
+          "date": "2026-06-04",
+          "close": 19.26,
+          "adjusted_entry": 19.65,
+          "adjusted_peak": 19.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.01984732824427471
+        },
+        {
+          "date": "2026-06-05",
+          "close": 18.08,
+          "adjusted_entry": 19.65,
+          "adjusted_peak": 19.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.07989821882951653
+        },
+        {
+          "date": "2026-06-08",
+          "close": 16.8,
+          "adjusted_entry": 19.65,
+          "adjusted_peak": 19.65,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.1450381679389312
+        }
+      ],
+      "code": "002185.SZ",
+      "buy_date": "2026-06-01",
+      "shares": 1200,
+      "actual_exit": {
+        "date": "2026-06-09",
+        "reason": "hard_stop",
+        "price": 17.39
+      }
+    },
+    {
+      "held_sessions": 2,
+      "entry_price": 165.0,
+      "phase": "advance",
+      "first_held_close_date": "2026-07-01",
+      "last_held_close_date": "2026-07-02",
+      "actual_maximum_raw_close": 156.45,
+      "maximum_adjusted_peak_gain": 0.0,
+      "ending_adjusted_entry": 165.0,
+      "ending_adjusted_peak": 165.0,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": {
+        "date": "2026-07-02",
+        "reason": "hard_stop"
+      },
+      "proposed_first_risk_signal": {
+        "date": "2026-07-02",
+        "reason": "hard_stop"
+      },
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-07-01",
+          "close": 156.45,
+          "adjusted_entry": 165.0,
+          "adjusted_peak": 165.0,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.051818181818181874
+        },
+        {
+          "date": "2026-07-02",
+          "close": 146.97,
+          "adjusted_entry": 165.0,
+          "adjusted_peak": 165.0,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.1092727272727273
+        }
+      ],
+      "code": "002851.SZ",
+      "buy_date": "2026-07-01",
+      "shares": 100,
+      "actual_exit": {
+        "date": "2026-07-03",
+        "reason": "hard_stop",
+        "price": 146.76
+      }
+    },
+    {
+      "held_sessions": 21,
+      "entry_price": 6.82,
+      "phase": "advance",
+      "first_held_close_date": "2026-08-03",
+      "last_held_close_date": "2026-08-31",
+      "actual_maximum_raw_close": 6.92,
+      "maximum_adjusted_peak_gain": 0.014662756598240456,
+      "ending_adjusted_entry": 6.82,
+      "ending_adjusted_peak": 6.92,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": null,
+      "proposed_first_risk_signal": null,
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-08-03",
+          "close": 6.89,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-08-04",
+          "close": 6.61,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.04063860667634245
+        },
+        {
+          "date": "2026-08-05",
+          "close": 6.48,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05950653120464433
+        },
+        {
+          "date": "2026-08-06",
+          "close": 6.5,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05660377358490565
+        },
+        {
+          "date": "2026-08-07",
+          "close": 6.47,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06095791001451378
+        },
+        {
+          "date": "2026-08-10",
+          "close": 6.46,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.062409288824383125
+        },
+        {
+          "date": "2026-08-11",
+          "close": 6.48,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.05950653120464433
+        },
+        {
+          "date": "2026-08-12",
+          "close": 6.44,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06531204644412181
+        },
+        {
+          "date": "2026-08-13",
+          "close": 6.56,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.04789550072568938
+        },
+        {
+          "date": "2026-08-14",
+          "close": 6.47,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.06095791001451378
+        },
+        {
+          "date": "2026-08-17",
+          "close": 6.46,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.062409288824383125
+        },
+        {
+          "date": "2026-08-18",
+          "close": 6.6,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0420899854862119
+        },
+        {
+          "date": "2026-08-19",
+          "close": 6.77,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.01741654571843254
+        },
+        {
+          "date": "2026-08-20",
+          "close": 6.81,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.011611030478955064
+        },
+        {
+          "date": "2026-08-21",
+          "close": 6.78,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.01596516690856309
+        },
+        {
+          "date": "2026-08-24",
+          "close": 6.86,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.004354136429608024
+        },
+        {
+          "date": "2026-08-25",
+          "close": 6.85,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.005805515239477477
+        },
+        {
+          "date": "2026-08-26",
+          "close": 6.86,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.004354136429608024
+        },
+        {
+          "date": "2026-08-27",
+          "close": 6.79,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.014513788098693747
+        },
+        {
+          "date": "2026-08-28",
+          "close": 6.79,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.89,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.014513788098693747
+        },
+        {
+          "date": "2026-08-31",
+          "close": 6.92,
+          "adjusted_entry": 6.82,
+          "adjusted_peak": 6.92,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        }
+      ],
+      "code": "601288.SH",
+      "buy_date": "2026-08-03",
+      "shares": 3600,
+      "actual_exit": {
+        "date": "2026-09-01",
+        "reason": "rebalance",
+        "price": 6.9
+      }
+    },
+    {
+      "held_sessions": 18,
+      "entry_price": 154.7,
+      "phase": "advance",
+      "first_held_close_date": "2026-09-01",
+      "last_held_close_date": "2026-09-24",
+      "actual_maximum_raw_close": 167.96,
+      "maximum_adjusted_peak_gain": 0.08930540242557883,
+      "ending_adjusted_entry": 154.19,
+      "ending_adjusted_peak": 167.96,
+      "trailing_activation_date": null,
+      "minimum_drawdown_after_activation": 0.0,
+      "original_first_risk_signal": null,
+      "proposed_first_risk_signal": null,
+      "signal_changed": false,
+      "observations": [
+        {
+          "date": "2026-09-01",
+          "close": 154.4,
+          "adjusted_entry": 154.7,
+          "adjusted_peak": 154.7,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0019392372333547625
+        },
+        {
+          "date": "2026-09-02",
+          "close": 155.99,
+          "adjusted_entry": 154.7,
+          "adjusted_peak": 155.99,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-09-03",
+          "close": 156.63,
+          "adjusted_entry": 154.7,
+          "adjusted_peak": 156.63,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-09-04",
+          "close": 153.83,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 156.12,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0146682039456828
+        },
+        {
+          "date": "2026-09-07",
+          "close": 153.25,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 156.12,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.018383294901357927
+        },
+        {
+          "date": "2026-09-08",
+          "close": 156.35,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 156.35,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-09-09",
+          "close": 154.88,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 156.35,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.009401982731052083
+        },
+        {
+          "date": "2026-09-10",
+          "close": 154.5,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 156.35,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.011832427246562194
+        },
+        {
+          "date": "2026-09-11",
+          "close": 151.24,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 156.35,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.03268308282699062
+        },
+        {
+          "date": "2026-09-14",
+          "close": 158.86,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 158.86,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-09-15",
+          "close": 156.67,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 158.86,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.013785723278358475
+        },
+        {
+          "date": "2026-09-16",
+          "close": 157.71,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 158.86,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.007239078433841195
+        },
+        {
+          "date": "2026-09-17",
+          "close": 160.49,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 160.49,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-09-18",
+          "close": 160.0,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 160.49,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0030531497289550957
+        },
+        {
+          "date": "2026-09-21",
+          "close": 167.96,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 167.96,
+          "trailing_active": false,
+          "drawdown_from_peak": 0.0
+        },
+        {
+          "date": "2026-09-22",
+          "close": 167.85,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 167.96,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.0006549178375804265
+        },
+        {
+          "date": "2026-09-23",
+          "close": 167.95,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 167.96,
+          "trailing_active": false,
+          "drawdown_from_peak": -5.953798523472553e-05
+        },
+        {
+          "date": "2026-09-24",
+          "close": 162.4,
+          "adjusted_entry": 154.19,
+          "adjusted_peak": 167.96,
+          "trailing_active": false,
+          "drawdown_from_peak": -0.03310311979042635
+        }
+      ],
+      "code": "603259.SH",
+      "buy_date": "2026-09-01",
+      "shares": 100,
+      "actual_exit": null
+    }
+  ],
+  "input_sha256": {
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260105.pkl": "d5f150476699d6914f96999191247c28c053270023de6a70b7ac1a44a66f4aff",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260130.pkl": "c6986a3fb3c9277d77dde239b24cc077cb303a3c8f1aaf2145ecebc39bced60d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260202.pkl": "4a33321c6de64d1fabc4f92971f3e8a96db338deb7482cddf55f2d95349c4981",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260227.pkl": "a957f925f0ded9aa05576281a814239a69022c61058ae65852705dfe51a3fc40",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260302.pkl": "d93dadb4a4201bb3b9bd85c2e6d04ad69c8838e3f8be7a51d6e8d9239dd1525d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260401.pkl": "32a425d586ba66a568362fa9059e4bfbba9a86f3aa4b6b7f7c70184a4a478ec9",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260430.pkl": "5fc0a81ec07645978645a83105e03ad034490a90b88e3c117084a5d9ce37c6c2",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260506.pkl": "0ce82b9bac878b1b29f41fdd512ba278bf33d7062bdea66576b4e9e9b3464ae0",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260529.pkl": "626557437467a8f7c11fef53499da78947968adc5439d27cf441e8145073f7c1",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260601.pkl": "7c014a944480f735d8741f9a603f8c0d3a2a5df06eef7fe711e3391ad9116767",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260701.pkl": "4c40b7ba4f74339972ab317013fac196df976f0e99a64a77c9bf11c7a07cc63d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260803.pkl": "b41c7d1654e84bbe6610fa5410494f86539191beaf30d01093f32eec6b577d22",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260831.pkl": "dcbfd773fc3f745c3b3348db92a3734000609e8f8810f7a97c1d55b67ccabc82",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260901.pkl": "d48969d09392d9e88168b2af3a729dd51a13d51b528e4da646caf1dd640e2902",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260924.pkl": "4817209c93503d185174c4df2840344236c1eadd731126dbf014d100f7ead8da",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\sessions.json": "a30a200280aeb67754b1739ce5fc6b67b3f18a8244bc3fd823d494bc71477803",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\src\\research_market_states.py": "c84240dc13b7c0a0aee72334c3237094767bec455ed9f30af1f8dab96a48b1de",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\src\\research_scoped_actions.py": "d6d591aa3450676e9895ac6910f48267b029641c0282b21eda4221085047dc49",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\account_dc_member_relative_leader_2026_retry.csv": "9a3325d0fc83ed7ed3aee7427164192f1bd18872e1fc93418a0f04c6ee8e8d31",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\candidates.pkl": "ed0aac27829e7134e496d286ff67e7a1306a72d6db973e6e626679f0e29ba422",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\daily.pkl": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\daily_nav_dc_member_relative_leader_2026_retry.csv": "d74cea24eb65e56ba47c17aef47423e0bcc63e7662a5fd33c035b520a8048970",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\exit_signals_dc_member_relative_leader_2026_retry.csv": "dc48f75ffe03e85633bcc48851717146721355d0d418ce3b328272d601960616",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002008.SZ.json": "1fa1916d4768b794973ebd4cc2771bcb40fd3fcbe836198554ba771c39286a79",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002008.SZ.pkl": "c5403f252233e6de0fd066ca94f568d98d66c47edbf46f05e9d1ccf6bf1ed420",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002185.SZ.json": "a527f9b7e38104b2131bb919fb9512bbd9910188e15d1cc41be94706ab8edd70",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002185.SZ.pkl": "4c94bb37b94581346b3447c1cc88a05edc750687934a3ea1c6905ffeb08adb2f",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002195.SZ.json": "77ab790c9891b543a6fe94497a9c2e73c962e6a1ae8717d520b423432be496d3",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002195.SZ.pkl": "2fc6887633236de90e13c68ac66e903723e0720e87e7a420b3a0410d1fb80861",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002384.SZ.json": "cfa73eacda0e72f7499217fdea1756ac8e90d36a51630d80fc449cad3d08ea5b",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002384.SZ.pkl": "f680b655f818beb614d4233ceebab372f7816d7192172e5849403138cec59a0f",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002436.SZ.json": "a858bf07c036370a01b0e8b2b5bf8df76b50d97c90bf6b303dba95841812a0cb",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002436.SZ.pkl": "eb7936227837d6156d3682d82471a4ba807afa633faa61a0fd901c10079a57e2",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002851.SZ.json": "3ae2edc7f0a3a163104500baf8ec7ba557bc0e4c65722b2c335b5f577e787e58",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\002851.SZ.pkl": "8f4faba0ca32e6a230955697d9200a8dd42871702db790f6594771a1abf5e036",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\601208.SH.json": "fdc3b87f90b9ba4c1a5d4220ffbd837bcd6cd99aa4a7bc3e51dd84bfffd28d8f",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\601208.SH.pkl": "331389ef087eb4b89d3c5ca0fd9693f8754f6e44e2b6604c0d821ae911a13db1",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\601288.SH.json": "c17975c2e02f0fa13e60ae8eb303cc4676a9cf232bdcf1cc1733b6623d5fcdbe",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\601288.SH.pkl": "d93baa42a9616e59cdf51cfa601275bc0028d0fec1d6cf3d2b29f37bc8eb798c",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\603259.SH.json": "845ed9fe83c5d4bc3e9f678bef75f94f5af6154e940f8aef43d45ae620a8f414",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\scoped_actions\\603259.SH.pkl": "3a25d921e58ff34d3d889347ca63de9de1b14af9fd4b730c6ca5c8aa4090fec2",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\trades_dc_member_relative_leader_2026_retry.csv": "8645a429c5f9a3712bd024c3b4e5fa3018af60b063b18560bea040cfb8008326",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_leader_2026_research\\verification.json": "42c88726fa14eada0a9c7f6124fa2b405584d27c58d3c328960cc6612dd0af2c"
+  },
+  "audit_source_sha256": "f89aec94e69f0bd179230028484f510c5688aa9c489dd87714d049c585a8da67"
+}

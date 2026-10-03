@@ -1,0 +1,9 @@
+{
+  "variant": "dc_expected_profit_2026_retry",
+  "status": "completed",
+  "started_utc": "2026-10-01T17:01:50.955757+00:00",
+  "account_complete": true,
+  "months": 9,
+  "ending_equity": 19909.0,
+  "finished_utc": "2026-10-01T17:02:13.984399+00:00"
+}

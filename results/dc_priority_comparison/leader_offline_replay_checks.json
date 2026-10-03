@@ -1,0 +1,14 @@
+[
+  {
+    "strategy": "dc_member_leader_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true
+  },
+  {
+    "strategy": "dc_member_relative_leader_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true
+  }
+]

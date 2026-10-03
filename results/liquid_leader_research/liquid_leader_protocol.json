@@ -1,0 +1,21 @@
+{
+  "variants": [
+    "liquid_leader_retry",
+    "liquid_leader_hold_retry"
+  ],
+  "stage": "Exploration after user-supplied PCB examples and previously examined history; no untouched-holdout claim",
+  "hypothesis": "A weak broad industry must not veto liquid individual leaders; avoid a global size bucket and defensive low-volatility penalty in narrow markets",
+  "routing": "Previous completed signal month L1 positive-mom3 breadth<50%, and at least one qualified candidate; otherwise unchanged state_onset monthly policy",
+  "liquidity": "Mean positive traded daily amount in the signal calendar month, at or before each stock actual signal date; at least 10 observations; all SH/SZ candidate boards rank together",
+  "qualification": "Mean amount in top 10% of the all-board monthly universe; own adjusted mom1,mom3,mom6>0; retain pre-existing exclusion mom3>150% AND mom1>30%",
+  "ranking": "Within liquid top-decile candidates: .45 amount percentile + .35 mom1 percentile + .20 mom3 percentile; no original low-volatility or L1 score",
+  "phase": "Qualified specialist entries are advance; no calendar, ticker, PCB or optical-module whitelist",
+  "continuation": "Only hold variant: retain a position entered as a liquid specialist while the new monthly specialist rank stays <=10; preserve original entry and peak, never cancel pending exits",
+  "unchanged": "daily_guarded financial floor and daily supplementary entries; state_onset exposure; original next-open stop rules; deferred sells; 25000 initial and new-investment cap; no topups; mainboard whole lots; zero costs",
+  "selection": "Run both full 45-month accounts, report every completed variant and cash drawdown, no best-month splicing",
+  "sources": [
+    "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00146",
+    "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1104491"
+  ],
+  "note": "Literature motivates examining industry versus individual price trends; these precise rules are new experiments, not a reproduction of published profits"
+}

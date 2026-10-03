@@ -18,6 +18,12 @@ reports/*
 !reports/small_account_results_*.md
 !reports/leadership_research_*.md
 !reports/market_state_research_*.md
+!reports/monthly_*.md
+!reports/daily_opportunity*.md
+!reports/research_release_*.json
+.research-release-*.paths
+results/daily_opportunity*/predictions.csv
+results/daily_opportunity*/liquidity_checks.csv
 results/market_state_board_complete/daily_pressure_feature_manifest.json
 
 # Local browser traces, packaged launcher, and regenerable research caches

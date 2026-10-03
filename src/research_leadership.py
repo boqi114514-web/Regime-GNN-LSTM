@@ -100,7 +100,7 @@ def enrich(candidates, monthly, l2_members):
 
 
 def leader_optimizer(candidates, budget, flexible=False, stock_cap=None, sector_cap=None, name_limit=None,
-                     minimum_names=None, sector_name_limit=2, **kwargs):
+                     minimum_names=None, sector_name_limit=2, score_power=4, **kwargs):
     cap, group_cap = (.5, .75) if flexible else (.3, .6)
     cap = cap if stock_cap is None else stock_cap
     group_cap = group_cap if sector_cap is None else sector_cap
@@ -115,7 +115,9 @@ def leader_optimizer(candidates, budget, flexible=False, stock_cap=None, sector_
     if c.empty:
         raise ValueError('所有候选的一手价格超过仓位上限')
     n = len(c)
-    objective = np.r_[-c.leadership_score.to_numpy()**4*c.lot_value.to_numpy()/budget, np.zeros(n)]
+    if score_power not in (1,4):
+        raise ValueError('Unsupported optimizer score power')
+    objective = np.r_[-c.leadership_score.to_numpy()**score_power*c.lot_value.to_numpy()/budget, np.zeros(n)]
     rows, upper, lower = [], [], []
     def add(row, hi, lo=-np.inf):
         rows.append(row); upper.append(hi); lower.append(lo)

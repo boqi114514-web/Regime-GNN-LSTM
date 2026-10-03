@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "specification": {
+    "protocol": {
+      "version": 1,
+      "features": [
+        "mom1",
+        "mom3",
+        "mom6",
+        "volatility3",
+        "volatility6",
+        "positive_fraction6",
+        "momentum_acceleration",
+        "mom1_percentile",
+        "mom3_percentile",
+        "mom6_percentile",
+        "amount_percentile",
+        "pressure5",
+        "pressure20",
+        "location5",
+        "amount_ratio5_vs_prior20"
+      ],
+      "estimator": "HistGradientBoostingRegressor",
+      "parameters": {
+        "loss": "squared_error",
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "max_depth": null,
+        "l2_regularization": 10,
+        "learning_rate": 0.05,
+        "random_state": 42
+      },
+      "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+      "training_window": "Expanding complete-feature stock observations; at least 12 distinct label months",
+      "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+      "label": "Next calendar-month adjusted close / signal adjusted close - 1; clipped to [-.50,.50] only in fitting",
+      "ranking": "Per-signal forecast percentile among all predicted SH/SZ mainboard, ChiNext and STAR stocks",
+      "daily_features": "Complete 25-session gap-invariant intraday pressure and amount windows, not close-to-close total return",
+      "first_feature_month": "2023-01",
+      "minimum_liquidity_days": 10
+    },
+    "sklearn_version": "1.8.0",
+    "source_inputs": {
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_forecast.py": "3f36c79960c83613b094278fa28243d5e1ba56ccdcfe4e114628d47378c8a418",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_entry.py": "be8cb02382c2605f06481037a669967b7e75e1d1e086788ceace13b5a40245cf",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_themes.py": "c62d04cad8bf3abe493c612ba9f35394905787ca4cff91151c48860a92ceff72"
+    },
+    "monthly_frame_sha256": "52c13ce83a6b524b055ff9f78f96b19b8315255b0355b54e5378a333e3efcbaf",
+    "daily_frame_sha256": "adcff36234d95871e3f3c6afb5bb253e719bff15ad3dcf7146255286ed850513",
+    "signal_dates": [
+      "2025-12-31",
+      "2026-01-30",
+      "2026-02-27",
+      "2026-03-31",
+      "2026-04-30",
+      "2026-05-29",
+      "2026-06-30",
+      "2026-07-31",
+      "2026-08-31"
+    ]
+  },
+  "feature_rows": 217394,
+  "prediction_rows": 45144,
+  "artifacts": {
+    "forecast_features.pkl": "fbd129ccab630e5a82e7b2c060d06be868c3e7152b68400f3a3c9df2c9483029",
+    "forecast_predictions.pkl": "86ce78401bb429472ab974c1fb7d4fc8583998878b87d72a6b0fe8bcc6517cfb",
+    "forecast_models.pkl": "62f398fbd9909fbe9822eef0f0b1ae3098cc6e97a1887e97606d9a62dd36963e",
+    "forecast_model_audit.json": "50431b47e8a0cc4ee844c427b7635cd55ca3674f6b8f7a12f784753506af9a01"
+  }
+}

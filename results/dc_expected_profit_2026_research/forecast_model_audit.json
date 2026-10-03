@@ -1,0 +1,77 @@
+{
+  "protocol": {
+    "version": 1,
+    "features": [
+      "mom1",
+      "mom3",
+      "mom6",
+      "volatility3",
+      "volatility6",
+      "positive_fraction6",
+      "momentum_acceleration",
+      "mom1_percentile",
+      "mom3_percentile",
+      "mom6_percentile",
+      "amount_percentile",
+      "pressure5",
+      "pressure20",
+      "location5",
+      "amount_ratio5_vs_prior20"
+    ],
+    "estimator": "HistGradientBoostingRegressor",
+    "parameters": {
+      "loss": "squared_error",
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "max_depth": null,
+      "l2_regularization": 10,
+      "learning_rate": 0.05,
+      "random_state": 42
+    },
+    "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+    "training_window": "Expanding complete-feature stock observations; at least 12 distinct label months",
+    "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+    "label": "Next calendar-month adjusted close / signal adjusted close - 1; clipped to [-.50,.50] only in fitting",
+    "ranking": "Per-signal forecast percentile among all predicted SH/SZ mainboard, ChiNext and STAR stocks",
+    "daily_features": "Complete 25-session gap-invariant intraday pressure and amount windows, not close-to-close total return",
+    "first_feature_month": "2023-01",
+    "minimum_liquidity_days": 10
+  },
+  "quarterly_models": [
+    {
+      "quarter": "2025Q4",
+      "model_fit_cutoff": "2025-12-31",
+      "train_label_end": "2025-11-28",
+      "train_rows": 166850,
+      "train_label_months": 34,
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q1",
+      "model_fit_cutoff": "2026-01-30",
+      "train_label_end": "2025-12-31",
+      "train_rows": 171866,
+      "train_label_months": 35,
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q2",
+      "model_fit_cutoff": "2026-04-30",
+      "train_label_end": "2026-03-31",
+      "train_rows": 186920,
+      "train_label_months": 38,
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q3",
+      "model_fit_cutoff": "2026-07-31",
+      "train_label_end": "2026-06-30",
+      "train_rows": 201795,
+      "train_label_months": 41,
+      "status": "fitted"
+    }
+  ],
+  "feature_rows": 217394,
+  "prediction_rows": 45144,
+  "train_label_purge_verified": true
+}

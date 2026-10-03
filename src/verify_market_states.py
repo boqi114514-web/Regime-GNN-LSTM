@@ -27,6 +27,42 @@ def verify_reentry_timing(trades, dates):
     return len(entries)
 
 
+def verify_weekly_reentry_timing(trades, dates):
+    """Check weekly idle-cash entries independently from the entry scheduler.
+
+    A completed W-SUN week is observed at its last actual session's close;
+    execution is allowed only at the first actual session of the next week.
+    Month-opening trades retain the separate monthly rebalance convention.
+    """
+    if 'reason' not in trades:
+        return 0
+    entries = trades[trades.side.eq('buy') & trades.reason.eq('weekly_reentry')].copy()
+    if entries.empty:
+        return 0
+    dates = pd.DatetimeIndex(dates)
+    if dates.hasnans or not dates.is_unique or not dates.is_monotonic_increasing:
+        raise AssertionError('Invalid weekly verification session calendar')
+    positions = {day: i for i, day in enumerate(dates)}
+    firsts = set(pd.Series(dates, index=dates).groupby(dates.to_period('M')).min())
+    entries['date'] = pd.to_datetime(entries.date, errors='raise')
+    entries['signal_date'] = pd.to_datetime(entries.signal_date, errors='raise')
+    sales = pd.to_datetime(trades.loc[trades.side.eq('sell'), 'date'], errors='raise')
+    for row in entries.itertuples():
+        if row.date not in positions:
+            raise AssertionError('Weekly entry not on a verified trading session')
+        idx = positions[row.date]
+        if idx == 0 or row.signal_date != dates[idx-1] or row.date in firsts:
+            raise AssertionError('Weekly entry not based on previous session close')
+        if row.date.to_period('W-SUN') == row.signal_date.to_period('W-SUN'):
+            raise AssertionError('Weekly entry not at first session after completed week')
+        previous_sales = sales[sales.le(row.date)]
+        if len(previous_sales):
+            most_recent = previous_sales.max()
+            if most_recent not in positions or idx-positions[most_recent] < 2:
+                raise AssertionError('Weekly entry violates two-session sale cooldown')
+    return len(entries)
+
+
 def verify_daily(out, root, names):
     trades = {n: pd.read_csv(out/f'trades_{n}.csv', parse_dates=['date']) for n in names}
     codes = set().union(*(set(t.code) for t in trades.values()))
@@ -44,7 +80,12 @@ def verify_daily(out, root, names):
     for name, t in trades.items():
         daily = pd.read_csv(out/f'daily_nav_{name}.csv', parse_dates=['date']).set_index('date')
         reentries=verify_reentry_timing(t,daily.index)
+        weekly_reentries=verify_weekly_reentry_timing(t,daily.index)
         events = pd.read_csv(out/f'corporate_events_{name}.csv', parse_dates=['date', 'payment_date'])
+        for col in ('cash_entitlement', 'bonus_shares'):
+            events[col] = pd.to_numeric(events[col], errors='raise').astype(float)
+            if not np.isfinite(events[col]).all():
+                raise ValueError('Invalid corporate event '+col)
         p = prices.copy()
         marks_path = out/f'suspension_marks_{name}.csv'
         if marks_path.stat().st_size > 5:
@@ -91,5 +132,6 @@ def verify_daily(out, root, names):
         checks.append(dict(strategy=name, days=len(daily), max_cash_error=max_cash_error,
                            max_nav_error=max_nav_error, status='independent_daily_cash_shares_nav_reconciled',
                            verified_daily_reentry_trades=reentries,
+                           verified_weekly_reentry_trades=weekly_reentries,
                            valuation='source quotes plus documented suspension marks, no invented fills'))
     return checks

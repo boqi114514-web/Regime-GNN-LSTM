@@ -1,0 +1,8 @@
+{
+  "variant": "liquid_phase_router_retry",
+  "stage": "Follow-up after both initial liquid variants: April/May improved but June and full-period performance deteriorated; exploratory feedback, not an unseen test",
+  "diagnosis": "Wholesale narrow-market replacement also discards leaders already correctly identified by the original advance policy",
+  "rule": "Keep original monthly selection if its highest-score eligible mainboard stock, affordable by signal close within 25000, is advance with positive mom1/mom3. Otherwise apply the original liquid specialist routing",
+  "no_lookahead": "Priority is determined from the prior signal month only; never use month-ahead performance or named stocks/months",
+  "unchanged": "Same original daily_guarded add-on, exposure, next-open execution, original exits, whole lots and fixed capital cap; no continuation override"
+}

@@ -1,0 +1,98 @@
+{
+  "protocol": {
+    "version": "rally_classifier_v1",
+    "target_kind": "rally_classifier",
+    "features": [
+      "mom1",
+      "mom3",
+      "mom6",
+      "volatility3",
+      "volatility6",
+      "positive_fraction6",
+      "momentum_acceleration",
+      "mom1_percentile",
+      "mom3_percentile",
+      "mom6_percentile",
+      "amount_percentile",
+      "pressure5",
+      "pressure20",
+      "location5",
+      "amount_ratio5_vs_prior20",
+      "peer_mom1",
+      "peer_mom3",
+      "peer_mom6",
+      "peer_positive3"
+    ],
+    "estimator": "HistGradientBoostingClassifier",
+    "parameters": {
+      "loss": "log_loss",
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "l2_regularization": 10,
+      "learning_rate": 0.05,
+      "random_state": 42
+    },
+    "target_threshold": 0.3,
+    "target": "Next calendar-month adjusted close-to-close return >= .30, without clipping labels",
+    "sample_weights": "Each training class receives half the training weight: N/(2*n_class); counts use strictly purged training rows only",
+    "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+    "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+    "minimum_training": "12 distinct completed label months; at least 10 positive and 10 negative training labels",
+    "ranking": "Per-signal all-board percentile of class-balanced classifier ranking score",
+    "forecast_return_alias": "Uncalibrated balanced-class ranking score; NOT expected return, NOT natural-frequency probability, NOT expected profit per yuan",
+    "feature_source": "Verified cached 19-feature price/amount and causal peer-context observations; no feature regeneration or label/stock/theme whitelist"
+  },
+  "quarterly_models": [
+    {
+      "quarter": "2025Q4",
+      "model_fit_cutoff": "2025-12-31",
+      "train_label_end": "2025-11-28",
+      "train_rows": 156460,
+      "train_label_months": 32,
+      "train_positive_count": 4301,
+      "train_negative_count": 152159,
+      "target_threshold": 0.3,
+      "target_kind": "rally_classifier",
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q1",
+      "model_fit_cutoff": "2026-01-30",
+      "train_label_end": "2025-12-31",
+      "train_rows": 161447,
+      "train_label_months": 33,
+      "train_positive_count": 4470,
+      "train_negative_count": 156977,
+      "target_threshold": 0.3,
+      "target_kind": "rally_classifier",
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q2",
+      "model_fit_cutoff": "2026-04-30",
+      "train_label_end": "2026-03-31",
+      "train_rows": 176372,
+      "train_label_months": 36,
+      "train_positive_count": 5002,
+      "train_negative_count": 171370,
+      "target_threshold": 0.3,
+      "target_kind": "rally_classifier",
+      "status": "fitted"
+    },
+    {
+      "quarter": "2026Q3",
+      "model_fit_cutoff": "2026-07-31",
+      "train_label_end": "2026-06-30",
+      "train_rows": 191147,
+      "train_label_months": 39,
+      "train_positive_count": 5970,
+      "train_negative_count": 185177,
+      "target_threshold": 0.3,
+      "target_kind": "rally_classifier",
+      "status": "fitted"
+    }
+  ],
+  "feature_rows": 206492,
+  "prediction_rows": 44679,
+  "train_label_purge_verified": true
+}

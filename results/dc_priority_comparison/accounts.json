@@ -1,0 +1,15 @@
+{
+  "dc_acceleration_2026_retry": "results\\dc_acceleration_2026_research",
+  "dc_early_2026_retry": "results\\dc_early_2026_research",
+  "dc_member_acceleration_2026_retry": "results\\dc_member_acceleration_2026_research",
+  "dc_member_moderate_2026_retry": "results\\dc_member_moderate_2026_research",
+  "dc_member_relative_2026_retry": "results\\dc_member_relative_2026_research",
+  "dc_member_relative_moderate_2026_retry": "results\\dc_member_relative_moderate_2026_research",
+  "dc_member_relative_leader_2026_retry": "results\\dc_member_relative_leader_2026_research",
+  "dc_member_leader_2026_retry": "results\\dc_member_leader_2026_research",
+  "dc_context_rank_2026_retry": "results\\dc_context_rank_2026_research",
+  "dc_context_member_2026_retry": "results\\dc_context_member_2026_research",
+  "dc_local_rank_2026_retry": "results\\dc_local_rank_2026_research",
+  "dc_local_member_2026_retry": "results\\dc_local_member_2026_research",
+  "dc_structure_2026_retry": "results\\dc_structure_replay_20261002"
+}

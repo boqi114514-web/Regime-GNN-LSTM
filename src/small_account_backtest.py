@@ -4,6 +4,7 @@ This first account comparison uses a common fixed stock rule, not the legacy
 fundamental stock selector. NAV is sampled at month ends (not daily drawdown).
 """
 import json
+import uuid
 import math
 import argparse
 import hashlib
@@ -171,9 +172,20 @@ def boundary_frame(day, api='daily'):
 
 def factor_snapshot(pro, day):
     path = ROOT/'adj_month_end'/f'{day:%Y%m%d}.pkl'
-    d = pd.read_pickle(path) if path.exists() else fetch_pages(pro, 'adj_factor', trade_date=day.strftime('%Y%m%d'))
+    cached = path.exists()
+    d = pd.read_pickle(path) if cached else fetch_pages(pro, 'adj_factor', trade_date=day.strftime('%Y%m%d'))
     d = validate_rows(d, ['ts_code', 'trade_date'], ['adj_factor'], day.strftime('%Y%m%d'))
-    d.to_pickle(path)
+    # Reading a validated shared cache must not truncate it during another
+    # account's replay. New snapshots are published atomically as well.
+    if not cached:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        staged = path.with_name(path.name+'.'+uuid.uuid4().hex+'.staging')
+        try:
+            d.to_pickle(staged)
+            staged.replace(path)
+        finally:
+            if staged.exists():
+                staged.unlink()
     return d.set_index('ts_code').adj_factor.to_dict()
 
 

@@ -1,0 +1,8 @@
+{
+  "inputs": {
+    "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\liquid_leader_research\\daily.pkl": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b",
+    "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\liquid_leader_research\\candidates.pkl": "8c20f69757548f695b566a87c07f64cdb6326272ad95327046499cb987d3c255",
+    "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_daily_reentry.py": "2d6c3d038901db07952fd599cbf1381b18936dae7dade7631deaf2e4447332b3"
+  },
+  "output": "8018bcdb225ab3e39b5b3747bc0d37fecf2876fcc72cd6f10504d573cc0ff5b5"
+}

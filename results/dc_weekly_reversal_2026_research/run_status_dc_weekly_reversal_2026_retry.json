@@ -1,0 +1,9 @@
+{
+  "variant": "dc_weekly_reversal_2026_retry",
+  "status": "completed",
+  "started_utc": "2026-10-01T17:01:49.772559+00:00",
+  "account_complete": true,
+  "months": 9,
+  "ending_equity": 17379.000000000004,
+  "finished_utc": "2026-10-01T17:02:05.373279+00:00"
+}

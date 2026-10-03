@@ -1,0 +1,3513 @@
+{
+  "kind": "monthly",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 1023,
+      "sha256": "1243bc2fc2ee49f2b3449ce1e69f879089091521ba346100594a46423901d530"
+    },
+    {
+      "path": "README.md",
+      "bytes": 27955,
+      "sha256": "f4c1e86450390ce1c5640eb17e70d5297df7ca4c017718d4ef7fc471e27ae0a4"
+    },
+    {
+      "path": "reports/market_state_research_2026-09-28.md",
+      "bytes": 17202,
+      "sha256": "1032fc770219c4746831d1d152cd354d1e8c9c6e6193a8865dac7d1b670b35af"
+    },
+    {
+      "path": "reports/market_state_research_2026-09-29.md",
+      "bytes": 11429,
+      "sha256": "5044b3c3c6974505caa7e80b3e72b99ab7dbb5de099fa7d3d80af9d6bcd2ef96"
+    },
+    {
+      "path": "reports/market_state_research_2026-09-30.md",
+      "bytes": 6712,
+      "sha256": "747a18925941e1f68ff166a053331ce044709ba241e0482b440e4c7adde73ec3"
+    },
+    {
+      "path": "reports/market_state_research_2026-09-30_mainline.md",
+      "bytes": 11902,
+      "sha256": "6185475241952f8dad8d1160135cd250a7e570d2b072603b824758eab0191816"
+    },
+    {
+      "path": "reports/market_state_research_2026-10-01_dc.md",
+      "bytes": 10200,
+      "sha256": "052376e7171b3b52743b5d387657f9842d794b581d1de814217c475f98993b7d"
+    },
+    {
+      "path": "reports/market_state_research_2026-10-02_entries.md",
+      "bytes": 12531,
+      "sha256": "619d073248ae983849bb3f94110cba37459a39442ced4ba008edf3fa557879a8"
+    },
+    {
+      "path": "reports/market_state_research_2026-10-02_priority.md",
+      "bytes": 10197,
+      "sha256": "68109dfe0863bccf5977b2a5c5de41eb1101ba3be132a4d165c85a3ba55134bf"
+    },
+    {
+      "path": "reports/monthly_eligible_hold_2026-10-03.md",
+      "bytes": 6501,
+      "sha256": "6108e430cd23c59ba508474725c1bac80d65b587bd2a94a4fef6a3e4c77e8221"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/account_dc_acceleration_2026_retry.csv",
+      "bytes": 697,
+      "sha256": "1cdfad5d95fd9da6bb62cc2d7e5386599e30692d90d1024bd33c472cfa3db4b8"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/allocations_dc_acceleration_2026_retry.csv",
+      "bytes": 476,
+      "sha256": "b31b227efaac0493960281512550386925bad199b2ee33d836df2137e886990f"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/annual_results.csv",
+      "bytes": 152,
+      "sha256": "991c46de1c2454eb45e8e66d24bd480766a725977038984942612587f558ab17"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/candidate_coverage.csv",
+      "bytes": 389,
+      "sha256": "e7bfa31cc057912ea133fcc0addf619b401ee153f1b34932423d00e10d683869"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/continuations_dc_acceleration_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/corporate_events_dc_acceleration_2026_retry.csv",
+      "bytes": 317,
+      "sha256": "3314c293d542dbd894c793a49bd65e79b22876a90568c66aa0eac98bc7a2ff3c"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/daily_nav_dc_acceleration_2026_retry.csv",
+      "bytes": 4975,
+      "sha256": "ddf63538167537ba77ce6ef3c5489f5691e7350b77ae5ed859cd4a19d4fb6155"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/dc_theme_protocol.json",
+      "bytes": 6474,
+      "sha256": "1c1b76b03c8fa9c5d0470908ac50ef64c2c9ff2a3bd7dd42f44e5a094ea4e106"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/exit_signals_dc_acceleration_2026_retry.csv",
+      "bytes": 1086,
+      "sha256": "b1be2f12728362abb3d2551810a75acfe3d0ea377e6b4b0c23b72d2e75453052"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/holdings_dc_acceleration_2026_retry.csv",
+      "bytes": 322,
+      "sha256": "80c80c76e07dc985a4f14e77b1ae780bc8c6cc78b322b495bf303e18a96aebf4"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/metrics.csv",
+      "bytes": 192,
+      "sha256": "bedac110a60c16f32db8472bd825608d26ff6315478cd6b86c9d493c49854bc6"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/monthly_results.csv",
+      "bytes": 988,
+      "sha256": "328e8d5cbd680241ca9ccd10db10ed4fb0740dd9b96e8340a954796bec151d4f"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/run_status_dc_acceleration_2026_retry.json",
+      "bytes": 256,
+      "sha256": "d05b1d2da3e97d2be591aaa3292fed2144ae1878ed8b46caa9ca221e0ab10288"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/suspension_marks_dc_acceleration_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/trades_dc_acceleration_2026_retry.csv",
+      "bytes": 2869,
+      "sha256": "c6b66151d0c5510d4e74297a57e0e6fcea4712deac64a9416b80a4406631b03e"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/verification.json",
+      "bytes": 608350,
+      "sha256": "18b94aa9d07a972f7a9e5a01d33df1532ec9f3805a78a99fa983be7dbaa1a9c8"
+    },
+    {
+      "path": "results/dc_acceleration_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/account_dc_affinity_2026_retry.csv",
+      "bytes": 743,
+      "sha256": "987c8f6d81316f4887becbfaa8b3c208deaddc744b65d492ed95ecd6e2c40b36"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/allocations_dc_affinity_2026_retry.csv",
+      "bytes": 497,
+      "sha256": "ad6769924f414fb1f5f102793769ff2a2a424241f30357d410de01edad9f2860"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/annual_results.csv",
+      "bytes": 146,
+      "sha256": "45c7504e8100f5087ca6798886428e7bf4422c4da5f0f864b451f3f1d42b61a5"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/candidate_coverage.csv",
+      "bytes": 386,
+      "sha256": "54c9790a58c2b5205ee05c82eeb2c8dfc130666e62411be0ccf9ed50c2e6e8c3"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/continuations_dc_affinity_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/corporate_events_dc_affinity_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/daily_nav_dc_affinity_2026_retry.csv",
+      "bytes": 5305,
+      "sha256": "ee9efab4275cd43a7839d705ef84a3bb6c7cf41861251ecf0771d4f362b36db7"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/dc_theme_protocol.json",
+      "bytes": 3554,
+      "sha256": "c8a55f2869962bf51b3a8e6c67315776a522626ca903ff5427cf12c0c6f32e32"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/exit_signals_dc_affinity_2026_retry.csv",
+      "bytes": 735,
+      "sha256": "94163106672b853af4ffe87ff53bfca95173a11a2db7a5ee46d55c1891206d98"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/holdings_dc_affinity_2026_retry.csv",
+      "bytes": 271,
+      "sha256": "fe2857f336d0cd1df7c515efc64950c24e2cecc985450ac0eed6967f0a880090"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/metrics.csv",
+      "bytes": 174,
+      "sha256": "7f2e288ccd77de8357c5e2a1d7327e3450a5b2c62500a50e7a8e6a613f86bd55"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/monthly_results.csv",
+      "bytes": 1018,
+      "sha256": "1766820fc481cdd38574fce89c109299b6f7efed0cc7d9b394025e1346f8e5d1"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/run_status_dc_affinity_2026_retry.json",
+      "bytes": 252,
+      "sha256": "c51ae868a70ea29c996558d8a093238bd0e1c3ac68f2cea16b095f7c8442e8ff"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/suspension_marks_dc_affinity_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/theme_feature_coverage.json",
+      "bytes": 36240,
+      "sha256": "34ae4b3fd72b573423762d6395cb9f94c1641b678ca5109a8e958eb0ebdaf3aa"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/theme_membership_manifest.json",
+      "bytes": 1499,
+      "sha256": "4bfa0a5b9a5f05f525a117d16139e81a10c27d64fe001e40b8e99579536b497e"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/trades_dc_affinity_2026_retry.csv",
+      "bytes": 2061,
+      "sha256": "b06da04f59efe7e72427fddf9e5d2501eba3d2f71a62794c1a91040916deb1aa"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/verification.json",
+      "bytes": 496849,
+      "sha256": "e95d817fdb4be34e6a20b7dbe43ca8cd9effab1481384f7e4f0c505082e81ada"
+    },
+    {
+      "path": "results/dc_affinity_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_context_inputs_20261002/forecast_feature_manifest.json",
+      "bytes": 4409,
+      "sha256": "b74087e9584f012ed3fd30d18b9efbc3d8a3360069158cd5a14adb0dc9031d6b"
+    },
+    {
+      "path": "results/dc_context_inputs_20261002/forecast_model_audit.json",
+      "bytes": 2800,
+      "sha256": "fcb4517acffc13eb736ec27ed0c2f6e980960222e46c6bf49f1f2278d98feff1"
+    },
+    {
+      "path": "results/dc_context_inputs_20261002/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_context_inputs_20261002/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_context_inputs_20261002/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/account_dc_context_member_2026_retry.csv",
+      "bytes": 801,
+      "sha256": "72116b686f0298ea3873c370af1703bee988e7f36032b8dc389298c74d692aa4"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/allocations_dc_context_member_2026_retry.csv",
+      "bytes": 486,
+      "sha256": "fddd4dec9ed1d9e6080cd70902f35a6ee229448eea2e97aa66906ce8c163cb7b"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/annual_results.csv",
+      "bytes": 175,
+      "sha256": "84747326e229a29f05777ee6c49e526aa11feb4f06ffb089c04d83f12dd48963"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/candidate_coverage.csv",
+      "bytes": 379,
+      "sha256": "822a767c1785bb8e6ff8ac6124732897df923d4a98962ec31d800aa7d0ae5941"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/context_ranker_feature_manifest.json",
+      "bytes": 8701,
+      "sha256": "6564c63cd0de77a29c5a8e77c3b9849e6e4375987ba4015685bc8d1ab3c1d467"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/continuations_dc_context_member_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/corporate_events_dc_context_member_2026_retry.csv",
+      "bytes": 159,
+      "sha256": "4c09604444a295bd9aa1cbfa4ef1fcb968d5d75f0835ebd037354e17e027d66f"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/daily_nav_dc_context_member_2026_retry.csv",
+      "bytes": 5120,
+      "sha256": "397c440d6821785f689eac74cae1bb3a5dcdb37d0a6cf3f5b8bdd63c6984255c"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/dc_theme_protocol.json",
+      "bytes": 7222,
+      "sha256": "81b90cec42ade5476991a9600e994cf7a298d1eb2d9661b11cd74b12aae31d7f"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/exit_signals_dc_context_member_2026_retry.csv",
+      "bytes": 732,
+      "sha256": "80579231438ec27b9e934a641e12d25b87c9c221be76b793fc7e40df9233a990"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/forecast_feature_manifest.json",
+      "bytes": 4409,
+      "sha256": "b74087e9584f012ed3fd30d18b9efbc3d8a3360069158cd5a14adb0dc9031d6b"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/forecast_model_audit.json",
+      "bytes": 10830,
+      "sha256": "957ce95536ac6a1802f32d4840a4d575f4b61826c502e306205032556d355a6e"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/holdings_dc_context_member_2026_retry.csv",
+      "bytes": 440,
+      "sha256": "3e061769b3517c4fb7fd620d554b1ad1000799f19eac31c1c8d0723c82403230"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/metrics.csv",
+      "bytes": 214,
+      "sha256": "0fe8b1f06333148a0b10ff5f610f4960688bbf26f92e12e8e50f469bb6063ad3"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/monthly_results.csv",
+      "bytes": 1111,
+      "sha256": "f4d31da65179bd6fd46123906d1c129b28fee2e67c5943587a33d07052c28c63"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/run_status_dc_context_member_2026_retry.json",
+      "bytes": 269,
+      "sha256": "be5a9ae6bb4b4f27bd09eaa4d315fac0f32f8f9aaa4d12875a25e1450a43efb2"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/suspension_marks_dc_context_member_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/trades_dc_context_member_2026_retry.csv",
+      "bytes": 2429,
+      "sha256": "5f1a43ca9d9fffe9f39b750a25cbc3581f0179c860f098207ce8cc2d057c0c44"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/verification.json",
+      "bytes": 614959,
+      "sha256": "28f08816160fec50e75c98b84994db6d5d48a0b15976199bbeb412ef52187a36"
+    },
+    {
+      "path": "results/dc_context_member_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/account_dc_context_rank_2026_retry.csv",
+      "bytes": 861,
+      "sha256": "1c75da1f22610799fc5de70551f4f65d8134de81e8b67a691a9a8a1496ac11bf"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/allocations_dc_context_rank_2026_retry.csv",
+      "bytes": 558,
+      "sha256": "c075a9d76dc02da3ec5dadd2ff87ca0f7e0aef5b62b80e504161a663cdaf7e1f"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/annual_results.csv",
+      "bytes": 172,
+      "sha256": "2043e6682c8427d1c3a4d01e7df8ed2830524e89a04c236db44328841dcbdb27"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "1fa417029c3145bf03f6f82d7dca98ec45c8e64dbb7d38bf4cd4472587a98033"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/context_ranker_feature_manifest.json",
+      "bytes": 8693,
+      "sha256": "bbb2bbc133ee2f3ffbca92e41c893341e56c4f59a0d618abffe33dbabc496584"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/continuations_dc_context_rank_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/corporate_events_dc_context_rank_2026_retry.csv",
+      "bytes": 231,
+      "sha256": "6b7f6dd2a1d48cb3a8f817c00c23e279d7510cf0e5cf2779413679d4498e69c8"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/daily_nav_dc_context_rank_2026_retry.csv",
+      "bytes": 5849,
+      "sha256": "2513362c213d5b70b505413dd8447b32f1518ce73be7d4928387e02534691517"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/dc_theme_protocol.json",
+      "bytes": 7273,
+      "sha256": "e46f88b01e8aff348258dee7babeb39e9b864905d36788604a7148206544d9c6"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/exit_signals_dc_context_rank_2026_retry.csv",
+      "bytes": 782,
+      "sha256": "1028d0aa62b1401dc2c47ab78b47ddaa531c820706d1a535e654509a92d4972e"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/forecast_feature_manifest.json",
+      "bytes": 4409,
+      "sha256": "b74087e9584f012ed3fd30d18b9efbc3d8a3360069158cd5a14adb0dc9031d6b"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/forecast_model_audit.json",
+      "bytes": 10830,
+      "sha256": "957ce95536ac6a1802f32d4840a4d575f4b61826c502e306205032556d355a6e"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/holdings_dc_context_rank_2026_retry.csv",
+      "bytes": 505,
+      "sha256": "7b283ef8fbdb81a399d138b6c07edbc4e1a52d496ade5eaaea0a772ad9c241d2"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/metrics.csv",
+      "bytes": 212,
+      "sha256": "0e8548694eff75fab60aca040cb5ae21aee457d6fe00e2743105c4b8c8d87d4d"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/monthly_results.csv",
+      "bytes": 1145,
+      "sha256": "c4eacbf55e4bf95a5222a32ffd507e2e5682abe80bde76d7d29afdad739aa22b"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/run_status_dc_context_rank_2026_retry.json",
+      "bytes": 267,
+      "sha256": "b4a516b46f1ab9b8138c611062018ca06b8e42e46da687ed6471949dacf04f0a"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/suspension_marks_dc_context_rank_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/trades_dc_context_rank_2026_retry.csv",
+      "bytes": 2692,
+      "sha256": "da9bbba80e39202745502c8bba8259a7cb4a96ae35ce917318b07ea8c37517cb"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/verification.json",
+      "bytes": 614952,
+      "sha256": "5e3860dc1f1f90750dc62f8e542bca252071f100dcf373598ef7ad579c9aac98"
+    },
+    {
+      "path": "results/dc_context_rank_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_early_2026_research/account_dc_early_2026_retry.csv",
+      "bytes": 764,
+      "sha256": "3d9009f52643e917d66da8045e77f9433a60fad7f90716575e1929e3d3a655cf"
+    },
+    {
+      "path": "results/dc_early_2026_research/allocations_dc_early_2026_retry.csv",
+      "bytes": 517,
+      "sha256": "e8bbd993220f6e41179e16eef6f6ed02e5e830538208531fda30d820c92f69f9"
+    },
+    {
+      "path": "results/dc_early_2026_research/annual_results.csv",
+      "bytes": 166,
+      "sha256": "47b925bf7b4b28b2638d68bc3aedd21cfb8430c69792596448ecdc03a5565768"
+    },
+    {
+      "path": "results/dc_early_2026_research/candidate_coverage.csv",
+      "bytes": 389,
+      "sha256": "6142e3a2153afb27b36debb9aaaba03d468188d2f5de645d276942f7a399aa1e"
+    },
+    {
+      "path": "results/dc_early_2026_research/continuations_dc_early_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_early_2026_research/corporate_events_dc_early_2026_retry.csv",
+      "bytes": 160,
+      "sha256": "49fa0a44bd07960607c2a6aa7d3f92f69274303e69aa3e78177bd256260fb5ec"
+    },
+    {
+      "path": "results/dc_early_2026_research/daily_nav_dc_early_2026_retry.csv",
+      "bytes": 5658,
+      "sha256": "c3a37647b0fa41f8e6ce474d95e7482ff53113b1663f2198e7b308a12ae399e7"
+    },
+    {
+      "path": "results/dc_early_2026_research/dc_theme_protocol.json",
+      "bytes": 6453,
+      "sha256": "d327e5c285a18f2694eba8eeec6b78720c5e80742dcfa9229af419b34a4f340f"
+    },
+    {
+      "path": "results/dc_early_2026_research/exit_signals_dc_early_2026_retry.csv",
+      "bytes": 681,
+      "sha256": "d078ebd1ace6f8b2c29e6578cfa8a4dc9a02e71cbeac1072a612df87641ac3cc"
+    },
+    {
+      "path": "results/dc_early_2026_research/holdings_dc_early_2026_retry.csv",
+      "bytes": 493,
+      "sha256": "cf357617b6a7b64726a9ddfd4e195e567158a9f80d2b1749a4008e246394a482"
+    },
+    {
+      "path": "results/dc_early_2026_research/metrics.csv",
+      "bytes": 205,
+      "sha256": "85628ff8d27d4a8f8878c9d748b335b59d0528d5283d0f8d84c543794e6663ab"
+    },
+    {
+      "path": "results/dc_early_2026_research/monthly_results.csv",
+      "bytes": 992,
+      "sha256": "bb68b466bdb756fc46134cf71679f05bf74ed6cc32a28e5b9b78b8fb7757773b"
+    },
+    {
+      "path": "results/dc_early_2026_research/run_status_dc_early_2026_retry.json",
+      "bytes": 260,
+      "sha256": "12c14a9634b14db27b10ea0562ba64de6b9fdfac9b4eef79617a2aa168c259ff"
+    },
+    {
+      "path": "results/dc_early_2026_research/suspension_marks_dc_early_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_early_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_early_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_early_2026_research/trades_dc_early_2026_retry.csv",
+      "bytes": 2421,
+      "sha256": "c60053307705fa035ec759150f0ed72a62be5edcf6375c3e24454c045fa1f187"
+    },
+    {
+      "path": "results/dc_early_2026_research/verification.json",
+      "bytes": 598570,
+      "sha256": "90467d1f49dfc3a33ef613f5a504f604a359c35e681863e5549fa9224de41ae4"
+    },
+    {
+      "path": "results/dc_early_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_entry_comparison/forecast_independent_checks.json",
+      "bytes": 1368,
+      "sha256": "3a1b73157c25a07c46dd93c14497e67b5843e715daa5c5b8efe235e0af0f73c5"
+    },
+    {
+      "path": "results/dc_entry_comparison/forecast_ranking_diagnostics.csv",
+      "bytes": 12402,
+      "sha256": "4b5c4aaaa9cf980996f13bf7d3fcc549148b3060e6a287ce69ff61a706d3bb7b"
+    },
+    {
+      "path": "results/dc_entry_comparison/independent_checks.json",
+      "bytes": 65757,
+      "sha256": "eccd9d9937d5412ecff755da49668efe938ab007a82fbb885a00bfe13947ba80"
+    },
+    {
+      "path": "results/dc_entry_comparison/metrics.csv",
+      "bytes": 949,
+      "sha256": "7fb901460ff25c2a6aec7cf797bf0aa13e47bc5078f9520bb2567013d5fab2a5"
+    },
+    {
+      "path": "results/dc_entry_comparison/monthly_results.csv",
+      "bytes": 7067,
+      "sha256": "c84be0ad45ad8b94fd85b459ef19313babe9fc77e4ced79de2785becf0dcc336"
+    },
+    {
+      "path": "results/dc_entry_comparison/README.md",
+      "bytes": 2161,
+      "sha256": "e5a817dcc3b06bb30f32576e48d20aee74825bfc383658cfc8ad46b6127d371a"
+    },
+    {
+      "path": "results/dc_entry_comparison/stock_contributions.csv",
+      "bytes": 15327,
+      "sha256": "f5a13f095e0231bd1f1293d9a9fdcfdfcf888c785034af6db5ed7b016b762786"
+    },
+    {
+      "path": "results/dc_entry_inputs/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_entry_inputs/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/account_dc_expected_profit_2026_retry.csv",
+      "bytes": 687,
+      "sha256": "116c00ff6362a216b066730da5870f4e4e7387ce10125101de6fd5d7ef42b9fa"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/allocations_dc_expected_profit_2026_retry.csv",
+      "bytes": 470,
+      "sha256": "bff0f2b9a7d0de4082bed631a79d6f25eda3a1d3f7df850a1de5a1b229e0d223"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/annual_results.csv",
+      "bytes": 156,
+      "sha256": "5a203ffb10df0cbbaf5ce2170e3b5673d8a9d2e1c5f4ce5818787ccea1dcb7fc"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "7a6bfdd5d32d8c6d55e9d38bc3217e5fded4dea8cddde80c78168e2b2e69b506"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/continuations_dc_expected_profit_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/corporate_events_dc_expected_profit_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/daily_nav_dc_expected_profit_2026_retry.csv",
+      "bytes": 4643,
+      "sha256": "b42a7e538c8664359861fed6d03c10eb02bf6c87501172661da802fc325cc8e3"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/dc_theme_protocol.json",
+      "bytes": 5043,
+      "sha256": "2ca7d50cebccc196f4a93cf9af30173a4c60b161bde8f6fb3aeb7ef431da19d4"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/exit_signals_dc_expected_profit_2026_retry.csv",
+      "bytes": 433,
+      "sha256": "4f87c7fd1b3b241effc909df62dc2318b87bc2cb49c3eb19f02f64d35b3e45b3"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/forecast_feature_manifest.json",
+      "bytes": 3114,
+      "sha256": "0e0b9cf406f4097d93289879e7949602fd419d3ae3f004da88666b83650932f5"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/forecast_model_audit.json",
+      "bytes": 2404,
+      "sha256": "50431b47e8a0cc4ee844c427b7635cd55ca3674f6b8f7a12f784753506af9a01"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/holdings_dc_expected_profit_2026_retry.csv",
+      "bytes": 544,
+      "sha256": "78d714a4b7c050a52e39b3f885bb2c0c1d93acbbb6e1e20938ad438fabad5e37"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/metrics.csv",
+      "bytes": 195,
+      "sha256": "a2dc57796d9aa2c880b5fd1937e38342b6515e295bc733454dea907f30eadc45"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/monthly_results.csv",
+      "bytes": 1001,
+      "sha256": "9d59e32f73637049c3b54511a0598b1ecaa604811725c99e2826a4b94e7be2d3"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/run_status_dc_expected_profit_2026_retry.json",
+      "bytes": 259,
+      "sha256": "641dc7c4a33ccc029ec91bb35a54729dde008d43492e59c8098aa154f50d1114"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/suspension_marks_dc_expected_profit_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/trades_dc_expected_profit_2026_retry.csv",
+      "bytes": 2100,
+      "sha256": "fddfd9e3e2b18cca7b93e8df320217f1582b445d011c7e1763250a7147d8cec5"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/verification.json",
+      "bytes": 541512,
+      "sha256": "2f8eae757f88061bd8fdabd38c373716e788e735a2065c2eec253031357e0f27"
+    },
+    {
+      "path": "results/dc_expected_profit_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/account_dc_forecast_2026_retry.csv",
+      "bytes": 990,
+      "sha256": "82f9432ccb8d4d11f56aa5685d39c0e5a7cd4dff3f64a7d42bcfa40b51889161"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/allocations_dc_forecast_2026_retry.csv",
+      "bytes": 698,
+      "sha256": "c6cadeb7ec04cdb2ce87b28d459efdb546c9b82ccb01c95708597c54a8abe6ab"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/annual_results.csv",
+      "bytes": 170,
+      "sha256": "5af67d15651c93a8887bc073da671bec288fad0cc484e546c1a1cdf32a1a4a25"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "7a6bfdd5d32d8c6d55e9d38bc3217e5fded4dea8cddde80c78168e2b2e69b506"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/continuations_dc_forecast_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/corporate_events_dc_forecast_2026_retry.csv",
+      "bytes": 172,
+      "sha256": "858a13e0006026173faa12e1a9db30f8e02368cefc26bf505bb440f18705ad6e"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/daily_nav_dc_forecast_2026_retry.csv",
+      "bytes": 8286,
+      "sha256": "0b6e4e9237ea59dc8f9e74df5c7bd031b4f32fe1f36ff85aaea84d280452791e"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/dc_theme_protocol.json",
+      "bytes": 4857,
+      "sha256": "b917276096aa58c0ab16bc79fdf8763cbef6ed4425e507662fae7d4a2ec79120"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/exit_signals_dc_forecast_2026_retry.csv",
+      "bytes": 498,
+      "sha256": "25f1689e5812057e6ff173d309f27e6f10abc93d35145fa24aae394e5581176c"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/forecast_feature_manifest.json",
+      "bytes": 3114,
+      "sha256": "0e0b9cf406f4097d93289879e7949602fd419d3ae3f004da88666b83650932f5"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/forecast_model_audit.json",
+      "bytes": 2404,
+      "sha256": "50431b47e8a0cc4ee844c427b7635cd55ca3674f6b8f7a12f784753506af9a01"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/holdings_dc_forecast_2026_retry.csv",
+      "bytes": 558,
+      "sha256": "c450cddccfa17d81aeda26a0e05b94ea18ec1515a23c35eb491e96774aabc66f"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/metrics.csv",
+      "bytes": 210,
+      "sha256": "95d4acc16ec25445c493045e2f4e841c52c1fc4eddbb2af5be2f3eb0851d4bb2"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/monthly_results.csv",
+      "bytes": 1209,
+      "sha256": "c9e9158ca47ecd577329f3fb5349ec32f4d83fae912076408d70c1ad240430e0"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/run_status_dc_forecast_2026_retry.json",
+      "bytes": 263,
+      "sha256": "65f281625c639eda98b1e572fbc40c6ee74816c4a6a9bf6694b6ff4bab927637"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/suspension_marks_dc_forecast_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/trades_dc_forecast_2026_retry.csv",
+      "bytes": 2017,
+      "sha256": "75286dd426a6cf88d88383ff8b96d745358bc15ee6162e753c8ef9bdfc49f02d"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/verification.json",
+      "bytes": 523935,
+      "sha256": "dab6d786e7faac28534ecb1c887ba6da23df5e0a446d959fb061b59e1e5f22d4"
+    },
+    {
+      "path": "results/dc_forecast_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_leader_capital_review/capital_priority_manifest.json",
+      "bytes": 9985,
+      "sha256": "7b265671febd9113524a36b42117035c4ae5fed934fc6a20f6280f43297d440e"
+    },
+    {
+      "path": "results/dc_leader_capital_review/trail8_applicability_20261003.json",
+      "bytes": 49307,
+      "sha256": "424be60b98712d7e98d521aaddd9684aa0f0f1db5167a429708e50a745108297"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/account_dc_liquid_2026_retry.csv",
+      "bytes": 712,
+      "sha256": "b3c41b546bed1527dd4f779ef9200afb7c714eac8fea505a6ba71fb4540b9a3b"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/allocations_dc_liquid_2026_retry.csv",
+      "bytes": 509,
+      "sha256": "6f3f11f548a513cb55985d03b03d0b59eba7184f7b75528fc82d4e3dbaaede54"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/annual_results.csv",
+      "bytes": 155,
+      "sha256": "8d0b15d7c9170b4e57e9a99e6046a2b895b1ada4a817a35f442055c28256b212"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/candidate_coverage.csv",
+      "bytes": 314,
+      "sha256": "b7e32856fefd371618ce6f8a1fde9e2535f0ef4de26a4b092a74736ac450aefc"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/continuations_dc_liquid_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/corporate_events_dc_liquid_2026_retry.csv",
+      "bytes": 245,
+      "sha256": "174562a974abfcb9b73d9cffc98def24315cfcf0737189cf78c6e71f2789d4e3"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/daily_nav_dc_liquid_2026_retry.csv",
+      "bytes": 5329,
+      "sha256": "e61af3a46389186327c8a84e5f89cff830fadb7761e8d11cc0f7e0c45f64885d"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/dc_theme_protocol.json",
+      "bytes": 3144,
+      "sha256": "fcfe1533df051c70ca842801ecf41d094d737708d143d170aafcc6a146e4dae1"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/exit_signals_dc_liquid_2026_retry.csv",
+      "bytes": 565,
+      "sha256": "7dfdfa2fc819c3503507c799b746412dbd860cf642859b08c319805bfc328115"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/holdings_dc_liquid_2026_retry.csv",
+      "bytes": 315,
+      "sha256": "a8b18ef26127a7b099d3a20cc0576c2032f6bdad02ef9135a450f364e2a4b7dc"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/metrics.csv",
+      "bytes": 194,
+      "sha256": "7c93ddfedef98486a88bfb185900f71f491e28fbd6ca483b8fbeed1ed704036c"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/monthly_results.csv",
+      "bytes": 949,
+      "sha256": "1b603d9d0070a071fd6eb03630d4900fa448e9b627a0756ff50288ba587e0dd7"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/run_status_dc_liquid_2026_retry.json",
+      "bytes": 250,
+      "sha256": "9f814d31d849f1c04e5546e2acd5980ee9af4274a86a6b9c9b8d0b888f9beda5"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/suspension_marks_dc_liquid_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/theme_feature_coverage.json",
+      "bytes": 36240,
+      "sha256": "34ae4b3fd72b573423762d6395cb9f94c1641b678ca5109a8e958eb0ebdaf3aa"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/theme_membership_manifest.json",
+      "bytes": 1499,
+      "sha256": "4bfa0a5b9a5f05f525a117d16139e81a10c27d64fe001e40b8e99579536b497e"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/trades_dc_liquid_2026_retry.csv",
+      "bytes": 1781,
+      "sha256": "2faf8d456a55c411118c251b2e89a392201c1fd63d058e5bc6b0a1ad7c16aa26"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/verification.json",
+      "bytes": 494405,
+      "sha256": "716c94c9ad1bae6d8558bf140aabb845762b551245aef5f87ccdb87fd59eb20e"
+    },
+    {
+      "path": "results/dc_liquid_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/account_dc_local_member_2026_retry.csv",
+      "bytes": 735,
+      "sha256": "db1278c4deee119668e44eebcea18f2991e55bb1c71d69b2c5fbf954311a62ae"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/allocations_dc_local_member_2026_retry.csv",
+      "bytes": 477,
+      "sha256": "169deaf922c66c768ea0749721dddaa9283745e0471c468886816615eb42b04a"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/annual_results.csv",
+      "bytes": 151,
+      "sha256": "605e31707f7729234de02625b3c31c21b529f825a8a5908b5183a8b2e5b67065"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/candidate_coverage.csv",
+      "bytes": 379,
+      "sha256": "c46adc3f56511464a1fb42c7b567591f94819b729e84e347c7d3854edde07791"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/context_ranker_feature_manifest.json",
+      "bytes": 9259,
+      "sha256": "04448ac95cd3f653387e8248847d687122e9a12479d25dfa203db366331e86b4"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/continuations_dc_local_member_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/corporate_events_dc_local_member_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/daily_nav_dc_local_member_2026_retry.csv",
+      "bytes": 4917,
+      "sha256": "bfa39819ee9c5a29912eda1b52aa800aaab0073fc1431715eae6d29db507e750"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/dc_theme_protocol.json",
+      "bytes": 7831,
+      "sha256": "0fef18df0bb8362e0ac663476574de76e406d1731b36501f74d83d01b5113d74"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/exit_signals_dc_local_member_2026_retry.csv",
+      "bytes": 571,
+      "sha256": "2ddc78cb14c23048a18b8fd33b3c68c954ddceff08d4f60c5034859f0c8508b5"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/forecast_feature_manifest.json",
+      "bytes": 4409,
+      "sha256": "b74087e9584f012ed3fd30d18b9efbc3d8a3360069158cd5a14adb0dc9031d6b"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/forecast_model_audit.json",
+      "bytes": 601032,
+      "sha256": "06eab382cd8676a1e5e9e5c90650e7e26474aa829773a6b77438221a6dd7fff2"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/holdings_dc_local_member_2026_retry.csv",
+      "bytes": 437,
+      "sha256": "33558735f76771ce0e2314101156b19e7ca48fff564018c33bca6eef6e850b47"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/metrics.csv",
+      "bytes": 192,
+      "sha256": "1d94ca86f246e0d40ba1da14363489f25ba08eb3170a92d79ef4bd318d749694"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/monthly_results.csv",
+      "bytes": 1000,
+      "sha256": "adebddcd05aaca0bf2305adc76496861ae173b09d57042b5e8fd6afe73b426a3"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/run_status_dc_local_member_2026_retry.json",
+      "bytes": 256,
+      "sha256": "5149882ca3a1184de34ccca33096da20ac38f25b463d122e3d72796ae2c1c44d"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/suspension_marks_dc_local_member_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/trades_dc_local_member_2026_retry.csv",
+      "bytes": 2097,
+      "sha256": "319445dfbb9c3118f65eefb02d55f4b495fc210a78215ac487bcadae9817f992"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/verification.json",
+      "bytes": 650765,
+      "sha256": "d5de097e97c9adf2deb9e7071faa7be74f103aa4e38ba60770f3a7df0120fecd"
+    },
+    {
+      "path": "results/dc_local_member_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/account_dc_local_rank_2026_retry.csv",
+      "bytes": 901,
+      "sha256": "89239a8dd477ff7ce9f836751c0a08801e3ec2987a1aa3bc8aab2ef0f9d6b79d"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/allocations_dc_local_rank_2026_retry.csv",
+      "bytes": 698,
+      "sha256": "ca6fe101b4f386591c50efcbfbf75f67fda3b23ca0a45cd0468846fc0e78dd93"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/annual_results.csv",
+      "bytes": 149,
+      "sha256": "9f74019c0099b18e2219c8ae43683dcd6cb3f6b45f6bece0b0e50ef9bbbda977"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "a3f67845b6c0ed3e8e12998054f205444f16982c44ce2d2f4f99f3ec72fd3967"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/context_ranker_feature_manifest.json",
+      "bytes": 9251,
+      "sha256": "0c8ad2fc5a83234d96edec6f885a38d407281d6c169122f63fd42b027d181d0b"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/continuations_dc_local_rank_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/corporate_events_dc_local_rank_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/daily_nav_dc_local_rank_2026_retry.csv",
+      "bytes": 7957,
+      "sha256": "4ebda0055f4ec0ae18a67bb7fbae3d09b2cf6d5d256a7e4fd3663240b022c000"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/dc_theme_protocol.json",
+      "bytes": 7882,
+      "sha256": "e2b855031414baab86db542090306c73f011a6660706987638a73e29e02d4c94"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/exit_signals_dc_local_rank_2026_retry.csv",
+      "bytes": 973,
+      "sha256": "1899424bf2e3671a4612b6dd40188f3f3a14eee19615f27fe6db2cf9e576beb8"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/forecast_feature_manifest.json",
+      "bytes": 4409,
+      "sha256": "b74087e9584f012ed3fd30d18b9efbc3d8a3360069158cd5a14adb0dc9031d6b"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/forecast_model_audit.json",
+      "bytes": 601032,
+      "sha256": "06eab382cd8676a1e5e9e5c90650e7e26474aa829773a6b77438221a6dd7fff2"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/holdings_dc_local_rank_2026_retry.csv",
+      "bytes": 365,
+      "sha256": "589010bcae1badc04f30ebab876ca83bf19d04985ca4fadb371ed84461a869e5"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/metrics.csv",
+      "bytes": 189,
+      "sha256": "3d3124e21d830c545bd14068577bd69e8ebe452a5254984bfceda721578ec6f3"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/monthly_results.csv",
+      "bytes": 1175,
+      "sha256": "91bb80f4a02b3bafdbd5438c2c7fd06a4649e69a4fa88d621538823d738a5d5e"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/run_status_dc_local_rank_2026_retry.json",
+      "bytes": 254,
+      "sha256": "4a90bdcc7f7f67511c8571b38cee7b8e94a5b1acdc8881a45a7118ac62a61d51"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/suspension_marks_dc_local_rank_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/trades_dc_local_rank_2026_retry.csv",
+      "bytes": 2589,
+      "sha256": "08977f4a549f094431feeb11bcb472af37e31a5492ebf146cc34350b62d6dba5"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/verification.json",
+      "bytes": 650255,
+      "sha256": "debf196f534c6b870d76d448b54adcc9c63a85da1dd0196c1155db5a71ecf60e"
+    },
+    {
+      "path": "results/dc_local_rank_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/account_dc_member_acceleration_2026_retry.csv",
+      "bytes": 716,
+      "sha256": "30872a68544ea587b69d52b98e7dafe2def68b95eb00b76d9b01443ed374b181"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/allocations_dc_member_acceleration_2026_retry.csv",
+      "bytes": 497,
+      "sha256": "9b0043b09717411e0463641c02acc466903cb506449a6b6bb76db6400d041390"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/annual_results.csv",
+      "bytes": 159,
+      "sha256": "e2b61844d380824e81fc53ec2a64717fb0bddd7fcd5a9470324f679e2bb17b6a"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/candidate_coverage.csv",
+      "bytes": 383,
+      "sha256": "75788ee39d133cb612e30313bee3b3e8eed4399d972ba8aed7dff455e02e2ae3"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/continuations_dc_member_acceleration_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/corporate_events_dc_member_acceleration_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/daily_nav_dc_member_acceleration_2026_retry.csv",
+      "bytes": 5407,
+      "sha256": "176c92014959be3f040ed290608b3ada7519c42dfb243e30235a2f70445a8c12"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/dc_theme_protocol.json",
+      "bytes": 6367,
+      "sha256": "7bc9a97cabc573d86fde684ac6e8e69d033a6291b0491f5152a25a28d41e4fc6"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/exit_signals_dc_member_acceleration_2026_retry.csv",
+      "bytes": 1106,
+      "sha256": "94710cbe2d01cf94a2bcc30c6ad5136a31fc1014ebd6cd2d51901827139bf123"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/holdings_dc_member_acceleration_2026_retry.csv",
+      "bytes": 256,
+      "sha256": "e46b899986fe03eeee4962e53b82ad92b5197ee9c9720a9f45caf4261efc2a9b"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/metrics.csv",
+      "bytes": 199,
+      "sha256": "dfca63ef1040b64a2f5197d0abfd99d9788c7f0e748eda2a20dc3e5b27b2b67e"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/monthly_results.csv",
+      "bytes": 1048,
+      "sha256": "69b87d415dcb82c7258fbcb65b93fb7058c4396e43e26603c35f42c1f37fbca7"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/run_status_dc_member_acceleration_2026_retry.json",
+      "bytes": 263,
+      "sha256": "1fc4f1148fb689e32c28bba18a310658fd22198b5714feabcdeb662233aa9090"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/suspension_marks_dc_member_acceleration_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/trades_dc_member_acceleration_2026_retry.csv",
+      "bytes": 2672,
+      "sha256": "552e2c4f75bb3d6d2d10316bf1abbf5185ffe100d8c494ee03dca526d8cfb7e1"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/verification.json",
+      "bytes": 657445,
+      "sha256": "261cc5cd65422c46ec951d2a4d89a5aaad283ecb91d97805f8f2a5a7d2fcbf43"
+    },
+    {
+      "path": "results/dc_member_acceleration_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/account_dc_member_leader_2026_retry.csv",
+      "bytes": 923,
+      "sha256": "32943dfa45ad87f1ee1f6e56390c56a5df828abe7192c2593df7dd35f26c94a0"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/allocations_dc_member_leader_2026_retry.csv",
+      "bytes": 687,
+      "sha256": "7f53a75cf196a11a23ed797095071e4597556555df50d550919a4643abc3d989"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/annual_results.csv",
+      "bytes": 173,
+      "sha256": "c00599c0d04cc9cd0acea99d22db1e00c9f0b52ee582720400652eb52940ca97"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/candidate_coverage.csv",
+      "bytes": 376,
+      "sha256": "4f82f8a591a85a7a3cac336b1f7d3be699dbf4bdd7f78e87fbf5f4cf22065928"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/continuations_dc_member_leader_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/corporate_events_dc_member_leader_2026_retry.csv",
+      "bytes": 159,
+      "sha256": "39780b7dad179ba85804d650a78d45a8406db5b6bf69c93ab8c9a8cf2b1b0ad9"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/daily_nav_dc_member_leader_2026_retry.csv",
+      "bytes": 8376,
+      "sha256": "235b72a4cef9093f973df0e411ee0524ff613a9cbc93fd6b3afb6aa098e2f1a4"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/dc_theme_protocol.json",
+      "bytes": 6393,
+      "sha256": "c1cb142a8e0116d1cd7277fe4aa4043c350e5923e344ecb7635cc8ca089b4689"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/exit_signals_dc_member_leader_2026_retry.csv",
+      "bytes": 331,
+      "sha256": "6fa04d12fdefee8955e8e9cfe00513cbca6925277dbc69dead7bbbd485930101"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/holdings_dc_member_leader_2026_retry.csv",
+      "bytes": 192,
+      "sha256": "45519431bc7dfc2ffd57775abaa4e8a3c249184343697198385837ab24e99beb"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/metrics.csv",
+      "bytes": 212,
+      "sha256": "c5d75c96d934fa1b9491c9daae81e54c9166979a415770621a8fba92e523c2ae"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/monthly_results.csv",
+      "bytes": 1191,
+      "sha256": "f0d467a7c790cd1df72a14932a27595ad8f750ef6cc254c7d8e06566205ebc47"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/run_status_dc_member_leader_2026_retry.json",
+      "bytes": 268,
+      "sha256": "26e3df5fc4b461d130c20d50919eb4ce157a24e027d8ee3ac2e33c5d03c82bc9"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/suspension_marks_dc_member_leader_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/trades_dc_member_leader_2026_retry.csv",
+      "bytes": 1001,
+      "sha256": "7264d0f7f6430dcf1d0c804280a26128cdbd636e1f87ee24951f52accc4ed985"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/verification.json",
+      "bytes": 674653,
+      "sha256": "faa8b7c45c478803d81d6be8db124d091f690596b285c4e5d7c16efd337f8c10"
+    },
+    {
+      "path": "results/dc_member_leader_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/account_dc_member_moderate_2026_retry.csv",
+      "bytes": 881,
+      "sha256": "073e98cf390a4281b6795a1fb0a9478b8998614a624a51285db0f59758a50933"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/allocations_dc_member_moderate_2026_retry.csv",
+      "bytes": 613,
+      "sha256": "a0c34cbddc3c0aecd177ee7d1909a5ac02f42b90bb243123875f4b635d705ee6"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/annual_results.csv",
+      "bytes": 176,
+      "sha256": "2a235418700a9fd0f8de58498c7f0b6cf03e988ff2ff23097644f9b2b9703d32"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/candidate_coverage.csv",
+      "bytes": 381,
+      "sha256": "d319791c9a3b5d13a006a36bdf8ae992d8b272cb1272e0fc0df14fea174186a6"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/continuations_dc_member_moderate_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/corporate_events_dc_member_moderate_2026_retry.csv",
+      "bytes": 244,
+      "sha256": "f1f61b7a3d30dcc6bba1974b1267ad718727716f860cffc3ca278bf035ebae29"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/daily_nav_dc_member_moderate_2026_retry.csv",
+      "bytes": 6986,
+      "sha256": "63e8f98c7a0dbc093b5f396f03e920c10ef401089e90aef668a6ac9f40c6f6c7"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/dc_theme_protocol.json",
+      "bytes": 6359,
+      "sha256": "1e1a89fca7c8486a2a9aecaecb5b83e29a2237048957cb3c63580e54be936fe7"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/exit_signals_dc_member_moderate_2026_retry.csv",
+      "bytes": 506,
+      "sha256": "90334c0de3f30aaccca500fe8ea69b35a238783f968eca78831dedfb92daef28"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/holdings_dc_member_moderate_2026_retry.csv",
+      "bytes": 454,
+      "sha256": "e1b747e2abe1f045847267d392c664b892283284fe86f88e634aaa8e09ad4b57"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/metrics.csv",
+      "bytes": 216,
+      "sha256": "2738798bba3826511449df23b2df7981e2c5ed484fadfea3890ca7b2b1167843"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/monthly_results.csv",
+      "bytes": 1144,
+      "sha256": "63370bad9cb35f517b35de9d95e210c38915eb5c3eac4f11996484caccb62bd9"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/run_status_dc_member_moderate_2026_retry.json",
+      "bytes": 270,
+      "sha256": "923fd0348a0804b60edc48e86d54a9ef67195952266364a934f272280d1a9ca4"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/suspension_marks_dc_member_moderate_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/trades_dc_member_moderate_2026_retry.csv",
+      "bytes": 2014,
+      "sha256": "8cd7dc267204e559025b2de9c369d481e038133efeb3d26c13bee4e82e41c295"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/verification.json",
+      "bytes": 651054,
+      "sha256": "dfded34654fae9d2dedddc110813dd854095c7943352c5b913b3f3caf4f5d1b1"
+    },
+    {
+      "path": "results/dc_member_moderate_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/account_dc_member_relative_2026_retry.csv",
+      "bytes": 747,
+      "sha256": "ba3ba78ef1e9d6d9587b4347f7769ac1c89de19331e78ecdcd2aade735cd0aa2"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/allocations_dc_member_relative_2026_retry.csv",
+      "bytes": 533,
+      "sha256": "482e4ec65f3d963942338f76bdcb0a0350f9d30ee4561394ce73667a1cd9668b"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/annual_results.csv",
+      "bytes": 177,
+      "sha256": "cbb7b797d4e8b2be1c788cc0e6725f88817b86f80421cf4206a875d5f55c3eac"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/candidate_coverage.csv",
+      "bytes": 383,
+      "sha256": "715cb358d3b847ad66fdab9740869ce59d5f1fa9a712abc68e4002d789086ada"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/continuations_dc_member_relative_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/corporate_events_dc_member_relative_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/daily_nav_dc_member_relative_2026_retry.csv",
+      "bytes": 5345,
+      "sha256": "2ca153893ac66476212eb095de77462e43822b6c05c3e56a0f941feb58fce15f"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/dc_theme_protocol.json",
+      "bytes": 6882,
+      "sha256": "48178c429cc5ad16350a7f0dc0c63fd390853589010f1551369dbc4e130e42b2"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/exit_signals_dc_member_relative_2026_retry.csv",
+      "bytes": 929,
+      "sha256": "7a5591ccd304d0869c26603859079634ff3d7946d411e367f94d33a5894bc3a0"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/holdings_dc_member_relative_2026_retry.csv",
+      "bytes": 156,
+      "sha256": "7fbb4ba017edaa3363971bf088a1be3f1e7665191171f0feb85977df70dda27f"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/metrics.csv",
+      "bytes": 217,
+      "sha256": "17697d27f259ce0fac513b671bb2b5406b37b639e50e703f0f59462b60e1cc4d"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/monthly_results.csv",
+      "bytes": 1067,
+      "sha256": "52b8cb092649e6fd2801f1b6f49ee2d2ba9c6f6cbd32fe41bec4cccb5251453b"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/run_status_dc_member_relative_2026_retry.json",
+      "bytes": 270,
+      "sha256": "7bc97953e169d62433a6c0a3b77d1bee55962f18c885384007c2870c61f5b14b"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/suspension_marks_dc_member_relative_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/trades_dc_member_relative_2026_retry.csv",
+      "bytes": 2114,
+      "sha256": "f46840f758529d6242342b7d77427150d6a833934fa56267d9f75c295a947b26"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/verification.json",
+      "bytes": 675131,
+      "sha256": "dc3942aa27427c4667a807043dd5aa9ce8ae487860c232125c45ad8e7d087869"
+    },
+    {
+      "path": "results/dc_member_relative_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/account_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 795,
+      "sha256": "d7b8e20520ca64d369bb86dbfb7808261af5a069484fd02a14c4cb632d3bd254"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/allocations_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 557,
+      "sha256": "9db22ad1b2e8a7e752524a0009ad7c17ee9ec1f53cd27814d4748c65f2f320e2"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/continuations_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 139,
+      "sha256": "aca8f284858105c52dc31c7a46a91dacf99803e08519b4475609597008bb7fec"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/corporate_events_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 303,
+      "sha256": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/daily_nav_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 6007,
+      "sha256": "98ec55bec5a04cddbad142f63d2322ab4d3b0a5e8bbcdb4e759f36478459db8d"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/dc_theme_protocol.json",
+      "bytes": 6532,
+      "sha256": "4bc1e76552d5a9206c25a277f50df1f5159336c612a3273047d6176b407a8150"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/eligible_hold_independent_checks.json",
+      "bytes": 10161,
+      "sha256": "d4c190f6a96b1f6c0b52cc2e92dcd94cc6fc319796a9d989316fd6478a04d2a1"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/eligible_hold_protocol.json",
+      "bytes": 604593,
+      "sha256": "08e6f5ebc899695dedd2dfb30ecfcdfb52d8c4cdf48ea9af8c32e5d9fa88c776"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/exit_signals_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 157,
+      "sha256": "8a7974978b9abb115b0951663c3a78181af7a62c4a15bdccb31f5ccae3bc1e80"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/holdings_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 312,
+      "sha256": "a256411e8c9c5c153968f21e8b0505b9a97203383699566da8f1b8750aad8c0f"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/metrics.csv",
+      "bytes": 187,
+      "sha256": "7a54d8ae296a966203be9e0f23563aff01785538b887314bec9c460a2c30aa37"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/monthly_results.csv",
+      "bytes": 1119,
+      "sha256": "6890f79d4fa604a1d61e983d01d0d1d4b652f3cbbff78cc2aff2709600bf8670"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/run_status_dc_member_relative_leader_2026_retry.json",
+      "bytes": 230,
+      "sha256": "d5fd71ae8b4f9f62f0891df5cc0eb42633b686427fa5e3b83fc1de359cd31fdb"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/suspension_marks_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/trades_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 858,
+      "sha256": "abf4949c5ab6cd7b3b7c20766f6d42e60517e6d045890bf35b8ccb4631965ec3"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/trend_holding_protocol.json",
+      "bytes": 604593,
+      "sha256": "08e6f5ebc899695dedd2dfb30ecfcdfb52d8c4cdf48ea9af8c32e5d9fa88c776"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_20261003/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/account_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 795,
+      "sha256": "d7b8e20520ca64d369bb86dbfb7808261af5a069484fd02a14c4cb632d3bd254"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/allocations_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 557,
+      "sha256": "9db22ad1b2e8a7e752524a0009ad7c17ee9ec1f53cd27814d4748c65f2f320e2"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/continuations_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 139,
+      "sha256": "aca8f284858105c52dc31c7a46a91dacf99803e08519b4475609597008bb7fec"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/corporate_events_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 303,
+      "sha256": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/daily_nav_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 6007,
+      "sha256": "98ec55bec5a04cddbad142f63d2322ab4d3b0a5e8bbcdb4e759f36478459db8d"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/dc_theme_protocol.json",
+      "bytes": 6532,
+      "sha256": "4bc1e76552d5a9206c25a277f50df1f5159336c612a3273047d6176b407a8150"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/eligible_hold_independent_checks.json",
+      "bytes": 10238,
+      "sha256": "5295978a434aca038c066028647346536a6c0707fe5ec942a5fe249df32192e2"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/eligible_hold_protocol.json",
+      "bytes": 604593,
+      "sha256": "08e6f5ebc899695dedd2dfb30ecfcdfb52d8c4cdf48ea9af8c32e5d9fa88c776"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/exact_replay_checks.json",
+      "bytes": 5144,
+      "sha256": "1e9d60db7d854be2409c59cb3bf7d639b75745eec00c23eda3e5902b75078d78"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/exit_signals_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 157,
+      "sha256": "8a7974978b9abb115b0951663c3a78181af7a62c4a15bdccb31f5ccae3bc1e80"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/holdings_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 312,
+      "sha256": "a256411e8c9c5c153968f21e8b0505b9a97203383699566da8f1b8750aad8c0f"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/metrics.csv",
+      "bytes": 187,
+      "sha256": "7a54d8ae296a966203be9e0f23563aff01785538b887314bec9c460a2c30aa37"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/monthly_results.csv",
+      "bytes": 1119,
+      "sha256": "6890f79d4fa604a1d61e983d01d0d1d4b652f3cbbff78cc2aff2709600bf8670"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/run_status_dc_member_relative_leader_2026_retry.json",
+      "bytes": 230,
+      "sha256": "d5fd71ae8b4f9f62f0891df5cc0eb42633b686427fa5e3b83fc1de359cd31fdb"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/suspension_marks_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/trades_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 858,
+      "sha256": "abf4949c5ab6cd7b3b7c20766f6d42e60517e6d045890bf35b8ccb4631965ec3"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/trend_holding_protocol.json",
+      "bytes": 604593,
+      "sha256": "08e6f5ebc899695dedd2dfb30ecfcdfb52d8c4cdf48ea9af8c32e5d9fa88c776"
+    },
+    {
+      "path": "results/dc_member_relative_eligible_hold_replay_20261003/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/account_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 798,
+      "sha256": "9a3325d0fc83ed7ed3aee7427164192f1bd18872e1fc93418a0f04c6ee8e8d31"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/allocations_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 557,
+      "sha256": "b4954f8ac2ef1636a4bce3a559306b5befb1a9aeb81a9d400d2a242274201c12"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/annual_results.csv",
+      "bytes": 161,
+      "sha256": "dc9402a81ecc58a1f2f538a45111a41560c8cbf6d19cb750c1d8d441661831db"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/candidate_coverage.csv",
+      "bytes": 376,
+      "sha256": "fac8d15394853614f820d56d11afe5362bb4c15449df386862492e2dfa02b423"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/continuations_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/corporate_events_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 303,
+      "sha256": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/daily_nav_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 6007,
+      "sha256": "d74cea24eb65e56ba47c17aef47423e0bcc63e7662a5fd33c035b520a8048970"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/dc_theme_protocol.json",
+      "bytes": 6532,
+      "sha256": "4bc1e76552d5a9206c25a277f50df1f5159336c612a3273047d6176b407a8150"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/exit_signals_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 214,
+      "sha256": "dc48f75ffe03e85633bcc48851717146721355d0d418ce3b328272d601960616"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/holdings_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 272,
+      "sha256": "b2723cb38a59ec76f13bba8a45054d97145ebb33a75f9023007b70ea0656bef9"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/metrics.csv",
+      "bytes": 201,
+      "sha256": "e9a140b06836a41598371558dea9265cc7e5875e7b76abc11cfae4318a4ee7e0"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/monthly_results.csv",
+      "bytes": 1152,
+      "sha256": "ed0a7ba2cc2f0d616627dd98ea5059a1223fd5f5c1e908dea69573473777ca6f"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/run_status_dc_member_relative_leader_2026_retry.json",
+      "bytes": 266,
+      "sha256": "84c6bb7b4da4702758775147e2708085e1f9fba77aef2859311e861462ef6019"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/suspension_marks_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/trades_dc_member_relative_leader_2026_retry.csv",
+      "bytes": 975,
+      "sha256": "8645a429c5f9a3712bd024c3b4e5fa3018af60b063b18560bea040cfb8008326"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/verification.json",
+      "bytes": 689402,
+      "sha256": "42c88726fa14eada0a9c7f6124fa2b405584d27c58d3c328960cc6612dd0af2c"
+    },
+    {
+      "path": "results/dc_member_relative_leader_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/account_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 902,
+      "sha256": "536f1372ada052c600a031fc45e2b7d56b583670c165a7964612db998e5323b7"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/allocations_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 632,
+      "sha256": "15815845d5206d659e695d4365f603550270f3b8b45937b74a2bce649b49f806"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/annual_results.csv",
+      "bytes": 185,
+      "sha256": "5d1bbafd06556ae1a637ac6ce927b529b241b5cdc7265460338dbb9e1a2a120c"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/candidate_coverage.csv",
+      "bytes": 381,
+      "sha256": "d843dde2dabc7c16590c3fb32fc25dda4d23ce64be8f1ee1de17edeaa9b56af2"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/continuations_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/corporate_events_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 317,
+      "sha256": "4d027fc2cbd69378efd08dd26ceb18152b5a2897bd9617a0f504df09626e1bd5"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/daily_nav_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 7266,
+      "sha256": "7c88cd62e5fa85923d6240d671675fb403a5fa6a849c08cfd16fbc3340312d81"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/dc_theme_protocol.json",
+      "bytes": 6896,
+      "sha256": "f063b145842eeb1e4643394f3966b8f60f03a023ac62076cd791616bf084f744"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/exit_signals_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 502,
+      "sha256": "756e68590747b448c9543dcf460647f947b2eed26a1a5077274a03f9fc53d215"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/holdings_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 443,
+      "sha256": "129eab998c22417e1c8b26ceb73765395a0e24abfa6ddc938fd3539ef1052f44"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/metrics.csv",
+      "bytes": 225,
+      "sha256": "75519796e275f667552518befb934e42b30f438444f3b0308a01cbadfb76954d"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/monthly_results.csv",
+      "bytes": 1236,
+      "sha256": "8623661ef4223eb64473dc0ec5b7bb3cae3dcdbbae52ab061ae7c072c87920d2"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/run_status_dc_member_relative_moderate_2026_retry.json",
+      "bytes": 279,
+      "sha256": "eb2c3121f82998cc6171344f7bcebf036f0fbb60b5bb16335b53dcd0fe128b62"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/suspension_marks_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/trades_dc_member_relative_moderate_2026_retry.csv",
+      "bytes": 2022,
+      "sha256": "f392cf1c998a1fb30a9af48b20df5853dfa455377784b0708d3f25637fa3242a"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/verification.json",
+      "bytes": 688501,
+      "sha256": "ef41fd920d121d2eb52f032b3d09637f0642b8a9699cc459325aad8e829d0655"
+    },
+    {
+      "path": "results/dc_member_relative_moderate_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/account_dc_peer_forecast_2026_retry.csv",
+      "bytes": 692,
+      "sha256": "9d26f6bfaf7ce67815aa2b2d7d425453c63ca679c3a4b77d3c235d2821203c46"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/allocations_dc_peer_forecast_2026_retry.csv",
+      "bytes": 472,
+      "sha256": "15df627a9248abdae18bba32da53ab65f648d45d1015d1d5d8798ce91ff585ae"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/annual_results.csv",
+      "bytes": 140,
+      "sha256": "1abb253584798f23cf4139172e1f74000b213e6d4d09f39fee5ea0a8dc35ddc6"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/candidate_coverage.csv",
+      "bytes": 388,
+      "sha256": "42daf0df8076e70c017d8db4737c430d320969d526ede8b3887c72e8e4623b6c"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/continuations_dc_peer_forecast_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/corporate_events_dc_peer_forecast_2026_retry.csv",
+      "bytes": 230,
+      "sha256": "740e8feaab74daff821c71842e98d6d1dc0dcf106146bfd076e664929b02506e"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/daily_nav_dc_peer_forecast_2026_retry.csv",
+      "bytes": 4851,
+      "sha256": "0c18348e5516e2369caabce6b63399eb3dc856640202bbfc5b2cba785be7a629"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/dc_theme_protocol.json",
+      "bytes": 5188,
+      "sha256": "eb4d8457f6b6f58c1cb64abc598177ca2f3d7c3d5cea47c0c3b1d3e350f171f3"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/exit_signals_dc_peer_forecast_2026_retry.csv",
+      "bytes": 515,
+      "sha256": "3a6627039316dca10db9d4bb452562cdf5f2abfd1019ba044d3417f661355624"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/forecast_feature_manifest.json",
+      "bytes": 4413,
+      "sha256": "bf23385fbe2fec875350f8c42184b6bd18978b01d54fd831a8e59ff16e45f802"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/forecast_model_audit.json",
+      "bytes": 2800,
+      "sha256": "fcb4517acffc13eb736ec27ed0c2f6e980960222e46c6bf49f1f2278d98feff1"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/holdings_dc_peer_forecast_2026_retry.csv",
+      "bytes": 618,
+      "sha256": "0674c9cc4f554e384867c9600a5f327c64074e2c5d8822fde322c848a7e6fe47"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/metrics.csv",
+      "bytes": 179,
+      "sha256": "2028a445cea0d1fdeab8ff02c2beae8bfd9b977a310c0a34675b5697068fd1ae"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/monthly_results.csv",
+      "bytes": 970,
+      "sha256": "fecc2324456605882afe5ebb6cff4860ae72d1aef58822d90dddb841b1e84a7a"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/run_status_dc_peer_forecast_2026_retry.json",
+      "bytes": 257,
+      "sha256": "9df154c5492b4cb54986111595559769bdd584301cb57b67fda846fbc544dd26"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/suspension_marks_dc_peer_forecast_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/trades_dc_peer_forecast_2026_retry.csv",
+      "bytes": 2480,
+      "sha256": "21e69df1cede0531ad84c3a9e941e03a0da416e2c78590c55ab1d95ecb2adb1f"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/verification.json",
+      "bytes": 542756,
+      "sha256": "f566d20c6b410d8ea4fabc1d8cc0b7afb4177d7ea2d5e8de958c29df73b0cc8d"
+    },
+    {
+      "path": "results/dc_peer_forecast_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_priority_capital_review/capital_priority_manifest.json",
+      "bytes": 19318,
+      "sha256": "91be1404b2e5d489cf6739f7472680b7971e980dbc1a2cd01f431939dd5067ff"
+    },
+    {
+      "path": "results/dc_priority_comparison/accounts.json",
+      "bytes": 1032,
+      "sha256": "0706d126bd943aa1f872e927bbdfa99636f4b74e0311314e593853cc50b84794"
+    },
+    {
+      "path": "results/dc_priority_comparison/capital_priority_manifest.json",
+      "bytes": 28952,
+      "sha256": "0283d996a5018bfdba33e443031e46410c5d8b5250ab703ec033bb826dd97e0b"
+    },
+    {
+      "path": "results/dc_priority_comparison/forecast_independent_checks.json",
+      "bytes": 1375,
+      "sha256": "8b86f9695de60cb75bd8acb3a2541292c377d2b6531e66a4b0820878db3cf811"
+    },
+    {
+      "path": "results/dc_priority_comparison/forecast_ranking_diagnostics.csv",
+      "bytes": 12538,
+      "sha256": "512932f936b72e14c4fe53a0781012042b31a744925624b3119fcc50b19d3312"
+    },
+    {
+      "path": "results/dc_priority_comparison/independent_checks.json",
+      "bytes": 100143,
+      "sha256": "5e0c13115305fba2cc512baa71fc71bf2e0546f163328a0b0144ad470c35c863"
+    },
+    {
+      "path": "results/dc_priority_comparison/leader_offline_replay_checks.json",
+      "bytes": 314,
+      "sha256": "ce23291b1dc7adc44e003771f12b66902298c2ea7d33a9fa550cb40e1b239804"
+    },
+    {
+      "path": "results/dc_priority_comparison/metrics.csv",
+      "bytes": 1734,
+      "sha256": "48df71eaaf6d3badbc1552ef8c131ac8b0df76a86e0c077c61da726f60de4be4"
+    },
+    {
+      "path": "results/dc_priority_comparison/monthly_results.csv",
+      "bytes": 12409,
+      "sha256": "dd48e969f1b89ad34a29552a8a5fe22fa8c6f03286634283fe6ff16075161635"
+    },
+    {
+      "path": "results/dc_priority_comparison/offline_replay_checks.json",
+      "bytes": 2382,
+      "sha256": "7f2e05e7da903e498b94105e7a58bdcc137c9c0e0ebec45e12274a1cc6fe3b45"
+    },
+    {
+      "path": "results/dc_priority_comparison/pre_final_replay_snapshot.json",
+      "bytes": 10029,
+      "sha256": "ca618ed235087c48328b75a9d364d98336a6e165b03d50edef29dc3a766a4784"
+    },
+    {
+      "path": "results/dc_priority_comparison/README.md",
+      "bytes": 2938,
+      "sha256": "e5dcccee1aa4a44dd14d3db1b8673b75a8e8c6db54afe070a05ffdc82193e36f"
+    },
+    {
+      "path": "results/dc_priority_comparison/stock_contributions.csv",
+      "bytes": 20749,
+      "sha256": "ee7925fe5f1e3a3fca263de4f8923f0c270fd861a5b2ddc8ce6fcf1b14e702da"
+    },
+    {
+      "path": "results/dc_rally_2026_research/account_dc_rally_2026_retry.csv",
+      "bytes": 696,
+      "sha256": "02ec13b6c1f7fc533c8d236359903a382a9a0aea7bcd96b82a5d1064251dba40"
+    },
+    {
+      "path": "results/dc_rally_2026_research/allocations_dc_rally_2026_retry.csv",
+      "bytes": 460,
+      "sha256": "78baacc898f74617dbaaeeb0a918954b82fa69b60645f7a06059017b1dcc6ba3"
+    },
+    {
+      "path": "results/dc_rally_2026_research/annual_results.csv",
+      "bytes": 146,
+      "sha256": "ac96199d8a1396b0a6efa6cd770cfcc2de9e44b7986f67679211ab78097ee645"
+    },
+    {
+      "path": "results/dc_rally_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "96c4f9c61d27fb7b7152ae224cae220f41b38c553ea146cbab9512ef3e430c47"
+    },
+    {
+      "path": "results/dc_rally_2026_research/continuations_dc_rally_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_rally_2026_research/corporate_events_dc_rally_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_rally_2026_research/daily_nav_dc_rally_2026_retry.csv",
+      "bytes": 5026,
+      "sha256": "9a1c629bc1da74f1464eb4c45a963025c86d556f9bc877c4f4518230b6290a3d"
+    },
+    {
+      "path": "results/dc_rally_2026_research/dc_theme_protocol.json",
+      "bytes": 4855,
+      "sha256": "e00d8b943f7805a03e4a5bf712668db4a6ac0712e2fb8cca4faabdcec1877a3c"
+    },
+    {
+      "path": "results/dc_rally_2026_research/exit_signals_dc_rally_2026_retry.csv",
+      "bytes": 1197,
+      "sha256": "c6028034d7c3e54675dab9902d4e3c4145264ae40c4562b4feaa5815d4f17871"
+    },
+    {
+      "path": "results/dc_rally_2026_research/forecast_feature_manifest.json",
+      "bytes": 4413,
+      "sha256": "bf23385fbe2fec875350f8c42184b6bd18978b01d54fd831a8e59ff16e45f802"
+    },
+    {
+      "path": "results/dc_rally_2026_research/forecast_model_audit.json",
+      "bytes": 3381,
+      "sha256": "ce4e79914e55fcef6a21792c45b6a3b22d9b7a09195176b0233afa3bb0ede4f0"
+    },
+    {
+      "path": "results/dc_rally_2026_research/holdings_dc_rally_2026_retry.csv",
+      "bytes": 278,
+      "sha256": "9b9c1bb2782fc673161ae19679e7fe8c37634e806e009a82ad0cb428b7910f1c"
+    },
+    {
+      "path": "results/dc_rally_2026_research/metrics.csv",
+      "bytes": 185,
+      "sha256": "ff0fc6950411ca1f62759a606ca04d6a513cd995919b73f8aa1e8e5cd9bff012"
+    },
+    {
+      "path": "results/dc_rally_2026_research/monthly_results.csv",
+      "bytes": 918,
+      "sha256": "9f79ac8bc79397d68d08771c9bc044135b1947959d727a6c67780685d3352c38"
+    },
+    {
+      "path": "results/dc_rally_2026_research/rally_feature_manifest.json",
+      "bytes": 7533,
+      "sha256": "db38b4dd04c89d13d5940907d210d048f39927315d54f09facf02f44521a92ed"
+    },
+    {
+      "path": "results/dc_rally_2026_research/run_status_dc_rally_2026_retry.json",
+      "bytes": 249,
+      "sha256": "14c44b2fc499e33a7a9a585aa6fde63a2e1e0b6f0542c92760194b9456e11853"
+    },
+    {
+      "path": "results/dc_rally_2026_research/suspension_marks_dc_rally_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_rally_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_rally_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_rally_2026_research/trades_dc_rally_2026_retry.csv",
+      "bytes": 2834,
+      "sha256": "5576aa8fecd01b7eb7ee532de415ae7d2f4b0163c2ed41bbd62f18b74b5a8a02"
+    },
+    {
+      "path": "results/dc_rally_2026_research/verification.json",
+      "bytes": 547707,
+      "sha256": "5516322c96a58ddb53963ae5dd5b2566085f099fd68b03dfe059c5df9b8d2ee3"
+    },
+    {
+      "path": "results/dc_rally_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/account_dc_reversal_2026_retry.csv",
+      "bytes": 744,
+      "sha256": "0d213885f8c143278ce82fe03fb0e5a9095d8fa3d55da32fe50d877e19b623ff"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/allocations_dc_reversal_2026_retry.csv",
+      "bytes": 496,
+      "sha256": "922b18759e6c9bab9a2ffbef02acadfbd186c9dfa1bc35a0ad527fa783cc74a2"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/annual_results.csv",
+      "bytes": 149,
+      "sha256": "f96223b606ab78e4ac5efe733c1e8e5e1af01050f33110f9a4cb91041d619fb2"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "082f55001c0a96c8912a154109136da20e6cc2cb32aff4c01a4279f0f9beae7b"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/continuations_dc_reversal_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/corporate_events_dc_reversal_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/daily_nav_dc_reversal_2026_retry.csv",
+      "bytes": 5316,
+      "sha256": "f9b32829a2900c6b8f8d5d40877ed61f0134e510d36ff4352efb0ffcabc4fbdc"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/dc_theme_protocol.json",
+      "bytes": 5869,
+      "sha256": "58db06b215c7a2ec93093890fb6b618b1c59c13de40886ff056ace16af0d02f5"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/entry_feature_manifest.json",
+      "bytes": 460,
+      "sha256": "f08e4ccafc4280b389d13e7379b04e7645eb4bc77324a6eb710e095454e57497"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/exit_signals_dc_reversal_2026_retry.csv",
+      "bytes": 1094,
+      "sha256": "98b97bc0bbfa98545e3b76ab5bb428b6b7889261e8d6bed9779f44c97b4066ab"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/holdings_dc_reversal_2026_retry.csv",
+      "bytes": 70,
+      "sha256": "0d7f58b63d5fcfb0a4372e6a1696524e475f158356d5d6179a731b0091f627a0"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/metrics.csv",
+      "bytes": 165,
+      "sha256": "29d3f90edaa46cabc03b030f7a1f99b2af0b890c387cc1c7aed812b041c9cc84"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/monthly_results.csv",
+      "bytes": 1000,
+      "sha256": "cce6ceaf68504c5fe06600af14aaa7b512b1a4c5e1a1a2167803548ff15dee6f"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/run_status_dc_reversal_2026_retry.json",
+      "bytes": 252,
+      "sha256": "2f4392343e12cb014adfe7ea49b32c0d8052cccc95d6c924c737f1a2ec602550"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/suspension_marks_dc_reversal_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/trades_dc_reversal_2026_retry.csv",
+      "bytes": 2245,
+      "sha256": "4dd4c5afa9f88232d27aa2af08901cf47695a8db4685f4f5432b7415089cfe24"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/verification.json",
+      "bytes": 524688,
+      "sha256": "b11a9143fbdd8e9762bfced7cbe35635f54040f87ee5a6c93e4e0ea3a90757a3"
+    },
+    {
+      "path": "results/dc_reversal_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_structure_2026_research/account_dc_structure_2026_retry.csv",
+      "bytes": 769,
+      "sha256": "0806297d45b4397d7c8ebdf3cb1eaf14eb62f625a66cf898e44709c216f8b11a"
+    },
+    {
+      "path": "results/dc_structure_2026_research/allocations_dc_structure_2026_retry.csv",
+      "bytes": 502,
+      "sha256": "d9c1734a24fdffecb2012e2decefd108989e6c757965b1eb72696be944be7bb5"
+    },
+    {
+      "path": "results/dc_structure_2026_research/annual_results.csv",
+      "bytes": 149,
+      "sha256": "d4c8cd16bac59dc652fe2547d66438c861bc10fdab1fb6d1c16b7127d875994a"
+    },
+    {
+      "path": "results/dc_structure_2026_research/candidate_coverage.csv",
+      "bytes": 386,
+      "sha256": "840aefc4ce58e70b3a6379e4d0ebe03c7dc31ad56d565f8c799b71790e2f227b"
+    },
+    {
+      "path": "results/dc_structure_2026_research/continuations_dc_structure_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_structure_2026_research/corporate_events_dc_structure_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_structure_2026_research/daily_nav_dc_structure_2026_retry.csv",
+      "bytes": 5136,
+      "sha256": "5da953062ce308100e8e57faea4507626ee7b00a7102ad1bb3ccb0801d581313"
+    },
+    {
+      "path": "results/dc_structure_2026_research/dc_theme_protocol.json",
+      "bytes": 4110,
+      "sha256": "0dfd07fbe26e997578b85d4502de95fcea598d767384c7bf50dc2181ec5c5681"
+    },
+    {
+      "path": "results/dc_structure_2026_research/exit_signals_dc_structure_2026_retry.csv",
+      "bytes": 896,
+      "sha256": "f701226c4ac43ea075f243b4e8a5e014c19b412deb028f493157ced0694e9151"
+    },
+    {
+      "path": "results/dc_structure_2026_research/holdings_dc_structure_2026_retry.csv",
+      "bytes": 316,
+      "sha256": "c96f7fdaecd506956c7084d0ce050063490f5e7a8c2e3bfbd895f16d55fe0a54"
+    },
+    {
+      "path": "results/dc_structure_2026_research/metrics.csv",
+      "bytes": 165,
+      "sha256": "53e9ec3509f9cc2f35dc74536894cee2c4a1e8fb4b72a17e4c0e1f41cb883bae"
+    },
+    {
+      "path": "results/dc_structure_2026_research/monthly_results.csv",
+      "bytes": 1046,
+      "sha256": "fc774546612cf77657ae26dc717831e83babba477d0fb58d656e1fc3753b1992"
+    },
+    {
+      "path": "results/dc_structure_2026_research/run_status_dc_structure_2026_retry.json",
+      "bytes": 253,
+      "sha256": "e6c3bbbba71c28a3f4d605e0a01e34877e16989e83570636aec7b1f2ceb22258"
+    },
+    {
+      "path": "results/dc_structure_2026_research/suspension_marks_dc_structure_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_structure_2026_research/theme_feature_coverage.json",
+      "bytes": 36240,
+      "sha256": "34ae4b3fd72b573423762d6395cb9f94c1641b678ca5109a8e958eb0ebdaf3aa"
+    },
+    {
+      "path": "results/dc_structure_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_structure_2026_research/theme_membership_manifest.json",
+      "bytes": 1499,
+      "sha256": "4bfa0a5b9a5f05f525a117d16139e81a10c27d64fe001e40b8e99579536b497e"
+    },
+    {
+      "path": "results/dc_structure_2026_research/trades_dc_structure_2026_retry.csv",
+      "bytes": 2450,
+      "sha256": "1aacfd77f0d0fce235d787dd3191e503ff9e2e1220807bcd87ee86f768a6d1d2"
+    },
+    {
+      "path": "results/dc_structure_2026_research/verification.json",
+      "bytes": 500013,
+      "sha256": "ffb4a051ea2244ce56331952fd99cdcc7549546dd6c1d46b4f73581aeb5f3c72"
+    },
+    {
+      "path": "results/dc_structure_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/account_dc_structure_2026_retry.csv",
+      "bytes": 769,
+      "sha256": "0806297d45b4397d7c8ebdf3cb1eaf14eb62f625a66cf898e44709c216f8b11a"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/allocations_dc_structure_2026_retry.csv",
+      "bytes": 502,
+      "sha256": "d9c1734a24fdffecb2012e2decefd108989e6c757965b1eb72696be944be7bb5"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/annual_results.csv",
+      "bytes": 149,
+      "sha256": "d4c8cd16bac59dc652fe2547d66438c861bc10fdab1fb6d1c16b7127d875994a"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/candidate_coverage.csv",
+      "bytes": 386,
+      "sha256": "840aefc4ce58e70b3a6379e4d0ebe03c7dc31ad56d565f8c799b71790e2f227b"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/continuations_dc_structure_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/corporate_events_dc_structure_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/daily_nav_dc_structure_2026_retry.csv",
+      "bytes": 5136,
+      "sha256": "5da953062ce308100e8e57faea4507626ee7b00a7102ad1bb3ccb0801d581313"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/dc_theme_protocol.json",
+      "bytes": 4110,
+      "sha256": "0dfd07fbe26e997578b85d4502de95fcea598d767384c7bf50dc2181ec5c5681"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/exit_signals_dc_structure_2026_retry.csv",
+      "bytes": 896,
+      "sha256": "f701226c4ac43ea075f243b4e8a5e014c19b412deb028f493157ced0694e9151"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/holdings_dc_structure_2026_retry.csv",
+      "bytes": 316,
+      "sha256": "c96f7fdaecd506956c7084d0ce050063490f5e7a8c2e3bfbd895f16d55fe0a54"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/metrics.csv",
+      "bytes": 165,
+      "sha256": "53e9ec3509f9cc2f35dc74536894cee2c4a1e8fb4b72a17e4c0e1f41cb883bae"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/monthly_results.csv",
+      "bytes": 1046,
+      "sha256": "fc774546612cf77657ae26dc717831e83babba477d0fb58d656e1fc3753b1992"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/run_status_dc_structure_2026_retry.json",
+      "bytes": 253,
+      "sha256": "0b1c5ae831386e79687d951d83c156e631b0a1137737a10c40ff63b5cfcf9a0b"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/suspension_marks_dc_structure_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/trades_dc_structure_2026_retry.csv",
+      "bytes": 2450,
+      "sha256": "1aacfd77f0d0fce235d787dd3191e503ff9e2e1220807bcd87ee86f768a6d1d2"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/verification.json",
+      "bytes": 514858,
+      "sha256": "8f2f9103df752faac41581ead80b83a892f75e949bc1bb14caf6398f35be9953"
+    },
+    {
+      "path": "results/dc_structure_replay_20261001/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/account_dc_structure_2026_retry.csv",
+      "bytes": 769,
+      "sha256": "0806297d45b4397d7c8ebdf3cb1eaf14eb62f625a66cf898e44709c216f8b11a"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/allocations_dc_structure_2026_retry.csv",
+      "bytes": 502,
+      "sha256": "d9c1734a24fdffecb2012e2decefd108989e6c757965b1eb72696be944be7bb5"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/annual_results.csv",
+      "bytes": 149,
+      "sha256": "d4c8cd16bac59dc652fe2547d66438c861bc10fdab1fb6d1c16b7127d875994a"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/candidate_coverage.csv",
+      "bytes": 386,
+      "sha256": "840aefc4ce58e70b3a6379e4d0ebe03c7dc31ad56d565f8c799b71790e2f227b"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/continuations_dc_structure_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/corporate_events_dc_structure_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/daily_nav_dc_structure_2026_retry.csv",
+      "bytes": 5136,
+      "sha256": "5da953062ce308100e8e57faea4507626ee7b00a7102ad1bb3ccb0801d581313"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/dc_theme_protocol.json",
+      "bytes": 4110,
+      "sha256": "0dfd07fbe26e997578b85d4502de95fcea598d767384c7bf50dc2181ec5c5681"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/exit_signals_dc_structure_2026_retry.csv",
+      "bytes": 896,
+      "sha256": "f701226c4ac43ea075f243b4e8a5e014c19b412deb028f493157ced0694e9151"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/holdings_dc_structure_2026_retry.csv",
+      "bytes": 316,
+      "sha256": "c96f7fdaecd506956c7084d0ce050063490f5e7a8c2e3bfbd895f16d55fe0a54"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/metrics.csv",
+      "bytes": 165,
+      "sha256": "53e9ec3509f9cc2f35dc74536894cee2c4a1e8fb4b72a17e4c0e1f41cb883bae"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/monthly_results.csv",
+      "bytes": 1046,
+      "sha256": "fc774546612cf77657ae26dc717831e83babba477d0fb58d656e1fc3753b1992"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/run_status_dc_structure_2026_retry.json",
+      "bytes": 253,
+      "sha256": "a8239fda26d5c664ad5a93746090668e34d0a43d42813dc09cc0a0776c4030be"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/suspension_marks_dc_structure_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/theme_membership_manifest.json",
+      "bytes": 1507,
+      "sha256": "b5dc074dddf1b6f1a8cd0bfcfa0d11cd6f37ddde7b5367ae2f625459130a06c5"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/trades_dc_structure_2026_retry.csv",
+      "bytes": 2450,
+      "sha256": "1aacfd77f0d0fce235d787dd3191e503ff9e2e1220807bcd87ee86f768a6d1d2"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/verification.json",
+      "bytes": 596034,
+      "sha256": "d9cbad0e5d36aa47cb6c8bb82179c42210194541246707ad9076ce3a45aa9b98"
+    },
+    {
+      "path": "results/dc_structure_replay_20261002/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_theme_2026_research/account_dc_theme_2026_retry.csv",
+      "bytes": 842,
+      "sha256": "3699752867bddcc7a0ceb2baf12011e20bd0cf9d10bf0481197de56f5d91fe73"
+    },
+    {
+      "path": "results/dc_theme_2026_research/allocations_dc_theme_2026_retry.csv",
+      "bytes": 555,
+      "sha256": "91c1f439154152a90ceba7a61e96f371810cb4dd464e6b6ca6e25829d9907d1c"
+    },
+    {
+      "path": "results/dc_theme_2026_research/annual_results.csv",
+      "bytes": 165,
+      "sha256": "1a4d7a99361e3d5ca105a8202652942701918ccf3aa91313a72db53d8cb5d21d"
+    },
+    {
+      "path": "results/dc_theme_2026_research/candidate_coverage.csv",
+      "bytes": 318,
+      "sha256": "bf3328ef200c27ad2765c076fff17125ee19219e2514f95361f03ab1e3204fd4"
+    },
+    {
+      "path": "results/dc_theme_2026_research/continuations_dc_theme_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_theme_2026_research/corporate_events_dc_theme_2026_retry.csv",
+      "bytes": 173,
+      "sha256": "cb006d71fddd9f3e3a3cc59c56e7d7a8089e010d978fd60d2058c6e2c00a1f0d"
+    },
+    {
+      "path": "results/dc_theme_2026_research/daily_nav_dc_theme_2026_retry.csv",
+      "bytes": 6701,
+      "sha256": "489b209a4eef549d74f5e090b6291aeaabe7dcf3c7c2b03c29af7a2d74cb72e4"
+    },
+    {
+      "path": "results/dc_theme_2026_research/dc_theme_protocol.json",
+      "bytes": 2869,
+      "sha256": "f5c3939bbc7b52735c388377db88a4be2d67587a04aa0abc3a41fa72879bd65d"
+    },
+    {
+      "path": "results/dc_theme_2026_research/exit_signals_dc_theme_2026_retry.csv",
+      "bytes": 1084,
+      "sha256": "1bfd442a759bbaf081a5f0ba1299dfc2303d1b59c9bb5d8090cae188e7541dc1"
+    },
+    {
+      "path": "results/dc_theme_2026_research/holdings_dc_theme_2026_retry.csv",
+      "bytes": 417,
+      "sha256": "d8933a0989954ce219a8347ee8de94f3ecd0958ca6a4bdd417522fc3ab42e306"
+    },
+    {
+      "path": "results/dc_theme_2026_research/metrics.csv",
+      "bytes": 203,
+      "sha256": "a580500083fd90291b2b3811f93e4108b931e918db893b3cea1a4540f82593d0"
+    },
+    {
+      "path": "results/dc_theme_2026_research/monthly_results.csv",
+      "bytes": 1054,
+      "sha256": "efd246ef4e02dbb57c18901b7d01973ad1b6cba8480d23d3cc4667811943b137"
+    },
+    {
+      "path": "results/dc_theme_2026_research/run_status_dc_theme_2026_retry.json",
+      "bytes": 260,
+      "sha256": "968e2421d43adc72a21e0961bdb59e5827adaea128783dcf565f7675bbd1a9c6"
+    },
+    {
+      "path": "results/dc_theme_2026_research/suspension_marks_dc_theme_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_theme_2026_research/theme_feature_coverage.json",
+      "bytes": 36240,
+      "sha256": "34ae4b3fd72b573423762d6395cb9f94c1641b678ca5109a8e958eb0ebdaf3aa"
+    },
+    {
+      "path": "results/dc_theme_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_theme_2026_research/theme_membership_manifest.json",
+      "bytes": 1499,
+      "sha256": "4bfa0a5b9a5f05f525a117d16139e81a10c27d64fe001e40b8e99579536b497e"
+    },
+    {
+      "path": "results/dc_theme_2026_research/trades_dc_theme_2026_retry.csv",
+      "bytes": 3070,
+      "sha256": "991205f6ac0b07604867446b24e424d4cde72222e4e4969dd95cc16fe58a699d"
+    },
+    {
+      "path": "results/dc_theme_2026_research/verification.json",
+      "bytes": 492777,
+      "sha256": "83043427e27b36f693e21ed4532562632b98cbeb2c3cbdcae5e1fda26a19412e"
+    },
+    {
+      "path": "results/dc_theme_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_theme_comparison/independent_checks.json",
+      "bytes": 30019,
+      "sha256": "21ac4329b980dec85a31aa1d3eddf979bdbcc7d4640dbb18bce08d94a94e9bfd"
+    },
+    {
+      "path": "results/dc_theme_comparison/metrics.csv",
+      "bytes": 530,
+      "sha256": "ce6a150e9584c34cc2c7ff3ed51a5aefcffea7fe184ac63b8010269789d6e490"
+    },
+    {
+      "path": "results/dc_theme_comparison/monthly_results.csv",
+      "bytes": 3544,
+      "sha256": "3d32953d7e11703d60341a7a230ee308873db7daa7be63e2f4b995c3d6f69f30"
+    },
+    {
+      "path": "results/dc_theme_comparison/stock_contributions.csv",
+      "bytes": 5828,
+      "sha256": "f214acb843e6f8d59fc127b44f57d0776620bc1dce366074d3a3e90d1bc486eb"
+    },
+    {
+      "path": "results/dc_theme_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/account_dc_weekly_2026_retry.csv",
+      "bytes": 721,
+      "sha256": "92058fcf2a0af276289b965a1ac14ec8b888afd6ed1117695e6a7ce1c8509282"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/allocations_dc_weekly_2026_retry.csv",
+      "bytes": 831,
+      "sha256": "16a39fc05d32f19a17353719116b29f1d86dd7d7fd5476657b4aeb48033fe8c6"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/annual_results.csv",
+      "bytes": 146,
+      "sha256": "e2e25beee8c1c405d479e7206c9ffef7bd368b95b6fcf048ac049700ba91db8e"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/candidate_coverage.csv",
+      "bytes": 386,
+      "sha256": "840aefc4ce58e70b3a6379e4d0ebe03c7dc31ad56d565f8c799b71790e2f227b"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/continuations_dc_weekly_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/corporate_events_dc_weekly_2026_retry.csv",
+      "bytes": 158,
+      "sha256": "e4b62bfb62def43a2b956119c786ce4bc132a1c65adf69d653158ec022686627"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/daily_nav_dc_weekly_2026_retry.csv",
+      "bytes": 5373,
+      "sha256": "16b1b78ca659466cea676936aa6254036d816f41eaaa28a9354803c5d4e2d690"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/dc_theme_protocol.json",
+      "bytes": 5823,
+      "sha256": "b7bba2252c03d5d4ea482d59bb35b21b2943bd424b68da1482bd6fd6df56b623"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/entry_feature_manifest.json",
+      "bytes": 1049,
+      "sha256": "5647ff735ab32809d7cd3cc517b0ee4dfb24ac84e384a6f7d5c7ceac479f5e29"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/exit_signals_dc_weekly_2026_retry.csv",
+      "bytes": 1040,
+      "sha256": "e25ffd54d26024c2fc7a8b16b2f7b18c71b72576307c4d20b966d316a1389706"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/holdings_dc_weekly_2026_retry.csv",
+      "bytes": 529,
+      "sha256": "956b53c0606813a0b3f3cb884b35a3ecd7bbcdf6b22dc272fd2478b2ffa4fa07"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/metrics.csv",
+      "bytes": 161,
+      "sha256": "b50f63c1ca9a2a2e3db4771f58726063e35771471e6f43c59c651813965fb8dd"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/monthly_results.csv",
+      "bytes": 939,
+      "sha256": "6922ab357b01d2fd25ea517d3ea17cfc613a677b7a96ee89bb2024ba50e02697"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/run_status_dc_weekly_2026_retry.json",
+      "bytes": 250,
+      "sha256": "eed8af914e7078e4f17ec6ef9ee619fb24a25a566a09104fb02fa59ef408a92a"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/suspension_marks_dc_weekly_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/trades_dc_weekly_2026_retry.csv",
+      "bytes": 3174,
+      "sha256": "55a132b65a003c65ca6d47633e9582f57c0bfd610d47732c4ff1984f0513408b"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/verification.json",
+      "bytes": 526736,
+      "sha256": "2087bfb3000f30439f7eb7665312fe1b11a1e892b333f2f21ec56cbf6a1163fb"
+    },
+    {
+      "path": "results/dc_weekly_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/account_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 796,
+      "sha256": "9c52becfcbb901127f218eb13ef492375f2a0580b335c6235d3dde7505d213f4"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/allocations_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 1173,
+      "sha256": "f1e8ad0b44ab03600336b366a68c97a98526f55bfc26064e56e75e0d94711948"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/annual_results.csv",
+      "bytes": 178,
+      "sha256": "6eb4e1c8fe205167a2492c85acffd72d3cd6b49c8a768754f4dd32778b96e284"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/candidate_coverage.csv",
+      "bytes": 387,
+      "sha256": "082f55001c0a96c8912a154109136da20e6cc2cb32aff4c01a4279f0f9beae7b"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/continuations_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/corporate_events_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/daily_nav_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 6117,
+      "sha256": "691ebf6b5857eb2f5ff5497d4bbb0304e24f3a9403b3eb6bef6102e12f8ddbe4"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/dc_theme_protocol.json",
+      "bytes": 5881,
+      "sha256": "e76d448d4a9d9c2daa558ed196bc83ed5235b2301a85f2097a04122b0c01965c"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/entry_feature_manifest.json",
+      "bytes": 1049,
+      "sha256": "5647ff735ab32809d7cd3cc517b0ee4dfb24ac84e384a6f7d5c7ceac479f5e29"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/exit_signals_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 1822,
+      "sha256": "d02297119d41e28d27e93f907c185515ed501de6898e19dfdc105e5448e4dbd5"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/holdings_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 826,
+      "sha256": "dbd88f04c377edaeb99abb69562556cededd1c0135ceb2eeb18592e9671d8b9a"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/metrics.csv",
+      "bytes": 217,
+      "sha256": "8cb910561fa6f2c876cc2b9a3e5531f7532e45e48fcbeedf459247cc928a94dd"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/monthly_results.csv",
+      "bytes": 1119,
+      "sha256": "8f1b26961d4e04eb80cd53cd314f1c851577736f68c606617b6df2b5e6dec5e3"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/run_status_dc_weekly_reversal_2026_retry.json",
+      "bytes": 270,
+      "sha256": "30d80167ecf4c198c7f8dd7844bdb8716620af061cc7e13b03b3e8ea30c70940"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/suspension_marks_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/theme_feature_manifest.json",
+      "bytes": 1190,
+      "sha256": "1b709a04665d2e2375c93678691eff85c042ff03f3b6cd80d50a9bc4b2518915"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/theme_membership_manifest.json",
+      "bytes": 1485,
+      "sha256": "8972f75950bdd4b947d7e8192414d34f7f98b8080aa61e26109889ad2592e321"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/trades_dc_weekly_reversal_2026_retry.csv",
+      "bytes": 5464,
+      "sha256": "913fb6a4873c0e32801e8502b5f5065c2136f5f3aba11ac518f097f5b9dffffd"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/verification.json",
+      "bytes": 548736,
+      "sha256": "b91cb8a30e194c0db619944ef69d3defc8e2910aeb130709b0e2b21ac5196b3b"
+    },
+    {
+      "path": "results/dc_weekly_reversal_2026_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/liquid_leader_research/account_liquid_leader_hold_retry.csv",
+      "bytes": 3817,
+      "sha256": "f7c20411f515690b0a1f74ad7a32c6c033e7ec977c0a3d5c5f0286df12fbe6f6"
+    },
+    {
+      "path": "results/liquid_leader_research/account_liquid_leader_retry.csv",
+      "bytes": 3808,
+      "sha256": "4ebdf2301a60b5489192127eef538cc358624a639bff29c87cee53c413d075df"
+    },
+    {
+      "path": "results/liquid_leader_research/account_liquid_phase_router_retry.csv",
+      "bytes": 3825,
+      "sha256": "5d33802d867ec7487a6747f598f83b72f7753b7ec97733a6ba36098eee57c22c"
+    },
+    {
+      "path": "results/liquid_leader_research/allocations_liquid_leader_hold_retry.csv",
+      "bytes": 3938,
+      "sha256": "bf9efdb225125acf29776008aad8b9ad4fab75d263b45196cbed55fae2da23b4"
+    },
+    {
+      "path": "results/liquid_leader_research/allocations_liquid_leader_retry.csv",
+      "bytes": 3995,
+      "sha256": "b86000eeab79af4c0615f8da402a62f6b8d45d2eeb8a9d8b04362a42f322136f"
+    },
+    {
+      "path": "results/liquid_leader_research/allocations_liquid_phase_router_retry.csv",
+      "bytes": 3996,
+      "sha256": "eda64184ccb9b0d03818bbcb96ae43468241bb44ab170f67db85b84315bc915e"
+    },
+    {
+      "path": "results/liquid_leader_research/annual_results.csv",
+      "bytes": 1085,
+      "sha256": "063a07f45c17e23e93f018fe923c5653905909103ed80ce0b9f830792e99598b"
+    },
+    {
+      "path": "results/liquid_leader_research/board_coverage_repairs.csv",
+      "bytes": 3801,
+      "sha256": "4071e13c6fba41d7a01eb48dabb04abd66498f8654f7e3c16f73b041280615fb"
+    },
+    {
+      "path": "results/liquid_leader_research/continuations_liquid_leader_hold_retry.csv",
+      "bytes": 232,
+      "sha256": "4781038bc58823d6b6ef374b38a324aa49a2c3dbf55b689e64d3600f4a5de682"
+    },
+    {
+      "path": "results/liquid_leader_research/continuations_liquid_leader_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/liquid_leader_research/continuations_liquid_phase_router_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/liquid_leader_research/corporate_events_liquid_leader_hold_retry.csv",
+      "bytes": 525,
+      "sha256": "1da3cdeaee8e9e9e07cb4749e9079b39236d89466d17386cb60f0cf29286a231"
+    },
+    {
+      "path": "results/liquid_leader_research/corporate_events_liquid_leader_retry.csv",
+      "bytes": 525,
+      "sha256": "1da3cdeaee8e9e9e07cb4749e9079b39236d89466d17386cb60f0cf29286a231"
+    },
+    {
+      "path": "results/liquid_leader_research/corporate_events_liquid_phase_router_retry.csv",
+      "bytes": 539,
+      "sha256": "71a68c1563e18324f9f6e5e67742db7e2ba04fee76e854572212f1f6b09260c8"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_coverage_repairs.csv",
+      "bytes": 1132,
+      "sha256": "87ecbc37644edfbf8544d36252ad48c902a4ab35281a8afd26dc8f0ac0128bb8"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_guarded_protocol.json",
+      "bytes": 1770,
+      "sha256": "9a1e862782c1ced2790233636d2aa4cdb10b72c497a2b3be0d1a8fea99f61162"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_nav_liquid_leader_hold_retry.csv",
+      "bytes": 35989,
+      "sha256": "e95daecc410ea8cfb6a3787838f66d58634466962baa78ecd8032bf1ce97d80f"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_nav_liquid_leader_retry.csv",
+      "bytes": 36109,
+      "sha256": "53ae8729da2346192e7cfb9d08f1636935ab22c2205a29d21e88083e6b40638e"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_nav_liquid_phase_router_retry.csv",
+      "bytes": 36097,
+      "sha256": "72d16ea3f4613783fba5fc37f73e1b581e001665f70d82b229d317bf4e66f464"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_pressure_feature_manifest.json",
+      "bytes": 742,
+      "sha256": "d2df0faa9069e8017349283e1eb8722d6faac2c08d0758ca815494117c584285"
+    },
+    {
+      "path": "results/liquid_leader_research/daily_pressure_protocol.json",
+      "bytes": 1679,
+      "sha256": "c224c9d86f80503b65106e3dc201e3ddb3a6560835ba60035708e2b498c24b89"
+    },
+    {
+      "path": "results/liquid_leader_research/exit_signals_liquid_leader_hold_retry.csv",
+      "bytes": 4081,
+      "sha256": "c6c1a83da0796d2a68ff5ca5f353c0d0eef02fcb9fcd23525cec42e80e1aadb6"
+    },
+    {
+      "path": "results/liquid_leader_research/exit_signals_liquid_leader_retry.csv",
+      "bytes": 4075,
+      "sha256": "b2c0c1ba2bc1f46c6d3171c5876c09bfaea4001155b428a88d5708a62cd0daa4"
+    },
+    {
+      "path": "results/liquid_leader_research/exit_signals_liquid_phase_router_retry.csv",
+      "bytes": 4125,
+      "sha256": "5331f44ae9af769614a7f8dc43c5ec85fe5c58aab471be79451cea7c47279e3c"
+    },
+    {
+      "path": "results/liquid_leader_research/holdings_liquid_leader_hold_retry.csv",
+      "bytes": 2877,
+      "sha256": "b1df2b5dde51d2349f19537eccd99f7b6760b02290d75216f6bee4c938f80ccf"
+    },
+    {
+      "path": "results/liquid_leader_research/holdings_liquid_leader_retry.csv",
+      "bytes": 3028,
+      "sha256": "f6bab8ad8ed9c73f16e5ac268d357ddb289ad6e1d14bfe3cba94f7c8e704c640"
+    },
+    {
+      "path": "results/liquid_leader_research/holdings_liquid_phase_router_retry.csv",
+      "bytes": 2937,
+      "sha256": "731789d019037f2952cd3393297be89c7cd2976da49b32bbe961d9c1e8d180d8"
+    },
+    {
+      "path": "results/liquid_leader_research/independent_checks_2026-09-30.json",
+      "bytes": 1195,
+      "sha256": "fa0c3c09d352cc40b0f0fc30bc064524bb6b9cc5c8754cb457babca5d9629270"
+    },
+    {
+      "path": "results/liquid_leader_research/liquid_leader_protocol.json",
+      "bytes": 2047,
+      "sha256": "fb41e016c270343ae05257f23c0595f2bb22eefb12ec47eb8700bf98ea96080d"
+    },
+    {
+      "path": "results/liquid_leader_research/liquid_phase_router_protocol.json",
+      "bytes": 877,
+      "sha256": "58025c40fa41cfa31d632a07ba6d4709249189959f93885473ccaf59534236d0"
+    },
+    {
+      "path": "results/liquid_leader_research/liquid_route_audit.csv",
+      "bytes": 1225,
+      "sha256": "e73366cf684e856428e9b092e0591e2e1cbe7f2998571538abb159ec1b72099a"
+    },
+    {
+      "path": "results/liquid_leader_research/liquid_route_audit_liquid_phase_router_retry.csv",
+      "bytes": 1229,
+      "sha256": "df0ec5ce68e56308751ea15a9cb58a1469a8b73c06c0c4ce678edb53336dca32"
+    },
+    {
+      "path": "results/liquid_leader_research/market_features.csv",
+      "bytes": 16121,
+      "sha256": "da836676c03c3767266d640e5f5033be2efe80089d050bf8786dbc0d3be1bfe0"
+    },
+    {
+      "path": "results/liquid_leader_research/market_states.csv",
+      "bytes": 1781,
+      "sha256": "4f5ae155635818dd597a3d3f30648d3ab056cbca41052ab8d08601c70e410dad"
+    },
+    {
+      "path": "results/liquid_leader_research/metrics.csv",
+      "bytes": 468,
+      "sha256": "88428bbf81773738f92d387c7904650a516b531d076705d0567f1c5cb8373e68"
+    },
+    {
+      "path": "results/liquid_leader_research/monthly_results.csv",
+      "bytes": 14471,
+      "sha256": "c168da19be5c9acf7441f4edbbe9cd5056c6ca74f1044c0004c03a9d9a57ebfa"
+    },
+    {
+      "path": "results/liquid_leader_research/phase_router_independent.json",
+      "bytes": 7647,
+      "sha256": "c33f45070e7d15d395f89482cafddc9bd577374627930add7fa2f49526529df6"
+    },
+    {
+      "path": "results/liquid_leader_research/protocol.json",
+      "bytes": 2129,
+      "sha256": "144b925ef38f97e1cb870b4095d51d3a4eda82f953ed6d39170b215db4b4f18c"
+    },
+    {
+      "path": "results/liquid_leader_research/quality_floor_coverage.csv",
+      "bytes": 1956,
+      "sha256": "95802e82bdcac79a9e7ccf63f4df4a45f91d3aa71fe0cc5845a8efa973b7704c"
+    },
+    {
+      "path": "results/liquid_leader_research/run_status_liquid_leader_hold_retry.json",
+      "bytes": 265,
+      "sha256": "11ff2309c3232288550423cd818a7240cb324af45264d28786cbb99e23773cf5"
+    },
+    {
+      "path": "results/liquid_leader_research/run_status_liquid_leader_retry.json",
+      "bytes": 260,
+      "sha256": "2f22a9d53ca5138e4eec8618c7d49eb7ab040104520581f18bf60d306b9668d5"
+    },
+    {
+      "path": "results/liquid_leader_research/run_status_liquid_phase_router_retry.json",
+      "bytes": 266,
+      "sha256": "ed36c2e0170d09e760d6ac18ad7ec314deaf92bc62c3deea3588ac8736806560"
+    },
+    {
+      "path": "results/liquid_leader_research/sector_states.csv",
+      "bytes": 269318,
+      "sha256": "2bcc3c909733376bcc42e58dbc36f48d336a0e2192f1223e45e7e0f2f81b925b"
+    },
+    {
+      "path": "results/liquid_leader_research/style_signals.csv",
+      "bytes": 4599,
+      "sha256": "cd5f833320a8b091637bb62b5fa1dbe0510c08149ac7e21acac6cc6a183aecbe"
+    },
+    {
+      "path": "results/liquid_leader_research/suspension_marks_liquid_leader_hold_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/liquid_leader_research/suspension_marks_liquid_leader_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/liquid_leader_research/suspension_marks_liquid_phase_router_retry.csv",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "results/liquid_leader_research/trades_liquid_leader_hold_retry.csv",
+      "bytes": 15104,
+      "sha256": "beb5c6d8880d184b6fa5b4ed6e9a021bfa14057ea316a3447d9356e4890c8f51"
+    },
+    {
+      "path": "results/liquid_leader_research/trades_liquid_leader_retry.csv",
+      "bytes": 15691,
+      "sha256": "2945e2d51956597724a929af400dac6b6509653f87a66b27f0a4843db8a3b6a9"
+    },
+    {
+      "path": "results/liquid_leader_research/trades_liquid_phase_router_retry.csv",
+      "bytes": 15572,
+      "sha256": "2305fde20612f86ecd63cc264dc16b4206ba1414438ae7bb9374a307c6470724"
+    },
+    {
+      "path": "results/liquid_leader_research/verification.json",
+      "bytes": 316811,
+      "sha256": "4e09a5ca22da81219b4e52a74a98ffa0c471982e2680d80a5285ba5379cdfb8d"
+    },
+    {
+      "path": "results/liquid_leader_research/verified_suspensions.json",
+      "bytes": 518,
+      "sha256": "3e7834f329fa71aae29c5d63b71761ec17ad74c52a0d7c99d862bf983f3d11b4"
+    },
+    {
+      "path": "results/liquid_leader_research/zero_volume_placeholder_audit.csv",
+      "bytes": 14283,
+      "sha256": "45e59e1d3e308599ce54276d36dce500b646d6fc51372736894bb6fbd658965e"
+    },
+    {
+      "path": "scripts/audit_dc_capital_priority.py",
+      "bytes": 20329,
+      "sha256": "f638570e049908bcdf2110db47fca5c2b3ee2288b7bc209ff97a980dc03e8d43"
+    },
+    {
+      "path": "scripts/audit_dc_forecasts.py",
+      "bytes": 6169,
+      "sha256": "64eb8517b2f858569a865bfd405e1e050548f76ab002f4fbc0f048069fa031ce"
+    },
+    {
+      "path": "scripts/audit_dc_theme_accounts.py",
+      "bytes": 8709,
+      "sha256": "e44b082e365b4539f70e4090f0376f92a1f3bfc537b794c82092b6da6ad8a835"
+    },
+    {
+      "path": "scripts/audit_examples_20260930.py",
+      "bytes": 11277,
+      "sha256": "8d3f2663bdade0e248603f99140aa40f5ba537cdaa355abddccdadc50eb52346"
+    },
+    {
+      "path": "scripts/audit_monthly_trail_applicability.py",
+      "bytes": 10828,
+      "sha256": "f89aec94e69f0bd179230028484f510c5688aa9c489dd87714d049c585a8da67"
+    },
+    {
+      "path": "scripts/build_research_release_manifest.py",
+      "bytes": 5682,
+      "sha256": "e5cb8e3651aecfc28d2809bfb2f06469310c35f34f87539a19659fd26466340e"
+    },
+    {
+      "path": "scripts/fetch_dc_theme_research.py",
+      "bytes": 23924,
+      "sha256": "4654571b865899d7c0687d75f5465cb98578c38f3d7ae87848e1029e3b1a2d17"
+    },
+    {
+      "path": "scripts/fetch_theme_pilot.py",
+      "bytes": 16873,
+      "sha256": "394f1768aec6d86da4048f24c223c1860c7e64f80b9d959bd606937b46d0c8c6"
+    },
+    {
+      "path": "scripts/probe_concept_gateway.py",
+      "bytes": 12379,
+      "sha256": "1f1c17a5f51546137189a9478c9aeb23a67cdf2c75c737bc2ca7009908e7d12f"
+    },
+    {
+      "path": "scripts/probe_dragon_tiger_ma20.py",
+      "bytes": 18864,
+      "sha256": "902f05b47fd77cab4eea903fa459bba48fe2dc0d2e9a5522baf45c0357a53814"
+    },
+    {
+      "path": "scripts/replay_dc_eligible_hold.py",
+      "bytes": 3054,
+      "sha256": "163c26831d1a5cb1e38034f08e64bf9f973a4faeec31af4c9f07132340944ab7"
+    },
+    {
+      "path": "src/data_pipeline/public_theme_data.py",
+      "bytes": 5799,
+      "sha256": "8b8dc4dba25e29d25dfe362f4e733688c1e7a6fb02b31e3e24d946acc23eee0f"
+    },
+    {
+      "path": "src/data_pipeline/theme_data.py",
+      "bytes": 8433,
+      "sha256": "1be454af1a3e73b6b7d10dc3d8440708060781076df3d02b0ade341358d1c10f"
+    },
+    {
+      "path": "src/research_dc_context_ranker.py",
+      "bytes": 17829,
+      "sha256": "4517dbaa589cd6fd2b96b6dff8c68fd0a6cbaf04417d87aa93825c4a34bc9d4e"
+    },
+    {
+      "path": "src/research_dc_eligible_hold.py",
+      "bytes": 16215,
+      "sha256": "a034b8515f409b5873d045d7da658b4367a2fb661fe17e1fd12f3c70ac176cb0"
+    },
+    {
+      "path": "src/research_dc_entry.py",
+      "bytes": 7528,
+      "sha256": "be8cb02382c2605f06481037a669967b7e75e1d1e086788ceace13b5a40245cf"
+    },
+    {
+      "path": "src/research_dc_entry_policy.py",
+      "bytes": 4751,
+      "sha256": "0345fe0dcb69f3a4de915c53f8fdf15a2d43f2e6f9595ee3eabdff7033a421b0"
+    },
+    {
+      "path": "src/research_dc_forecast.py",
+      "bytes": 13603,
+      "sha256": "3f36c79960c83613b094278fa28243d5e1ba56ccdcfe4e114628d47378c8a418"
+    },
+    {
+      "path": "src/research_dc_leader_allocation.py",
+      "bytes": 2681,
+      "sha256": "8f5381108afe87538680114786358bd2c88ffe19eff592e75e9c82461e0e3847"
+    },
+    {
+      "path": "src/research_dc_peer_context.py",
+      "bytes": 7604,
+      "sha256": "ff3f18a79705e47f83ec82debb5b83a6ec09e5134b9ed22311743b9a5251709a"
+    },
+    {
+      "path": "src/research_dc_peer_forecast.py",
+      "bytes": 3486,
+      "sha256": "ced98579242ed56082566f5b52f9a7139214e0a33ec0a5cccf6a734bfae4649f"
+    },
+    {
+      "path": "src/research_dc_rally_classifier.py",
+      "bytes": 12730,
+      "sha256": "d611d78242402cdbf741178b0e97675402750fb5ba15dd2d2a620e8d9b76fc3d"
+    },
+    {
+      "path": "src/research_dc_specialist.py",
+      "bytes": 27594,
+      "sha256": "00df06296340d38ad5a0423f3d5238ab085923d3b3750c31fb5eced107f17e40"
+    },
+    {
+      "path": "src/research_dc_themes.py",
+      "bytes": 53347,
+      "sha256": "de7e38a7abfb8253a39cc0d9d33ef16b9801844aa75b2bd7c9b9de27f89bff13"
+    },
+    {
+      "path": "src/research_fine_industry.py",
+      "bytes": 13083,
+      "sha256": "8b929d05af68baf373235e67b4762205fd562b6393fefa4ada3158b9647f484f"
+    },
+    {
+      "path": "src/research_improvements.py",
+      "bytes": 19755,
+      "sha256": "02180db556e440b9866c3434964a68cb517e352507734bd87e9dd09c2ad852d6"
+    },
+    {
+      "path": "src/research_leadership.py",
+      "bytes": 20862,
+      "sha256": "330807c970caba4927795b74e65dc13535556a81ddba2c044bca59a73023eefc"
+    },
+    {
+      "path": "src/research_learned_leaders.py",
+      "bytes": 5993,
+      "sha256": "144193a2e5fd8675146f820acc61f5f9279b416287fd79658df226c7d77609d4"
+    },
+    {
+      "path": "src/research_liquid_leaders.py",
+      "bytes": 8693,
+      "sha256": "1a75638a9a77f2e602afd18a2ef230dbcda6cbe65fd47918e7009efeddc0e96f"
+    },
+    {
+      "path": "src/research_market_states.py",
+      "bytes": 75578,
+      "sha256": "c84240dc13b7c0a0aee72334c3237094767bec455ed9f30af1f8dab96a48b1de"
+    },
+    {
+      "path": "src/research_peer_graph.py",
+      "bytes": 5541,
+      "sha256": "8d8f0d272628d69c01f97b0086c17452ec2f6ea7915afc5d1b4cfa5246fa1bf5"
+    },
+    {
+      "path": "src/research_quality_floor.py",
+      "bytes": 9034,
+      "sha256": "ab28b1400bb0966e9355764f0c05c196c4630fd5c48b5e37a06ec1e320cf97d4"
+    },
+    {
+      "path": "src/research_scoped_actions.py",
+      "bytes": 4879,
+      "sha256": "d6d591aa3450676e9895ac6910f48267b029641c0282b21eda4221085047dc49"
+    },
+    {
+      "path": "src/research_structural_router.py",
+      "bytes": 2658,
+      "sha256": "f3608e4f9d60ad4f236828986a6bd907e1cf7b71e890ff17129aaa46a81e809b"
+    },
+    {
+      "path": "src/research_theme_affinity.py",
+      "bytes": 10715,
+      "sha256": "86413c3b6ee4fa4fe92c176c404590dacfd4a3be9fa724503f40941222dcb4ee"
+    },
+    {
+      "path": "src/research_trend_features.py",
+      "bytes": 5094,
+      "sha256": "9279cb8394987fadb9320fb48b2524a423d95a7cb0be87f5a605f2ab669bc87c"
+    },
+    {
+      "path": "src/small_account_backtest.py",
+      "bytes": 22210,
+      "sha256": "6c1e1aff3cac8ff41cc5d4752676f5ff1e282f2cca5ba0ec362849fc5e3a9f93"
+    },
+    {
+      "path": "src/verify_market_states.py",
+      "bytes": 7785,
+      "sha256": "62ee6cc4420c889a1bb49bf13bb44bbbc4fde9f537a06d05a5c50de1d570dd68"
+    },
+    {
+      "path": "src/verify_small_account.py",
+      "bytes": 4233,
+      "sha256": "3dee35b5318c6359d4a53fafaea723f87898e4de6b5e7e3ba9c9d78c1aa6425c"
+    },
+    {
+      "path": "tests/test_concept_gateway_probe.py",
+      "bytes": 10142,
+      "sha256": "dcc5c900558d76cfddbe9679bb0358845cc947d5abe39ce21a0835ff3341d0fd"
+    },
+    {
+      "path": "tests/test_dc_capital_priority.py",
+      "bytes": 13013,
+      "sha256": "59d40a94ab8dcb8c00bde485746c5cebc4c8bb3ee70a84833df221f5cefb7914"
+    },
+    {
+      "path": "tests/test_dc_context_ranker.py",
+      "bytes": 22512,
+      "sha256": "6edd2216761bf7b3b6e256344223dbab5d4775fa732c2d3d5a92242ceb036b2b"
+    },
+    {
+      "path": "tests/test_dc_eligible_hold.py",
+      "bytes": 2853,
+      "sha256": "eb58853dfaa5482cbdb306d2cbc00c53f8d9a75a8c5a4e70697b4c3b12bf20bf"
+    },
+    {
+      "path": "tests/test_dc_entry.py",
+      "bytes": 6825,
+      "sha256": "48218fa3b68e38315931bcb1b1b595094ed069bba67c14702024b09b86bfbf3d"
+    },
+    {
+      "path": "tests/test_dc_entry_policy.py",
+      "bytes": 3348,
+      "sha256": "f183816cc423070c41d6b6177e440b98a8354ffc582efefa7166462244c46be7"
+    },
+    {
+      "path": "tests/test_dc_forecast.py",
+      "bytes": 9134,
+      "sha256": "5b108ff654c30d5beec4689cfc43ba7ff015114675ba0eb86504cb40ff0520e4"
+    },
+    {
+      "path": "tests/test_dc_leader_allocation.py",
+      "bytes": 3173,
+      "sha256": "17d082366f63a3a0ec6e2b5604f08cb39841a0d1d10b69ae4a51a096b90f1a7d"
+    },
+    {
+      "path": "tests/test_dc_peer_context.py",
+      "bytes": 8365,
+      "sha256": "fa9b83c2167940e1687c241a10925aaeb31719aab9d99d6eba372f4f0461d5eb"
+    },
+    {
+      "path": "tests/test_dc_peer_forecast_adapter.py",
+      "bytes": 3455,
+      "sha256": "1cfd8ded825a9f2318e22b83fd96dc51929f36cb2593f8826932defeb4be12bf"
+    },
+    {
+      "path": "tests/test_dc_rally_classifier.py",
+      "bytes": 12360,
+      "sha256": "33b91c514ef826b9709b143006f0ecf2c555210881153e311361e1ead0ee5820"
+    },
+    {
+      "path": "tests/test_dc_specialist.py",
+      "bytes": 29827,
+      "sha256": "f88ed9a691c321845d1ac3dc38e5f10d5b78bfb10044772b1be1c1097968fa11"
+    },
+    {
+      "path": "tests/test_dc_theme_collection.py",
+      "bytes": 24476,
+      "sha256": "0f366cce41b281e68fd92347625d688288fc5396a99a4adebfc9d9d920675aef"
+    },
+    {
+      "path": "tests/test_dc_themes.py",
+      "bytes": 37274,
+      "sha256": "fea4d163d76e1f1541aff8418d99dbbd50f902c0322d6eeedc940c4e768ec503"
+    },
+    {
+      "path": "tests/test_dc_weekly_execution.py",
+      "bytes": 6780,
+      "sha256": "c0755ecc5ef4360d4f5f562161065a86a1773c50e0e8d0660b62b0ed655854a3"
+    },
+    {
+      "path": "tests/test_empty_action_verifiers.py",
+      "bytes": 2957,
+      "sha256": "971d2a075cdf65ad0ebc7877bb082533a72a63e966950554667e5a0561367bd2"
+    },
+    {
+      "path": "tests/test_expected_profit_optimizer.py",
+      "bytes": 1438,
+      "sha256": "47df17888641885e4398d0be20f0bf071e54f65de4bc18fd239dcccccff372d7"
+    },
+    {
+      "path": "tests/test_factor_cache_publication.py",
+      "bytes": 2070,
+      "sha256": "2db8eec9628101af159df9b8edfc73cc5a3176d808dcbe2c4fb4dd794d4f9397"
+    },
+    {
+      "path": "tests/test_liquid_leaders.py",
+      "bytes": 9886,
+      "sha256": "1b4e378125c3707636c889decd65662300d01da9a2a11b5557aae9d76d73d0cc"
+    },
+    {
+      "path": "tests/test_liquid_phase_router.py",
+      "bytes": 2104,
+      "sha256": "14ecc1d53514307a2fe9a6ddcd714e97ea69c4b09e86b1902b7f12903717d71d"
+    },
+    {
+      "path": "tests/test_monthly_trail_applicability.py",
+      "bytes": 2316,
+      "sha256": "f7d4953618bb0e20e92a71f11f9f3147c53421a1a359903620571721e8761b1b"
+    },
+    {
+      "path": "tests/test_public_theme_data.py",
+      "bytes": 2319,
+      "sha256": "820a4515a3e690e77a9f6fe0bf452072d91319b9467fa5562f2ec13b9b45ffc6"
+    },
+    {
+      "path": "tests/test_scoped_actions.py",
+      "bytes": 3581,
+      "sha256": "b60ad0f923245b2f49f75d29ba0f2baa8a6922a723469fad45a238ec45839ac8"
+    },
+    {
+      "path": "tests/test_theme_affinity.py",
+      "bytes": 10508,
+      "sha256": "2eb92bbd8fcd616e62c96abd8f7a2ee70a41b0ec17f0d4c59e74b875df22aadd"
+    },
+    {
+      "path": "tests/test_theme_data.py",
+      "bytes": 11006,
+      "sha256": "6a7e15c20a8008a7c4c1a72a8e5176ac9779a1c644d81a0b88d1c7aae2304d3b"
+    },
+    {
+      "path": "tests/test_theme_pilot.py",
+      "bytes": 19066,
+      "sha256": "e6af31c633785444100564626a065b62eb4b97aedc2edb337b93764e512979f9"
+    }
+  ],
+  "secret_scan": "passed known-key-shape and token-assignment checks",
+  "exclusions": [
+    "raw market/API caches and all pkl",
+    "large full-stock forecast/eligibility CSVs",
+    "regenerable capital_priority.csv diagnostics",
+    "unrelated personal documents/scripts"
+  ],
+  "local_verification": "Exact recorded hashes use original local paths; published outputs do not replace omitted vendor caches"
+}

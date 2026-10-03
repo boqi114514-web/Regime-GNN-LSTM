@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "offline": true,
+  "metrics": {
+    "variant": "dc_member_relative_eligible_hold_20261003",
+    "total_profit": 35454.0,
+    "ending_equity": 60454.0,
+    "daily_drawdown_pct": 11.500419111483652,
+    "target_hit_months": 3,
+    "continuations": 1,
+    "months": 9,
+    "days": 178
+  },
+  "csv_comparisons": {
+    "account_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 9,
+      "exact_cells_equal": true,
+      "canonical_sha256": "827925a8befccf83482d9950ab48604f15f56efdad584696d0b656730190d18b",
+      "source_sha256": "d7b8e20520ca64d369bb86dbfb7808261af5a069484fd02a14c4cb632d3bd254",
+      "replay_sha256": "d7b8e20520ca64d369bb86dbfb7808261af5a069484fd02a14c4cb632d3bd254"
+    },
+    "allocations_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 9,
+      "exact_cells_equal": true,
+      "canonical_sha256": "cf9737baf85fcfd9661ce27176bd916594f4306c1c3db2e9426cdf9c97da3539",
+      "source_sha256": "9db22ad1b2e8a7e752524a0009ad7c17ee9ec1f53cd27814d4748c65f2f320e2",
+      "replay_sha256": "9db22ad1b2e8a7e752524a0009ad7c17ee9ec1f53cd27814d4748c65f2f320e2"
+    },
+    "continuations_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 1,
+      "exact_cells_equal": true,
+      "canonical_sha256": "3391fccfec37eb51469e0079570a6c5ba33afd3d3bf86ed166cd6ad0684a2ea4",
+      "source_sha256": "aca8f284858105c52dc31c7a46a91dacf99803e08519b4475609597008bb7fec",
+      "replay_sha256": "aca8f284858105c52dc31c7a46a91dacf99803e08519b4475609597008bb7fec"
+    },
+    "corporate_events_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 3,
+      "exact_cells_equal": true,
+      "canonical_sha256": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6",
+      "source_sha256": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6",
+      "replay_sha256": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6"
+    },
+    "daily_nav_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 178,
+      "exact_cells_equal": true,
+      "canonical_sha256": "a72c04735a14fe3c8134e1346346f817cff54e1d2260dfe9d78823978cd0642a",
+      "source_sha256": "98ec55bec5a04cddbad142f63d2322ab4d3b0a5e8bbcdb4e759f36478459db8d",
+      "replay_sha256": "98ec55bec5a04cddbad142f63d2322ab4d3b0a5e8bbcdb4e759f36478459db8d"
+    },
+    "exit_signals_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 2,
+      "exact_cells_equal": true,
+      "canonical_sha256": "8a7974978b9abb115b0951663c3a78181af7a62c4a15bdccb31f5ccae3bc1e80",
+      "source_sha256": "8a7974978b9abb115b0951663c3a78181af7a62c4a15bdccb31f5ccae3bc1e80",
+      "replay_sha256": "8a7974978b9abb115b0951663c3a78181af7a62c4a15bdccb31f5ccae3bc1e80"
+    },
+    "holdings_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 7,
+      "exact_cells_equal": true,
+      "canonical_sha256": "a256411e8c9c5c153968f21e8b0505b9a97203383699566da8f1b8750aad8c0f",
+      "source_sha256": "a256411e8c9c5c153968f21e8b0505b9a97203383699566da8f1b8750aad8c0f",
+      "replay_sha256": "a256411e8c9c5c153968f21e8b0505b9a97203383699566da8f1b8750aad8c0f"
+    },
+    "metrics.csv": {
+      "rows": 1,
+      "exact_cells_equal": true,
+      "canonical_sha256": "7a54d8ae296a966203be9e0f23563aff01785538b887314bec9c460a2c30aa37",
+      "source_sha256": "7a54d8ae296a966203be9e0f23563aff01785538b887314bec9c460a2c30aa37",
+      "replay_sha256": "7a54d8ae296a966203be9e0f23563aff01785538b887314bec9c460a2c30aa37"
+    },
+    "monthly_results.csv": {
+      "rows": 9,
+      "exact_cells_equal": true,
+      "canonical_sha256": "6890f79d4fa604a1d61e983d01d0d1d4b652f3cbbff78cc2aff2709600bf8670",
+      "source_sha256": "6890f79d4fa604a1d61e983d01d0d1d4b652f3cbbff78cc2aff2709600bf8670",
+      "replay_sha256": "6890f79d4fa604a1d61e983d01d0d1d4b652f3cbbff78cc2aff2709600bf8670"
+    },
+    "suspension_marks_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 0,
+      "exact_cells_equal": true,
+      "source_sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "replay_sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    "trades_dc_member_relative_leader_2026_retry.csv": {
+      "rows": 15,
+      "exact_cells_equal": true,
+      "canonical_sha256": "cf36a0b34c0b680762291752d0a64bd4756f1488c886f5059b3134580cad45ba",
+      "source_sha256": "abf4949c5ab6cd7b3b7c20766f6d42e60517e6d045890bf35b8ccb4631965ec3",
+      "replay_sha256": "abf4949c5ab6cd7b3b7c20766f6d42e60517e6d045890bf35b8ccb4631965ec3"
+    }
+  },
+  "source": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_20261003",
+  "replay": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003",
+  "script_sha256": "163c26831d1a5cb1e38034f08e64bf9f973a4faeec31af4c9f07132340944ab7",
+  "source_audit_sha256": "d4c190f6a96b1f6c0b52cc2e92dcd94cc6fc319796a9d989316fd6478a04d2a1",
+  "replay_audit_sha256": "5295978a434aca038c066028647346536a6c0707fe5ec942a5fe249df32192e2"
+}

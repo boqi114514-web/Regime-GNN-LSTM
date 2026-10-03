@@ -1,0 +1,10 @@
+date,equity,cash,dividend_receivable,holdings,return,profit,budget_return_pct,strategy,target_hit
+2026-01-30,23449.0,32.0,0,2,-0.0620399999999999,-1551.0,-6.204,dc_expected_profit_2026_retry,False
+2026-02-27,24057.0,5.0,0,2,0.0259286110281888,608.0,2.432,dc_expected_profit_2026_retry,False
+2026-03-31,21420.0,19968.0,0,1,-0.1096146651702206,-2637.0,-10.548,dc_expected_profit_2026_retry,False
+2026-04-30,21409.0,70.0,0,2,-0.0005135387488328,-11.0,-0.044,dc_expected_profit_2026_retry,False
+2026-05-29,19382.0,18800.0,0,1,-0.0946798075575692,-2027.0,-8.108,dc_expected_profit_2026_retry,False
+2026-06-30,17649.0,17649.0,0,0,-0.0894128572902693,-1733.0,-6.932,dc_expected_profit_2026_retry,False
+2026-07-31,17199.0,24.0,0,1,-0.025497195308516,-450.0,-1.7999999999999998,dc_expected_profit_2026_retry,False
+2026-08-31,19324.0,4.0,0,2,0.1235536949822664,2125.0,8.5,dc_expected_profit_2026_retry,False
+2026-09-24,19909.0,42.0,0,2,0.030273235354999,585.0,2.34,dc_expected_profit_2026_retry,False

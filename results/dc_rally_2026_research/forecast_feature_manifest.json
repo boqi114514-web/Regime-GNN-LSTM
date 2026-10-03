@@ -1,0 +1,78 @@
+{
+  "status": "complete",
+  "specification": {
+    "protocol": {
+      "version": "peer_context_v1",
+      "features": [
+        "mom1",
+        "mom3",
+        "mom6",
+        "volatility3",
+        "volatility6",
+        "positive_fraction6",
+        "momentum_acceleration",
+        "mom1_percentile",
+        "mom3_percentile",
+        "mom6_percentile",
+        "amount_percentile",
+        "pressure5",
+        "pressure20",
+        "location5",
+        "amount_ratio5_vs_prior20",
+        "peer_mom1",
+        "peer_mom3",
+        "peer_mom6",
+        "peer_positive3"
+      ],
+      "estimator": "HistGradientBoostingRegressor",
+      "parameters": {
+        "loss": "squared_error",
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "max_depth": null,
+        "l2_regularization": 10,
+        "learning_rate": 0.05,
+        "random_state": 42
+      },
+      "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+      "training_window": "Expanding complete-feature stock observations; at least 12 distinct label months",
+      "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+      "label": "Next calendar-month adjusted close / signal adjusted close - 1; clipped to [-.50,.50] only in fitting",
+      "ranking": "Forecast magnitude, linear expected-profit whole-lot allocation; dated DC price association remains an eligibility gate only",
+      "daily_features": "Complete 25-session gap-invariant intraday pressure and amount windows, not close-to-close total return",
+      "first_feature_month": "2023-01",
+      "minimum_liquidity_days": 10,
+      "context": "Past 60-session gap-neutral intraday-pressure cohorts; fixed MiniBatchKMeans20, seed42, three initializations, maxiter60, batch1024; >=10 complete-history stocks; cohort adjusted-momentum medians and positive3 breadth; not industry membership"
+    },
+    "sklearn_version": "1.8.0",
+    "signals": [
+      "2025-12-31",
+      "2026-01-30",
+      "2026-02-27",
+      "2026-03-31",
+      "2026-04-30",
+      "2026-05-29",
+      "2026-06-30",
+      "2026-07-31",
+      "2026-08-31"
+    ],
+    "inputs": {
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_peer_forecast.py": "ced98579242ed56082566f5b52f9a7139214e0a33ec0a5cccf6a734bfae4649f",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_peer_context.py": "ff3f18a79705e47f83ec82debb5b83a6ec09e5134b9ed22311743b9a5251709a",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_forecast.py": "3f36c79960c83613b094278fa28243d5e1ba56ccdcfe4e114628d47378c8a418",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_themes.py": "c62d04cad8bf3abe493c612ba9f35394905787ca4cff91151c48860a92ceff72",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_entry.py": "be8cb02382c2605f06481037a669967b7e75e1d1e086788ceace13b5a40245cf",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\dc_peer_forecast_2026_research\\daily.pkl": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\stock_month_end_verified.pkl": "747a3ac1a6f29435a41f5c45a0d1b136580c3265faf5df8b7f8012cb45f69577"
+    },
+    "monthly_frame_sha256": "52c13ce83a6b524b055ff9f78f96b19b8315255b0355b54e5378a333e3efcbaf",
+    "daily_frame_sha256": "adcff36234d95871e3f3c6afb5bb253e719bff15ad3dcf7146255286ed850513"
+  },
+  "artifacts": {
+    "forecast_features.pkl": "ffc13d3856715151cfd65403cba087a8504809e3376e1920d0360f3a6c59688f",
+    "forecast_predictions.pkl": "6141228b21474a5862f9f40e3adec72cbecbdfc236048faf3c8010c3325c8d2d",
+    "forecast_models.pkl": "7fd75aebdaa267f664174890c435fe8ee36bc2d94d1010142c336af9f49ef6c1",
+    "forecast_model_audit.json": "fcb4517acffc13eb736ec27ed0c2f6e980960222e46c6bf49f1f2278d98feff1",
+    "peer_context.pkl": "d614a66bffd891faf1891d5aab828c17669ddd1518ec4d9c2a3103091e96bbb4"
+  }
+}

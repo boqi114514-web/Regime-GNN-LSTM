@@ -1,0 +1,172 @@
+{
+  "status": "complete",
+  "specification": {
+    "protocol": {
+      "version": "context_ranker_cohort_v1",
+      "target_kind": "context_ranker",
+      "features": [
+        "mom1",
+        "mom3",
+        "mom6",
+        "volatility3",
+        "volatility6",
+        "positive_fraction6",
+        "momentum_acceleration",
+        "mom1_percentile",
+        "mom3_percentile",
+        "mom6_percentile",
+        "amount_percentile",
+        "pressure5",
+        "pressure20",
+        "location5",
+        "amount_ratio5_vs_prior20",
+        "peer_mom1",
+        "peer_mom3",
+        "peer_mom6",
+        "peer_positive3",
+        "stock_peer_excess1",
+        "stock_peer_excess3",
+        "stock_peer_excess6",
+        "stock_peer_acceleration"
+      ],
+      "estimator": "LGBMRanker",
+      "parameters": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "n_estimators": 120,
+        "num_leaves": 15,
+        "learning_rate": 0.05,
+        "reg_lambda": 10.0,
+        "min_child_samples": 50,
+        "random_state": 42,
+        "n_jobs": 4,
+        "deterministic": true,
+        "force_col_wise": true,
+        "lambdarank_truncation_level": 6,
+        "label_gain": [
+          0,
+          1,
+          3,
+          7,
+          15,
+          31,
+          63,
+          127,
+          255,
+          511
+        ],
+        "verbosity": -1
+      },
+      "query": "Exact (signal_date, peer_mom1, peer_mom3, peer_mom6, peer_positive3) price-cohort-statistics proxy; all eligible SH/SZ boards included; identical statistics may collide across distinct cohorts; not economic membership",
+      "label": "Unclipped next-month adjusted returns ranked within each purged training price-cohort proxy query; floor(10*(average_rank-1)/query_count), clipped to 0..9; tied returns receive tied relevance",
+      "evaluation_cutoffs": [
+        1,
+        5
+      ],
+      "optimization": "LambdaRank NDCG with fixed exponential relevance gain and truncation level 6; no account-outcome parameter search or future validation set",
+      "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+      "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+      "minimum_training": "12 distinct completed label months with at least two complete-feature stocks per price-cohort proxy query and at least one nonconstant relevance query",
+      "ranking": "Per-signal all-board percentile of raw LambdaRank score",
+      "forecast_return_alias": "Raw ranking score, possibly negative; NOT expected return, NOT probability, NOT expected profit per yuan",
+      "feature_source": "Immutable source-bound 19-feature price/amount and causal peer context plus stock-minus-peer mom1/3/6 and excess1-excess3/3; no DC historical backfill, stock identifiers, theme whitelist or future labels as features",
+      "research_sources": [
+        "https://arxiv.org/abs/2012.07149",
+        "https://arxiv.org/abs/2105.10019",
+        "https://lightgbm.readthedocs.io/en/v4.6.0/pythonapi/lightgbm.LGBMRanker.html"
+      ],
+      "query_scope": "cohort",
+      "query_key_columns": [
+        "signal_date",
+        "peer_mom1",
+        "peer_mom3",
+        "peer_mom6",
+        "peer_positive3"
+      ],
+      "cross_query_score_limitation": "Shared raw ranking scores are not calibrated cross-cohort returns or probabilities; strict external theme eligibility remains separate"
+    },
+    "lightgbm_version": "4.6.0",
+    "inputs": {
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_peer_forecast.py": "ced98579242ed56082566f5b52f9a7139214e0a33ec0a5cccf6a734bfae4649f",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_peer_context.py": "ff3f18a79705e47f83ec82debb5b83a6ec09e5134b9ed22311743b9a5251709a",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_forecast.py": "3f36c79960c83613b094278fa28243d5e1ba56ccdcfe4e114628d47378c8a418",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_themes.py": "de7e38a7abfb8253a39cc0d9d33ef16b9801844aa75b2bd7c9b9de27f89bff13",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_entry.py": "be8cb02382c2605f06481037a669967b7e75e1d1e086788ceace13b5a40245cf",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\dc_context_inputs_20261002\\daily.pkl": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\stock_month_end_verified.pkl": "747a3ac1a6f29435a41f5c45a0d1b136580c3265faf5df8b7f8012cb45f69577",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\dc_local_rank_2026_research\\forecast_features.pkl": "ffc13d3856715151cfd65403cba087a8504809e3376e1920d0360f3a6c59688f",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\dc_local_rank_2026_research\\peer_context.pkl": "d614a66bffd891faf1891d5aab828c17669ddd1518ec4d9c2a3103091e96bbb4",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\dc_local_rank_2026_research\\forecast_feature_manifest.json": "b74087e9584f012ed3fd30d18b9efbc3d8a3360069158cd5a14adb0dc9031d6b",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\src\\research_dc_context_ranker.py": "4517dbaa589cd6fd2b96b6dff8c68fd0a6cbaf04417d87aa93825c4a34bc9d4e",
+      "D:\\desktop\\\u6709\u610f\u601d\u7684\u4e8b\u60c5\\\u91cf\u5316\\\u9879\u76ee\\Regime-GNN-LSTM\\results\\dc_local_rank_2026_research\\daily.pkl": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b"
+    },
+    "monthly_frame_sha256": "52c13ce83a6b524b055ff9f78f96b19b8315255b0355b54e5378a333e3efcbaf",
+    "daily_frame_sha256": "adcff36234d95871e3f3c6afb5bb253e719bff15ad3dcf7146255286ed850513",
+    "signals": [
+      "2025-12-31",
+      "2026-01-30",
+      "2026-02-27",
+      "2026-03-31",
+      "2026-04-30",
+      "2026-05-29",
+      "2026-06-30",
+      "2026-07-31",
+      "2026-08-31"
+    ],
+    "peer_feature_protocol": {
+      "version": "peer_context_v1",
+      "features": [
+        "mom1",
+        "mom3",
+        "mom6",
+        "volatility3",
+        "volatility6",
+        "positive_fraction6",
+        "momentum_acceleration",
+        "mom1_percentile",
+        "mom3_percentile",
+        "mom6_percentile",
+        "amount_percentile",
+        "pressure5",
+        "pressure20",
+        "location5",
+        "amount_ratio5_vs_prior20",
+        "peer_mom1",
+        "peer_mom3",
+        "peer_mom6",
+        "peer_positive3"
+      ],
+      "estimator": "HistGradientBoostingRegressor",
+      "parameters": {
+        "loss": "squared_error",
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "max_depth": null,
+        "l2_regularization": 10,
+        "learning_rate": 0.05,
+        "random_state": 42
+      },
+      "fit_schedule": "First requested monthly signal in each calendar quarter; frozen within quarter",
+      "training_window": "Expanding complete-feature stock observations; at least 12 distinct label months",
+      "purge": "Training label_date strictly precedes the quarterly fit signal_date",
+      "label": "Next calendar-month adjusted close / signal adjusted close - 1; clipped to [-.50,.50] only in fitting",
+      "ranking": "Forecast magnitude, linear expected-profit whole-lot allocation; dated DC price association remains an eligibility gate only",
+      "daily_features": "Complete 25-session gap-invariant intraday pressure and amount windows, not close-to-close total return",
+      "first_feature_month": "2023-01",
+      "minimum_liquidity_days": 10,
+      "context": "Past 60-session gap-neutral intraday-pressure cohorts; fixed MiniBatchKMeans20, seed42, three initializations, maxiter60, batch1024; >=10 complete-history stocks; cohort adjusted-momentum medians and positive3 breadth; not industry membership"
+    }
+  },
+  "feature_rows": 206492,
+  "prediction_rows": 44679,
+  "artifacts": {
+    "context_ranker_features.pkl": "5c653527918c04925f15dc41c680725eadd3c9dede12b2c9df35fe9c4e498eb5",
+    "forecast_predictions.pkl": "ef353ec17d6b5ed4f8717f20e28bc2fff413fb3f03e68e207dea100b0a5e08b5",
+    "forecast_models.pkl": "1532d1ac7e3f08210eb63d4278909d3e5ea67a203a63cf5b2f4c339eef540ac3",
+    "forecast_model_audit.json": "06eab382cd8676a1e5e9e5c90650e7e26474aa829773a6b77438221a6dd7fff2"
+  },
+  "immutable_feature_artifacts": {
+    "forecast_features.pkl": "ffc13d3856715151cfd65403cba087a8504809e3376e1920d0360f3a6c59688f",
+    "peer_context.pkl": "d614a66bffd891faf1891d5aab828c17669ddd1518ec4d9c2a3103091e96bbb4"
+  }
+}

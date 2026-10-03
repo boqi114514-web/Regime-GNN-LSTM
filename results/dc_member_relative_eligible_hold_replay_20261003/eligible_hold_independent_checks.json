@@ -1,0 +1,150 @@
+{
+  "status": "passed",
+  "monthly_reconciliation": {
+    "strategy": "dc_member_relative_leader_2026_retry",
+    "months": 9,
+    "trades": 15,
+    "corporate_events": 3,
+    "ending_equity": 60454.0,
+    "status": "cash_shares_nav_reconciled"
+  },
+  "daily_reconciliation": {
+    "strategy": "dc_member_relative_leader_2026_retry",
+    "days": 178,
+    "max_cash_error": 3.637978807091713e-12,
+    "max_nav_error": 7.275957614183426e-12,
+    "status": "independent_daily_cash_shares_nav_reconciled",
+    "verified_daily_reentry_trades": 0,
+    "verified_weekly_reentry_trades": 0,
+    "valuation": "source quotes plus documented suspension marks, no invented fills"
+  },
+  "capital_reconstruction": [
+    {
+      "date": "2026-01-05",
+      "opening_equity": 25000.0,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 24651.0,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-02-02",
+      "opening_equity": 26539.0,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 24700.000000000004,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-03-02",
+      "opening_equity": 28738.999999999996,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 21300.0,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-04-01",
+      "opening_equity": 26644.999999999996,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 21500.0,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-05-06",
+      "opening_equity": 43505.0,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 23720.0,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-06-01",
+      "opening_equity": 50609.0,
+      "target": 25000.0,
+      "retained_value": 30800.0,
+      "new_buy_cost": 0.0,
+      "available_new_capital": 0.0,
+      "appreciated_retention_over_target": true
+    },
+    {
+      "date": "2026-07-01",
+      "opening_equity": 61169.0,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 16500.0,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-08-03",
+      "opening_equity": 59345.0,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 24552.0,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    },
+    {
+      "date": "2026-09-01",
+      "opening_equity": 59633.0,
+      "target": 25000.0,
+      "retained_value": 0.0,
+      "new_buy_cost": 15469.999999999998,
+      "available_new_capital": 25000.0,
+      "appreciated_retention_over_target": false
+    }
+  ],
+  "continuation_eligibility_checked": true,
+  "pending_exit_preservation_checked": true,
+  "metrics": {
+    "variant": "dc_member_relative_eligible_hold_20261003",
+    "total_profit": 35454.0,
+    "ending_equity": 60454.0,
+    "daily_drawdown_pct": 11.500419111483652,
+    "target_hit_months": 3,
+    "continuations": 1,
+    "months": 9,
+    "days": 178
+  },
+  "input_sha256": {
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\account_dc_member_relative_leader_2026_retry.csv": "d7b8e20520ca64d369bb86dbfb7808261af5a069484fd02a14c4cb632d3bd254",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\daily_nav_dc_member_relative_leader_2026_retry.csv": "98ec55bec5a04cddbad142f63d2322ab4d3b0a5e8bbcdb4e759f36478459db8d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\trades_dc_member_relative_leader_2026_retry.csv": "abf4949c5ab6cd7b3b7c20766f6d42e60517e6d045890bf35b8ccb4631965ec3",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\corporate_events_dc_member_relative_leader_2026_retry.csv": "ff643a698cfa9bde09536c746615f2e37ae5fbd3ee1eb1b6268a11a24abfa9b6",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\allocations_dc_member_relative_leader_2026_retry.csv": "9db22ad1b2e8a7e752524a0009ad7c17ee9ec1f53cd27814d4748c65f2f320e2",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\continuations_dc_member_relative_leader_2026_retry.csv": "aca8f284858105c52dc31c7a46a91dacf99803e08519b4475609597008bb7fec",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\exit_signals_dc_member_relative_leader_2026_retry.csv": "8a7974978b9abb115b0951663c3a78181af7a62c4a15bdccb31f5ccae3bc1e80",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\candidates.pkl": "ed0aac27829e7134e496d286ff67e7a1306a72d6db973e6e626679f0e29ba422",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\plans.pkl": "3b2e0cc5ca497acc01836b4dc9e195ace52ba60e94b7f3c1a8fe44571ac3b435",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\daily.pkl": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_member_relative_eligible_hold_replay_20261003\\eligible_hold_protocol.json": "08e6f5ebc899695dedd2dfb30ecfcdfb52d8c4cdf48ea9af8c32e5d9fa88c776",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\src\\research_dc_eligible_hold.py": "a034b8515f409b5873d045d7da658b4367a2fb661fe17e1fd12f3c70ac176cb0",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\src\\verify_small_account.py": "3dee35b5318c6359d4a53fafaea723f87898e4de6b5e7e3ba9c9d78c1aa6425c",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\src\\verify_market_states.py": "62ee6cc4420c889a1bb49bf13bb44bbbc4fde9f537a06d05a5c50de1d570dd68",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260105.pkl": "d5f150476699d6914f96999191247c28c053270023de6a70b7ac1a44a66f4aff",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260401.pkl": "32a425d586ba66a568362fa9059e4bfbba9a86f3aa4b6b7f7c70184a4a478ec9",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260401.pkl": "36684fdd938f00c64fa7c928e961e29b9a3be721ffb9d51b5d769ec239626b2f",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260506.pkl": "fdad2bd05f51801af0f12047ab553ad356426a2d6e33e79555e9b1c19989ee7f",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260701.pkl": "4c40b7ba4f74339972ab317013fac196df976f0e99a64a77c9bf11c7a07cc63d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260701.pkl": "f8f98bd8e7803d7660eed4072cf7a73d37b9d0c1027d80a91c47c13bf950baa4",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260901.pkl": "d48969d09392d9e88168b2af3a729dd51a13d51b528e4da646caf1dd640e2902",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260901.pkl": "02057e6067eba03d1535d474cab2b1845545ce8df06dce6b090152554d00aa89",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260202.pkl": "a422e9d0aa03da2ec7de1e695670c74a784bcd6cb653029f30ae42d086f0b41a",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260803.pkl": "d2cafe9d34f7ffb0b6c3108b7d99307d5a1737d2823401bd0b66e0701fdd424d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260506.pkl": "0ce82b9bac878b1b29f41fdd512ba278bf33d7062bdea66576b4e9e9b3464ae0",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260601.pkl": "0a481cc02ad2525afec65dc369dd6dc86ba1c19637c00b7f9034d35254a5eed4",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260202.pkl": "4a33321c6de64d1fabc4f92971f3e8a96db338deb7482cddf55f2d95349c4981",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260302.pkl": "d424d625feacd14e6f20482adb4f9387885031a9509131f96dd193af09b5078c",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260302.pkl": "d93dadb4a4201bb3b9bd85c2e6d04ad69c8838e3f8be7a51d6e8d9239dd1525d",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\stk_limit_20260105.pkl": "21638df79ddc38ab2437bba2518dd92042ed0ed258461c61686d2e57819eec6e",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260803.pkl": "b41c7d1654e84bbe6610fa5410494f86539191beaf30d01093f32eec6b577d22",
+    "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\execution_v1\\boundaries\\daily_20260601.pkl": "7c014a944480f735d8741f9a603f8c0d3a2a5df06eef7fe711e3391ad9116767"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "strategy": "liquid_phase_router_retry",
+  "status": "independent_read_only_check_passed",
+  "period": "2023-01-01 through 2026-09-24",
+  "daily_replay": {
+    "strategy": "liquid_phase_router_retry",
+    "days": 905,
+    "max_cash_error": 1.4551915228366852e-11,
+    "max_nav_error": 1.4551915228366852e-11,
+    "status": "independent_daily_cash_shares_nav_reconciled",
+    "verified_daily_reentry_trades": 40,
+    "valuation": "source quotes plus documented suspension marks, no invented fills"
+  },
+  "historical_data_already_examined": true,
+  "signal_quality_not_guaranteed_by_account_reconciliation": true,
+  "metrics": {
+    "liquid_phase_router_retry": {
+      "ending_equity": 79685.98919999998,
+      "total_profit": 54685.98919999998,
+      "months": 45,
+      "days": 905,
+      "max_daily_drawdown_pct": 45.26262599980726,
+      "max_dollar_drawdown": 18787.6108,
+      "drawdown_trough": "2024-11-18",
+      "max_dollar_drawdown_trough": "2024-11-18",
+      "months_profit_ge7500": 3,
+      "annual_profit": {
+        "2023": 5878.5999999999985,
+        "2024": 4025.7891999999993,
+        "2025": 4488.999999999993,
+        "2026": 40292.59999999999
+      }
+    },
+    "daily_guarded_retry": {
+      "ending_equity": 73537.51000000001,
+      "total_profit": 48537.51000000001,
+      "months": 45,
+      "days": 905,
+      "max_daily_drawdown_pct": 41.68615688541967,
+      "max_dollar_drawdown": 17303.089999999997,
+      "drawdown_trough": "2024-11-18",
+      "max_dollar_drawdown_trough": "2024-11-18",
+      "months_profit_ge7500": 3,
+      "annual_profit": {
+        "2023": 5100,
+        "2024": 6979.9100000000035,
+        "2025": 8617,
+        "2026": 27840.600000000006
+      }
+    }
+  },
+  "monthly_2026": [
+    {
+      "month": "2026-01",
+      "candidate_profit": 4115,
+      "published_profit": 4115,
+      "increment": 0,
+      "candidate_profit_over_25000_pct": 16.46
+    },
+    {
+      "month": "2026-02",
+      "candidate_profit": 1818,
+      "published_profit": 1818,
+      "increment": 0,
+      "candidate_profit_over_25000_pct": 7.272
+    },
+    {
+      "month": "2026-03",
+      "candidate_profit": -1118,
+      "published_profit": -1118,
+      "increment": 0,
+      "candidate_profit_over_25000_pct": -4.472
+    },
+    {
+      "month": "2026-04",
+      "candidate_profit": 4234,
+      "published_profit": -1554,
+      "increment": 5788,
+      "candidate_profit_over_25000_pct": 16.936
+    },
+    {
+      "month": "2026-05",
+      "candidate_profit": 3200,
+      "published_profit": -2222,
+      "increment": 5422,
+      "candidate_profit_over_25000_pct": 12.8
+    },
+    {
+      "month": "2026-06",
+      "candidate_profit": 26345.59999999999,
+      "published_profit": 26728.600000000006,
+      "increment": -383.00000000001455,
+      "candidate_profit_over_25000_pct": 105.38239999999996
+    },
+    {
+      "month": "2026-07",
+      "candidate_profit": -1264,
+      "published_profit": -1264,
+      "increment": 0,
+      "candidate_profit_over_25000_pct": -5.056
+    },
+    {
+      "month": "2026-08",
+      "candidate_profit": 3297,
+      "published_profit": 1710,
+      "increment": 1587,
+      "candidate_profit_over_25000_pct": 13.188
+    },
+    {
+      "month": "2026-09",
+      "candidate_profit": -335,
+      "published_profit": -373,
+      "increment": 38,
+      "candidate_profit_over_25000_pct": -1.34
+    }
+  ],
+  "annual_profit_increment": {
+    "2023": 778.5999999999985,
+    "2024": -2954.1208000000042,
+    "2025": -4128.000000000007,
+    "2026": 12451.999999999985
+  },
+  "trade_checks": {
+    "trades": 280,
+    "max_open_price_error": 0,
+    "integer_lot_buys": true,
+    "mainboard_only_buys": true,
+    "note": "Corporate-event entitlement rows and raw source quotes shared with research; account calculation is independent of trading ledger and policy."
+  },
+  "q2_profit_attribution": [
+    {
+      "month": "2026-04",
+      "code": "002128.SZ",
+      "profit": 84,
+      "opening_value": 6014,
+      "closing_value": 0,
+      "trade_cashflow": 6098,
+      "dividend": 0
+    },
+    {
+      "month": "2026-04",
+      "code": "600487.SH",
+      "profit": 4416,
+      "opening_value": 0,
+      "closing_value": 26280,
+      "trade_cashflow": -21864,
+      "dividend": 0
+    },
+    {
+      "month": "2026-04",
+      "code": "600821.SH",
+      "profit": -210,
+      "opening_value": 0,
+      "closing_value": 0,
+      "trade_cashflow": -210,
+      "dividend": 0
+    },
+    {
+      "month": "2026-04",
+      "code": "601016.SH",
+      "profit": -56.00000000000006,
+      "opening_value": 0,
+      "closing_value": 0,
+      "trade_cashflow": -56.00000000000006,
+      "dividend": 0
+    },
+    {
+      "month": "2026-05",
+      "code": "002384.SZ",
+      "profit": 2125,
+      "opening_value": 0,
+      "closing_value": 21305,
+      "trade_cashflow": -19180,
+      "dividend": 0
+    },
+    {
+      "month": "2026-05",
+      "code": "600010.SH",
+      "profit": -24.99999999999997,
+      "opening_value": 0,
+      "closing_value": 0,
+      "trade_cashflow": -24.99999999999997,
+      "dividend": 0
+    },
+    {
+      "month": "2026-05",
+      "code": "600330.SH",
+      "profit": 380,
+      "opening_value": 0,
+      "closing_value": 0,
+      "trade_cashflow": 380,
+      "dividend": 0
+    },
+    {
+      "month": "2026-05",
+      "code": "600487.SH",
+      "profit": 720,
+      "opening_value": 26280,
+      "closing_value": 0,
+      "trade_cashflow": 27000,
+      "dividend": 0
+    },
+    {
+      "month": "2026-06",
+      "code": "000725.SZ",
+      "profit": 361.6,
+      "opening_value": 0,
+      "closing_value": 868,
+      "trade_cashflow": -512,
+      "dividend": 5.6000000000000005
+    },
+    {
+      "month": "2026-06",
+      "code": "002384.SZ",
+      "profit": -383,
+      "opening_value": 21305,
+      "closing_value": 0,
+      "trade_cashflow": 20922,
+      "dividend": 0
+    },
+    {
+      "month": "2026-06",
+      "code": "002636.SZ",
+      "profit": 26788,
+      "opening_value": 0,
+      "closing_value": 47988,
+      "trade_cashflow": -21200,
+      "dividend": 0
+    },
+    {
+      "month": "2026-06",
+      "code": "600330.SH",
+      "profit": -421,
+      "opening_value": 0,
+      "closing_value": 0,
+      "trade_cashflow": -421,
+      "dividend": 0
+    }
+  ],
+  "observations": [
+    "April and May improve by 5788 and 5422 yuan; neither reaches 7500 yuan.",
+    "June declines only 383 yuan: the carried May Dongshan position is liquidated at a lower June 1 opening; June purchases retain the original Jinanguoji position.",
+    "2024 and 2025 annual profits are lower than the published candidate; both percentage and absolute drawdowns worsen.",
+    "2026 and full-period aggregate profits improve, but target-month count remains three."
+  ],
+  "artifact_sha256": {
+    "results\\liquid_leader_research\\account_liquid_phase_router_retry.csv": "5d33802d867ec7487a6747f598f83b72f7753b7ec97733a6ba36098eee57c22c",
+    "results\\liquid_leader_research\\daily_nav_liquid_phase_router_retry.csv": "72d16ea3f4613783fba5fc37f73e1b581e001665f70d82b229d317bf4e66f464",
+    "results\\liquid_leader_research\\trades_liquid_phase_router_retry.csv": "2305fde20612f86ecd63cc264dc16b4206ba1414438ae7bb9374a307c6470724",
+    "results\\liquid_leader_research\\corporate_events_liquid_phase_router_retry.csv": "71a68c1563e18324f9f6e5e67742db7e2ba04fee76e854572212f1f6b09260c8",
+    "results\\liquid_leader_research\\allocations_liquid_phase_router_retry.csv": "eda64184ccb9b0d03818bbcb96ae43468241bb44ab170f67db85b84315bc915e",
+    "results\\liquid_leader_research\\exit_signals_liquid_phase_router_retry.csv": "5331f44ae9af769614a7f8dc43c5ec85fe5c58aab471be79451cea7c47279e3c"
+  }
+}

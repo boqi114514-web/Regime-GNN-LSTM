@@ -1,0 +1,93 @@
+[
+  {
+    "strategy": "dc_acceleration_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_early_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_member_acceleration_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_member_relative_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_member_relative_moderate_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_member_moderate_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_member_relative_leader_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_member_leader_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_context_rank_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_context_member_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_local_rank_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_local_member_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  },
+  {
+    "strategy": "dc_structure_2026_retry",
+    "months": 9,
+    "every_account_cell_unchanged": true,
+    "offline_completed": true,
+    "summary_verified": true
+  }
+]

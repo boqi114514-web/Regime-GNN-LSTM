@@ -28,6 +28,8 @@ from research_fine_industry import VARIANTS as FINE_VARIANTS
 from research_peer_graph import VARIANTS as GRAPH_VARIANTS
 from research_daily_reentry import VARIANTS as DAILY_VARIANTS
 from research_quality_floor import VARIANTS as QUALITY_VARIANTS
+from research_liquid_leaders import VARIANTS as LIQUID_VARIANTS
+from research_dc_themes import VARIANTS as DC_THEME_VARIANTS, WEEKLY_VARIANTS as DC_WEEKLY_VARIANTS, SCOPED_ACTION_VARIANTS as DC_SCOPED_ACTION_VARIANTS, LINEAR_FORECAST_VARIANTS as DC_LINEAR_FORECAST_VARIANTS, LEADER_FIRST_VARIANTS as DC_LEADER_FIRST_VARIANTS
 
 # Revised-input research has its own default. Historical result snapshots stay put.
 OUT = Path(config.OUTPUT_DIR)/'market_state_board_complete'
@@ -37,7 +39,7 @@ NARROW_VARIANTS = ('narrow_leader','narrow_heat')
 RETRY_VARIANTS = ('state_onset_retry','narrow_heat_retry')
 HOLD_VARIANTS = ('state_hold_retry','narrow_hold_retry')
 ADVANCE_HOLD_VARIANTS = ('narrow_advance_hold_retry',)
-EXTENSIONS = ('state_onset',)+SOFT_VARIANTS+NARROW_VARIANTS+RETRY_VARIANTS+FEATURE_VARIANTS+LEARNED_VARIANTS+HOLD_VARIANTS+ADVANCE_HOLD_VARIANTS+ROUTER_VARIANTS+FINE_VARIANTS+GRAPH_VARIANTS+DAILY_VARIANTS+QUALITY_VARIANTS
+EXTENSIONS = ('state_onset',)+SOFT_VARIANTS+NARROW_VARIANTS+RETRY_VARIANTS+FEATURE_VARIANTS+LEARNED_VARIANTS+HOLD_VARIANTS+ADVANCE_HOLD_VARIANTS+ROUTER_VARIANTS+FINE_VARIANTS+GRAPH_VARIANTS+DAILY_VARIANTS+QUALITY_VARIANTS+LIQUID_VARIANTS+DC_THEME_VARIANTS
 NARROW_PROTOCOL = dict(
     stage='Fourth-stage exploration after all three soft-selection accounts; not an unseen test',
     variants=list(NARROW_VARIANTS),fixed_before_new_account_results=True,
@@ -664,13 +666,23 @@ def replacement_limits(pro,day,candidates,quotes):
     raise RuntimeError(f'No valid deferred replacement limits {day}: {errors}')
 
 
+def account_period(name):
+    if name in DC_THEME_VARIANTS:
+        from research_dc_themes import period_settings
+        return period_settings(name)
+    return pd.Timestamp('2023-01-01'), pd.Timestamp('2026-09-24'), pd.Timestamp('2022-12-30'), 45
+
+
 def run(name,offline=False):
+    account_start,account_end,previous_mark,expected_months=account_period(name)
     selection_name=name.removesuffix('_retry') if name in RETRY_VARIANTS else name
     hold_winners=name in HOLD_VARIANTS+ADVANCE_HOLD_VARIANTS
-    retry_rebalance=name in RETRY_VARIANTS+FEATURE_VARIANTS+LEARNED_VARIANTS+HOLD_VARIANTS+ADVANCE_HOLD_VARIANTS+ROUTER_VARIANTS+FINE_VARIANTS+GRAPH_VARIANTS+DAILY_VARIANTS+QUALITY_VARIANTS
-    daily_enabled=name in DAILY_VARIANTS or name in ('daily_quality_retry','daily_report_quality_retry','daily_guarded_retry')
+    retry_rebalance=name in RETRY_VARIANTS+FEATURE_VARIANTS+LEARNED_VARIANTS+HOLD_VARIANTS+ADVANCE_HOLD_VARIANTS+ROUTER_VARIANTS+FINE_VARIANTS+GRAPH_VARIANTS+DAILY_VARIANTS+QUALITY_VARIANTS+LIQUID_VARIANTS+DC_THEME_VARIANTS
+    daily_enabled=name in DAILY_VARIANTS+LIQUID_VARIANTS or name in ('daily_quality_retry','daily_report_quality_retry','daily_guarded_retry')
+    weekly_enabled=name in DC_WEEKLY_VARIANTS
+    liquid_hold=name=='liquid_leader_hold_retry'
     replace_deferred=name=='structural_reentry_retry'
-    if name in ROUTER_VARIANTS+FINE_VARIANTS+GRAPH_VARIANTS+DAILY_VARIANTS+QUALITY_VARIANTS: selection_name='state_onset'
+    if name in ROUTER_VARIANTS+FINE_VARIANTS+GRAPH_VARIANTS+DAILY_VARIANTS+QUALITY_VARIANTS+LIQUID_VARIANTS: selection_name='state_onset'
     if hold_winners:
         selection_name='state_onset' if name=='state_hold_retry' else 'narrow_heat'
         protocol=dict(variants=list(HOLD_VARIANTS),
@@ -706,13 +718,27 @@ def run(name,offline=False):
     session_dates=sorted(dayframes)
     session_positions={d:i for i,d in enumerate(session_dates)}
     anchor_quotes={}; anchor_limits={}
-    if name.startswith('baseline_'):
+    if name in DC_THEME_VARIANTS:
+        from research_dc_themes import prepare as prepare_themes
+        c,plans=prepare_themes(OUT,name)
+        optimizer=lambda candidates,budget,**kw: leadership.leader_optimizer(candidates,budget,
+            stock_cap=1.,sector_cap=1.,minimum_names=1,sector_name_limit=None,
+            score_power=1 if name in DC_LINEAR_FORECAST_VARIANTS else 4,**kw)
+        if name in DC_LEADER_FIRST_VARIANTS:
+            from research_dc_leader_allocation import leader_first_optimizer
+            optimizer=leader_first_optimizer
+    elif name.startswith('baseline_'):
         c=pd.read_pickle(leadership.BASE/'candidates.pkl').assign(phase='range')
         plans=pd.read_pickle(leadership.BASE/'industry_plans.pkl').query("strategy=='new_full'")
         optimizer=original_optimizer
     else:
         c=pd.read_pickle(OUT/'candidates.pkl')
-        if name in QUALITY_VARIANTS:
+        if name in LIQUID_VARIANTS:
+            from research_quality_floor import prepare_candidates as prepare_quality
+            from research_liquid_leaders import prepare_candidates
+            prepare_quality(OUT,Path(config.LOCAL_DATA_RAW),'daily_guarded_retry')
+            c=prepare_candidates(OUT,name)
+        elif name in QUALITY_VARIANTS:
             from research_quality_floor import prepare_candidates
             c=prepare_candidates(OUT,Path(config.LOCAL_DATA_RAW),name)
         elif name in GRAPH_VARIANTS:
@@ -756,20 +782,31 @@ def run(name,offline=False):
     plan_lookup={d.to_period('M'):g for d,g in plans.groupby('date')}
     continuation_lookup={}
     daily_candidate_lookup={}; last_sale_index=None
+    weekly_candidate_lookup={}; weekly_schedule={}
+    if weekly_enabled:
+        from research_dc_entry import weekly_execution_schedule
+        weekly_schedule=weekly_execution_schedule(pd.DatetimeIndex(session_dates))
+        weekly_rows=pd.read_pickle(OUT/'weekly_candidates.pkl')
+        weekly_candidate_lookup={d:g[g.eligible.eq(True)] for d,g in weekly_rows.groupby('signal_day')}
     if daily_enabled:
         from research_daily_reentry import prepare_candidates, can_reenter
         daily_candidate_lookup=prepare_candidates(OUT)
         if name in ('daily_quality_retry','daily_report_quality_retry','daily_guarded_retry'):
             from research_quality_floor import filter_daily
             daily_candidate_lookup=filter_daily(OUT,daily_candidate_lookup,name)
+        elif name in LIQUID_VARIANTS:
+            from research_quality_floor import filter_daily
+            daily_candidate_lookup=filter_daily(OUT,daily_candidate_lookup,'daily_guarded_retry')
     if hold_winners:
         full=pd.read_pickle(OUT/'candidates.pkl')
         continuation_lookup={d.to_period('M'):g.set_index('ts_code') for d,g in full.groupby('month')}
+    if liquid_hold:
+        continuation_lookup={d.to_period('M'):g.set_index('ts_code') for d,g in c.groupby('month')}
     ledger=engine.Ledger(); actions=pd.DataFrame(); known=set(); anchors={}; pending={}
     trades=[]; allocations=[]; holdings=[]; navs=[]; daily_nav=[]; signals=[]; stale=[]; continuations=[]
-    previous_mark=pd.Timestamp('2022-12-30'); previous_factors=engine.factor_snapshot(pro,previous_mark); month_codes=set()
+    previous_factors=engine.factor_snapshot(pro,previous_mark); month_codes=set()
     previous_closes={}
-    for day in pd.date_range('2023-01-01','2026-09-24'):
+    for day in pd.date_range(account_start,account_end):
         ledger.morning(day,actions)
         for code,a in anchors.items():
             if not actions.empty:
@@ -822,7 +859,7 @@ def run(name,offline=False):
             if not ledger.shares[code]: anchors.pop(code,None); pending.pop(code,None)
         previous_day=session_dates[session_positions[day]-1] if session_positions[day]>0 else None
         daily_capacity=False
-        if daily_enabled and not pending:
+        if (daily_enabled or weekly_enabled) and not pending:
             exposure=float(plan_lookup[day.to_period('M')-1].risk_exposure.iloc[0])
             risk_budget=min(ledger.nav(prices),25000.)*exposure
             held_value=sum(qty*prices[code] for code,qty in ledger.shares.items() if qty)
@@ -831,10 +868,16 @@ def run(name,offline=False):
         daily_buy=(daily_enabled and can_reenter(day,previous_day,session_positions[day],
             last_sale_index,daily_capacity,firsts)
             and previous_day in daily_candidate_lookup)
-        if day in firsts or (replace_deferred and deferred_sale) or daily_buy:
+        weekly_buy=(weekly_enabled and day not in firsts and daily_capacity
+            and weekly_schedule.get(day)==previous_day
+            and (last_sale_index is None or session_positions[day]-last_sale_index>=2)
+            and previous_day in weekly_candidate_lookup and len(weekly_candidate_lookup[previous_day])>0)
+        supplementary_buy=daily_buy or weekly_buy
+        if day in firsts or (replace_deferred and deferred_sale) or supplementary_buy:
             signal=day.to_period('M')-1
             plan=plan_lookup[signal]; cand=candidate_lookup.get(signal,c.iloc[:0])
             if daily_buy: cand=daily_candidate_lookup[previous_day]
+            if weekly_buy: cand=weekly_candidate_lookup[previous_day]
             if limits is None: limits=replacement_limits(pro,day,cand,q)
             equity=ledger.nav(prices); target=min(equity,25000.)*float(plan.risk_exposure.iloc[0])
             if day in firsts: month_codes={code for code,n in ledger.shares.items() if n}
@@ -842,8 +885,12 @@ def run(name,offline=False):
                 held_qty=qty
                 signal_rows=continuation_lookup.get(signal)
                 row=signal_rows.loc[code] if signal_rows is not None and code in signal_rows.index else None
-                if qty>0 and hold_winners and may_continue_position(row,anchors.get(code,{}).get('phase'),
-                        code in pending,name in ADVANCE_HOLD_VARIANTS):
+                liquid_continue=False
+                if liquid_hold and anchors.get(code,{}).get('liquid_entry',False):
+                    from research_liquid_leaders import continue_liquid_position
+                    liquid_continue=continue_liquid_position(row,code in pending)
+                if qty>0 and (liquid_continue or (hold_winners and may_continue_position(row,anchors.get(code,{}).get('phase'),
+                        code in pending,name in ADVANCE_HOLD_VARIANTS))):
                     continuations.append(dict(date=day,code=code,shares=qty,signal_date=row.date,
                                               mom1=row.mom1,mom3=row.mom3,mom6=row.mom6))
                     continue
@@ -876,13 +923,21 @@ def run(name,offline=False):
             for row in selected.itertuples():
                 code=row.ts_code
                 if code not in known:
-                    actions=pd.concat([actions,leadership.research_actions(pro,code)],ignore_index=True); known.add(code)
+                    if name in DC_SCOPED_ACTION_VARIANTS:
+                        from research_scoped_actions import load_scoped_actions
+                        new_actions=load_scoped_actions(pro,code,OUT,account_start,account_end)
+                    else:
+                        new_actions=leadership.research_actions(pro,code)
+                    actions=pd.concat([actions,new_actions],ignore_index=True); known.add(code)
                 ledger.cash-=row.shares*row.reference_price; ledger.shares[code]=ledger.shares.get(code,0)+row.shares
                 ledger.industry[code]=row.ind_code; month_codes.add(code)
                 anchors[code]=dict(entry=row.reference_price,peak=row.reference_price,phase=row.phase)
+                if name in LIQUID_VARIANTS:
+                    anchors[code]['liquid_entry']=(not supplementary_buy and bool(getattr(row,'liquid_route',False))
+                                                   and bool(getattr(row,'liquid_qualifies',False)))
                 trades.append(dict(date=day,code=code,side='buy',shares=row.shares,price=row.reference_price,
-                                   reason='daily_reentry' if daily_buy else ('rebalance' if day in firsts else 'deferred_replacement'),
-                                   signal_date=previous_day if daily_buy else (day.to_period('M')-1).to_timestamp('M')))
+                                   reason=('weekly_reentry' if weekly_buy else 'daily_reentry') if supplementary_buy else ('rebalance' if day in firsts else 'deferred_replacement'),
+                                   signal_date=previous_day if supplementary_buy else (day.to_period('M')-1).to_timestamp('M')))
             invested=sum(ledger.shares[code]*prices[code] for code,n in ledger.shares.items() if n)
             if ledger.cash<-.01 or (retained_value<=target and invested>target+.01): raise AssertionError('Budget exceeded')
             allocations.append(dict(date=day,equity=equity,target=target,invested=invested,cash=ledger.cash,
@@ -911,7 +966,7 @@ def run(name,offline=False):
     account['return']=account.equity/account.equity.shift(1,fill_value=25000)-1
     account['profit']=account.equity-account.equity.shift(1,fill_value=25000)
     account['budget_return_pct']=account.profit/25000*100
-    if len(account)!=45 or account.index.max()!=pd.Timestamp('2026-09-24'):
+    if len(account)!=expected_months or account.index.max()!=account_end:
         raise AssertionError('Incomplete monthly account output')
     if name=='baseline_replay':
         original=pd.read_csv(leadership.BASE/'account_new_full.csv',index_col='date',parse_dates=True)
@@ -926,6 +981,11 @@ def run(name,offline=False):
 
 
 def summarize():
+    if (OUT/'dc_theme_protocol.json').exists():
+        from research_dc_themes import summarize as summarize_themes
+        metric=summarize_themes(OUT)
+        print(pd.DataFrame([metric]).to_string(index=False))
+        return
     import verify_small_account as verifier
     from verify_market_states import verify_daily
     verifier.OUT=OUT
@@ -1001,6 +1061,10 @@ def summarize():
         files += list(OUT.glob('candidate_audit_*quality_retry_monthly.pkl'))
         files += list(OUT.glob('candidate_audit_daily_guarded_retry*.pkl'))
     files += list(OUT.glob('run_status_*.json'))
+    if (OUT/'liquid_leader_protocol.json').exists():
+        files += [Path(__file__).with_name('research_liquid_leaders.py'),OUT/'liquid_features.pkl',
+                  OUT/'liquid_leader_protocol.json']
+        files += list(OUT.glob('candidate_audit_liquid_*.pkl'))
     if (OUT/'daily_pressure_feature_manifest.json').exists(): files.append(OUT/'daily_pressure_feature_manifest.json')
     (OUT/'verification.json').write_text(json.dumps(dict(reconciliations=checks,daily_reconciliations=daily_checks,
         inputs={str(p.relative_to(config.PROJECT_DIR)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
@@ -1019,7 +1083,36 @@ if __name__=='__main__':
     if args.output_dir is not None:
         OUT=args.output_dir.resolve()
         OUT.mkdir(parents=True,exist_ok=True)
-    if args.action=='prepare': prepare(args.offline)
+    elif args.variant in DC_THEME_VARIANTS:
+        theme_outputs={'dc_theme_retry':'dc_theme_research', 'dc_theme_2026_retry':'dc_theme_2026_research',
+                       'dc_liquid_2026_retry':'dc_liquid_2026_research', 'dc_affinity_2026_retry':'dc_affinity_2026_research',
+                       'dc_structure_2026_retry':'dc_structure_2026_research',
+                       'dc_reversal_2026_retry':'dc_reversal_2026_research',
+                       'dc_weekly_2026_retry':'dc_weekly_2026_research',
+                       'dc_weekly_reversal_2026_retry':'dc_weekly_reversal_2026_research',
+                       'dc_forecast_2026_retry':'dc_forecast_2026_research',
+                       'dc_expected_profit_2026_retry':'dc_expected_profit_2026_research',
+                       'dc_peer_forecast_2026_retry':'dc_peer_forecast_2026_research',
+                       'dc_rally_2026_retry':'dc_rally_2026_research',
+                       'dc_acceleration_2026_retry':'dc_acceleration_2026_research',
+                       'dc_early_2026_retry':'dc_early_2026_research',
+                       'dc_context_rank_2026_retry':'dc_context_rank_2026_research',
+                       'dc_context_member_2026_retry':'dc_context_member_2026_research',
+                       'dc_local_rank_2026_retry':'dc_local_rank_2026_research',
+                       'dc_local_member_2026_retry':'dc_local_member_2026_research',
+                       'dc_member_acceleration_2026_retry':'dc_member_acceleration_2026_research',
+                       'dc_member_moderate_2026_retry':'dc_member_moderate_2026_research',
+                       'dc_member_relative_2026_retry':'dc_member_relative_2026_research',
+                       'dc_member_relative_moderate_2026_retry':'dc_member_relative_moderate_2026_research',
+                       'dc_member_leader_2026_retry':'dc_member_leader_2026_research',
+                       'dc_member_relative_leader_2026_retry':'dc_member_relative_leader_2026_research'}
+        OUT=Path(config.OUTPUT_DIR)/theme_outputs[args.variant]
+    if args.action=='prepare':
+        if args.variant in DC_THEME_VARIANTS:
+            from research_dc_themes import prepare as prepare_themes
+            prepare_themes(OUT,args.variant)
+        else:
+            prepare(args.offline)
     elif args.action=='summary': summarize()
     else:
         if not args.variant: parser.error('--variant required')

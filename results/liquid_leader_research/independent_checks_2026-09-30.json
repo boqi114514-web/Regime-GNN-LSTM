@@ -1,0 +1,40 @@
+{
+  "monthly": [
+    {
+      "strategy": "liquid_leader_retry",
+      "months": 45,
+      "trades": 282,
+      "corporate_events": 6,
+      "ending_equity": 54920.38919999999,
+      "status": "cash_shares_nav_reconciled"
+    },
+    {
+      "strategy": "liquid_leader_hold_retry",
+      "months": 45,
+      "trades": 271,
+      "corporate_events": 6,
+      "ending_equity": 54895.38919999999,
+      "status": "cash_shares_nav_reconciled"
+    }
+  ],
+  "daily": [
+    {
+      "strategy": "liquid_leader_retry",
+      "days": 905,
+      "max_cash_error": 1.0913936421275139e-11,
+      "max_nav_error": 1.4551915228366852e-11,
+      "status": "independent_daily_cash_shares_nav_reconciled",
+      "verified_daily_reentry_trades": 44,
+      "valuation": "source quotes plus documented suspension marks, no invented fills"
+    },
+    {
+      "strategy": "liquid_leader_hold_retry",
+      "days": 905,
+      "max_cash_error": 1.0913936421275139e-11,
+      "max_nav_error": 1.4551915228366852e-11,
+      "status": "independent_daily_cash_shares_nav_reconciled",
+      "verified_daily_reentry_trades": 39,
+      "valuation": "source quotes plus documented suspension marks, no invented fills"
+    }
+  ]
+}

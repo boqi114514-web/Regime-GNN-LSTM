@@ -1,0 +1,34 @@
+[
+  {
+    "strategy": "dc_forecast_2026_retry",
+    "quarterly_fits_checked": 4,
+    "prediction_rows": 45144,
+    "max_saved_model_prediction_error": 0.0,
+    "all_training_labels_strictly_before_fit": true,
+    "caveat": "Adjusted close-label ranking diagnostic, not whole-lot account returns; September label is unavailable"
+  },
+  {
+    "strategy": "dc_expected_profit_2026_retry",
+    "quarterly_fits_checked": 4,
+    "prediction_rows": 45144,
+    "max_saved_model_prediction_error": 0.0,
+    "all_training_labels_strictly_before_fit": true,
+    "caveat": "Adjusted close-label ranking diagnostic, not whole-lot account returns; September label is unavailable"
+  },
+  {
+    "strategy": "dc_peer_forecast_2026_retry",
+    "quarterly_fits_checked": 4,
+    "prediction_rows": 44679,
+    "max_saved_model_prediction_error": 0.0,
+    "all_training_labels_strictly_before_fit": true,
+    "caveat": "Adjusted close-label ranking diagnostic, not whole-lot account returns; September label is unavailable"
+  },
+  {
+    "strategy": "dc_rally_2026_retry",
+    "quarterly_fits_checked": 4,
+    "prediction_rows": 44679,
+    "max_saved_model_prediction_error": 0.0,
+    "all_training_labels_strictly_before_fit": true,
+    "caveat": "Adjusted close-label ranking diagnostic, not whole-lot account returns; September label is unavailable"
+  }
+]

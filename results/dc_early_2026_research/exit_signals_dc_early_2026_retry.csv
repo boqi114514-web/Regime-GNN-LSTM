@@ -1,0 +1,12 @@
+date,code,reason,close,entry,peak,phase
+2026-01-30,002428.SZ,trailing_profit,35.14,32.0,41.58,advance
+2026-03-11,600010.SH,hard_stop,2.96,3.25,3.32,advance
+2026-03-12,603466.SH,hard_stop,10.35,11.3,11.3,advance
+2026-04-03,601016.SH,hard_stop,3.81,4.36,4.36,advance
+2026-04-23,002263.SZ,trailing_profit,4.37,4.26,5.17,advance
+2026-05-27,002824.SZ,hard_stop,23.09,25.59,28.26,advance
+2026-05-27,002203.SZ,trailing_profit,19.06,17.99,23.03,advance
+2026-07-06,603260.SH,hard_stop,43.44,48.26,48.97,advance
+2026-08-13,600415.SH,hard_stop,11.59,12.68,12.68,advance
+2026-09-02,000716.SZ,hard_stop,5.4,5.95,5.95,advance
+2026-09-11,000426.SZ,hard_stop,35.97,40.18,40.18,advance

@@ -10,13 +10,21 @@ from stock_execution_research import OUT
 from s7_budget_portfolio import is_main_board
 
 
-def verify(name):
+def verify(name, expected_months=45, end_date='2026-09-24'):
     nav = pd.read_csv(OUT/f'account_{name}.csv', parse_dates=['date'])
     trades = pd.read_csv(OUT/f'trades_{name}.csv', parse_dates=['date'])
     events = pd.read_csv(OUT/f'corporate_events_{name}.csv', parse_dates=['date', 'payment_date'])
     holdings = pd.read_csv(OUT/f'holdings_{name}.csv', parse_dates=['date'])
+    # Header-only action CSVs otherwise have object dtype; pandas' empty
+    # groupby then propagates it into numeric inventory reconciliation.
+    for col in ('cash_entitlement', 'bonus_shares'):
+        events[col] = pd.to_numeric(events[col], errors='raise').astype(float)
+        if not np.isfinite(events[col]).all():
+            raise ValueError('Invalid corporate event '+col)
+    for col in ('shares', 'close', 'value'):
+        holdings[col] = pd.to_numeric(holdings[col], errors='raise').astype(float)
     allocations = pd.read_csv(OUT/f'allocations_{name}.csv', parse_dates=['date'])
-    if len(nav) != 45 or str(nav.date.max().date()) != '2026-09-24':
+    if len(nav) != expected_months or nav.date.max() != pd.Timestamp(end_date):
         raise AssertionError('Incomplete performance period')
     buys = trades[trades.side.eq('buy')]
     assert (buys.shares > 0).all() and (buys.shares % 100 == 0).all()
@@ -36,7 +44,8 @@ def verify(name):
         shares = t.groupby('code').shareflow.sum().add(e.groupby('code').bonus_shares.sum(), fill_value=0)
         h = holdings[holdings.date.eq(row.date)].set_index('code')
         expected = shares[shares.ne(0)].sort_index()
-        np.testing.assert_allclose(expected, h.shares.reindex(expected.index), atol=1e-8, rtol=0)
+        np.testing.assert_allclose(expected.to_numpy(dtype=float),
+                                   h.shares.reindex(expected.index).to_numpy(dtype=float), atol=1e-8, rtol=0)
         assert set(expected.index) == set(h.index)
         np.testing.assert_allclose(h.value, h.shares*h.close, atol=1e-6, rtol=0)
         np.testing.assert_allclose(cash+pending+h.value.sum(), row.equity, atol=1e-6, rtol=0)
