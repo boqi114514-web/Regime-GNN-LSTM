@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "rows": 919874,
+  "sessions": 178,
+  "artifacts": {
+    "predictions.pkl": "9ea3c9f1baec1c092bf784a091cb5ae30556bd81bfb30348e108f2042417b530",
+    "fit_audits.json": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f",
+    "experiment_protocol.json": "b8c82116dc65787fe9fef828c00203c0c971ae30952b92c07b703ae0841d2614",
+    "feature_manifest.json": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6",
+    "prior_band_checks.csv": "026b6406597c5287c8e83608d927563522e2c52d3afbeff1521c00acf9a2475c",
+    "prior_band_manifest.json": "6452488a762cc04b6187bdfa7f7551570718f9f8c264a88976aa776a93395da8",
+    "liquidity_checks.csv": "232f4af0bb88e6cd097af9b610257488d8e7d0b05734e04de7f4cdd6813e74d6",
+    "liquidity_manifest.json": "a11f6d41aaaefd288931d231ec4447804218af4170b21d197a5b6008da2823de"
+  }
+}

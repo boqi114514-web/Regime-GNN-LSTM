@@ -1,0 +1,3403 @@
+{
+  "kind": "daily",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 1023,
+      "sha256": "1243bc2fc2ee49f2b3449ce1e69f879089091521ba346100594a46423901d530"
+    },
+    {
+      "path": "README.md",
+      "bytes": 29705,
+      "sha256": "7093c6ec85577e321a25705aadc4f85485d778a84202e73ad904352f5b44ff66"
+    },
+    {
+      "path": "reports/daily_opportunity_rebuild_2026-10-03.md",
+      "bytes": 18656,
+      "sha256": "942a2f77930072c6603d3c5059798eac7da7a3fc98211693b41604a526df7f1e"
+    },
+    {
+      "path": "reports/monthly_daily_architecture_2026-10-03.md",
+      "bytes": 16248,
+      "sha256": "015fe22b2b906cce5db4e3b655dfc6e95caa2c9ba2a16978f895ed1c12420528"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/account.csv",
+      "bytes": 958,
+      "sha256": "cee884923960ec2bdcfa445f5591743f14bef83ffc4ad153cc53733b283ebd87"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/allocations.csv",
+      "bytes": 1684,
+      "sha256": "6c8012bdcd673132324382741109e22b5f9e750099abe99805f162a8f198db91"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/daily_nav.csv",
+      "bytes": 11693,
+      "sha256": "671c3e360779eaac7ce6ad2d0de16ed2893c015052241f47a11ee7e49aef8ec7"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/daily_run_status.json",
+      "bytes": 15898,
+      "sha256": "e2a00157fc212369fd2594b6ae91c6c6a7430b4e3677527d4cc500e72feed853"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/execution_checks.csv",
+      "bytes": 8303,
+      "sha256": "31521b85968bf5d61ce566972753b9ff22acaae754f92e85756b9cf7e1f0dbb8"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/exit_signals.csv",
+      "bytes": 1554,
+      "sha256": "568c18084f302e597a7dd52500b00428dd7330984abb7c396842611cc182d017"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/holdings.csv",
+      "bytes": 10299,
+      "sha256": "fdef54ca91dab1350f3622423e3537ffa33b6c2f9a5185614b0fd1b028f9650a"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 40658,
+      "sha256": "ac6bcd32fdaa52841624ca996b24a50ffb21ab6590b118436a89aadf3022edcc"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 11693,
+      "sha256": "671c3e360779eaac7ce6ad2d0de16ed2893c015052241f47a11ee7e49aef8ec7"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1019,
+      "sha256": "940b48edf986803c972d67dc079a3ee363d10e557e3d6c90314d130d341fdc5c"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 4582,
+      "sha256": "1f963c92460ecfce2054104de991c6cb32bc11ec3bb08fd6c0bc761dd600ddcb"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/metrics.json",
+      "bytes": 292,
+      "sha256": "51a7fdadc33091cda1ea187acf9311f61ba578b87f15e472e8e439a21608e884"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/stock_daily_contributions.csv",
+      "bytes": 4582,
+      "sha256": "d4ece69183e0e0ce6e6f3c4560cf6db9c0e3c5f16ce706b5e7c033b37333bf4e"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 637,
+      "sha256": "beac3c0010a9d02553f2f33427c03db0e784249e94b442e3768f5824efa5a088"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/suspension_marks.csv",
+      "bytes": 9840,
+      "sha256": "8a3f530f4d88cfd1fec4224a0fa34705230cdf85496996c1ab988cbc3139aaed"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/account/trades.csv",
+      "bytes": 2136,
+      "sha256": "d81011790576ab2005311accc55a35070b843a1bee592eda4262ec764020f97a"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/checkpoints/2026Q1.pt",
+      "bytes": 72933,
+      "sha256": "c90add376cc1d1ac19618edaa2b7079115889aefc21658d9ef845c0380c5b4d8"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/checkpoints/2026Q2.pt",
+      "bytes": 73957,
+      "sha256": "48f736df3cd83242edbb48db53d664f9b2297882e53533772fccf451745edb48"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/checkpoints/2026Q3.pt",
+      "bytes": 75109,
+      "sha256": "5221fa27d85bbb81272b5169150659f4a39ceba161261262a8b3115175c8a69e"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/diagnostics/daily_forecast_quality.csv",
+      "bytes": 130491,
+      "sha256": "ecebd38ee78dfa1b4f4a8d55830e175f7f4a3db36be8b786cdcc6ced126c80e1"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/diagnostics/monthly_forecast_quality.csv",
+      "bytes": 7005,
+      "sha256": "5b47dddd4a81a764d458cbdf89605269e809cae4859b8f49cd6b73adc79e8c3f"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/diagnostics/quality_status.json",
+      "bytes": 518,
+      "sha256": "53f9e2283ba35605a2ae01a9bb0b8b446ec495a2b8ffc4ac99ea7680856b0349"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/experiment_protocol.json",
+      "bytes": 4004,
+      "sha256": "ff084b4a8ae0e0c81cccebf19e70679d938a85b0c450d0b2071cbfc78a8f6e9d"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/fit_audits.json",
+      "bytes": 21572,
+      "sha256": "701feb8fc4b55e3e601421fd0077e8d1a7fd2a57e2e33a193d142d24058735b5"
+    },
+    {
+      "path": "results/daily_opportunity_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "34406f706ed62ca450c62c29eb8460c0cd941858330d3e0cb2a8dd4fe06778fb"
+    },
+    {
+      "path": "results/daily_opportunity_comparison/accounts.json",
+      "bytes": 6076,
+      "sha256": "f73f747dd7c175b3b79aee04fc559a706cdbb23286fc85123cf2e37cfa4a6f9b"
+    },
+    {
+      "path": "results/daily_opportunity_comparison/comparison_manifest.json",
+      "bytes": 719,
+      "sha256": "68fd6ac1a08de47e6323c26fb71431fa0f058a23a01a0f0929f6ba4984b5506c"
+    },
+    {
+      "path": "results/daily_opportunity_comparison/metrics.csv",
+      "bytes": 1485,
+      "sha256": "674873e2ff336c50cd3971e0e5a37304dd7b3cbc96e9e5d74ff32c1814073264"
+    },
+    {
+      "path": "results/daily_opportunity_comparison/monthly_profit_matrix.csv",
+      "bytes": 1557,
+      "sha256": "0dcadf106aea49fc20fc35ce0eb06c7bfd4a782cb2197e8da2475eb32583e358"
+    },
+    {
+      "path": "results/daily_opportunity_comparison/monthly_results.csv",
+      "bytes": 13871,
+      "sha256": "c742eefe0995ff68baddc278dad77b88feca6f12863814b0ac2edd9393f40469"
+    },
+    {
+      "path": "results/daily_opportunity_comparison/README.md",
+      "bytes": 1953,
+      "sha256": "a65a0dd93584e50a6b0a025958ff53b2664806a1e6a2fb7b6661881205a3d1d7"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/checkpoints/2026Q1.pt",
+      "bytes": 102045,
+      "sha256": "9d3c9cdd3960fcad9829de39d5eba8634d921c7d909a3cd79f1fcdab9bc0b487"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/checkpoints/2026Q2.pt",
+      "bytes": 103069,
+      "sha256": "cc2423bb261bdb3e673a3b21adad2fc98456191b1ccac9cc4031d6bc5efb6637"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/checkpoints/2026Q3.pt",
+      "bytes": 104221,
+      "sha256": "8e8ce871960e34bdaa27b41d4088e71a05c5fc5b64bd2bb272da155b13d34235"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/experiment_protocol.json",
+      "bytes": 7482,
+      "sha256": "be03d2184203660eba9e94b9873bb5fc45fe81b089eab4f6d84d166ebc56b27b"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/fit_audits.json",
+      "bytes": 21377,
+      "sha256": "19bd483f728ad7b1669ad30d698cf8817537499df1708c7f0377020bca12b3a6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "5e3aed1ef50d7325ffef624afc8f4d73a9a5e6c8efafd8b33a0e379d4ccc5232"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/checkpoints/2026Q1.pt",
+      "bytes": 102045,
+      "sha256": "9d3c9cdd3960fcad9829de39d5eba8634d921c7d909a3cd79f1fcdab9bc0b487"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/checkpoints/2026Q2.pt",
+      "bytes": 103069,
+      "sha256": "cc2423bb261bdb3e673a3b21adad2fc98456191b1ccac9cc4031d6bc5efb6637"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/checkpoints/2026Q3.pt",
+      "bytes": 104221,
+      "sha256": "8e8ce871960e34bdaa27b41d4088e71a05c5fc5b64bd2bb272da155b13d34235"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/experiment_protocol.json",
+      "bytes": 7946,
+      "sha256": "83e84dc0ef17712ef2a9d015e004d523f6e0d6bc29d46a45c5c4091aab44efe5"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/fit_audits.json",
+      "bytes": 21377,
+      "sha256": "19bd483f728ad7b1669ad30d698cf8817537499df1708c7f0377020bca12b3a6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "a2bb5170d24eb60f72c4f918a4f523776f38dd46bb079794e5c9b076e69f2bef"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/prior_band_checks.csv",
+      "bytes": 142360,
+      "sha256": "198930010f1e309204ecb29ad75b678f9588a50dca1c575c90d330a247082949"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_20261002/prior_band_manifest.json",
+      "bytes": 18510,
+      "sha256": "6b60987b45c31dce6cb24fcdd14e0f5434b2f9161f83005f7d0f8a1b5b6aadf2"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/account.csv",
+      "bytes": 870,
+      "sha256": "8390ad5ce885cb240956a01d67eadf6f94befb1107370c582c0db649022ad6de"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/allocations.csv",
+      "bytes": 2869,
+      "sha256": "8282249e97ab38815c1730b0625adcff6865dbed07a9562b9822bd822e8e43e5"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/daily_nav.csv",
+      "bytes": 10801,
+      "sha256": "a6b4d599d1f513191688cf0617dce08b976a68b481b6c54b71b8cda4fee91035"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/daily_run_status.json",
+      "bytes": 190387,
+      "sha256": "bde17b7c7a98d988ee4aa2a2432be611911e028b4e370b3b2a0c1b3ad37dab62"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/execution_checks.csv",
+      "bytes": 21055,
+      "sha256": "c082ad6398de914dcb20c8aa75155779e214d4a2488818f6b8df01810c812fbb"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/exit_signals.csv",
+      "bytes": 3240,
+      "sha256": "1e04e4e96733239d1a5b68f96f40316b75465ec5d8584b666f32bc9a0f483adc"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/holdings.csv",
+      "bytes": 16027,
+      "sha256": "3c103b7a5ce184e9911d8b5fa8486d748c78953b0ae7263acc04002cce3a5ef3"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 216863,
+      "sha256": "3ed70f746c00a8c82ec47af8f4c7260e6b32be1dbef0560fafb424f6da0c1e82"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 10801,
+      "sha256": "a6b4d599d1f513191688cf0617dce08b976a68b481b6c54b71b8cda4fee91035"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 985,
+      "sha256": "d821f468e1718d48f556a67299ae89220385d8058dc4b501cbe138b196d3a29d"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 7000,
+      "sha256": "3e521613da2c39e15c13b0111bef6733934267f9ae4f7851f5c700fdc8fad26e"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/metrics.json",
+      "bytes": 292,
+      "sha256": "cbf7c3012f055756d9aa58e2af0b4c28cfae721005bf139f91ce3db2314091a6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/stock_daily_contributions.csv",
+      "bytes": 7000,
+      "sha256": "8e9ab617e5e42031748b853027a02d155f836b3283f70f8000c6ea0bf390be93"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1227,
+      "sha256": "0d0d22d148c6e0c8728ba077abb1aa2d3c2a17b2c13e1d9dc544cdf29ed1c3f2"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/suspension_marks.csv",
+      "bytes": 255,
+      "sha256": "cc8dd5d75ede53d41360aac2bd6354228174ab8c5d75c9012797fcc81d368625"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/account/trades.csv",
+      "bytes": 4666,
+      "sha256": "60c2eda7bd28c46873b6c31c85317f367c1e2f67f860bc50bdada9cf374e465e"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/checkpoints/2026Q1.pt",
+      "bytes": 102045,
+      "sha256": "9d3c9cdd3960fcad9829de39d5eba8634d921c7d909a3cd79f1fcdab9bc0b487"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/checkpoints/2026Q2.pt",
+      "bytes": 103069,
+      "sha256": "cc2423bb261bdb3e673a3b21adad2fc98456191b1ccac9cc4031d6bc5efb6637"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/checkpoints/2026Q3.pt",
+      "bytes": 104221,
+      "sha256": "8e8ce871960e34bdaa27b41d4088e71a05c5fc5b64bd2bb272da155b13d34235"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/experiment_protocol.json",
+      "bytes": 7946,
+      "sha256": "83e84dc0ef17712ef2a9d015e004d523f6e0d6bc29d46a45c5c4091aab44efe5"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/fit_audits.json",
+      "bytes": 21377,
+      "sha256": "19bd483f728ad7b1669ad30d698cf8817537499df1708c7f0377020bca12b3a6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "a2bb5170d24eb60f72c4f918a4f523776f38dd46bb079794e5c9b076e69f2bef"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/prior_band_checks.csv",
+      "bytes": 142360,
+      "sha256": "198930010f1e309204ecb29ad75b678f9588a50dca1c575c90d330a247082949"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_band_account_20261002/prior_band_manifest.json",
+      "bytes": 18510,
+      "sha256": "6b60987b45c31dce6cb24fcdd14e0f5434b2f9161f83005f7d0f8a1b5b6aadf2"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1169908,
+      "sha256": "24aace14fe1dcf5761d6779b57822b6860c93079256cf38a14310aa50e4e1290"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/checkpoints/2026Q2.pt",
+      "bytes": 515771,
+      "sha256": "dd5916846fc5890a1cc8aae83351d62f97e7edbd13399cd2f539eaf97984b3f7"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/checkpoints/2026Q3.pt",
+      "bytes": 766544,
+      "sha256": "dca75ab17d8efcd299e3388456b5a7ceccd96ce0ae1249a648cda2ceee07dac9"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/experiment_protocol.json",
+      "bytes": 5629,
+      "sha256": "5237d9193ff8e2d3a776e6099163f51efef4bffb53adb2cb9131934641046e4b"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/fit_audits.json",
+      "bytes": 19798,
+      "sha256": "d6d93d9a5a5fa4500bff18fe1eadb2091e3b6a2d17c3b8d80810eb81fde9860c"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "1fc72afa23f28aba8e60be88f2fdfc6ca2ac7b6d4eb382d462148d1720331b50"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_20261002/prepared_inputs/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1169908,
+      "sha256": "24aace14fe1dcf5761d6779b57822b6860c93079256cf38a14310aa50e4e1290"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/checkpoints/2026Q2.pt",
+      "bytes": 515771,
+      "sha256": "dd5916846fc5890a1cc8aae83351d62f97e7edbd13399cd2f539eaf97984b3f7"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/checkpoints/2026Q3.pt",
+      "bytes": 766544,
+      "sha256": "dca75ab17d8efcd299e3388456b5a7ceccd96ce0ae1249a648cda2ceee07dac9"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/experiment_protocol.json",
+      "bytes": 6093,
+      "sha256": "300efc2c8ea27c05bd5b5af5b09f83ed61a81ebb1e2cf79732f0308639945ea8"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/fit_audits.json",
+      "bytes": 19798,
+      "sha256": "d6d93d9a5a5fa4500bff18fe1eadb2091e3b6a2d17c3b8d80810eb81fde9860c"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "3f1456c46e2bcd816abe92e67680c916c2e8b320e05773cdba55a31c28dfc9d1"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/prior_band_checks.csv",
+      "bytes": 157328,
+      "sha256": "573cbb94255254e2a860867e0dd6f4f3bf95417fc2e0c9fe756821d170332e97"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_20261002/prior_band_manifest.json",
+      "bytes": 27110,
+      "sha256": "23b416a3e0661af923abacf2342bc1bd3518f38bf2c87605d28a9570372b0160"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/account.csv",
+      "bytes": 924,
+      "sha256": "52a48e1705b6ffcf3d7e49dc74437e136e70f65fb68a5fe178dfc18020c09df2"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/allocations.csv",
+      "bytes": 4003,
+      "sha256": "97c3455058c64035ed828183b1627158cfd7438f22bf80ecfc50559cf1d284bd"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/corporate_events.csv",
+      "bytes": 230,
+      "sha256": "d19a844d49d9bd30563a71126cba67e5b21c9e21921ca111ec66cf25e2280307"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/daily_nav.csv",
+      "bytes": 11390,
+      "sha256": "d782afca350acc13680fdd95884fea9147dd1c345c4e53d9dc7364547221e90e"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/daily_run_status.json",
+      "bytes": 204424,
+      "sha256": "0f8f34f0f1eadf884404e2a01ee90346e0b381062a9c1b3051070825615156b1"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/execution_checks.csv",
+      "bytes": 28686,
+      "sha256": "d238d7f94f92a43693392d8535a2d111c3ccb760480e290ba7b281644cc1ce0b"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/exit_signals.csv",
+      "bytes": 4061,
+      "sha256": "f73013047d0a0aa29785bf9d2088c1948e0498348d58e0a6b9d23b5e33635f1b"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/holdings.csv",
+      "bytes": 23380,
+      "sha256": "dc2a7af5315e052eb67db6d055159e466a7effc370d5cfcc39d3a02423a32454"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 232185,
+      "sha256": "90d34d5361fb351b0649d532c0ec1a455536bcdc2158a1942d0d688b26b392c4"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 11390,
+      "sha256": "d782afca350acc13680fdd95884fea9147dd1c345c4e53d9dc7364547221e90e"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1074,
+      "sha256": "bcfc47f90184faec2059a655f2cc7547af2edde72fd0acf8ed934b65482d23e0"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 9738,
+      "sha256": "71ecc72d10dc0f396c8a5e74c0328cdadc517e932a4a86b7a97349b160b4f33b"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/metrics.json",
+      "bytes": 291,
+      "sha256": "81504190370f2451925de1551958278600839797c33d88a8fcc10d254058d039"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/stock_daily_contributions.csv",
+      "bytes": 9738,
+      "sha256": "cad326d3fc52449639f3da72026edf1b0e91abd383f6f468ff7d660200d7cec2"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1406,
+      "sha256": "26010f6e66d0d8798ec310c68d831040871c6a2359e91ae0da6bbd855adf5fad"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/suspension_marks.csv",
+      "bytes": 253,
+      "sha256": "8ed31f8bc90a803bf23a050d8584d93495103bcb4295ee5471d8376d6f5b027c"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/account/trades.csv",
+      "bytes": 6147,
+      "sha256": "d12292c14ed8310d2f8a8d29fe5162fd93cb931b9e5ab7bae4e06a5f6bfc9dd7"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1169908,
+      "sha256": "24aace14fe1dcf5761d6779b57822b6860c93079256cf38a14310aa50e4e1290"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/checkpoints/2026Q2.pt",
+      "bytes": 515771,
+      "sha256": "dd5916846fc5890a1cc8aae83351d62f97e7edbd13399cd2f539eaf97984b3f7"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/checkpoints/2026Q3.pt",
+      "bytes": 766544,
+      "sha256": "dca75ab17d8efcd299e3388456b5a7ceccd96ce0ae1249a648cda2ceee07dac9"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/experiment_protocol.json",
+      "bytes": 6093,
+      "sha256": "300efc2c8ea27c05bd5b5af5b09f83ed61a81ebb1e2cf79732f0308639945ea8"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/fit_audits.json",
+      "bytes": 19798,
+      "sha256": "d6d93d9a5a5fa4500bff18fe1eadb2091e3b6a2d17c3b8d80810eb81fde9860c"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "3f1456c46e2bcd816abe92e67680c916c2e8b320e05773cdba55a31c28dfc9d1"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/prior_band_checks.csv",
+      "bytes": 157328,
+      "sha256": "573cbb94255254e2a860867e0dd6f4f3bf95417fc2e0c9fe756821d170332e97"
+    },
+    {
+      "path": "results/daily_opportunity_leadership_trees_band_account_20261002/prior_band_manifest.json",
+      "bytes": 27110,
+      "sha256": "23b416a3e0661af923abacf2342bc1bd3518f38bf2c87605d28a9570372b0160"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/account.csv",
+      "bytes": 727,
+      "sha256": "c5512c227d810047fe1f78e0e5384570a04028e8451e85749728752dee3f3418"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/allocations.csv",
+      "bytes": 1302,
+      "sha256": "4570a0ba2449cac8c53944172c0ad672ba1c8e018236693507634f5e929f4d96"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/daily_nav.csv",
+      "bytes": 8751,
+      "sha256": "31b94a6752fd71a5aad8daae7792b7feead121f1bdb102769a4d9341dfd95ec9"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/daily_run_status.json",
+      "bytes": 19072,
+      "sha256": "92f7b1db3640944a201d332a12ee034ac945605d4a8632b766e2cae6bf2f2450"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/execution_checks.csv",
+      "bytes": 14469,
+      "sha256": "d5d0252f665986327cbe111d581cb0f1b3aa2f75d0f1ec9497525cefe1c98ca3"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/exit_signals.csv",
+      "bytes": 1479,
+      "sha256": "8a67fac60d3dbe440c2b83ebef02c18fe5a21db5870bee02ec6753822cc8e699"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/holdings.csv",
+      "bytes": 7596,
+      "sha256": "342172c3f814d04deddef16d4c038776a51b32157ab77de3c8eebc6c2a96ec9b"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 21773,
+      "sha256": "1b877e72bb1eec06cdd4a290c1e2aff280be232645a272bae035c6a7b839d5c4"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 8751,
+      "sha256": "31b94a6752fd71a5aad8daae7792b7feead121f1bdb102769a4d9341dfd95ec9"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 805,
+      "sha256": "f89650391256451f7428331d17acfb02da6111ffa1e5834c6ddb1ede4576b7a6"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 3451,
+      "sha256": "3a8b30af1cfe8055ce6714abcf4da03d6c1d064e6427c2ff44671c4b3f50332e"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/metrics.json",
+      "bytes": 268,
+      "sha256": "21323f300882667f01acc7d53810c24dd76dd869856b332fd9e2565f4b762098"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/stock_daily_contributions.csv",
+      "bytes": 3451,
+      "sha256": "2e4847d5a311405b9bad038e04d297686558429bb2df5f9dac1ec9cdc16d423e"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 480,
+      "sha256": "9be9dc9265a181a7eade994cd027ab96f6f14717ed6a42962f34c378a804df6d"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/suspension_marks.csv",
+      "bytes": 253,
+      "sha256": "a70239c2fcb79896bfd58062b4518d8f765aaaa614151edaea714cc532688a13"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/account/trades.csv",
+      "bytes": 2050,
+      "sha256": "5e3a12d2a51508fd58489d594c4b801cfd8e53ec1413b2d2d77b8903ba62602a"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/checkpoints/2026Q1.pt",
+      "bytes": 72933,
+      "sha256": "ca943a13ded5b41bc2f8b7e03647d3d54fd5940979b5bb39f4d633fcc71d2f10"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/checkpoints/2026Q2.pt",
+      "bytes": 73957,
+      "sha256": "5b9c61f4ff8df003067f69e683e8c8ebbf00d21d91d7fe4b2c9873ff2ab569c1"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/checkpoints/2026Q3.pt",
+      "bytes": 75109,
+      "sha256": "5ca72070ff60c26d6db9d6f72c38bb4b1d6bbd2444c00858029e798f925872e0"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/experiment_protocol.json",
+      "bytes": 4005,
+      "sha256": "a45c9a6765e6c7645ee2d04172aed771157c7b6f6439dadec8fac0935024deff"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/feature_manifest.json",
+      "bytes": 96846,
+      "sha256": "9d82d749c1d57153b0204fbb0d34eae6d3be9f7833c8385fb48fe8466b639606"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/fit_audits.json",
+      "bytes": 21583,
+      "sha256": "611f544c6c144520c2b3281b11d1f5b0aa63eca04e0404fe866e25fb64e966ad"
+    },
+    {
+      "path": "results/daily_opportunity_no_graph_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "11d66426fa27a694cb54bc876fc36591828cca22675cc7f9a535dcedb8bbf982"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/account.csv",
+      "bytes": 880,
+      "sha256": "9ddbb7a949b00d5e5e31b5ce5e0c043bf2c7ff28ea40f7d087ef2611ae90d9ae"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/allocations.csv",
+      "bytes": 3201,
+      "sha256": "63d9eb6e8ac5217decc568f93e57edf42e48285d89a32003823c169796abd1f6"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/daily_nav.csv",
+      "bytes": 10756,
+      "sha256": "4bca785d7d6174ab69009d02ee4226c652b24ebc38aa5169ea39ed269713669c"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/daily_run_status.json",
+      "bytes": 209576,
+      "sha256": "189d30c07671c44b6aaca2c6c4bdd82260bd0d089c48fa5a2c03310beb439e94"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/execution_checks.csv",
+      "bytes": 27184,
+      "sha256": "5e15936f9e55abe3e30acdcf738d0961de02a61fd2800f98c5ef98dff7c019e9"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/exit_signals.csv",
+      "bytes": 3473,
+      "sha256": "f5a837c5737f79ff0bcc0930e82ecb6a713ce1e0c8ebf67ca9e57419e9918640"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/holdings.csv",
+      "bytes": 17729,
+      "sha256": "30591b0a4740a76af2921c7b25b2577dd1f2f1c3a90bc37d49e98a7ade0d7715"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 235605,
+      "sha256": "5d7cc68d87e6df64d0a0a7f44745fda42f2c6874cff590e839574ee6a3430b9b"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 10756,
+      "sha256": "4bca785d7d6174ab69009d02ee4226c652b24ebc38aa5169ea39ed269713669c"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1027,
+      "sha256": "a7b1ef4a8afcf9f2ae8b6a27807323f25f8e63345e6aeb7b336ab0cd340ebee5"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 8045,
+      "sha256": "03e325d9c035efd3650df3893c6db3f71a0473068c54b98f1fcf6835672078da"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/metrics.json",
+      "bytes": 259,
+      "sha256": "7d29aa9e224fc29a5cacfbc442b7402503ccd4ca9e7e6ca0b26f134411a76ca4"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/stock_daily_contributions.csv",
+      "bytes": 8045,
+      "sha256": "03e325d9c035efd3650df3893c6db3f71a0473068c54b98f1fcf6835672078da"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1270,
+      "sha256": "18fa91085eddda95269a9b428b4961f08a44c8a4c8f8720efa197184cc0636fe"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/suspension_marks.csv",
+      "bytes": 253,
+      "sha256": "c445fdb04b2bdbb4d93c2c9f2c9575dfdcd2f0b900ec5d621ea6083070419e5e"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/account/trades.csv",
+      "bytes": 5166,
+      "sha256": "2ec923fdecb6f5ca1faca1ca0df40f835b8f1e8a18dddf56a17f891fd8d87b5b"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_ranked_band_trail8_20261002/replay_checks.json",
+      "bytes": 167635,
+      "sha256": "ba4c90e2f646c2c3e6afb7e5c4f24a3bd8079544c8ce6f460d6059147929722a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/account.csv",
+      "bytes": 1065,
+      "sha256": "c13a876694d17e10b9feb426d54a9f3245842b8b7c4d10328ae77c2094f96b7e"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/allocations.csv",
+      "bytes": 3664,
+      "sha256": "368b64aded385de224da6cfab5c834b626880fbefb11fd590916da5909a8bad6"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/corporate_events.csv",
+      "bytes": 231,
+      "sha256": "1e76ac1b9580b146c555b2fe21c920db8aed177860d6acad827cbe12566efe75"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/daily_nav.csv",
+      "bytes": 12231,
+      "sha256": "c87e391d6c7caea74b51286919a0ca9f9cc930bda74e6817fe4661eca9b79678"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/daily_run_status.json",
+      "bytes": 32546,
+      "sha256": "b27cf60dd88ed5f52c81302964c6708088923aad516dc5328e21a345f8479149"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/execution_checks.csv",
+      "bytes": 33062,
+      "sha256": "d0e5cbb3037fedd6570c8ec36ca5eb38c251c0dcac0a0e1e5bd6b6fea5c052d8"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/exit_signals.csv",
+      "bytes": 4040,
+      "sha256": "7e272fb69eb7a0b14ff38f82bc803454ac1699abfab982890a67a3a0b464f47b"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/holdings.csv",
+      "bytes": 21719,
+      "sha256": "48d35740a938df38be8a9c90cf9f20acf17975376c11629cfda2d233b70f6d4f"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 51756,
+      "sha256": "f2c2aa31698b39f985583b1a3ac216c43d767d0ae3a1b94ea08381cfdbec6318"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12231,
+      "sha256": "c87e391d6c7caea74b51286919a0ca9f9cc930bda74e6817fe4661eca9b79678"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1198,
+      "sha256": "450bca11054d9e4874da11294243887f3bef1fd7f36d478451172cd12b07ae45"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 9458,
+      "sha256": "55d780a6ecdaa4fd2a86d7ce9101916136bbd8ca6e00d6805879b05a6b60bfe5"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/metrics.json",
+      "bytes": 292,
+      "sha256": "b86d19fba4bc730ae6af844a7f0c96e019cedd685c914da75b35f971dd6698ff"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/stock_daily_contributions.csv",
+      "bytes": 9458,
+      "sha256": "55d780a6ecdaa4fd2a86d7ce9101916136bbd8ca6e00d6805879b05a6b60bfe5"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1334,
+      "sha256": "5d4427dda33d62cca1a03ee0c3708ef8a10abf5a1759fdda93fa2991c556c0fc"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/suspension_marks.csv",
+      "bytes": 5578,
+      "sha256": "a6172c342a4e13f86ec0753e0d21da1431b15a8dff2bcf1e7acc806db7e1cfa0"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/account/trades.csv",
+      "bytes": 5734,
+      "sha256": "7ff90b36d0b0a787c88621181dda6dfa73bb80fdae2e19242a9b93f87da6d7cf"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/daily_opportunity_trees_20261002/replay_checks.json",
+      "bytes": 25554,
+      "sha256": "16e4c9612e3928cce7e1f6b955d0ab399a3af37e51dc20db1e82d85407cbbbd1"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261002/replay_summary.json",
+      "bytes": 198269,
+      "sha256": "6b280ccff57f27d4ac91e9581deeac1df98c2144dc4d62122486f8af073ef6b0"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/account.csv",
+      "bytes": 826,
+      "sha256": "5fb012c7df5cf0b7db3c92c919e525bcadf7dbb9b3ce23636e728878e489fe7f"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/allocations.csv",
+      "bytes": 2494,
+      "sha256": "6952882a557bcf45dff7b9f04b0f785ef3e3e5fa321fcaff14cfb57455c479ed"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/daily_nav.csv",
+      "bytes": 9527,
+      "sha256": "72f395741654de2ba4e833ef7bceace1b78868a9a3aa2da67acf1458d48fbe6a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/daily_run_status.json",
+      "bytes": 323268,
+      "sha256": "7ec47679f8af323c933f50ddfa43e4e0f6493c81e2ad73b7fef6d7d0be4af9b6"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/execution_checks.csv",
+      "bytes": 12421,
+      "sha256": "53f6b3dbe0c388eecc614d5d6de9ed785b4734c66c29556fcf11ad9cdc8f4e29"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/exit_signals.csv",
+      "bytes": 2396,
+      "sha256": "b7fee4148512e697f89bf6840000e8534708fa8b1d1beaf24bc70c4ef42a61a0"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/holdings.csv",
+      "bytes": 13878,
+      "sha256": "abd5aa50f9c2832c006eaf98ce56a85b50a5a9c45a47ef3c0ebc71f390fb5bde"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_checks.json",
+      "bytes": 360991,
+      "sha256": "d296d5a6f5d7294dfd5d4a3d7c4e8be52b2d34cad8a09a638372a9461818391c"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 9527,
+      "sha256": "72f395741654de2ba4e833ef7bceace1b78868a9a3aa2da67acf1458d48fbe6a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_monthly.csv",
+      "bytes": 941,
+      "sha256": "677dc178441d1a2ad6d281e01832b446724948aaff403923627cb040164c49a3"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 6115,
+      "sha256": "b831777f303b5f73c8c81f4754cc4f0b882e93b8baa88f9192088f732c9b1aaf"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/metrics.json",
+      "bytes": 268,
+      "sha256": "b56539a48ab87ac0d774db7cb2b4864aef79dc253b21789b16dc51412b4c54dc"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/stock_daily_contributions.csv",
+      "bytes": 6115,
+      "sha256": "b831777f303b5f73c8c81f4754cc4f0b882e93b8baa88f9192088f732c9b1aaf"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/stock_monthly_contributions.csv",
+      "bytes": 998,
+      "sha256": "a68c6aef4073c2c8ea65b4f21410d9f981e73e7d1b7dfcfc5d2374d38f6fad85"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/suspension_marks.csv",
+      "bytes": 40,
+      "sha256": "033aa4bd6d9fca0534f2cfa107fdc19e86a0e6595ab565247feff85feda63c82"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/account/trades.csv",
+      "bytes": 3740,
+      "sha256": "621365b9674e79c79151fa2e2c2ea0c05a9d4f30d0c116681855971b7c918fbe"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_path_liquid_account_20261003/replay_checks.json",
+      "bytes": 266287,
+      "sha256": "cb93cd98f5ebfb96a13fb62ac268424b5feebec165e22a190a4dfb86468f8b33"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/account.csv",
+      "bytes": 1112,
+      "sha256": "26c12c4d2ffaba6b8548f1b3daaa4b851b3ea22bfc677d65cf0744fa477b3db2"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/allocations.csv",
+      "bytes": 6797,
+      "sha256": "836b0c8cd1d851c75b3fd21369e6ac0bfa0f5f91994b77fae00f5260313b9a37"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/corporate_events.csv",
+      "bytes": 231,
+      "sha256": "10930f41fcca3c302ea70c093c1f4688c978454791cab3a1c82a33d23602ee49"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/daily_nav.csv",
+      "bytes": 13901,
+      "sha256": "d28bccde7e5c21996c9c22cba212237c3d97a9d0d60255ae6e507b7a2602502a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/daily_run_status.json",
+      "bytes": 271202,
+      "sha256": "312d1b80447b58a75277b5b189b92a3cae3d197f162cb51246a795cfe875532b"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/execution_checks.csv",
+      "bytes": 62195,
+      "sha256": "1d6c5de7aa9fa47f3bf782b9477b7b8268f9f8b2e621d2510a2dcbf184dd5963"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/exit_signals.csv",
+      "bytes": 7007,
+      "sha256": "958f7d0f14ff41ffb418f31dab215a5d8b45dbebe688d798115dcbe8887b6af5"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/holdings.csv",
+      "bytes": 32065,
+      "sha256": "447900a874d3178e1b956c8c7327e0b7c5bb92c6668356e9d002fb42d99d6173"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 304733,
+      "sha256": "a4ea7897cc0dc36b751b3eda484255113a739d54ba4b8db93066bb9d88b9b4c4"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 13901,
+      "sha256": "d28bccde7e5c21996c9c22cba212237c3d97a9d0d60255ae6e507b7a2602502a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1272,
+      "sha256": "6bfdfaaa133fb205dcf0bd8d9d12c65775f353334957d7167a74f068ea55d41a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 14306,
+      "sha256": "f63ceba3b30a868bd56ff2a97b4658cb33716c6dcc0ce22bdb47498235595590"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/metrics.json",
+      "bytes": 272,
+      "sha256": "5aa67b4a1c4f3b72bdf305858cb7d86202201d9f48f745e81b1dde84eb42a43e"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/stock_daily_contributions.csv",
+      "bytes": 14306,
+      "sha256": "f63ceba3b30a868bd56ff2a97b4658cb33716c6dcc0ce22bdb47498235595590"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 2440,
+      "sha256": "25c6e4dc70c44d526f129133c87c9af432f213f4f7d68ad8107dfb6e5b5a4849"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/suspension_marks.csv",
+      "bytes": 685,
+      "sha256": "9afe7df10ccb5097683440d58f3bd7d84f129a2fc1b4a470ecb165d7d08a96d7"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/account/trades.csv",
+      "bytes": 10278,
+      "sha256": "89a78d4332150bbc4223564f6ecd3e119d30f001cc088ccf4a457db9babb11f8"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_band_account_20261002/replay_checks.json",
+      "bytes": 194915,
+      "sha256": "5e592e27b0dd1c98cdab4c01684d982a570fe2dcf2c9c1acffd4d02a452a65d6"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/account.csv",
+      "bytes": 1009,
+      "sha256": "db05eab86c18a699d5cfdbee642a797e44dcc3f9e003bbc4de0ef4196a92b04e"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/allocations.csv",
+      "bytes": 6815,
+      "sha256": "f4bad00690cef5f6de1e8cc1d15be2f44ef11a323c222e5e30beacd376cb5027"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/corporate_events.csv",
+      "bytes": 173,
+      "sha256": "e0063747b5090fe562dedf04cc167df3e0af7b626fd96a626bab93a5a1a0e444"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/daily_nav.csv",
+      "bytes": 12749,
+      "sha256": "3b764ccd593c371a07c4ff84c19fc081370bfe94ec0d84ffdf29c403b52d75a7"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/daily_run_status.json",
+      "bytes": 331006,
+      "sha256": "3f565cff1f30bfc93e6e1841ddf2b2912745867424508f5f741a1208dda5fc0a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/execution_checks.csv",
+      "bytes": 48992,
+      "sha256": "77bda939c44b8d2e23982f221c51db80402bf2c5e6988837104d0190790487e6"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/exit_signals.csv",
+      "bytes": 6953,
+      "sha256": "411e6edf2e59c6e721aca3d12ac2d8a7cb5e745b9821bc0b8e0a5a4cd98b8c9a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/holdings.csv",
+      "bytes": 30966,
+      "sha256": "dcfa2900267444436890e7663f93e9e80f21950d739da51db4aa0d2d843353f4"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_checks.json",
+      "bytes": 370296,
+      "sha256": "904f044ecdade7de12ba865a18e4ad3381e1b8c7ae9aede13f5caa4962e5831f"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12749,
+      "sha256": "3b764ccd593c371a07c4ff84c19fc081370bfe94ec0d84ffdf29c403b52d75a7"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_monthly.csv",
+      "bytes": 1191,
+      "sha256": "b2b5ed2aecad8ac5d8ed610be73110d511755b8b118bdc90a107203330d70850"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 13737,
+      "sha256": "f18f1188c9951bfb310ccf8bd7824e5d6610c2ace4501dc74d0e9d2a1ef2e26a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/metrics.json",
+      "bytes": 283,
+      "sha256": "4dd9f34d5580ba88289f5707dcc513c398aea10dc7b9edae99a325bc869c3afe"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/stock_daily_contributions.csv",
+      "bytes": 13737,
+      "sha256": "f18f1188c9951bfb310ccf8bd7824e5d6610c2ace4501dc74d0e9d2a1ef2e26a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/stock_monthly_contributions.csv",
+      "bytes": 2452,
+      "sha256": "6363fc35f7613564eeffacfd500216774cd19765819eff145f2300e2d37f8da0"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/suspension_marks.csv",
+      "bytes": 685,
+      "sha256": "9afe7df10ccb5097683440d58f3bd7d84f129a2fc1b4a470ecb165d7d08a96d7"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/account/trades.csv",
+      "bytes": 10192,
+      "sha256": "8aa5ec56666b4cc117616f4329da77653f1de03d6b08f00624fd91822d089f01"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_account_20261003/replay_checks.json",
+      "bytes": 256086,
+      "sha256": "efc4b390319c438550e0748e5750b3c77c778ac9e34a2f998b3195d3cd60ec74"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/account.csv",
+      "bytes": 1076,
+      "sha256": "3f761eed923352eda1ab88ddea26f7e1023187999a998872b519ec2e4832056b"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/allocations.csv",
+      "bytes": 6137,
+      "sha256": "b1ed1ced0d18092df481824f1a23bd9f5d72a3322128bedc161bf5ce599db2b6"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/daily_nav.csv",
+      "bytes": 12795,
+      "sha256": "9e7e16c50df5c194b84475fba0eef4e17f87f1423a17b2767af50bbdaeace6c3"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/daily_run_status.json",
+      "bytes": 343831,
+      "sha256": "621cb9ad3d030a804d2f9cd6c564ae8d0df21eb1df5a5e3b2e7b65c1470beed7"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/execution_checks.csv",
+      "bytes": 47975,
+      "sha256": "a50e1c1c272df9b40f44c2a7874a7cfd13ac6242096e1a6a4398f586750385d8"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/exit_signals.csv",
+      "bytes": 6700,
+      "sha256": "cba5fd79a2174ab806b41e64cc534820e4803feb5e6a58162d818d7d26a5d839"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/holdings.csv",
+      "bytes": 29230,
+      "sha256": "b4ea9ad40114ba494acac290dc0c5d1a637e195da25faea70275fa3e3eabb60a"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_checks.json",
+      "bytes": 384064,
+      "sha256": "364148eef6e5d0f9f82b5ba8970283dfc1461f2f8311d4b8afec8a2b19deae68"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12795,
+      "sha256": "9e7e16c50df5c194b84475fba0eef4e17f87f1423a17b2767af50bbdaeace6c3"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_monthly.csv",
+      "bytes": 1257,
+      "sha256": "62263be483b7948e52b7a099177df877cadae5c3481722cd7a05dc788cfcca46"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 12981,
+      "sha256": "7388821a1639ac0b24173f570b54458f8be93bdcec6a41c9cc7284e3c327fce9"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/metrics.json",
+      "bytes": 296,
+      "sha256": "b4db3b9723e26113a2127da053075f4166e1b534b3e33cb2c45ad8d5dba4ea70"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/stock_daily_contributions.csv",
+      "bytes": 12981,
+      "sha256": "7388821a1639ac0b24173f570b54458f8be93bdcec6a41c9cc7284e3c327fce9"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/stock_monthly_contributions.csv",
+      "bytes": 2284,
+      "sha256": "167412ef200f216b8c10e76a88291384d34e43b6af546655dbd6821b60a1f2e3"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/suspension_marks.csv",
+      "bytes": 685,
+      "sha256": "9afe7df10ccb5097683440d58f3bd7d84f129a2fc1b4a470ecb165d7d08a96d7"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/trades.csv",
+      "bytes": 9706,
+      "sha256": "d1b0978871a8c7d7ddeeab685ef8aafbbe5d8ae877cf03e12f32e2f2e4b3ff85"
+    },
+    {
+      "path": "results/daily_opportunity_offline_replays_20261003/daily_opportunity_trend_residual_liquid_cool_account_20261003/replay_checks.json",
+      "bytes": 272436,
+      "sha256": "b10e2bc3b4d13f1db04fa490f159b9e78ce248d63555fd89235a2bcc66bb5457"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/account.csv",
+      "bytes": 1048,
+      "sha256": "05c6d14cc2ea345508bd485d3d569fccd735b2805b51f16c2eed77009c70b0f5"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/allocations.csv",
+      "bytes": 4190,
+      "sha256": "a926bf61e38d6f343d79ece3f02fd4eb49e325fbaee354bfea63ceffacf6b87f"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/daily_nav.csv",
+      "bytes": 12083,
+      "sha256": "e9f108cdc72bb9d4fcbd3047c858e370cd794a3d876a826751f81ef823738e86"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/daily_run_status.json",
+      "bytes": 168147,
+      "sha256": "73c4bdd4066f020d6b2fecc6844a6e63a19574e285a4af4017a73772c9fb56d2"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/execution_checks.csv",
+      "bytes": 31604,
+      "sha256": "92ed7f55f79ffa5617c5ba2e4433476c0f0a1f05f9670c07e54e7e7d8b5b52f1"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/exit_signals.csv",
+      "bytes": 4265,
+      "sha256": "7cbd2568a78a9a19ec3a19b86d6ecc5cca860b83b2d27954e0884b8dba3ecd39"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/holdings.csv",
+      "bytes": 23182,
+      "sha256": "260ab7e08975de9bcbb000ec84d843ecc824411c245a13330175694a316922c1"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 205419,
+      "sha256": "c6c082ca6742c4b31424285c3f71002a33065731bc8ea45c2a38eeab6a01817d"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12083,
+      "sha256": "e9f108cdc72bb9d4fcbd3047c858e370cd794a3d876a826751f81ef823738e86"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1199,
+      "sha256": "949d66017f895925ce3bebcc7e03db66252e80aeda6f0580164a245344a0ff3f"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 10238,
+      "sha256": "05e524dea7ba5d73b799d68e95ae201ae71d4ad2ae0088b6cb761ff1631301ca"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/metrics.json",
+      "bytes": 271,
+      "sha256": "7f341f5362ffa625e435c6546586bcf4c39253bf8c40faaec62652d7f655342c"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/stock_daily_contributions.csv",
+      "bytes": 10238,
+      "sha256": "95e385e634e833eb22a2ccf31846ac4007b80ee2df6f78120eab45f7807c9aa7"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1483,
+      "sha256": "9e207f1cfe712bc6d5501d0fc8d3c0aedcf4055b4f9690835578061f8929453d"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/suspension_marks.csv",
+      "bytes": 5578,
+      "sha256": "a6172c342a4e13f86ec0753e0d21da1431b15a8dff2bcf1e7acc806db7e1cfa0"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/account/trades.csv",
+      "bytes": 6115,
+      "sha256": "f7cc9b70a608fb59b3b37a09bfe5106333e0e0c8592c09a47a976abb73b5ea9d"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/checkpoints/2026Q1.pt",
+      "bytes": 81693,
+      "sha256": "73bbad46e780cc053785c1727ee5daefa4ac3946569f3214ceb87a0d5b7cc2dd"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/checkpoints/2026Q2.pt",
+      "bytes": 82717,
+      "sha256": "4362e64c7eeaa0531efeb898db47e3a6322166b82a781548d26982af78622fd2"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/checkpoints/2026Q3.pt",
+      "bytes": 83869,
+      "sha256": "380bbe9a6280aec5aa21e0f9b95296075f8db6fa6cefd595f0e646fc905a92ef"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/diagnostics/daily_forecast_quality.csv",
+      "bytes": 141161,
+      "sha256": "94ea4a838110a624d085c85e3424edf8b3f56d9bb1bfaf22815afe6a97bdfe88"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/diagnostics/monthly_forecast_quality.csv",
+      "bytes": 7361,
+      "sha256": "dd62e04b48ee4bc77f7aa01a114e65f7193d8a2434282ac2a8bac4d7a9817c19"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/diagnostics/quality_status.json",
+      "bytes": 518,
+      "sha256": "aa463553b0bb1f170b0bcad47e23e95d4a8e7bb38f8f5d15cdd6e15a26bffc1a"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/experiment_protocol.json",
+      "bytes": 5329,
+      "sha256": "de94a9f709f442324882d076a6030188b3d97bda3c189115543f2ee1ea1e2536"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/fit_audits.json",
+      "bytes": 21354,
+      "sha256": "be51f89681b3c2035d903d7838fc7c63c894cd88922006b86822c2866f52890a"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/online_calibration_audit.csv",
+      "bytes": 38896,
+      "sha256": "5bc5c70d1ba528616e1cf531884f2e0a77cef98c9e6ebde8eed290ff9a6855a2"
+    },
+    {
+      "path": "results/daily_opportunity_online_20261002/prediction_manifest.json",
+      "bytes": 578,
+      "sha256": "4628e7e3650018ca31e4531c2a0efc69157b77354b52c6b77f7b9db81ebde74c"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/account.csv",
+      "bytes": 997,
+      "sha256": "95751c8f8482558a065279cd88ec621e534231dc39e79403353ea544bc5eb046"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/allocations.csv",
+      "bytes": 4568,
+      "sha256": "e0812e31e3a2d284a2447acc65a1e51f8591b09c2bcad4bf47385cb9b22e017c"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/daily_nav.csv",
+      "bytes": 12134,
+      "sha256": "cff49b1e13a1f3bd7ff85c75440bd6f095c527255454d4d79153e1366198a076"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/daily_run_status.json",
+      "bytes": 241147,
+      "sha256": "73489d4f740c7dd96e3c5525fcb5dafdda746e8006f77e7d1cc1c37c3390162c"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/execution_checks.csv",
+      "bytes": 33280,
+      "sha256": "750719014e37a96bbdf5e2faf35a1c7122ade4538157701adfa938f4ff5cc92e"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/exit_signals.csv",
+      "bytes": 4791,
+      "sha256": "395ddbae083478e21e3c7d25dfff275e5d9509a76eed54a2b8face45a7cb06ef"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/holdings.csv",
+      "bytes": 25467,
+      "sha256": "7332a27381d7dfd2b4a3396eb6853c9014eb42a441bc618b16c1ff9b2b4ca02a"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 274794,
+      "sha256": "4bcb0e21ee2da3d23b8d769dbc2d67cae8f60e15fb2447ea2640116f9f6c9bad"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12134,
+      "sha256": "cff49b1e13a1f3bd7ff85c75440bd6f095c527255454d4d79153e1366198a076"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1142,
+      "sha256": "395d8ecb960316ac319286015cc694164599d760cb88bb1bb98e1c13c4d163af"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 11125,
+      "sha256": "4a78ec2721fa6ef7bd35c8d0fca0df29b2b128749df58b4227458d69ac0b15a1"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/metrics.json",
+      "bytes": 291,
+      "sha256": "8118823e102e3f79a165b138d6dfcd7beb94a72e8d75cb85dfe34b9d79f68306"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/stock_daily_contributions.csv",
+      "bytes": 11125,
+      "sha256": "902b7aa0395838dca97db872f7d51f1afac3b60d43409b429efb1a6d8c1d35c5"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1528,
+      "sha256": "3378f3839bc08ce824992ce968e85a613516555f8d2effe06a7b569a43e0ec57"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/suspension_marks.csv",
+      "bytes": 40,
+      "sha256": "033aa4bd6d9fca0534f2cfa107fdc19e86a0e6595ab565247feff85feda63c82"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/account/trades.csv",
+      "bytes": 7029,
+      "sha256": "4172bd04e0fd26184483740d31ac76e0632f3f85709f1ecc5517c647d8d6016f"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/checkpoints/2026Q1.pt",
+      "bytes": 81693,
+      "sha256": "73bbad46e780cc053785c1727ee5daefa4ac3946569f3214ceb87a0d5b7cc2dd"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/checkpoints/2026Q2.pt",
+      "bytes": 82717,
+      "sha256": "4362e64c7eeaa0531efeb898db47e3a6322166b82a781548d26982af78622fd2"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/checkpoints/2026Q3.pt",
+      "bytes": 83869,
+      "sha256": "380bbe9a6280aec5aa21e0f9b95296075f8db6fa6cefd595f0e646fc905a92ef"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/experiment_protocol.json",
+      "bytes": 5793,
+      "sha256": "b2a976c6c791dc6ad834fefe746f355ce0d3f5162893967d5de6b6e0afa52d67"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/fit_audits.json",
+      "bytes": 21354,
+      "sha256": "be51f89681b3c2035d903d7838fc7c63c894cd88922006b86822c2866f52890a"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "3c1a26ffb0a1dad9c52a8d74885eec1bc52ae6b5a305040b66432dd10bb93630"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/prior_band_checks.csv",
+      "bytes": 196189,
+      "sha256": "bd0a43f10ebb906c0d5d480d42b6d45cc6a690f89d439fd03d78314c37b00ab9"
+    },
+    {
+      "path": "results/daily_opportunity_online_band_20261002/prior_band_manifest.json",
+      "bytes": 68495,
+      "sha256": "92328be29a15e56f9a381b86892653d6f66d7911fdc85f8ac01670ebf8f7c7b7"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/checkpoints/2026Q1.pt",
+      "bytes": 612608,
+      "sha256": "f069952e01a79e46b75145272be127905755e177684b4ecc861522e78da3780c"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/checkpoints/2026Q2.pt",
+      "bytes": 1008624,
+      "sha256": "729a38bad1cbc528fc19c9fdc7565b50f98256ab795425b0fcf80642e7e0dbd1"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/checkpoints/2026Q3.pt",
+      "bytes": 740558,
+      "sha256": "c0f79c6ef1866af31a3a96e1db70787945acd4afb5f6c7999f6e2ed433f197d0"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/experiment_protocol.json",
+      "bytes": 8203,
+      "sha256": "61285e07b7fe423951d9925cceedff0029e755b00c7b2232fa20990444e3fcff"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/fit_audits.json",
+      "bytes": 26862,
+      "sha256": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/path_targets_manifest.json",
+      "bytes": 2973,
+      "sha256": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9"
+    },
+    {
+      "path": "results/daily_opportunity_path_20261003/prediction_manifest.json",
+      "bytes": 669,
+      "sha256": "a203b33721257ab89ce9c605de451bb5ef32e0ac15321d144a955335386138d7"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/checkpoints/2026Q1.pt",
+      "bytes": 612608,
+      "sha256": "f069952e01a79e46b75145272be127905755e177684b4ecc861522e78da3780c"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/checkpoints/2026Q2.pt",
+      "bytes": 1008624,
+      "sha256": "729a38bad1cbc528fc19c9fdc7565b50f98256ab795425b0fcf80642e7e0dbd1"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/checkpoints/2026Q3.pt",
+      "bytes": 740558,
+      "sha256": "c0f79c6ef1866af31a3a96e1db70787945acd4afb5f6c7999f6e2ed433f197d0"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/experiment_protocol.json",
+      "bytes": 9490,
+      "sha256": "64dc6feea94f32de5498cdc7e80b41a10322605488c8258c34d4258efb90373d"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/fit_audits.json",
+      "bytes": 26862,
+      "sha256": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/path_filter_manifest.json",
+      "bytes": 1436,
+      "sha256": "55c118ba9ceeb0f90eb6d2af38bed4b5f0751a8c76344c7f88d722f73bd898d9"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/path_targets_manifest.json",
+      "bytes": 2973,
+      "sha256": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/prediction_manifest.json",
+      "bytes": 970,
+      "sha256": "7a9c0f3a34f199aa6b045c6cc843958eed269276a2d7cd684fb995cbb2f75d7a"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/prior_band_checks.csv",
+      "bytes": 174020,
+      "sha256": "cbe9ca97f38db60a165ac4c4af54ee08eabf66c29d749cf28817467dd51a3c35"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_20261003/prior_band_manifest.json",
+      "bytes": 21047,
+      "sha256": "6129f758faf5a83003d86eca2a58e51ba90faf35fda1d88bfa7065ad9760ca12"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/account/daily_run_status.json",
+      "bytes": 114,
+      "sha256": "93ce6755931286782f8ce9424dbe3fb2e1ef8d60732b5949e9382bf9f9980d30"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/account/data_blocker_evidence.json",
+      "bytes": 8807,
+      "sha256": "c8bae959b093275bfd098cca389efc21ef377df8a51717ddc6599e6d4565c139"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/checkpoints/2026Q1.pt",
+      "bytes": 612608,
+      "sha256": "f069952e01a79e46b75145272be127905755e177684b4ecc861522e78da3780c"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/checkpoints/2026Q2.pt",
+      "bytes": 1008624,
+      "sha256": "729a38bad1cbc528fc19c9fdc7565b50f98256ab795425b0fcf80642e7e0dbd1"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/checkpoints/2026Q3.pt",
+      "bytes": 740558,
+      "sha256": "c0f79c6ef1866af31a3a96e1db70787945acd4afb5f6c7999f6e2ed433f197d0"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/experiment_protocol.json",
+      "bytes": 9490,
+      "sha256": "64dc6feea94f32de5498cdc7e80b41a10322605488c8258c34d4258efb90373d"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/fit_audits.json",
+      "bytes": 26862,
+      "sha256": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/path_filter_manifest.json",
+      "bytes": 1436,
+      "sha256": "55c118ba9ceeb0f90eb6d2af38bed4b5f0751a8c76344c7f88d722f73bd898d9"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/path_targets_manifest.json",
+      "bytes": 2973,
+      "sha256": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/prediction_manifest.json",
+      "bytes": 970,
+      "sha256": "7a9c0f3a34f199aa6b045c6cc843958eed269276a2d7cd684fb995cbb2f75d7a"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/prior_band_checks.csv",
+      "bytes": 174020,
+      "sha256": "cbe9ca97f38db60a165ac4c4af54ee08eabf66c29d749cf28817467dd51a3c35"
+    },
+    {
+      "path": "results/daily_opportunity_path_band_account_20261003/prior_band_manifest.json",
+      "bytes": 21047,
+      "sha256": "6129f758faf5a83003d86eca2a58e51ba90faf35fda1d88bfa7065ad9760ca12"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/checkpoints/2026Q1.pt",
+      "bytes": 612608,
+      "sha256": "f069952e01a79e46b75145272be127905755e177684b4ecc861522e78da3780c"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/checkpoints/2026Q2.pt",
+      "bytes": 1008624,
+      "sha256": "729a38bad1cbc528fc19c9fdc7565b50f98256ab795425b0fcf80642e7e0dbd1"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/checkpoints/2026Q3.pt",
+      "bytes": 740558,
+      "sha256": "c0f79c6ef1866af31a3a96e1db70787945acd4afb5f6c7999f6e2ed433f197d0"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/experiment_protocol.json",
+      "bytes": 9999,
+      "sha256": "6f5af6449a70a3968a565c5bb02d152705e8faee4f4f44ce7d1b860e22aa7e37"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/fit_audits.json",
+      "bytes": 26862,
+      "sha256": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/liquidity_manifest.json",
+      "bytes": 2471,
+      "sha256": "02040a360271f3971ad79f9b0e15b6d5c5eabc6166cf81b88139f77cc7199b87"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/path_filter_manifest.json",
+      "bytes": 1438,
+      "sha256": "454ca8b70c21484a57168ff4194955c793990a9af884b0ea7aff7b7978283c45"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/path_targets_manifest.json",
+      "bytes": 2973,
+      "sha256": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/prediction_manifest.json",
+      "bytes": 1167,
+      "sha256": "982eecb2621ee9b951e4de2fa8349f657010023a1f52dd6b275a9aa2c0e3c57f"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/prior_band_checks.csv",
+      "bytes": 80466,
+      "sha256": "fbb9896d9a54680221f19cb62dde98b8bebd0c8603e84a0ec76ca9129fc4ce2e"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_20261003/prior_band_manifest.json",
+      "bytes": 14434,
+      "sha256": "f21ba1fff911ae99f76bd040c0019f1a1fc2227f5f3b937b3c51aca0e0ea8315"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/account.csv",
+      "bytes": 826,
+      "sha256": "5fb012c7df5cf0b7db3c92c919e525bcadf7dbb9b3ce23636e728878e489fe7f"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/allocations.csv",
+      "bytes": 2494,
+      "sha256": "6952882a557bcf45dff7b9f04b0f785ef3e3e5fa321fcaff14cfb57455c479ed"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/daily_nav.csv",
+      "bytes": 9527,
+      "sha256": "72f395741654de2ba4e833ef7bceace1b78868a9a3aa2da67acf1458d48fbe6a"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/daily_run_status.json",
+      "bytes": 278379,
+      "sha256": "b773918d24eea897d011eee0fa55f49f19d9501b8ed678e670f14f1a1c93e96a"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/execution_checks.csv",
+      "bytes": 12421,
+      "sha256": "53f6b3dbe0c388eecc614d5d6de9ed785b4734c66c29556fcf11ad9cdc8f4e29"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/exit_signals.csv",
+      "bytes": 2396,
+      "sha256": "b7fee4148512e697f89bf6840000e8534708fa8b1d1beaf24bc70c4ef42a61a0"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/holdings.csv",
+      "bytes": 13878,
+      "sha256": "abd5aa50f9c2832c006eaf98ce56a85b50a5a9c45a47ef3c0ebc71f390fb5bde"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_checks.json",
+      "bytes": 315854,
+      "sha256": "7538fdc04e3223d4a24fa4d8f89c5cbe06272576d41290cdfe827ce60563fe64"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 9527,
+      "sha256": "72f395741654de2ba4e833ef7bceace1b78868a9a3aa2da67acf1458d48fbe6a"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_monthly.csv",
+      "bytes": 941,
+      "sha256": "677dc178441d1a2ad6d281e01832b446724948aaff403923627cb040164c49a3"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 6115,
+      "sha256": "83cf016bc2d6e2442de743fe469a6cc6ab82fbb2c6b2fa07042f370a03a3b99f"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/metrics.json",
+      "bytes": 268,
+      "sha256": "b56539a48ab87ac0d774db7cb2b4864aef79dc253b21789b16dc51412b4c54dc"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/stock_daily_contributions.csv",
+      "bytes": 6115,
+      "sha256": "e2fd11c859d36b30e8a46a7e547731a7e9787e5fc0317cad0047e6081e894375"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/stock_monthly_contributions.csv",
+      "bytes": 998,
+      "sha256": "a68c6aef4073c2c8ea65b4f21410d9f981e73e7d1b7dfcfc5d2374d38f6fad85"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/suspension_marks.csv",
+      "bytes": 40,
+      "sha256": "033aa4bd6d9fca0534f2cfa107fdc19e86a0e6595ab565247feff85feda63c82"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/account/trades.csv",
+      "bytes": 3740,
+      "sha256": "621365b9674e79c79151fa2e2c2ea0c05a9d4f30d0c116681855971b7c918fbe"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/checkpoints/2026Q1.pt",
+      "bytes": 612608,
+      "sha256": "f069952e01a79e46b75145272be127905755e177684b4ecc861522e78da3780c"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/checkpoints/2026Q2.pt",
+      "bytes": 1008624,
+      "sha256": "729a38bad1cbc528fc19c9fdc7565b50f98256ab795425b0fcf80642e7e0dbd1"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/checkpoints/2026Q3.pt",
+      "bytes": 740558,
+      "sha256": "c0f79c6ef1866af31a3a96e1db70787945acd4afb5f6c7999f6e2ed433f197d0"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/experiment_protocol.json",
+      "bytes": 9999,
+      "sha256": "6f5af6449a70a3968a565c5bb02d152705e8faee4f4f44ce7d1b860e22aa7e37"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/fit_audits.json",
+      "bytes": 26862,
+      "sha256": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/liquidity_manifest.json",
+      "bytes": 2471,
+      "sha256": "02040a360271f3971ad79f9b0e15b6d5c5eabc6166cf81b88139f77cc7199b87"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/path_filter_manifest.json",
+      "bytes": 1438,
+      "sha256": "454ca8b70c21484a57168ff4194955c793990a9af884b0ea7aff7b7978283c45"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/path_targets_manifest.json",
+      "bytes": 2973,
+      "sha256": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/prediction_manifest.json",
+      "bytes": 1167,
+      "sha256": "982eecb2621ee9b951e4de2fa8349f657010023a1f52dd6b275a9aa2c0e3c57f"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/prior_band_checks.csv",
+      "bytes": 80466,
+      "sha256": "fbb9896d9a54680221f19cb62dde98b8bebd0c8603e84a0ec76ca9129fc4ce2e"
+    },
+    {
+      "path": "results/daily_opportunity_path_liquid_account_20261003/prior_band_manifest.json",
+      "bytes": 14434,
+      "sha256": "f21ba1fff911ae99f76bd040c0019f1a1fc2227f5f3b937b3c51aca0e0ea8315"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/account.csv",
+      "bytes": 976,
+      "sha256": "ec080d2030eeb6d4c0d868541cb6569b9000662692d9fd46f503ce0412d3f833"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/allocations.csv",
+      "bytes": 3003,
+      "sha256": "a5abc96f3d70310ee0c66f9eb6fcfebdfdff5e1f81a37c27270e75c9a98f3781"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/daily_nav.csv",
+      "bytes": 11256,
+      "sha256": "b7d5d1c166dbf760854e7759e3ffdc853e9f477d8460c135fd622f4600bc3f06"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/daily_run_status.json",
+      "bytes": 155549,
+      "sha256": "a60f87fa5aa5372d4a1d6c200f4ff9ff0915d81fac34ee809f7a2cc029ba3fcc"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/execution_checks.csv",
+      "bytes": 25857,
+      "sha256": "2e22f5d242dd3e069144a1ea1fbb6d2e0f882a1024ef0ec19bbea4c7fe1ee89e"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/exit_signals.csv",
+      "bytes": 3569,
+      "sha256": "565290f8c8760ea8642160ac9d232b775dbbdc82795cd41a7c8ceadb0d613cd1"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/holdings.csv",
+      "bytes": 18519,
+      "sha256": "178d02269f9ed924a6b876681f45dad51bedb48f0d9bb947e0b0af726da59cb0"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 188190,
+      "sha256": "ffcad1585e436c898991d3a91052b9524d8ad46d47faaea561d90ac105a0a809"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 11256,
+      "sha256": "b7d5d1c166dbf760854e7759e3ffdc853e9f477d8460c135fd622f4600bc3f06"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1127,
+      "sha256": "87f5fba9a25ca9f4058d1ad261a55ee5108bd04c90d3f5062a8f3d34c83b79d7"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 8308,
+      "sha256": "d9aaab64f96b711bb1cae70fe61ef010df2a24afc5a4e6a2f62b578b89ef1bc8"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/metrics.json",
+      "bytes": 292,
+      "sha256": "5f87b5c27acffe2f08025802cde9fe193e21d9c503a8da1d47c98089ae9fd7c1"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/stock_daily_contributions.csv",
+      "bytes": 8308,
+      "sha256": "1858c354b958dac4e1b617a0b562aaff3031b3330dea97a42c4b1e6fc8c39518"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1267,
+      "sha256": "3fc4fdcc9104d6e48b36731ff74382c0ebc2d57737da1835a83d0c4616277b3b"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/suspension_marks.csv",
+      "bytes": 4300,
+      "sha256": "b65791ba0415158f050a8924a0bdf3fa085f7872edf098033c8d02aebb72790c"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/account/trades.csv",
+      "bytes": 4890,
+      "sha256": "e31b7d2c34b092361173731f8bba089c2bbca01c7e9fa3248fc5febc3af2222a"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/checkpoints/2026Q1.pt",
+      "bytes": 81693,
+      "sha256": "73bbad46e780cc053785c1727ee5daefa4ac3946569f3214ceb87a0d5b7cc2dd"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/checkpoints/2026Q2.pt",
+      "bytes": 82717,
+      "sha256": "4362e64c7eeaa0531efeb898db47e3a6322166b82a781548d26982af78622fd2"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/checkpoints/2026Q3.pt",
+      "bytes": 83869,
+      "sha256": "380bbe9a6280aec5aa21e0f9b95296075f8db6fa6cefd595f0e646fc905a92ef"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/diagnostics/daily_forecast_quality.csv",
+      "bytes": 137213,
+      "sha256": "e6a353b1d28b671bfc223486c4b0cbfd2991a9a2ffbcbee81ca68146da6f982c"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/diagnostics/monthly_forecast_quality.csv",
+      "bytes": 7459,
+      "sha256": "c871f9dd8b2bb51e9481afd72aef627983e3cad2ddc1706e6719a036262643d9"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/diagnostics/quality_status.json",
+      "bytes": 518,
+      "sha256": "421790d820f0b910c0d12ee50ffdb45094a1d5fba9370271d01b5ef081762b7b"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/experiment_protocol.json",
+      "bytes": 4663,
+      "sha256": "eaed46b9e9974a29400dae5cc1b7bac528db745898e6829073d7c24516aadc64"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/fit_audits.json",
+      "bytes": 21354,
+      "sha256": "be51f89681b3c2035d903d7838fc7c63c894cd88922006b86822c2866f52890a"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "64619a57cf169e98775e417d356576e2ba4bce9ee50b5a259aa6649f3a5fa774"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/account.csv",
+      "bytes": 938,
+      "sha256": "6cb99525724fae66b62d3911e52eccfa38d7963836bde2734e2e0332a59746ae"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/allocations.csv",
+      "bytes": 2763,
+      "sha256": "5e13456a213aa9e5a252d363fc5ed1e99b031aad3ced1524843a76d9566a5f68"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/daily_nav.csv",
+      "bytes": 11276,
+      "sha256": "c6d868927f23d4ff20055f1428527c30ec02041a2fc75afd7e3c6c8771850320"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/daily_run_status.json",
+      "bytes": 173359,
+      "sha256": "a2b3173a6bb9fcc39ad1d7cccc7cd933cec678143daf337ebd26aa0b1ae68aba"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/execution_checks.csv",
+      "bytes": 25927,
+      "sha256": "4b224f68e233fc1cdce14314c99b903bf6eddb8df48d101f55454ee3e16e14c3"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/exit_signals.csv",
+      "bytes": 2917,
+      "sha256": "31dc22f9b85b221814cde70439961672445193c0ddd4fde3bd3b3730c121e9eb"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/holdings.csv",
+      "bytes": 15507,
+      "sha256": "68ec2c1fece6bfad01cb83072b0041e08608f9cca10c70050d24ad20f518d7fa"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 198617,
+      "sha256": "0b5b4db498a593876e8cb2f71169333485b597b863813c21ea0d24da29a571d0"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 11276,
+      "sha256": "c6d868927f23d4ff20055f1428527c30ec02041a2fc75afd7e3c6c8771850320"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1086,
+      "sha256": "c438d5c20562460099f18896cd52ab2fea362e70c8a0c04267e8c719a8125ba4"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 7032,
+      "sha256": "3d6579c874f1fbf4f5727bf0f8dbd3617f811bbc7918e16d1bc1a7482e3b3164"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/metrics.json",
+      "bytes": 270,
+      "sha256": "50d899a7c5d52b488b5176dda9fd81bb97bcce13a198289e5bbc6da12be121a1"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/stock_daily_contributions.csv",
+      "bytes": 7032,
+      "sha256": "e5a250c37f4013945658967e739a656344422481f41bc23d0402d74d9f585a34"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1134,
+      "sha256": "90e1e3adf4f6893210986d21ca802aa10ec7b891edc80bac8c49b616a5980c29"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/suspension_marks.csv",
+      "bytes": 253,
+      "sha256": "c445fdb04b2bdbb4d93c2c9f2c9575dfdcd2f0b900ec5d621ea6083070419e5e"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/account/trades.csv",
+      "bytes": 4445,
+      "sha256": "78641ea49383928efc2d1a714670f8509167906ab046019d4df0d8cbddff4ed0"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/checkpoints/2026Q1.pt",
+      "bytes": 81693,
+      "sha256": "73bbad46e780cc053785c1727ee5daefa4ac3946569f3214ceb87a0d5b7cc2dd"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/checkpoints/2026Q2.pt",
+      "bytes": 82717,
+      "sha256": "4362e64c7eeaa0531efeb898db47e3a6322166b82a781548d26982af78622fd2"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/checkpoints/2026Q3.pt",
+      "bytes": 83869,
+      "sha256": "380bbe9a6280aec5aa21e0f9b95296075f8db6fa6cefd595f0e646fc905a92ef"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/experiment_protocol.json",
+      "bytes": 5127,
+      "sha256": "09f462b025b940d5ef2303b135c26f1e932e5f20c95832386a0180acade69af6"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/fit_audits.json",
+      "bytes": 21354,
+      "sha256": "be51f89681b3c2035d903d7838fc7c63c894cd88922006b86822c2866f52890a"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "5c0670790f8c21c77128b51c978225970ee4c54582f218c9fbba433701ccb66f"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/prior_band_checks.csv",
+      "bytes": 112681,
+      "sha256": "92d10caaa75d38da1eac55a3c228f74854ba45761bb95863b303c71d96da3b07"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_20261002/prior_band_manifest.json",
+      "bytes": 15419,
+      "sha256": "2a7f491d8ccf2a1ab85a35cccf14960fc33af1e5439ac7752cbc7889cbddd039"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/account.csv",
+      "bytes": 880,
+      "sha256": "9ddbb7a949b00d5e5e31b5ce5e0c043bf2c7ff28ea40f7d087ef2611ae90d9ae"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/allocations.csv",
+      "bytes": 3201,
+      "sha256": "63d9eb6e8ac5217decc568f93e57edf42e48285d89a32003823c169796abd1f6"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/daily_nav.csv",
+      "bytes": 10756,
+      "sha256": "4bca785d7d6174ab69009d02ee4226c652b24ebc38aa5169ea39ed269713669c"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/daily_run_status.json",
+      "bytes": 178716,
+      "sha256": "38327636ad03f5e617c6330ba70637106d5a51852bc8fef5bfa909eba08d63bd"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/execution_checks.csv",
+      "bytes": 27184,
+      "sha256": "5e15936f9e55abe3e30acdcf738d0961de02a61fd2800f98c5ef98dff7c019e9"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/exit_signals.csv",
+      "bytes": 3473,
+      "sha256": "f5a837c5737f79ff0bcc0930e82ecb6a713ce1e0c8ebf67ca9e57419e9918640"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/holdings.csv",
+      "bytes": 17729,
+      "sha256": "30591b0a4740a76af2921c7b25b2577dd1f2f1c3a90bc37d49e98a7ade0d7715"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 204139,
+      "sha256": "d4270750c861c824a1232c83cddc3b9573b7883f26a0f77e9649264f0ede2421"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 10756,
+      "sha256": "4bca785d7d6174ab69009d02ee4226c652b24ebc38aa5169ea39ed269713669c"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1027,
+      "sha256": "a7b1ef4a8afcf9f2ae8b6a27807323f25f8e63345e6aeb7b336ab0cd340ebee5"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 8045,
+      "sha256": "cf714142050ba37240c2294a62614b2132d6560114fa354592890383dcf7dfc8"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/metrics.json",
+      "bytes": 259,
+      "sha256": "7d29aa9e224fc29a5cacfbc442b7402503ccd4ca9e7e6ca0b26f134411a76ca4"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/stock_daily_contributions.csv",
+      "bytes": 8045,
+      "sha256": "b0e069070b256b4a4da66b1a2cca8a81742ffe3e1d60c66aee6c9b635a80af97"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1270,
+      "sha256": "18fa91085eddda95269a9b428b4961f08a44c8a4c8f8720efa197184cc0636fe"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/suspension_marks.csv",
+      "bytes": 253,
+      "sha256": "c445fdb04b2bdbb4d93c2c9f2c9575dfdcd2f0b900ec5d621ea6083070419e5e"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/account/trades.csv",
+      "bytes": 5166,
+      "sha256": "2ec923fdecb6f5ca1faca1ca0df40f835b8f1e8a18dddf56a17f891fd8d87b5b"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/checkpoints/2026Q1.pt",
+      "bytes": 81693,
+      "sha256": "73bbad46e780cc053785c1727ee5daefa4ac3946569f3214ceb87a0d5b7cc2dd"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/checkpoints/2026Q2.pt",
+      "bytes": 82717,
+      "sha256": "4362e64c7eeaa0531efeb898db47e3a6322166b82a781548d26982af78622fd2"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/checkpoints/2026Q3.pt",
+      "bytes": 83869,
+      "sha256": "380bbe9a6280aec5aa21e0f9b95296075f8db6fa6cefd595f0e646fc905a92ef"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/experiment_protocol.json",
+      "bytes": 5127,
+      "sha256": "09f462b025b940d5ef2303b135c26f1e932e5f20c95832386a0180acade69af6"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/fit_audits.json",
+      "bytes": 21354,
+      "sha256": "be51f89681b3c2035d903d7838fc7c63c894cd88922006b86822c2866f52890a"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "5c0670790f8c21c77128b51c978225970ee4c54582f218c9fbba433701ccb66f"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/prior_band_checks.csv",
+      "bytes": 112681,
+      "sha256": "92d10caaa75d38da1eac55a3c228f74854ba45761bb95863b303c71d96da3b07"
+    },
+    {
+      "path": "results/daily_opportunity_ranked_band_trail8_20261002/prior_band_manifest.json",
+      "bytes": 15419,
+      "sha256": "2a7f491d8ccf2a1ab85a35cccf14960fc33af1e5439ac7752cbc7889cbddd039"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/account.csv",
+      "bytes": 1065,
+      "sha256": "c13a876694d17e10b9feb426d54a9f3245842b8b7c4d10328ae77c2094f96b7e"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/allocations.csv",
+      "bytes": 3664,
+      "sha256": "368b64aded385de224da6cfab5c834b626880fbefb11fd590916da5909a8bad6"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/corporate_events.csv",
+      "bytes": 231,
+      "sha256": "1e76ac1b9580b146c555b2fe21c920db8aed177860d6acad827cbe12566efe75"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/daily_nav.csv",
+      "bytes": 12231,
+      "sha256": "c87e391d6c7caea74b51286919a0ca9f9cc930bda74e6817fe4661eca9b79678"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/daily_run_status.json",
+      "bytes": 31328,
+      "sha256": "c5e55df71206261c97d817ec175898acf386a3ff717a9f3551e69ac144ceb812"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/execution_checks.csv",
+      "bytes": 33062,
+      "sha256": "d0e5cbb3037fedd6570c8ec36ca5eb38c251c0dcac0a0e1e5bd6b6fea5c052d8"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "3b0415160abbb7bd97eb5cb5cf79476acb67fb496edd77829db956a0d9c90ad1"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/exit_signals.csv",
+      "bytes": 4040,
+      "sha256": "7e272fb69eb7a0b14ff38f82bc803454ac1699abfab982890a67a3a0b464f47b"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/holdings.csv",
+      "bytes": 21719,
+      "sha256": "48d35740a938df38be8a9c90cf9f20acf17975376c11629cfda2d233b70f6d4f"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 46302,
+      "sha256": "dd00c08447a8f0821b1d935d9d5de3c17ecec862db8eda3077391115ab2fc544"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12231,
+      "sha256": "c87e391d6c7caea74b51286919a0ca9f9cc930bda74e6817fe4661eca9b79678"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1198,
+      "sha256": "450bca11054d9e4874da11294243887f3bef1fd7f36d478451172cd12b07ae45"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 9458,
+      "sha256": "04ca0b48d849c9f6c99d5b9b245d2dae8880935b3e7c664b77e897a4c142aa8a"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/metrics.json",
+      "bytes": 292,
+      "sha256": "b86d19fba4bc730ae6af844a7f0c96e019cedd685c914da75b35f971dd6698ff"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/stock_daily_contributions.csv",
+      "bytes": 9458,
+      "sha256": "28dcd596b457e08e5fcaeced09d1bf9eee0483eaa9e1a26dc606fb6ad52d6fde"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 1334,
+      "sha256": "5d4427dda33d62cca1a03ee0c3708ef8a10abf5a1759fdda93fa2991c556c0fc"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/suspension_marks.csv",
+      "bytes": 5578,
+      "sha256": "a6172c342a4e13f86ec0753e0d21da1431b15a8dff2bcf1e7acc806db7e1cfa0"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/account/trades.csv",
+      "bytes": 5734,
+      "sha256": "7ff90b36d0b0a787c88621181dda6dfa73bb80fdae2e19242a9b93f87da6d7cf"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1026567,
+      "sha256": "f97589f29c034c951baf8c6eccade62b68a4fca751b73818f0afc2a4120a21e0"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/checkpoints/2026Q2.pt",
+      "bytes": 387281,
+      "sha256": "027939ee2f82c0c3c938410a6406526b5f2ccd0b7514994e76151f0c06eb4ace"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/checkpoints/2026Q3.pt",
+      "bytes": 693482,
+      "sha256": "6b4bf962db44d141558249d3bf21c70bd29a112fd0974374662e27c0c750636f"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/diagnostics/daily_forecast_quality.csv",
+      "bytes": 133534,
+      "sha256": "3642e511ba4a77233b151c9f23232023600a223a706086badb4d2e3889a8b259"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/diagnostics/monthly_forecast_quality.csv",
+      "bytes": 7027,
+      "sha256": "4589a68a37a2df7f9de5531c10a42db2a74a25f5abcdae381e64f189e49b902f"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/diagnostics/quality_status.json",
+      "bytes": 518,
+      "sha256": "9ed0960fb7dfb641cd0829971e2c7389c58decc65666adf8b8f69f4d7b33f089"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/experiment_protocol.json",
+      "bytes": 2710,
+      "sha256": "232ddfebee31e829881105abb1227d270a4bcf88ca7f76a4532016de00fe0a66"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/feature_manifest.json",
+      "bytes": 690156,
+      "sha256": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/fit_audits.json",
+      "bytes": 19794,
+      "sha256": "8df669a3d8e6e8dae078aab21346ccddd238b0ad4529adc35cfed5d5a18c5a4c"
+    },
+    {
+      "path": "results/daily_opportunity_trees_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "5efc70b1369662a89b877fd0bff2804b56e49a1fc7723848d89a5df6ef34ef00"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/experiment_protocol.json",
+      "bytes": 6589,
+      "sha256": "8f98f4dd54ae9b26ce212c184bbe3fa573cb2d99ba8492f29f49c889f45b18f0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_20261002/prediction_manifest.json",
+      "bytes": 473,
+      "sha256": "025757bf19b2ec10231a4ba64995682f10e8930239cd3b83007bef21674e9494"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/experiment_protocol.json",
+      "bytes": 7053,
+      "sha256": "9ab59571272b4a95150d11e7e5976c68a23e05b4c9f814d1fbede89a0184afe6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "1323e431eb3cbbcf9eba3576b16250431872a9d0a88851f6290d23bf02f3b72f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/prior_band_checks.csv",
+      "bytes": 291200,
+      "sha256": "c76d2b70cf61c13579594e7b9223d6dda883955663ce5b0f25082ddece3af275"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_20261002/prior_band_manifest.json",
+      "bytes": 41882,
+      "sha256": "ac5c2918be2e2bbd07da9d6432a79ce8d15ae2257f7cdcf647ef38e49ae848e8"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/account.csv",
+      "bytes": 1112,
+      "sha256": "26c12c4d2ffaba6b8548f1b3daaa4b851b3ea22bfc677d65cf0744fa477b3db2"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/allocations.csv",
+      "bytes": 6797,
+      "sha256": "836b0c8cd1d851c75b3fd21369e6ac0bfa0f5f91994b77fae00f5260313b9a37"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/corporate_events.csv",
+      "bytes": 231,
+      "sha256": "10930f41fcca3c302ea70c093c1f4688c978454791cab3a1c82a33d23602ee49"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/daily_nav.csv",
+      "bytes": 13901,
+      "sha256": "d28bccde7e5c21996c9c22cba212237c3d97a9d0d60255ae6e507b7a2602502a"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/daily_run_status.json",
+      "bytes": 237261,
+      "sha256": "2a98004781e3e5dd2646dd163c5a88afe41e72d0bc580f07a19b0d11e3a55d30"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/execution_checks.csv",
+      "bytes": 62195,
+      "sha256": "1d6c5de7aa9fa47f3bf782b9477b7b8268f9f8b2e621d2510a2dcbf184dd5963"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/exit_signals.csv",
+      "bytes": 7007,
+      "sha256": "958f7d0f14ff41ffb418f31dab215a5d8b45dbebe688d798115dcbe8887b6af5"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/holdings.csv",
+      "bytes": 32065,
+      "sha256": "447900a874d3178e1b956c8c7327e0b7c5bb92c6668356e9d002fb42d99d6173"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_checks.json",
+      "bytes": 270276,
+      "sha256": "474a53a8746d84cd95e0cad4cf6aafed5451a5fc21d3cb429becd7479d45caf1"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 13901,
+      "sha256": "d28bccde7e5c21996c9c22cba212237c3d97a9d0d60255ae6e507b7a2602502a"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_monthly.csv",
+      "bytes": 1272,
+      "sha256": "6bfdfaaa133fb205dcf0bd8d9d12c65775f353334957d7167a74f068ea55d41a"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 14306,
+      "sha256": "c3725e9ea3549a6dba36a9b72dc38fb7a1accd572bf7c02a20802d029ea37c84"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/metrics.json",
+      "bytes": 272,
+      "sha256": "5aa67b4a1c4f3b72bdf305858cb7d86202201d9f48f745e81b1dde84eb42a43e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/stock_daily_contributions.csv",
+      "bytes": 14306,
+      "sha256": "278902937561c4895b35ea2107a0437ef52958ee45ac462661da9d0e0fe77d75"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/stock_monthly_contributions.csv",
+      "bytes": 2440,
+      "sha256": "25c6e4dc70c44d526f129133c87c9af432f213f4f7d68ad8107dfb6e5b5a4849"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/suspension_marks.csv",
+      "bytes": 685,
+      "sha256": "9afe7df10ccb5097683440d58f3bd7d84f129a2fc1b4a470ecb165d7d08a96d7"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/account/trades.csv",
+      "bytes": 10278,
+      "sha256": "89a78d4332150bbc4223564f6ecd3e119d30f001cc088ccf4a457db9babb11f8"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/experiment_protocol.json",
+      "bytes": 7053,
+      "sha256": "9ab59571272b4a95150d11e7e5976c68a23e05b4c9f814d1fbede89a0184afe6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/prediction_manifest.json",
+      "bytes": 672,
+      "sha256": "1323e431eb3cbbcf9eba3576b16250431872a9d0a88851f6290d23bf02f3b72f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/prior_band_checks.csv",
+      "bytes": 291200,
+      "sha256": "c76d2b70cf61c13579594e7b9223d6dda883955663ce5b0f25082ddece3af275"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_band_account_20261002/prior_band_manifest.json",
+      "bytes": 41882,
+      "sha256": "ac5c2918be2e2bbd07da9d6432a79ce8d15ae2257f7cdcf647ef38e49ae848e8"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/experiment_protocol.json",
+      "bytes": 7560,
+      "sha256": "b8c82116dc65787fe9fef828c00203c0c971ae30952b92c07b703ae0841d2614"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/liquidity_manifest.json",
+      "bytes": 2521,
+      "sha256": "a11f6d41aaaefd288931d231ec4447804218af4170b21d197a5b6008da2823de"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/prediction_manifest.json",
+      "bytes": 869,
+      "sha256": "603b3f9efdffe5d5cf49f01008bbc316c134f263c52dcd4daae14b5c87a8f558"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/prior_band_checks.csv",
+      "bytes": 222417,
+      "sha256": "026b6406597c5287c8e83608d927563522e2c52d3afbeff1521c00acf9a2475c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_20261003/prior_band_manifest.json",
+      "bytes": 34670,
+      "sha256": "6452488a762cc04b6187bdfa7f7551570718f9f8c264a88976aa776a93395da8"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/account.csv",
+      "bytes": 1009,
+      "sha256": "db05eab86c18a699d5cfdbee642a797e44dcc3f9e003bbc4de0ef4196a92b04e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/allocations.csv",
+      "bytes": 6815,
+      "sha256": "f4bad00690cef5f6de1e8cc1d15be2f44ef11a323c222e5e30beacd376cb5027"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/corporate_events.csv",
+      "bytes": 173,
+      "sha256": "e0063747b5090fe562dedf04cc167df3e0af7b626fd96a626bab93a5a1a0e444"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/daily_nav.csv",
+      "bytes": 12749,
+      "sha256": "3b764ccd593c371a07c4ff84c19fc081370bfe94ec0d84ffdf29c403b52d75a7"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/daily_run_status.json",
+      "bytes": 286377,
+      "sha256": "1b30af585e6f581d5d7b23936f2b1902947fde2d89bf74c1cd54215eea047802"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/execution_checks.csv",
+      "bytes": 48992,
+      "sha256": "77bda939c44b8d2e23982f221c51db80402bf2c5e6988837104d0190790487e6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/exit_signals.csv",
+      "bytes": 6953,
+      "sha256": "411e6edf2e59c6e721aca3d12ac2d8a7cb5e745b9821bc0b8e0a5a4cd98b8c9a"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/holdings.csv",
+      "bytes": 30966,
+      "sha256": "dcfa2900267444436890e7663f93e9e80f21950d739da51db4aa0d2d843353f4"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_checks.json",
+      "bytes": 325151,
+      "sha256": "8e0c57e02e1baeeffeaff2c1ca0fb47bd4471b9a221b6018cd6ae9e4e0f23119"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12749,
+      "sha256": "3b764ccd593c371a07c4ff84c19fc081370bfe94ec0d84ffdf29c403b52d75a7"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_monthly.csv",
+      "bytes": 1191,
+      "sha256": "b2b5ed2aecad8ac5d8ed610be73110d511755b8b118bdc90a107203330d70850"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 13737,
+      "sha256": "7979754a8d9c3c0a3644d6035e9f94a12ebb8676dd5c27bbb09ffc76d3bd25f5"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/metrics.json",
+      "bytes": 283,
+      "sha256": "4dd9f34d5580ba88289f5707dcc513c398aea10dc7b9edae99a325bc869c3afe"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/stock_daily_contributions.csv",
+      "bytes": 13737,
+      "sha256": "ee90a05dbe3033d7b9c2744df26051aa1b08a7ad73e5d39398ab6dcb8478a362"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/stock_monthly_contributions.csv",
+      "bytes": 2452,
+      "sha256": "6363fc35f7613564eeffacfd500216774cd19765819eff145f2300e2d37f8da0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/suspension_marks.csv",
+      "bytes": 685,
+      "sha256": "9afe7df10ccb5097683440d58f3bd7d84f129a2fc1b4a470ecb165d7d08a96d7"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/account/trades.csv",
+      "bytes": 10192,
+      "sha256": "8aa5ec56666b4cc117616f4329da77653f1de03d6b08f00624fd91822d089f01"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/experiment_protocol.json",
+      "bytes": 7560,
+      "sha256": "b8c82116dc65787fe9fef828c00203c0c971ae30952b92c07b703ae0841d2614"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/liquidity_manifest.json",
+      "bytes": 2521,
+      "sha256": "a11f6d41aaaefd288931d231ec4447804218af4170b21d197a5b6008da2823de"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/prediction_manifest.json",
+      "bytes": 869,
+      "sha256": "603b3f9efdffe5d5cf49f01008bbc316c134f263c52dcd4daae14b5c87a8f558"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/prior_band_checks.csv",
+      "bytes": 222417,
+      "sha256": "026b6406597c5287c8e83608d927563522e2c52d3afbeff1521c00acf9a2475c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_account_20261003/prior_band_manifest.json",
+      "bytes": 34670,
+      "sha256": "6452488a762cc04b6187bdfa7f7551570718f9f8c264a88976aa776a93395da8"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/experiment_protocol.json",
+      "bytes": 8170,
+      "sha256": "6cd2e0ae8f7d66981fce16c10080e6bd075f710dd283918cdb7f2191855d1b32"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/extension_manifest.json",
+      "bytes": 1741,
+      "sha256": "d730b507f24370cd812abe11432e6c837c608b78c8809ec0f941decc639ad615"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/liquidity_manifest.json",
+      "bytes": 3008,
+      "sha256": "44a40ec7b78da90b8be7544f31f139acd2d049bb7c23a1135fc71da033c7bd30"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/prediction_manifest.json",
+      "bytes": 969,
+      "sha256": "4210ea782d8b63b607100d24738c8df786e814d3f075c9159209c51bb3d78a3e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/prior_band_checks.csv",
+      "bytes": 205752,
+      "sha256": "1e27116cb4ed36fa57fed2371af137b42d6eb26fac78197bec9e2c577027ea2e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_20261003/prior_band_manifest.json",
+      "bytes": 28650,
+      "sha256": "725d2ed4b484c8fd2b73415cc532fc3b3a0d1229a20806a51672a73e5432f8b5"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/account.csv",
+      "bytes": 1076,
+      "sha256": "3f761eed923352eda1ab88ddea26f7e1023187999a998872b519ec2e4832056b"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/allocations.csv",
+      "bytes": 6137,
+      "sha256": "b1ed1ced0d18092df481824f1a23bd9f5d72a3322128bedc161bf5ce599db2b6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/corporate_events.csv",
+      "bytes": 87,
+      "sha256": "a5bf6a1722bf4d803d6fd4ebbb3941a682eee9ad7e344681a29935c37841ed82"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/daily_nav.csv",
+      "bytes": 12795,
+      "sha256": "9e7e16c50df5c194b84475fba0eef4e17f87f1423a17b2767af50bbdaeace6c3"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/daily_run_status.json",
+      "bytes": 297901,
+      "sha256": "b4f3e271259e3a3a5023a97c2cb25639575d6bb2ca4134b5fe4e49680bcac332"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/execution_checks.csv",
+      "bytes": 47975,
+      "sha256": "a50e1c1c272df9b40f44c2a7874a7cfd13ac6242096e1a6a4398f586750385d8"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/execution_protocol.json",
+      "bytes": 1203,
+      "sha256": "1d592f202d9c846a80ee987caf5221be10549c3d7497d0bdd7e507213fca5ceb"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/exit_signals.csv",
+      "bytes": 6700,
+      "sha256": "cba5fd79a2174ab806b41e64cc534820e4803feb5e6a58162d818d7d26a5d839"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/holdings.csv",
+      "bytes": 29230,
+      "sha256": "b4ea9ad40114ba494acac290dc0c5d1a637e195da25faea70275fa3e3eabb60a"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_checks.json",
+      "bytes": 337429,
+      "sha256": "b0d44d6ef9edb49be4418cfc50a633f69ee05c7db49699a2a64148cc950f7d1e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_daily_nav.csv",
+      "bytes": 12795,
+      "sha256": "9e7e16c50df5c194b84475fba0eef4e17f87f1423a17b2767af50bbdaeace6c3"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_monthly.csv",
+      "bytes": 1257,
+      "sha256": "62263be483b7948e52b7a099177df877cadae5c3481722cd7a05dc788cfcca46"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/independent_audit/independent_stock_daily_contributions.csv",
+      "bytes": 12981,
+      "sha256": "db974976e5355a05e3d5014966bf1b469708fd4c82441e91fae9b72a26f95ffb"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/metrics.json",
+      "bytes": 296,
+      "sha256": "b4db3b9723e26113a2127da053075f4166e1b534b3e33cb2c45ad8d5dba4ea70"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/stock_daily_contributions.csv",
+      "bytes": 12981,
+      "sha256": "fcfe3f3a9a846c2ff88899784ba0c1e8509baf715020730079f27c7b1a5ecc57"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/stock_monthly_contributions.csv",
+      "bytes": 2284,
+      "sha256": "167412ef200f216b8c10e76a88291384d34e43b6af546655dbd6821b60a1f2e3"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/suspension_marks.csv",
+      "bytes": 685,
+      "sha256": "9afe7df10ccb5097683440d58f3bd7d84f129a2fc1b4a470ecb165d7d08a96d7"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/account/trades.csv",
+      "bytes": 9706,
+      "sha256": "d1b0978871a8c7d7ddeeab685ef8aafbbe5d8ae877cf03e12f32e2f2e4b3ff85"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/checkpoints/2026Q1.pt",
+      "bytes": 1412617,
+      "sha256": "efffb9c27e5f7eb3b4f9366a552cc9f909b4b956716da6faa5dcfdd2fe952e6c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/checkpoints/2026Q2.pt",
+      "bytes": 710439,
+      "sha256": "b13b9cadecb45210bc22bd3429f361fd7a2977bd5b49226eb4eb44cf9ddff40c"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/checkpoints/2026Q3.pt",
+      "bytes": 875364,
+      "sha256": "ebc38cf6935d7bb9a42a16c8ec34f66a06f52e794e66f5fefb9e2b0c8983f8c0"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/experiment_protocol.json",
+      "bytes": 8170,
+      "sha256": "6cd2e0ae8f7d66981fce16c10080e6bd075f710dd283918cdb7f2191855d1b32"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/extension_manifest.json",
+      "bytes": 1741,
+      "sha256": "d730b507f24370cd812abe11432e6c837c608b78c8809ec0f941decc639ad615"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/feature_manifest.json",
+      "bytes": 693139,
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/fit_audits.json",
+      "bytes": 23173,
+      "sha256": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/liquidity_manifest.json",
+      "bytes": 3008,
+      "sha256": "44a40ec7b78da90b8be7544f31f139acd2d049bb7c23a1135fc71da033c7bd30"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/prediction_manifest.json",
+      "bytes": 969,
+      "sha256": "4210ea782d8b63b607100d24738c8df786e814d3f075c9159209c51bb3d78a3e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/prior_band_checks.csv",
+      "bytes": 205752,
+      "sha256": "1e27116cb4ed36fa57fed2371af137b42d6eb26fac78197bec9e2c577027ea2e"
+    },
+    {
+      "path": "results/daily_opportunity_trend_residual_liquid_cool_account_20261003/prior_band_manifest.json",
+      "bytes": 28650,
+      "sha256": "725d2ed4b484c8fd2b73415cc532fc3b3a0d1229a20806a51672a73e5432f8b5"
+    },
+    {
+      "path": "scripts/audit_daily_opportunity_account.py",
+      "bytes": 30453,
+      "sha256": "ef9ee5a9ec4166d2238799a769c835edf2489baf3bff0497035a509d9f62eabd"
+    },
+    {
+      "path": "scripts/audit_daily_opportunity_typed.py",
+      "bytes": 2025,
+      "sha256": "476c0512ba3c03cc871eea4d6e10e0403cf13e788ab3345def8859be4dd38073"
+    },
+    {
+      "path": "scripts/build_research_release_manifest.py",
+      "bytes": 5875,
+      "sha256": "1f871de73b6ae05be26061e5cb2988397b339fffb003aa44771c5e6ed1833762"
+    },
+    {
+      "path": "scripts/complete_suspension_checks.py",
+      "bytes": 9973,
+      "sha256": "b157747ea10f3e261fcf28048f7b60dbfa33f6dae4717a996374abd3080a37e2"
+    },
+    {
+      "path": "scripts/fetch_daily_opportunity_inputs.py",
+      "bytes": 18896,
+      "sha256": "185475f2130b7f27b853ab73700b352f727f4ec7bd753e2265a7c4fe5b528da2"
+    },
+    {
+      "path": "scripts/replay_daily_opportunity_accounts.py",
+      "bytes": 13544,
+      "sha256": "77e389b4d719843392ebfe6d35838fb000450637e9aa4325f43389f0ade78c28"
+    },
+    {
+      "path": "scripts/replay_daily_opportunity_final.py",
+      "bytes": 1633,
+      "sha256": "6858470f27c330764d45d1acb42fa41241b8b3337ce9dd4d7253518a2a4dd31a"
+    },
+    {
+      "path": "scripts/summarize_daily_opportunity.py",
+      "bytes": 6461,
+      "sha256": "04245e7bd3c5c5456283653259e62f7eef71ba9c747c3a83b723d9ce647a23b2"
+    },
+    {
+      "path": "src/research_daily_graph_data.py",
+      "bytes": 15206,
+      "sha256": "531611be92e09e484362b0235ce0ca90d7651f1dc3c870795f52b5d1102a695f"
+    },
+    {
+      "path": "src/research_daily_opportunity.py",
+      "bytes": 15410,
+      "sha256": "b334b320c55734484a91f22b69a48731464557500c1ce7e4c984edd04db9100b"
+    },
+    {
+      "path": "src/research_daily_opportunity_band_filter.py",
+      "bytes": 6830,
+      "sha256": "338e4c31508ac2e391d13f7ed2b576aeb7e81b36d02c367a0eaf13751bcc8684"
+    },
+    {
+      "path": "src/research_daily_opportunity_diagnostics.py",
+      "bytes": 4326,
+      "sha256": "9edb672efe1f6535ebf51cc5ed2d8b2ea6ba8a6c71e3ccefcc86720b666a7b01"
+    },
+    {
+      "path": "src/research_daily_opportunity_execution.py",
+      "bytes": 35027,
+      "sha256": "4c21ad18856891da753fc2088cf98b6ae27dd8133619825a25c0a053c57427de"
+    },
+    {
+      "path": "src/research_daily_opportunity_extension_filter.py",
+      "bytes": 8305,
+      "sha256": "d8b9a0f537c6c3f14f388a58a0287b26726f03a3719fdb7fd6d501e20ae71e50"
+    },
+    {
+      "path": "src/research_daily_opportunity_features.py",
+      "bytes": 12384,
+      "sha256": "2ee140d8bbe254e00af9cc7adef31de3a2ebbb657652b31b4277e00552a610c0"
+    },
+    {
+      "path": "src/research_daily_opportunity_leadership.py",
+      "bytes": 15533,
+      "sha256": "f10a3d455da5b338352b5db396358e3c452c229a3e655a875a04372597c27f90"
+    },
+    {
+      "path": "src/research_daily_opportunity_liquid_filter.py",
+      "bytes": 13180,
+      "sha256": "ec5f220d8dbbddc167be98fde0181fe501a23ea528f303900abe04fb5581d42a"
+    },
+    {
+      "path": "src/research_daily_opportunity_liquid_runner.py",
+      "bytes": 5143,
+      "sha256": "926e6ed6c0ffebfe4570f5da587be779f01eaad44847295d064519eb206542f8"
+    },
+    {
+      "path": "src/research_daily_opportunity_masked_features.py",
+      "bytes": 10911,
+      "sha256": "76e995c368deef2e29b3ff37b3d1856d991e1f4d8b498a68468b99ae9ea7b722"
+    },
+    {
+      "path": "src/research_daily_opportunity_model.py",
+      "bytes": 31109,
+      "sha256": "c9e831554c77c11e2971620c59a83a50d2cbae86bbae71cb99759781d10652f3"
+    },
+    {
+      "path": "src/research_daily_opportunity_online.py",
+      "bytes": 7705,
+      "sha256": "21b9f3874020e65096c7f7af96796cd24a719efc104068c020be8464ed606d76"
+    },
+    {
+      "path": "src/research_daily_opportunity_path.py",
+      "bytes": 19093,
+      "sha256": "7b5c331477e8a764beb76124d6c786258d4a47a74a0a215e00a17ac5ec360f26"
+    },
+    {
+      "path": "src/research_daily_opportunity_path_runner.py",
+      "bytes": 12579,
+      "sha256": "24e51a33f5ecc036fc4b3752a5a4cb764cff9bb6daebfa576e4a326952f45430"
+    },
+    {
+      "path": "src/research_daily_opportunity_path_targets.py",
+      "bytes": 11843,
+      "sha256": "382dc152169d67690211155b16d9ca9b71efa768e421c2256ea762cd228aa55b"
+    },
+    {
+      "path": "src/research_daily_opportunity_ranked.py",
+      "bytes": 8988,
+      "sha256": "9c25826262a1e66708d9a7bf3eb18c58042a27534ed80ebc91b870a016bd5b4c"
+    },
+    {
+      "path": "src/research_daily_opportunity_runner.py",
+      "bytes": 4732,
+      "sha256": "38a06e4f38f0bd1213f426cf5a6282417f37c21baf05cd6ceaead4705e89b91e"
+    },
+    {
+      "path": "src/research_daily_opportunity_trailing.py",
+      "bytes": 2996,
+      "sha256": "c4d9ce4ac745e84cfcff58ef8abbe9ed89bd765576e638b00376157e28a1dbfc"
+    },
+    {
+      "path": "src/research_daily_opportunity_trees.py",
+      "bytes": 9892,
+      "sha256": "112b3462060596283192be5eff6dbcabf95f073ce831d728c5c0092c5573ea18"
+    },
+    {
+      "path": "src/research_daily_opportunity_trend_residual.py",
+      "bytes": 15352,
+      "sha256": "c84ef6afadcb1e34cb40761734091463043abd1f8ffbbd7a84456d6060e9826f"
+    },
+    {
+      "path": "src/research_daily_reentry.py",
+      "bytes": 6373,
+      "sha256": "2d6c3d038901db07952fd599cbf1381b18936dae7dade7631deaf2e4447332b3"
+    },
+    {
+      "path": "tests/test_complete_suspension_checks.py",
+      "bytes": 3601,
+      "sha256": "bde2af512da4c1696fc9580a55b146ab7cd890f1a7e016ca0afe716a357f8cdf"
+    },
+    {
+      "path": "tests/test_daily_graph_data.py",
+      "bytes": 12109,
+      "sha256": "15935390d7400525124e48cc0e9155da32a705f3ab3a1aeeae11fe1d6d75d773"
+    },
+    {
+      "path": "tests/test_daily_opportunity_audit.py",
+      "bytes": 10136,
+      "sha256": "f844bc7ea7327b7669e0160938f70dca76eef6fb2ad24253b24dc17ef3fce79f"
+    },
+    {
+      "path": "tests/test_daily_opportunity_band_filter.py",
+      "bytes": 2563,
+      "sha256": "21287e0946f64cc64ef7ecacb0f2cc893c6badf32d8bbf5f50bea8f6c879082f"
+    },
+    {
+      "path": "tests/test_daily_opportunity_execution.py",
+      "bytes": 20373,
+      "sha256": "228689c8434b85ed2ebffdc0190c2b290f9eb37c8d72977737ed596f32cd79b8"
+    },
+    {
+      "path": "tests/test_daily_opportunity_extension_filter.py",
+      "bytes": 7073,
+      "sha256": "25a0aa232e843aa0781176e19402895bc26e1e339bad530cd181dc621d3d67a1"
+    },
+    {
+      "path": "tests/test_daily_opportunity_features.py",
+      "bytes": 6006,
+      "sha256": "f1226b5a4f80aa1f1eb046f3d1b7bb407ccbff56d3c834c49ec4d49479ea8044"
+    },
+    {
+      "path": "tests/test_daily_opportunity_integration.py",
+      "bytes": 15404,
+      "sha256": "d627ba17b2cfa53e9c841640bbe92f7c56d126009d337df84b654f43a00fab80"
+    },
+    {
+      "path": "tests/test_daily_opportunity_leadership.py",
+      "bytes": 5180,
+      "sha256": "50d35c1c1fdaf7996a3440d6406c55d241a08f7a2a7533182520a80069270ba4"
+    },
+    {
+      "path": "tests/test_daily_opportunity_liquid_filter.py",
+      "bytes": 7764,
+      "sha256": "edc867e26cdf91e785a55c903f19885905e7874bfd4c1d017f1885baf4a044ee"
+    },
+    {
+      "path": "tests/test_daily_opportunity_liquid_runner.py",
+      "bytes": 10403,
+      "sha256": "b9d6f46e426a64a7155051fa75f5ea77bb66da64ba61b70a730b7e115a5bd256"
+    },
+    {
+      "path": "tests/test_daily_opportunity_masked_features.py",
+      "bytes": 6876,
+      "sha256": "47087e46605d762a7ad7e5158dfdd3dda694cc3136337695d9041b2083bf875a"
+    },
+    {
+      "path": "tests/test_daily_opportunity_model.py",
+      "bytes": 13145,
+      "sha256": "c88bd79b279f3800538f2049c43ade10c30239a9fe8721187dff1f7012140391"
+    },
+    {
+      "path": "tests/test_daily_opportunity_online.py",
+      "bytes": 3941,
+      "sha256": "79e8e2f711d66911c30663741924c7786ce802eee2d1fe70cb83992dd5bdde1a"
+    },
+    {
+      "path": "tests/test_daily_opportunity_path.py",
+      "bytes": 5701,
+      "sha256": "e25043da17baffb375cedad2c90ab339451a8632c5920de9062688929cb6cbe2"
+    },
+    {
+      "path": "tests/test_daily_opportunity_path_runner.py",
+      "bytes": 5366,
+      "sha256": "ba3fda25066eb7c07efe06ce895ecaf6888e7073bdef54cae5a4ed0062902671"
+    },
+    {
+      "path": "tests/test_daily_opportunity_path_targets.py",
+      "bytes": 12016,
+      "sha256": "9a58299bc60097a93b71bd77550e159172401e04d6ca36cf672dcf58490a5475"
+    },
+    {
+      "path": "tests/test_daily_opportunity_ranked.py",
+      "bytes": 2661,
+      "sha256": "5e836a26118be2187ebb1c8b3f7285c4ab2ec0c026cc4ca5a8546577615a5343"
+    },
+    {
+      "path": "tests/test_daily_opportunity_trees.py",
+      "bytes": 2062,
+      "sha256": "5f3d61fc3a18487432bc4812114d05023b708e9c3719f759b39f3212738b6dd2"
+    },
+    {
+      "path": "tests/test_daily_opportunity_trend_residual.py",
+      "bytes": 4912,
+      "sha256": "8e96e02dd54f2c0966dd2dee1c1aad6317a254c51c0d001e32fb639fa8ae9a51"
+    },
+    {
+      "path": "tests/test_daily_opportunity_typed_audit.py",
+      "bytes": 1923,
+      "sha256": "1d0d2916dd8e13a84e43126c61b9d09e692b3fa295b0a678a71cdd42c4bd5c44"
+    },
+    {
+      "path": "tests/test_daily_reentry.py",
+      "bytes": 2001,
+      "sha256": "fb329ad77311445bfc213ddb34740ee76a03cb954c880c783c33c9c7ca386825"
+    }
+  ],
+  "secret_scan": "passed known-key-shape and token-assignment checks",
+  "exclusions": [
+    "raw market/API caches and all pkl",
+    "large full-stock forecast/eligibility CSVs",
+    "regenerable capital_priority.csv diagnostics",
+    "unrelated personal documents/scripts"
+  ],
+  "local_verification": "Exact recorded hashes use original local paths; published outputs do not replace omitted vendor caches"
+}

@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "protocol": {
+    "hypothesis": "Current amount percentile >= .95 plus a fixed known return20 <= .50 extension veto",
+    "purpose": "Research stock leadership/liquidity selection; not a capital-capacity necessity",
+    "inputs": "V3 frozen amount_percentile, explicit availability and current feature eligibility only",
+    "order": "Current known amount gate and extension veto, then positive native utility and mainboard top 40, then exact signal-day official band >= .075",
+    "precision": "Threshold represented in the stored factor dtype; no decimal rounding of percentiles",
+    "retained_positions": "Unchanged; eligibility controls new purchases, never a forced-sale rule",
+    "predictions": "All source rows and all native forecast columns retained without changes",
+    "extension_input": "Signal-day complete-market-calendar adjusted return20 and its explicit availability mask",
+    "extension_unknown": "Unknown return20 remains unknown and is not vetoed; no future quote or compressed-stock-calendar fallback",
+    "extension_threshold_origin": "Reuse the prior monthly moderate-extension .50 hypothesis; twenty sessions is not calendar-month mom1; no threshold scan",
+    "maximum_known_return20": 0.5
+  },
+  "maximum_known_return20": 0.5,
+  "source_sha256": "d8b9a0f537c6c3f14f388a58a0287b26726f03a3719fdb7fd6d501e20ae71e50",
+  "liquidity_manifest_sha256": "44a40ec7b78da90b8be7544f31f139acd2d049bb7c23a1135fc71da033c7bd30",
+  "checks_sha256": "c601f8808a89a14941a0aa0ad4b8bb44b5bac10c3d51557b2b0c7b09b3d387ba",
+  "feature_store_sha256": "155c5459484cff7a4d704e38ab5dfba31bb9672b8ae8d86bb657e018d1143107",
+  "rows": 919874,
+  "known_return20": 911313,
+  "vetoed": 11749
+}

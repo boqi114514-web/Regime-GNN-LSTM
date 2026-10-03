@@ -1,0 +1,90 @@
+{
+  "neural_v1": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_20261002",
+    "prediction_manifest_sha256": "34406f706ed62ca450c62c29eb8460c0cd941858330d3e0cb2a8dd4fe06778fb",
+    "independent_audit_sha256": "ac6bcd32fdaa52841624ca996b24a50ffb21ab6590b118436a89aadf3022edcc"
+  },
+  "no_graph": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_no_graph_20261002",
+    "prediction_manifest_sha256": "11d66426fa27a694cb54bc876fc36591828cca22675cc7f9a535dcedb8bbf982",
+    "independent_audit_sha256": "1b877e72bb1eec06cdd4a290c1e2aff280be232645a272bae035c6a7b839d5c4"
+  },
+  "trees_v1": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trees_20261002",
+    "prediction_manifest_sha256": "5efc70b1369662a89b877fd0bff2804b56e49a1fc7723848d89a5df6ef34ef00",
+    "independent_audit_sha256": "dd00c08447a8f0821b1d935d9d5de3c17ecec862db8eda3077391115ab2fc544"
+  },
+  "attention_rank_v2": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_ranked_20261002",
+    "prediction_manifest_sha256": "64619a57cf169e98775e417d356576e2ba4bce9ee50b5a259aa6649f3a5fa774",
+    "independent_audit_sha256": "ffcad1585e436c898991d3a91052b9524d8ad46d47faaea561d90ac105a0a809"
+  },
+  "v2_prior_band": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_ranked_band_20261002",
+    "prediction_manifest_sha256": "5c0670790f8c21c77128b51c978225970ee4c54582f218c9fbba433701ccb66f",
+    "independent_audit_sha256": "0b5b4db498a593876e8cb2f71169333485b597b863813c21ea0d24da29a571d0"
+  },
+  "v2_online": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_online_20261002",
+    "prediction_manifest_sha256": "4628e7e3650018ca31e4531c2a0efc69157b77354b52c6b77f7b9db81ebde74c",
+    "independent_audit_sha256": "c6c082ca6742c4b31424285c3f71002a33065731bc8ea45c2a38eeab6a01817d"
+  },
+  "v2_online_prior_band": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_online_band_20261002",
+    "prediction_manifest_sha256": "3c1a26ffb0a1dad9c52a8d74885eec1bc52ae6b5a305040b66432dd10bb93630",
+    "independent_audit_sha256": "4bcb0e21ee2da3d23b8d769dbc2d67cae8f60e15fb2447ea2640116f9f6c9bad"
+  },
+  "v2_prior_band_trail8": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_ranked_band_trail8_20261002",
+    "prediction_manifest_sha256": "5c0670790f8c21c77128b51c978225970ee4c54582f218c9fbba433701ccb66f",
+    "independent_audit_sha256": "d4270750c861c824a1232c83cddc3b9573b7883f26a0f77e9649264f0ede2421"
+  },
+  "leadership_masked_v3": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_leadership_band_account_20261002",
+    "prediction_manifest_sha256": "a2bb5170d24eb60f72c4f918a4f523776f38dd46bb079794e5c9b076e69f2bef",
+    "independent_audit_sha256": "3ed70f746c00a8c82ec47af8f4c7260e6b32be1dbef0560fafb424f6da0c1e82"
+  },
+  "leadership_masked_trees": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_leadership_trees_band_account_20261002",
+    "prediction_manifest_sha256": "3f1456c46e2bcd816abe92e67680c916c2e8b320e05773cdba55a31c28dfc9d1",
+    "independent_audit_sha256": "90d34d5361fb351b0649d532c0ec1a455536bcdc2158a1942d0d688b26b392c4"
+  },
+  "trend_residual": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_band_account_20261002",
+    "prediction_manifest_sha256": "1323e431eb3cbbcf9eba3576b16250431872a9d0a88851f6290d23bf02f3b72f",
+    "independent_audit_sha256": "474a53a8746d84cd95e0cad4cf6aafed5451a5fc21d3cb429becd7479d45caf1"
+  },
+  "trend_residual_liquid": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_liquid_account_20261003",
+    "prediction_manifest_sha256": "603b3f9efdffe5d5cf49f01008bbc316c134f263c52dcd4daae14b5c87a8f558",
+    "independent_audit_sha256": "8e0c57e02e1baeeffeaff2c1ca0fb47bd4471b9a221b6018cd6ae9e4e0f23119"
+  },
+  "trend_residual_liquid_cool": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_liquid_cool_account_20261003",
+    "prediction_manifest_sha256": "4210ea782d8b63b607100d24738c8df786e814d3f075c9159209c51bb3d78a3e",
+    "independent_audit_sha256": "b0d44d6ef9edb49be4418cfc50a633f69ee05c7db49699a2a64148cc950f7d1e"
+  },
+  "path_payoff_prior_band": {
+    "status": "not_independently_completed",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_band_account_20261003"
+  },
+  "path_payoff_liquid": {
+    "status": "complete_independently_audited",
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_liquid_account_20261003",
+    "prediction_manifest_sha256": "982eecb2621ee9b951e4de2fa8349f657010023a1f52dd6b275a9aa2c0e3c57f",
+    "independent_audit_sha256": "7538fdc04e3223d4a24fa4d8f89c5cbe06272576d41290cdfe827ce60563fe64"
+  }
+}

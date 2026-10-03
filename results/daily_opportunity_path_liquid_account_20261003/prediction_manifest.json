@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "rows": 919874,
+  "sessions": 178,
+  "artifacts": {
+    "predictions.pkl": "ce259e26d0dfb356db81dcdf18c341231b9316dbb00bafafb33dad4d58d933bb",
+    "fit_audits.json": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90",
+    "experiment_protocol.json": "6f5af6449a70a3968a565c5bb02d152705e8faee4f4f44ce7d1b860e22aa7e37",
+    "feature_manifest.json": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6",
+    "prior_band_checks.csv": "fbb9896d9a54680221f19cb62dde98b8bebd0c8603e84a0ec76ca9129fc4ce2e",
+    "prior_band_manifest.json": "f21ba1fff911ae99f76bd040c0019f1a1fc2227f5f3b937b3c51aca0e0ea8315",
+    "liquidity_checks.csv": "41b75639abfd8a6011e2ba94760a40b33f957a0b06412c7067fdf96b35a63db7",
+    "liquidity_manifest.json": "02040a360271f3971ad79f9b0e15b6d5c5eabc6166cf81b88139f77cc7199b87",
+    "path_targets.pkl": "2d8e31ac46f07cc1707f720c485848e54c0201bedf6b08fcc506a0f0609ea904",
+    "path_targets_manifest.json": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9",
+    "path_filter_manifest.json": "454ca8b70c21484a57168ff4194955c793990a9af884b0ea7aff7b7978283c45"
+  }
+}

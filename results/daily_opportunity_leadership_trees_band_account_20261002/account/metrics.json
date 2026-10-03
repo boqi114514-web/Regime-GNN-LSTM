@@ -1,0 +1,11 @@
+{
+  "ending_equity": 25825.000000000004,
+  "total_profit": 825.0000000000036,
+  "total_return_pct": 3.300000000000014,
+  "max_daily_drawdown_pct": 25.812313731191384,
+  "target_hit_months": 0,
+  "losing_months": 5,
+  "trades": 83,
+  "trading_sessions": 178,
+  "account_months": 9
+}

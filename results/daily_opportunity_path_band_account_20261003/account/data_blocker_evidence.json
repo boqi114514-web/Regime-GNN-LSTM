@@ -1,0 +1,139 @@
+{
+  "review_date": "2026-10-03",
+  "account_complete": false,
+  "full_period_profit_publishable": false,
+  "blocker_kind": "delisting_lifecycle_and_post_delisting_valuation_not_implemented",
+  "conclusion": "The missing SH quotes correspond to delisting, not an ordinary continuing suspension. No quote or suspension event is fabricated, and no terminal portfolio value is assigned.",
+  "observed_execution_error": {
+    "message": "No recent valid quote for missing holding 600421.SH",
+    "message_source": "Observed execution failure reported by parent agent; persisted status stores the error type only",
+    "status_path": "results/daily_opportunity_path_band_account_20261003/account/daily_run_status.json",
+    "status_sha256": "93ce6755931286782f8ce9424dbe3fb2e1ef8d60732b5949e9382bf9f9980d30",
+    "persisted_status": {
+      "account_complete": false,
+      "error_type": "ValueError",
+      "start": "2026-01-01",
+      "end": "2026-09-24"
+    },
+    "exact_failure_session": null,
+    "last_observed_per_day_cache_session": "2026-09-18",
+    "note": "Do not represent the last cache date as an exact failed execution timestamp. The engine requests a 90-calendar-day quote window, so its last actual 2026-06-22 quote eventually falls outside that request."
+  },
+  "raw_quote_source": {
+    "path": "data/raw/daily_opportunity_20261002/adjusted_daily.pkl",
+    "sha256": "056d377c51f5de2500e9fbf0f5943911046a08e374b18ae28848b651c0fe7262",
+    "source_end": "2026-09-24"
+  },
+  "stocks": {
+    "600421.SH": {
+      "last_actual_sh_quote": "2026-06-22",
+      "last_actual_raw_close": 0.24,
+      "quote_rows_in_verified_panel": 406,
+      "exchange_delisting_date": "2026-06-26",
+      "official_evidence": [
+        {
+          "publisher": "Shanghai Stock Exchange",
+          "title": "关于湖北华嵘控股股份有限公司股票摘牌的公告",
+          "published": "2026-06-22",
+          "url": "https://www.sse.com.cn/disclosure/announcement/listing/stock/c/c_20260622_10823158.shtml",
+          "verified_facts": "The delisting trading period ended on 2026-06-22 and the exchange removed 600421 on 2026-06-26."
+        }
+      ],
+      "latest_existing_suspend_cache": {
+        "path": "data/raw/execution_v1/suspension_checks/600421.SH_20260918_suspend.pkl",
+        "sha256": "aa471bc46821e281fd380a2f7ac8d4781e6a99fad7c75d8de75114814fe3254c",
+        "actual_returned_dates": ["20260702", "20260625", "20260624", "20260623"],
+        "actual_returned_types": ["S", "S", "S", "S"],
+        "warning": "A filename dated September does not make these June/July rows September suspension observations. The July row also cannot override the exchange's confirmed delisting date."
+      },
+      "latest_existing_daily_cache": {
+        "path": "data/raw/execution_v1/suspension_checks/600421.SH_20260918_daily.pkl",
+        "sha256": "156cee05e2b2b61e2d3ab5ff44d2580a011466955dab97d8c1e6cc659d343fd7"
+      }
+    },
+    "600193.SH": {
+      "last_actual_sh_quote": "2026-06-29",
+      "last_actual_raw_close": 0.16,
+      "quote_rows_in_verified_panel": 411,
+      "exchange_termination_decision": "2026-05-29",
+      "company_announced_delisting_trading_start": "2026-06-08",
+      "company_announced_expected_last_trading_date": "2026-06-29",
+      "reported_delisting_date": "2026-07-06",
+      "reported_delisting_date_source_kind": "Broker's own client-service notice; the precise SSE removal notice was not retrieved in this review",
+      "official_evidence": [
+        {
+          "publisher": "Shanghai Stock Exchange",
+          "title": "关于终止上海创兴资源开发股份有限公司股票上市的公告",
+          "published": "2026-05-29",
+          "url": "https://www.sse.com.cn/disclosure/announcement/listing/stock/c/c_20260529_10820239.shtml",
+          "verified_facts": "The exchange decided to terminate listing and specified a 15-session delisting trading period, with no price band on its first day and a 10 percent band on later days."
+        },
+        {
+          "publisher": "Shanghai Chuangxing Resources Development Co., Ltd.; company disclosure on CNINFO",
+          "title": "关于公司股票进入退市整理期交易的公告",
+          "published": "2026-05-30",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-05-30/1225340289.PDF",
+          "verified_facts": "The company specified 2026-06-08 as the start and 2026-06-29 as the expected final trading date. It also disclosed 24 months trading experience and a 500000-yuan account-assets condition for individual purchases of delisting-period shares; existing holders may sell."
+        },
+        {
+          "publisher": "China Securities Co., Ltd.",
+          "title": "关于“退市创兴”股票终止上市暨摘牌相关事项的公告",
+          "published": "2026-07-07",
+          "url": "https://www.csc108.citic/articleDetail?docId=4821680&fn=0&name=BUSINESS&referUrl=aboutus",
+          "verified_facts": "The broker's indexed client notice reports termination on 2026-07-06 and subsequent transfer to the delisted-company share-transfer market.",
+          "retrieval_limit": "Notice text was available in search results; a subsequent direct page open timed out."
+        }
+      ],
+      "latest_existing_suspend_cache": {
+        "path": "data/raw/execution_v1/suspension_checks/600193.SH_20260918_suspend.pkl",
+        "sha256": "c2ac96fe78fef9119da435667f369cd6f84dbe390f99445a283faf658fbee37b",
+        "actual_returned_dates": ["20260703", "20260702", "20260701", "20260630"],
+        "actual_returned_types": ["S", "S", "S", "S"],
+        "warning": "These pre-removal suspension rows are not observations of continuing SH-market suspension through September."
+      },
+      "latest_existing_daily_cache": {
+        "path": "data/raw/execution_v1/suspension_checks/600193.SH_20260918_daily.pkl",
+        "sha256": "d7a58977abcae33e929723600dcfd268dec894ad64fd82bc64cbe3a9b69fd7c8"
+      }
+    }
+  },
+  "direct_candidate_eligibility_evidence": {
+    "path": "results/daily_opportunity_path_band_20261003/predictions.pkl",
+    "sha256": "4619ec8db276a7177d1ef0f2e73d0def80d901cba4c49a480be3eaecd31ae887",
+    "600193.SH": {
+      "company_announced_delisting_period_start": "2026-06-08",
+      "eligible_true_signal_dates_in_that_period": [
+        "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-22",
+        "2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-29"
+      ],
+      "interpretation": "The missing lifecycle/permission guard actually admitted this stock to new-buy candidates. This field documents eligibility, not an invented reconstruction of missing final trade ledgers."
+    }
+  },
+  "identified_model_and_execution_gaps": [
+    "The 5-percent official-band exclusion is not a complete ST or delisting-life-cycle filter. Delisting-period stocks can have 10-percent bands and pass it.",
+    "The small-account engine does not model dated delisting-period purchase permissions, exchange termination, share-transfer conversion or post-delisting observable valuation.",
+    "held_marks checks latest S versus latest R and may carry an old close past delisting until its 90-day quote request becomes empty. Extending that window would hide the lifecycle gap rather than resolve it."
+  ],
+  "suspension_documentation": {
+    "publisher": "Tushare",
+    "url": "https://tushare.pro/document/2?doc_id=214",
+    "interpretation": "The documented output is daily suspension/resumption records. An old S row without a new R row does not establish an observed full-day suspension on an arbitrary later date."
+  },
+  "actions_taken": {
+    "existing_status_modified": false,
+    "existing_shared_caches_modified": false,
+    "new_shared_caches_published": 0,
+    "new_gateway_full_history_requests": 0,
+    "gateway_refresh_not_needed_for_diagnosis": "Primary exchange/company evidence already establishes delisting; further suspension calls cannot supply post-delisting valuation or missing purchase-permission logic.",
+    "account_rerun_started": false,
+    "invented_terminal_sale_or_zero_mark": false,
+    "safe_cache_helper": "scripts/complete_suspension_checks.py",
+    "safe_cache_helper_focused_tests_passed": 5,
+    "safe_cache_helper_executed": false
+  },
+  "required_before_reporting_this_variant_as_complete": [
+    "Implement and test a general, point-in-time security lifecycle and permission layer; do not use a named-stock blacklist.",
+    "Specify and validate treatment of already-held delisted shares with dated primary events and observable post-delisting data or an explicitly declared valuation convention.",
+    "Rerun and independently audit the entire account under the revised disclosed protocol; do not retrospectively splice an assumed terminal exit into this failed run."
+  ]
+}

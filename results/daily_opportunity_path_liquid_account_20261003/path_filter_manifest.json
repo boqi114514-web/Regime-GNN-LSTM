@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "mode": "liquid",
+  "declared_modes": [
+    "band",
+    "liquid"
+  ],
+  "source_directory": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003",
+  "source_sha256": "24e51a33f5ecc036fc4b3752a5a4cb764cff9bb6daebfa576e4a326952f45430",
+  "source_artifacts": {
+    "predictions.pkl": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\predictions.pkl",
+      "sha256": "cce61536c51a3f5cf74fbbc77486714f46de99b8c05408953fbfaf47b9e045d9"
+    },
+    "prediction_manifest.json": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\prediction_manifest.json",
+      "sha256": "a203b33721257ab89ce9c605de451bb5ef32e0ac15321d144a955335386138d7"
+    },
+    "path_targets.pkl": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\path_targets.pkl",
+      "sha256": "2d8e31ac46f07cc1707f720c485848e54c0201bedf6b08fcc506a0f0609ea904"
+    },
+    "path_targets_manifest.json": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\path_targets_manifest.json",
+      "sha256": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "rows": 885802,
+  "sessions": 178,
+  "artifacts": {
+    "predictions.pkl": "47d6d91515edb93fea13e0f835ded653ac8d91662f5ffa2ee1bf21e631d0493f",
+    "fit_audits.json": "8df669a3d8e6e8dae078aab21346ccddd238b0ad4529adc35cfed5d5a18c5a4c",
+    "experiment_protocol.json": "232ddfebee31e829881105abb1227d270a4bcf88ca7f76a4532016de00fe0a66",
+    "feature_manifest.json": "790c13fb082b6e16b9ea1edc99b613eb2f93fe40aba262c8b6e579948181fadb"
+  }
+}

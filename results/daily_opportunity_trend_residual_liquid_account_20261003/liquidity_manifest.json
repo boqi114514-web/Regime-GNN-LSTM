@@ -1,0 +1,41 @@
+{
+  "status": "complete",
+  "protocol": {
+    "hypothesis": "Fixed current signal-day all-market amount percentile >= .95",
+    "purpose": "Research stock leadership/liquidity selection; not a capital-capacity necessity",
+    "inputs": "V3 frozen amount_percentile, explicit availability and current feature eligibility only",
+    "order": "Current known amount gate, then positive native utility and mainboard top 40, then exact signal-day official band >= .075",
+    "precision": "Threshold represented in the stored factor dtype; no decimal rounding of percentiles",
+    "retained_positions": "Unchanged; eligibility controls new purchases, never a forced-sale rule",
+    "predictions": "All source rows and all native forecast columns retained without changes"
+  },
+  "rows": 919874,
+  "amount_threshold": 0.95,
+  "candidate_limit": 40,
+  "minimum_band_fraction": 0.075,
+  "source_directory": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_20261002",
+  "source_artifacts": {
+    "predictions.pkl": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_20261002\\predictions.pkl",
+      "sha256": "7e52ec3b38ab2128801db43e3a330f6e2f468a3b5f1c880651d09518f265d5e7"
+    },
+    "prediction_manifest.json": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_20261002\\prediction_manifest.json",
+      "sha256": "025757bf19b2ec10231a4ba64995682f10e8930239cd3b83007bef21674e9494"
+    },
+    "feature_store.pkl": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_20261002\\feature_store.pkl",
+      "sha256": "155c5459484cff7a4d704e38ab5dfba31bb9672b8ae8d86bb657e018d1143107"
+    },
+    "feature_manifest.json": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_trend_residual_20261002\\feature_manifest.json",
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    }
+  },
+  "feature_store_sha256": "155c5459484cff7a4d704e38ab5dfba31bb9672b8ae8d86bb657e018d1143107",
+  "checks_sha256": "232f4af0bb88e6cd097af9b610257488d8e7d0b05734e04de7f4cdd6813e74d6",
+  "source_sha256": "ec5f220d8dbbddc167be98fde0181fe501a23ea528f303900abe04fb5581d42a",
+  "amount_eligible": 45747,
+  "model_pool": 3808,
+  "accepted": 3805
+}

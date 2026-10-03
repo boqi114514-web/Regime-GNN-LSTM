@@ -1,0 +1,107 @@
+{
+  "model": {
+    "version": "daily_graph_opportunity_v1",
+    "frequency": "Daily after-close predictions, earliest execution next open",
+    "encoder": "Shared stock GRU, stock -> dated multi-label concept -> stock mean aggregation",
+    "experts": [
+      "breakthrough",
+      "reversal",
+      "continuation",
+      "range"
+    ],
+    "router": "Learned softmax of own temporal, graph and market-mean embeddings; optional weak causal-stage supervision",
+    "targets": {
+      "horizons": [
+        5,
+        10,
+        20
+      ],
+      "return": "Native simple forward return",
+      "downside": "Nonnegative forward maximum adverse excursion",
+      "rally_thresholds": [
+        0.1,
+        0.15,
+        0.3
+      ]
+    },
+    "label_purge": "Every horizon label_end_date strictly before fit_cutoff; training labels additionally strictly before the first validation signal",
+    "validation": "Last 20 available pre-cutoff sessions by default; train-only scaler; early stopping and optional native-unit calibration",
+    "score": "Expected simple return minus explicit nonnegative downside risk penalty, NOT historical momentum or a ranking-score alias",
+    "research_sources": [
+      "https://arxiv.org/abs/2110.13716",
+      "https://arxiv.org/abs/2106.12950"
+    ]
+  },
+  "features": {
+    "version": "daily_opportunity_features_v1",
+    "features": [
+      "return1",
+      "return5",
+      "return10",
+      "return20",
+      "return60",
+      "volatility20",
+      "downside_volatility20",
+      "ma5_vs_ma20",
+      "ma20_vs_ma60",
+      "breakout20",
+      "breakout60",
+      "drawdown20",
+      "drawdown60",
+      "intraday_range",
+      "close_location",
+      "intraday_pressure",
+      "overnight_gap",
+      "amount5_vs_prior20",
+      "amount_percentile",
+      "return5_percentile",
+      "return20_percentile",
+      "market_breadth5",
+      "market_breadth20",
+      "market_return1",
+      "market_dispersion20",
+      "market_amount5_vs_prior20"
+    ],
+    "horizons": [
+      5,
+      10,
+      20
+    ],
+    "calendar": "Complete market sessions; never bridge missing stock quotes",
+    "adjustment": "Actual daily adj_factor; no future month-end interpolation",
+    "label_return": "adj_close[t+h] / adj_open[t+1] - 1",
+    "label_downside": "max(0, 1 - min(adj_low[t+1:t+h]) / adj_open[t+1])",
+    "stage_labels": "Past-only weak context: breakout, reversal, continuation, range",
+    "universe": "All supplied SH/SZ boards including ChiNext and STAR; buy restriction is execution-only",
+    "scaling": "Fixed clipping bounds here; train-only standardization in model"
+  },
+  "fit_configuration": {
+    "hidden": 32,
+    "sequence_length": 20,
+    "epochs": 8,
+    "learning_rate": 0.001,
+    "weight_decay": 0.001,
+    "validation_sessions": 20,
+    "minimum_train_sessions": 20,
+    "patience": 3,
+    "seed": 42,
+    "stage_weight": 0.05,
+    "balance_weight": 0.01,
+    "calibrate": true,
+    "gradient_clip": 2.0
+  },
+  "train_start": "2025-01-01",
+  "account_start": "2026-01-01",
+  "account_end": "2026-09-24",
+  "use_graph": false,
+  "graph_update": "Dated snapshot schedule, not a newly observed daily graph",
+  "score": "(.2*mu5+.3*mu10+.5*mu20) - .5*(.2*risk5+.3*risk10+.5*risk20)",
+  "checkpoint_fits": "Quarterly, strictly purged before fit; daily inference and next-open execution",
+  "evaluation_status": "2026 is previously inspected research history, not a new untouched test set",
+  "source_sha256": {
+    "research_daily_opportunity_features.py": "2ee140d8bbe254e00af9cc7adef31de3a2ebbb657652b31b4277e00552a610c0",
+    "research_daily_opportunity_model.py": "c9e831554c77c11e2971620c59a83a50d2cbae86bbae71cb99759781d10652f3",
+    "research_daily_graph_data.py": "531611be92e09e484362b0235ce0ca90d7651f1dc3c870795f52b5d1102a695f",
+    "research_daily_opportunity.py": "b334b320c55734484a91f22b69a48731464557500c1ce7e4c984edd04db9100b"
+  }
+}

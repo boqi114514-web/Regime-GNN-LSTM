@@ -44,6 +44,8 @@ def inventory(kind):
                              and path.suffix in ('.json', '.csv', '.md', '.txt')
                              and path.name != 'capital_priority.csv')
     else:
+        files.update(ROOT/'scripts'/name for name in ('build_research_release_manifest.py', 'complete_suspension_checks.py'))
+        files.add(ROOT/'tests/test_complete_suspension_checks.py')
         files.update((ROOT/'src').glob('research_daily*.py'))
         files.update((ROOT/'tests').glob('test_daily*.py'))
         files.update((ROOT/'scripts').glob('*daily_opportunity*.py'))

@@ -1,0 +1,2601 @@
+{
+  "feature_protocol": {
+    "version": "daily_opportunity_features_v1",
+    "features": [
+      "return1",
+      "return5",
+      "return10",
+      "return20",
+      "return60",
+      "volatility20",
+      "downside_volatility20",
+      "ma5_vs_ma20",
+      "ma20_vs_ma60",
+      "breakout20",
+      "breakout60",
+      "drawdown20",
+      "drawdown60",
+      "intraday_range",
+      "close_location",
+      "intraday_pressure",
+      "overnight_gap",
+      "amount5_vs_prior20",
+      "amount_percentile",
+      "return5_percentile",
+      "return20_percentile",
+      "market_breadth5",
+      "market_breadth20",
+      "market_return1",
+      "market_dispersion20",
+      "market_amount5_vs_prior20"
+    ],
+    "horizons": [
+      5,
+      10,
+      20
+    ],
+    "calendar": "Complete market sessions; never bridge missing stock quotes",
+    "adjustment": "Actual daily adj_factor; no future month-end interpolation",
+    "label_return": "adj_close[t+h] / adj_open[t+1] - 1",
+    "label_downside": "max(0, 1 - min(adj_low[t+1:t+h]) / adj_open[t+1])",
+    "stage_labels": "Past-only weak context: breakout, reversal, continuation, range",
+    "universe": "All supplied SH/SZ boards including ChiNext and STAR; buy restriction is execution-only",
+    "scaling": "Fixed clipping bounds here; train-only standardization in model"
+  },
+  "raw_adjusted_daily": {
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\daily_opportunity_20261002\\adjusted_daily.pkl",
+    "sha256": "056d377c51f5de2500e9fbf0f5943911046a08e374b18ae28848b651c0fe7262"
+  },
+  "adjustment_coverage": {
+    "status": "complete",
+    "requested_start": "2024-09-01",
+    "requested_end": "2026-09-24",
+    "planned_dates": 501,
+    "completed_dates": 501,
+    "expected_daily_rows": 2579146,
+    "failures": {},
+    "shards": {
+      "20240902": {
+        "file": "adjustments\\20240902.pkl",
+        "rows": 5377,
+        "sha256": "3c829a623ad40aca036faa231758eec1bdf7ad147a906f2058cecb267fafc81b"
+      },
+      "20240903": {
+        "file": "adjustments\\20240903.pkl",
+        "rows": 5379,
+        "sha256": "366c4015f1348fc7faf1bd0f17ba41378dd776e1cfd3d3fd72d6f0494c612a4b"
+      },
+      "20240904": {
+        "file": "adjustments\\20240904.pkl",
+        "rows": 5380,
+        "sha256": "461ca7c3a98f689240809ff50f5e8b53af337a984b8e86db7e92ae3694279551"
+      },
+      "20240905": {
+        "file": "adjustments\\20240905.pkl",
+        "rows": 5379,
+        "sha256": "718932d3cf53cfe595ac154c8234396fc68a52e138fd4952b28ac1336d0c5062"
+      },
+      "20240906": {
+        "file": "adjustments\\20240906.pkl",
+        "rows": 5379,
+        "sha256": "0502d08b83cc40fb77c5540010105727b86c58cf292094e9328bbced718e30c0"
+      },
+      "20240909": {
+        "file": "adjustments\\20240909.pkl",
+        "rows": 5379,
+        "sha256": "9cc4f4a313455e71ea47d1a225b3f1a2c7b1f21da7d16cd2ba3dbc7c2ab8bcee"
+      },
+      "20240910": {
+        "file": "adjustments\\20240910.pkl",
+        "rows": 5379,
+        "sha256": "2c4f6c28840b49c8df94e18c39bce4249f05ebd9616e1b1d77ded1a2c32d2abc"
+      },
+      "20240911": {
+        "file": "adjustments\\20240911.pkl",
+        "rows": 5380,
+        "sha256": "f6a79ebc948c8bc31c3b771c23f1ffcea22158061e1eb60b3af67953c1f6eae8"
+      },
+      "20240912": {
+        "file": "adjustments\\20240912.pkl",
+        "rows": 5380,
+        "sha256": "b3585dea152d141ea08146e076c5581d71add4ec6170bb4debb5aa4ad11a7d5e"
+      },
+      "20240913": {
+        "file": "adjustments\\20240913.pkl",
+        "rows": 5381,
+        "sha256": "1e1def3c32fdb70b81fa24a02fc6e1692437958c5e717f7a384474724c9dcf42"
+      },
+      "20240918": {
+        "file": "adjustments\\20240918.pkl",
+        "rows": 5380,
+        "sha256": "cb0141b2736c276eb63eacda129ffbb89e3c95137468212e2dac7d9099ae0e0c"
+      },
+      "20240919": {
+        "file": "adjustments\\20240919.pkl",
+        "rows": 5380,
+        "sha256": "fa95871694a721c591003f1ee1336d5bb10308f7fdc169448726ae23fdabc1f1"
+      },
+      "20240920": {
+        "file": "adjustments\\20240920.pkl",
+        "rows": 5380,
+        "sha256": "d5f9ef52cc86f75244d90beb301c1d1ba013a82454f94cf4d8192bd1959bc5ea"
+      },
+      "20240923": {
+        "file": "adjustments\\20240923.pkl",
+        "rows": 5380,
+        "sha256": "4699b6f0194f1d89249de3a63c7667fa0947176ecaf11c37056f853bd2832e4d"
+      },
+      "20240924": {
+        "file": "adjustments\\20240924.pkl",
+        "rows": 5380,
+        "sha256": "55cb1e73b56561d9ffef66978d607d8e11da73a60a0d7a90ba1de36b97eb2db5"
+      },
+      "20240925": {
+        "file": "adjustments\\20240925.pkl",
+        "rows": 5381,
+        "sha256": "60ef98f17d13758fabd6a5244ceb34e3afc0e019eef70cf91e154eb85d1e0bda"
+      },
+      "20240926": {
+        "file": "adjustments\\20240926.pkl",
+        "rows": 5383,
+        "sha256": "1392c39cec5d660b39fdbf541ff074632b55635baa7a9953431f949ef0287cad"
+      },
+      "20240927": {
+        "file": "adjustments\\20240927.pkl",
+        "rows": 5382,
+        "sha256": "a4a9e387fac4f4b8fb7ac3d0e4fedc54637269611fa90b13e907bccd1b5d7a6f"
+      },
+      "20240930": {
+        "file": "adjustments\\20240930.pkl",
+        "rows": 5383,
+        "sha256": "742381827cee7eeb5bcde37517cf15a97c35d4cc4c6ddbb3dc69779c8386e791"
+      },
+      "20241008": {
+        "file": "adjustments\\20241008.pkl",
+        "rows": 5383,
+        "sha256": "384267914ed44f52a4d7eb1802c4fc76e88c04bf3a5166b33e4abfc82e0873a9"
+      },
+      "20241009": {
+        "file": "adjustments\\20241009.pkl",
+        "rows": 5383,
+        "sha256": "44d361ccdadb5127e6801c4afbc55effabba182079688872a1756f99f39bd328"
+      },
+      "20241010": {
+        "file": "adjustments\\20241010.pkl",
+        "rows": 5383,
+        "sha256": "a31a7b0889e5f9a7567aa564cc9c43b6b82224c66bdee28404c058ed428fb89c"
+      },
+      "20241011": {
+        "file": "adjustments\\20241011.pkl",
+        "rows": 5384,
+        "sha256": "5fa8e07d4b317ccc0b61e8f3a482c468cd4770a5c3868429ed9256a179144505"
+      },
+      "20241014": {
+        "file": "adjustments\\20241014.pkl",
+        "rows": 5384,
+        "sha256": "e67c7e909f38eccb04e63347bda7bfaf6af2bd0f59c3bf20b1aebb6ee9999fbd"
+      },
+      "20241015": {
+        "file": "adjustments\\20241015.pkl",
+        "rows": 5384,
+        "sha256": "575393ec61936725bc5b06f54a6eaf1a97036a9a6e26ed7884070051ab172416"
+      },
+      "20241016": {
+        "file": "adjustments\\20241016.pkl",
+        "rows": 5385,
+        "sha256": "9c47c3b6f0b47e6d45d7608e9ab4877951cafaef0c7859f800056d0b8dac9412"
+      },
+      "20241017": {
+        "file": "adjustments\\20241017.pkl",
+        "rows": 5386,
+        "sha256": "ee6ef5b1ec5916c8b40be8c688469c4315370d95d53cc8639a806fe256888d9a"
+      },
+      "20241018": {
+        "file": "adjustments\\20241018.pkl",
+        "rows": 5386,
+        "sha256": "d5f069a93964e3c149e4854fd46ef0ffd53f8bfa864b8b2d0a9109271e7d2b21"
+      },
+      "20241021": {
+        "file": "adjustments\\20241021.pkl",
+        "rows": 5386,
+        "sha256": "15f7e14ae79bd663151ccc980b3b0f697dac626e317222618a4a3533441f193b"
+      },
+      "20241022": {
+        "file": "adjustments\\20241022.pkl",
+        "rows": 5386,
+        "sha256": "75e7da13865b74b74dddb9012be0a4640c1ce24b257cdd1a7ea1f01d3b84ec55"
+      },
+      "20241023": {
+        "file": "adjustments\\20241023.pkl",
+        "rows": 5386,
+        "sha256": "9b8fb273f41f07e4dd0d6597a1ff67dd9bbdde7df6e4d0323fba67db4ed35768"
+      },
+      "20241024": {
+        "file": "adjustments\\20241024.pkl",
+        "rows": 5388,
+        "sha256": "7a8c35396f08efc40cbe157b294a3150c009febd5106473a7883f2f95f438814"
+      },
+      "20241025": {
+        "file": "adjustments\\20241025.pkl",
+        "rows": 5389,
+        "sha256": "bc955f5341bb6f38e4d068f567710fe093faec13370eb4d4ecee4bf886dce549"
+      },
+      "20241028": {
+        "file": "adjustments\\20241028.pkl",
+        "rows": 5389,
+        "sha256": "ec476be1131f8d6e1cea70eb4f690e1bf5cf56d533070c037a7df8d38c50da26"
+      },
+      "20241029": {
+        "file": "adjustments\\20241029.pkl",
+        "rows": 5391,
+        "sha256": "e29bbb569af1e90839498867b039e7e76bc46ea5df9ed09ac829db9a5cd39447"
+      },
+      "20241030": {
+        "file": "adjustments\\20241030.pkl",
+        "rows": 5391,
+        "sha256": "1b496352e175f7e8d576abccb335226b6f7936d82c1b9d2a43e2f54491ced5b9"
+      },
+      "20241031": {
+        "file": "adjustments\\20241031.pkl",
+        "rows": 5393,
+        "sha256": "cf3b95eb7275982fc2b6b89ef7a04055b8ad39fd63a8b57dfb20b9d665a9635f"
+      },
+      "20241101": {
+        "file": "adjustments\\20241101.pkl",
+        "rows": 5393,
+        "sha256": "c8d76eeb7f28ec982ff1efac24bfe4224f2fff64cdd69d5cef6691237c011161"
+      },
+      "20241104": {
+        "file": "adjustments\\20241104.pkl",
+        "rows": 5393,
+        "sha256": "474b71094ca670e7ff7d280f6c6a43b2aa8683fd19cd428a3e6fcd6ea442d8c9"
+      },
+      "20241105": {
+        "file": "adjustments\\20241105.pkl",
+        "rows": 5393,
+        "sha256": "2f4db4d8654993e5903b2ef21bbbb48176b9a162dfdc1bec96514e7f4c4017fc"
+      },
+      "20241106": {
+        "file": "adjustments\\20241106.pkl",
+        "rows": 5393,
+        "sha256": "b9504e971046b57039a57b65447b82f3e20ce9465198499463b1f727cfdc81a7"
+      },
+      "20241107": {
+        "file": "adjustments\\20241107.pkl",
+        "rows": 5395,
+        "sha256": "6d940cfadaa3df330980d3f0b6be3851db5e3f61c66df1e61fc70c1d238262e3"
+      },
+      "20241108": {
+        "file": "adjustments\\20241108.pkl",
+        "rows": 5395,
+        "sha256": "bc7ca7d5ef07d15aaef0583c9a6b739157d143308ba48c48d236834adae5fdf7"
+      },
+      "20241111": {
+        "file": "adjustments\\20241111.pkl",
+        "rows": 5396,
+        "sha256": "7c1ee3e2a05389ceb5521f980424ae96635e7166eef585185e7e7836387e7c4e"
+      },
+      "20241112": {
+        "file": "adjustments\\20241112.pkl",
+        "rows": 5396,
+        "sha256": "9312d7c3d083e7773805031c08e1425eef572da8ff37e3e255ac3870b047d3db"
+      },
+      "20241113": {
+        "file": "adjustments\\20241113.pkl",
+        "rows": 5396,
+        "sha256": "320aaf79a5aaa242fb2dddc8ab7e73e71649c544619c589fc670feafe684710a"
+      },
+      "20241114": {
+        "file": "adjustments\\20241114.pkl",
+        "rows": 5396,
+        "sha256": "63a3e579f8b8f7ef1158f03524aed0ac4b8a96f5daf824f66a2e25e8628c754c"
+      },
+      "20241115": {
+        "file": "adjustments\\20241115.pkl",
+        "rows": 5396,
+        "sha256": "e4a5776cfab090406f6ccd0668ec13bfda99b096f2e57f35c2f14fec17af774b"
+      },
+      "20241118": {
+        "file": "adjustments\\20241118.pkl",
+        "rows": 5396,
+        "sha256": "4cf85878f2ef34affab053edf1167cc8bd2936cbc7331006a8a675f31bd94399"
+      },
+      "20241119": {
+        "file": "adjustments\\20241119.pkl",
+        "rows": 5397,
+        "sha256": "8c9c375271226cba3bce54d6b6aeaf16cb758a30ca77eceb05e34a29271d0620"
+      },
+      "20241120": {
+        "file": "adjustments\\20241120.pkl",
+        "rows": 5398,
+        "sha256": "86b9193a1335e2e6130c261c27a7d97a1be31ea93343c43475071202eb73d7e7"
+      },
+      "20241121": {
+        "file": "adjustments\\20241121.pkl",
+        "rows": 5398,
+        "sha256": "c3a7e23fcd0f4734a4af5a9efc25864c2cd651a5583a347053446e5fd8ff1787"
+      },
+      "20241122": {
+        "file": "adjustments\\20241122.pkl",
+        "rows": 5399,
+        "sha256": "607416d160913db7fe141407bcc45859c18503304b352e89aac61ada81bfafb3"
+      },
+      "20241125": {
+        "file": "adjustments\\20241125.pkl",
+        "rows": 5399,
+        "sha256": "6b4b26828abb1a3281e9dbadd3d0b799ff4d23c79767c2b167992003a71eb8cf"
+      },
+      "20241126": {
+        "file": "adjustments\\20241126.pkl",
+        "rows": 5400,
+        "sha256": "b4e161a0094c1841a0cf5cc5101875cd9fae4c78ae4026172c0be6e4caa698b8"
+      },
+      "20241127": {
+        "file": "adjustments\\20241127.pkl",
+        "rows": 5400,
+        "sha256": "10bf256636cb959524f7b7df21ba6f5ff17f01428ff76e0af0515d1e930ab850"
+      },
+      "20241128": {
+        "file": "adjustments\\20241128.pkl",
+        "rows": 5400,
+        "sha256": "c25e86b8f51b49c9b5337f737f81c01a1fe401808da0974acf06465c8f265faf"
+      },
+      "20241129": {
+        "file": "adjustments\\20241129.pkl",
+        "rows": 5402,
+        "sha256": "5f548d1f24b408beb5e0cc8e525650dd28dfe28269511ab543ee41f069b330f7"
+      },
+      "20241202": {
+        "file": "adjustments\\20241202.pkl",
+        "rows": 5402,
+        "sha256": "fa05e061634d2e75a028db2df9480f3575e3db2510a7df2c94922034655e402f"
+      },
+      "20241203": {
+        "file": "adjustments\\20241203.pkl",
+        "rows": 5402,
+        "sha256": "70665c7d1dd99da0298aa25bca719e6e28365feb40f66d3998db15cc5c6405b1"
+      },
+      "20241204": {
+        "file": "adjustments\\20241204.pkl",
+        "rows": 5403,
+        "sha256": "216dac4dd4020d7acb4593e4d7185e02b73173b6035832e668cc7c1bccc58442"
+      },
+      "20241205": {
+        "file": "adjustments\\20241205.pkl",
+        "rows": 5405,
+        "sha256": "dd59785a6ce82538f8edaae7ea17602328e265c815e3ec4c60f4aa854eda6f5c"
+      },
+      "20241206": {
+        "file": "adjustments\\20241206.pkl",
+        "rows": 5405,
+        "sha256": "46154b16996970004e485d9523df2a2c900329d5e6ddf6a3f670306ff747e5f1"
+      },
+      "20241209": {
+        "file": "adjustments\\20241209.pkl",
+        "rows": 5405,
+        "sha256": "5b1ed60f10989a75b3ed4c18f5de726c0ebb4e9fdb57b96294f1a97833f3f198"
+      },
+      "20241210": {
+        "file": "adjustments\\20241210.pkl",
+        "rows": 5405,
+        "sha256": "f427afb1b9a0ccaca9796b45aef727a9bbf27d0b17aaa755753579906d1dbdea"
+      },
+      "20241211": {
+        "file": "adjustments\\20241211.pkl",
+        "rows": 5406,
+        "sha256": "96e55f5ad0273f9e7d1736fd972e304ca6b6915f0fbd4cb8f589be9703db1fe5"
+      },
+      "20241212": {
+        "file": "adjustments\\20241212.pkl",
+        "rows": 5407,
+        "sha256": "a1a0ce53bc7c95c1b865e3c5e213d70c5dd113fb3acbfd8a3cb248873425b56a"
+      },
+      "20241213": {
+        "file": "adjustments\\20241213.pkl",
+        "rows": 5407,
+        "sha256": "d68e6d95c8594f77506a3464640d0d892af049f1642e08d9bf300ad6564717e4"
+      },
+      "20241216": {
+        "file": "adjustments\\20241216.pkl",
+        "rows": 5407,
+        "sha256": "60860903a96080ad4ba92b550b3ac36dbda74736b9a18c9631e1fdc505a18ff7"
+      },
+      "20241217": {
+        "file": "adjustments\\20241217.pkl",
+        "rows": 5407,
+        "sha256": "a1539918fdf04f4f87aae3c8d14adf775151f331ab96602421e2b641220e4bdf"
+      },
+      "20241218": {
+        "file": "adjustments\\20241218.pkl",
+        "rows": 5408,
+        "sha256": "1444fc10b2fe6e85de438709216c58e06b0876015edf9bceb1e097124eb390f3"
+      },
+      "20241219": {
+        "file": "adjustments\\20241219.pkl",
+        "rows": 5408,
+        "sha256": "9d3c98e83a2eaba96b99d6ba8a01b2e60ce8ea9b9d2defcf6e0f860d5d01919f"
+      },
+      "20241220": {
+        "file": "adjustments\\20241220.pkl",
+        "rows": 5410,
+        "sha256": "7ba1f553ac815d67e8b89ad6d07a7c5ce185c82c62f1bc3d39bdd9411338615e"
+      },
+      "20241223": {
+        "file": "adjustments\\20241223.pkl",
+        "rows": 5410,
+        "sha256": "d15b501d9f1d7558f539322d5b5d32aad179a30fd19620ca49bbb03f36bb763e"
+      },
+      "20241224": {
+        "file": "adjustments\\20241224.pkl",
+        "rows": 5411,
+        "sha256": "7c6688672f11f98c955ddd25915df3c76526f6ee864e8e9f441aea57a6385537"
+      },
+      "20241225": {
+        "file": "adjustments\\20241225.pkl",
+        "rows": 5411,
+        "sha256": "2188731e46d5e1155434c4b24dd7f9998c4b6347a5a8f7aeee7e448bbfcd4d73"
+      },
+      "20241226": {
+        "file": "adjustments\\20241226.pkl",
+        "rows": 5412,
+        "sha256": "baee2848f6f6fcdf0479f663646e8dfb1052d8d3328340cb50ad76ce79ea27c0"
+      },
+      "20241227": {
+        "file": "adjustments\\20241227.pkl",
+        "rows": 5412,
+        "sha256": "9d2264a4ced2e143ebd20482db596d7b7c24568fec7cb1e091b1890fe798829e"
+      },
+      "20241230": {
+        "file": "adjustments\\20241230.pkl",
+        "rows": 5413,
+        "sha256": "bd85a3a84f4d6ad49973246119f1ea74522d39552a9cb788a8a4f169174fd84b"
+      },
+      "20241231": {
+        "file": "adjustments\\20241231.pkl",
+        "rows": 5413,
+        "sha256": "01b07975898648b4a4d264c7548cd995e187582191b454191ef2a13a382ae06d"
+      },
+      "20250102": {
+        "file": "adjustments\\20250102.pkl",
+        "rows": 5414,
+        "sha256": "910ffeca05b0985fc638c467bf3e07f69676b1c58176b67bf29e285b3ebfa13a"
+      },
+      "20250103": {
+        "file": "adjustments\\20250103.pkl",
+        "rows": 5416,
+        "sha256": "129c958c12b01812f35601a398b477530f38ebd78f5ffbc847841707f10be07a"
+      },
+      "20250106": {
+        "file": "adjustments\\20250106.pkl",
+        "rows": 5416,
+        "sha256": "98da69f786d574b7353dd239e909543a93a55ac9db1d4a71e6ce53fb7314a52a"
+      },
+      "20250107": {
+        "file": "adjustments\\20250107.pkl",
+        "rows": 5416,
+        "sha256": "909e25630d1fe8c31ec8ebe31333d509cbf1df3d0b0c0c59421360ec3b1fc125"
+      },
+      "20250108": {
+        "file": "adjustments\\20250108.pkl",
+        "rows": 5416,
+        "sha256": "f40be426538d6ac9c3ce241ff33c7660f2f0eb160cb13130bcaa3f7690903233"
+      },
+      "20250109": {
+        "file": "adjustments\\20250109.pkl",
+        "rows": 5416,
+        "sha256": "165f9ff5f33ecb157be7439dc50be882ae1b75f978677c1ef5e3ed732b13ae69"
+      },
+      "20250110": {
+        "file": "adjustments\\20250110.pkl",
+        "rows": 5418,
+        "sha256": "0bee30056f25f3baf1c5cdd15c6ab9f5767a25ce45ebbfcfbff773715eba4403"
+      },
+      "20250113": {
+        "file": "adjustments\\20250113.pkl",
+        "rows": 5418,
+        "sha256": "554ffc6e4760c3d9a9fd3aead5b433efcb6f0ea2841fc3877bd2e53e4f7b654f"
+      },
+      "20250114": {
+        "file": "adjustments\\20250114.pkl",
+        "rows": 5418,
+        "sha256": "421ce443a2fbe3e2ed40e5127e6b3f48d239b3b4eabdea0b8cb319ef412f969e"
+      },
+      "20250115": {
+        "file": "adjustments\\20250115.pkl",
+        "rows": 5420,
+        "sha256": "344ab918b67995a91c4ee048e2a743a4e6be348691ef24fbe6b0bad804203150"
+      },
+      "20250116": {
+        "file": "adjustments\\20250116.pkl",
+        "rows": 5420,
+        "sha256": "dceb1c62a310601181b4dfd4fcffd053dced32f8369c281a748912f04d5b7a16"
+      },
+      "20250117": {
+        "file": "adjustments\\20250117.pkl",
+        "rows": 5420,
+        "sha256": "b9bfb5544cf3ceef6a66de341f9b4ea7936233757c7e53b800eb3b4a31d766e0"
+      },
+      "20250120": {
+        "file": "adjustments\\20250120.pkl",
+        "rows": 5420,
+        "sha256": "c66cf3ef2456cd9b4e7ba14b821fd5f954f1680f2f3a55876e055af6202439bc"
+      },
+      "20250121": {
+        "file": "adjustments\\20250121.pkl",
+        "rows": 5420,
+        "sha256": "a0d16ddb60e08c11de62e43caecb0838c7d32edccb84f302ea763d1b93364861"
+      },
+      "20250122": {
+        "file": "adjustments\\20250122.pkl",
+        "rows": 5422,
+        "sha256": "2ecace0c0ecb126afa59305993398cfa7b08087f2c3ad889ddce63ae2bbeb4be"
+      },
+      "20250123": {
+        "file": "adjustments\\20250123.pkl",
+        "rows": 5423,
+        "sha256": "3cac325e42f10592e025a967dea2c3a6c730cc38036830806855b0f4af667d84"
+      },
+      "20250124": {
+        "file": "adjustments\\20250124.pkl",
+        "rows": 5423,
+        "sha256": "00e2144af19985ad85d89d43d4ade2ecd6534f796947ef73ad8069b8b193048d"
+      },
+      "20250127": {
+        "file": "adjustments\\20250127.pkl",
+        "rows": 5425,
+        "sha256": "f39d5253df1ab8e6b15cb9abb987f955abe0d4d8227d347bf20ce9fcd0c247a4"
+      },
+      "20250205": {
+        "file": "adjustments\\20250205.pkl",
+        "rows": 5425,
+        "sha256": "797c46bf2890265d86b2800d0480da266abe644384d65401293841a568991e50"
+      },
+      "20250206": {
+        "file": "adjustments\\20250206.pkl",
+        "rows": 5426,
+        "sha256": "6803ad22ae44d35a35401216e73056d07a4a0e927b15ea624241564e49522193"
+      },
+      "20250207": {
+        "file": "adjustments\\20250207.pkl",
+        "rows": 5426,
+        "sha256": "1b04170ded27ae5e78c41efdf113be6801a0245de0549d4fa9ad2f09d717d5f0"
+      },
+      "20250210": {
+        "file": "adjustments\\20250210.pkl",
+        "rows": 5426,
+        "sha256": "16a3abebd7c2a1717f83b13816e7ca427916a5c23796cf5a5fb776319880065b"
+      },
+      "20250211": {
+        "file": "adjustments\\20250211.pkl",
+        "rows": 5426,
+        "sha256": "26ce156f23ee1174be423c6a1623039e746980c1b4e6fe42d8b59216d77fb55e"
+      },
+      "20250212": {
+        "file": "adjustments\\20250212.pkl",
+        "rows": 5426,
+        "sha256": "452e00bbea25d51345fa496ac40b84da130cb9eb4eb0978a44c80e365d37664e"
+      },
+      "20250213": {
+        "file": "adjustments\\20250213.pkl",
+        "rows": 5426,
+        "sha256": "bb0b4734e2e58ffe56c7b8bd61d59a57d52fddd0f02f0dcda91b90d40c25062e"
+      },
+      "20250214": {
+        "file": "adjustments\\20250214.pkl",
+        "rows": 5426,
+        "sha256": "9cdd4ac00f862535b24a2bd8fb3f92f40073e4f6357aec95960ffbf70598946a"
+      },
+      "20250217": {
+        "file": "adjustments\\20250217.pkl",
+        "rows": 5425,
+        "sha256": "934f687f551d6f15e1a4d7ee36cc19a575bfdc708950e06ff894c52c4954993e"
+      },
+      "20250218": {
+        "file": "adjustments\\20250218.pkl",
+        "rows": 5425,
+        "sha256": "9e83d0b1320fcad7d633a00c86900469751727539499e03bd181836c4181135e"
+      },
+      "20250219": {
+        "file": "adjustments\\20250219.pkl",
+        "rows": 5425,
+        "sha256": "d48c7ffad5d6e379d5f581a57dea5441f41b1d0c01d5380059740528c4d4bb37"
+      },
+      "20250220": {
+        "file": "adjustments\\20250220.pkl",
+        "rows": 5425,
+        "sha256": "d6cec72b1686cdd5522746037114d73ea0e644528acd97d952162c143580e2f3"
+      },
+      "20250221": {
+        "file": "adjustments\\20250221.pkl",
+        "rows": 5425,
+        "sha256": "86b0406eec01ff90af17fcb8efa13117598b6dcdf23a74052d1b150144995d5f"
+      },
+      "20250224": {
+        "file": "adjustments\\20250224.pkl",
+        "rows": 5425,
+        "sha256": "70528113e1843e583fedd3a88755ce695ac39ede3377e7768bb327a5e79c14a2"
+      },
+      "20250225": {
+        "file": "adjustments\\20250225.pkl",
+        "rows": 5425,
+        "sha256": "6c792fd7f14077fb4627b1ce387e1e7c36efe9ede11472b122f0d6b15e0c2b6f"
+      },
+      "20250226": {
+        "file": "adjustments\\20250226.pkl",
+        "rows": 5425,
+        "sha256": "fbd0b44091f4b8576dab11c63fe91d74051a5794de60cf6489ca460bff8735ac"
+      },
+      "20250227": {
+        "file": "adjustments\\20250227.pkl",
+        "rows": 5425,
+        "sha256": "6e042f068f8023c353e74ba125f1be3dbd23a36b91968bd168a85fcb41dfde77"
+      },
+      "20250228": {
+        "file": "adjustments\\20250228.pkl",
+        "rows": 5425,
+        "sha256": "65d8816489eba10fe0bdf9fd7e652c0b35740f4e2d4feec1362e6729fa232630"
+      },
+      "20250303": {
+        "file": "adjustments\\20250303.pkl",
+        "rows": 5426,
+        "sha256": "95b0be618e245d99da281bc0d6a2203b9a12ed4d797c9eebab93bf1063e41284"
+      },
+      "20250304": {
+        "file": "adjustments\\20250304.pkl",
+        "rows": 5427,
+        "sha256": "482769b2ecc23491bf7490591bf53a4e85933b13dc2649c1725e404b904cec69"
+      },
+      "20250305": {
+        "file": "adjustments\\20250305.pkl",
+        "rows": 5427,
+        "sha256": "4d1a5a4e74d333258ff3b485e008dbdfaf7303fb858e4cfe71ad28d575baec67"
+      },
+      "20250306": {
+        "file": "adjustments\\20250306.pkl",
+        "rows": 5426,
+        "sha256": "8c313d14b46220334c11cfcce85fa969fbc0178a49e462f5e55f04a4e3686ab0"
+      },
+      "20250307": {
+        "file": "adjustments\\20250307.pkl",
+        "rows": 5426,
+        "sha256": "4e31de6b5d75185a61f9dbabf8bf11691f71a62f160d632f23bbbc198996bd5b"
+      },
+      "20250310": {
+        "file": "adjustments\\20250310.pkl",
+        "rows": 5426,
+        "sha256": "3a9689ae116eb43a4b4dd8458d55026120a3329cfbbbd3a332c0738dcbf18e64"
+      },
+      "20250311": {
+        "file": "adjustments\\20250311.pkl",
+        "rows": 5428,
+        "sha256": "653669c7a4a87afd2fada580b1d1d41513885f79fea0ed7112c04044b59ab920"
+      },
+      "20250312": {
+        "file": "adjustments\\20250312.pkl",
+        "rows": 5428,
+        "sha256": "79597cf1721e8fc2f23d8cf8c7a42b6eba802b3525d77600d8a5fa1e191b7fa5"
+      },
+      "20250313": {
+        "file": "adjustments\\20250313.pkl",
+        "rows": 5428,
+        "sha256": "2d7a73cae68790aa9cbeef35d1637a4f821a6c07023bf55b3a18c28b30f6b193"
+      },
+      "20250314": {
+        "file": "adjustments\\20250314.pkl",
+        "rows": 5428,
+        "sha256": "42efdc00991764bcd17f821f866513252084db906227b73ef57f124a466b5f2b"
+      },
+      "20250317": {
+        "file": "adjustments\\20250317.pkl",
+        "rows": 5428,
+        "sha256": "ccad740dec7dc59c397e0e2aab4a809c2e28ff03b877645015dfe1c472b43f8b"
+      },
+      "20250318": {
+        "file": "adjustments\\20250318.pkl",
+        "rows": 5429,
+        "sha256": "be3352736b852ac3e0f624fb3e1452e61cd7b77cbc44de66aed36c17e2ec6203"
+      },
+      "20250319": {
+        "file": "adjustments\\20250319.pkl",
+        "rows": 5430,
+        "sha256": "6ea37b892525f83f27028d267dc3a3f6887e2df368265828e16c3c5a44dad6b5"
+      },
+      "20250320": {
+        "file": "adjustments\\20250320.pkl",
+        "rows": 5431,
+        "sha256": "013d9d315623b54b6638dadd94fff93db595967bc3d08bae44ce5fca2d540b7f"
+      },
+      "20250321": {
+        "file": "adjustments\\20250321.pkl",
+        "rows": 5432,
+        "sha256": "bfa3a521507324eb8fbdd46dff3938ea992dbbf79ede9cdd2cb60bb5a92adbd4"
+      },
+      "20250324": {
+        "file": "adjustments\\20250324.pkl",
+        "rows": 5433,
+        "sha256": "19cb20a3cadc3a917ddaf98a1034a7aecdf696f824d99f4dc2eb80b321c50a4f"
+      },
+      "20250325": {
+        "file": "adjustments\\20250325.pkl",
+        "rows": 5434,
+        "sha256": "206c715ba18786ad5825c2454157ce54c1cd4946bc18f10eb817d4490935ad39"
+      },
+      "20250326": {
+        "file": "adjustments\\20250326.pkl",
+        "rows": 5434,
+        "sha256": "26b3790475592c38c4c8b3cb17dae768f409a9821c0e3d32a02fe12b7f988563"
+      },
+      "20250327": {
+        "file": "adjustments\\20250327.pkl",
+        "rows": 5436,
+        "sha256": "b37d8f1c6a9f9df57ce172fe1cce2743db165a84660bf2f43893a44c2f5b13d0"
+      },
+      "20250328": {
+        "file": "adjustments\\20250328.pkl",
+        "rows": 5437,
+        "sha256": "3647989da390665d8f415facb85d580b851508146c7b02ee9b2190c5aeb830dc"
+      },
+      "20250331": {
+        "file": "adjustments\\20250331.pkl",
+        "rows": 5437,
+        "sha256": "377f71adde4d27f8e9f17df288ae476876b18462b6c97f5f7f446208daf42c5d"
+      },
+      "20250401": {
+        "file": "adjustments\\20250401.pkl",
+        "rows": 5437,
+        "sha256": "834427f60c1812e8f5906ddc27daf45d0d453811a8929edef74c256f4f3a15f3"
+      },
+      "20250402": {
+        "file": "adjustments\\20250402.pkl",
+        "rows": 5438,
+        "sha256": "559173bad5cd219b9f940927d006b0c986ab1263c25bc7f44292a270a323289c"
+      },
+      "20250403": {
+        "file": "adjustments\\20250403.pkl",
+        "rows": 5438,
+        "sha256": "dffdeb7a6989aa79026c94717d77f8b6f15887ce6f45a981cc30252251aaa5d3"
+      },
+      "20250407": {
+        "file": "adjustments\\20250407.pkl",
+        "rows": 5438,
+        "sha256": "d6dc19ec4c48aa27823a29cbca7b449706d9a767a43f97da0cfef43c599e66b1"
+      },
+      "20250408": {
+        "file": "adjustments\\20250408.pkl",
+        "rows": 5439,
+        "sha256": "7f12e63935b1099bc67a720976ccc5936f3e5ff07f0b3c171c76d87ee64ea15d"
+      },
+      "20250409": {
+        "file": "adjustments\\20250409.pkl",
+        "rows": 5440,
+        "sha256": "479f8b7187aefa0c0df96d1957576b8bd067e2119c3dc0f8195ca838bfa9549a"
+      },
+      "20250410": {
+        "file": "adjustments\\20250410.pkl",
+        "rows": 5440,
+        "sha256": "7f7c961f0a031d8c10840912ae2c7f1f1da385c739b6b36ec9347cc6550981f9"
+      },
+      "20250411": {
+        "file": "adjustments\\20250411.pkl",
+        "rows": 5441,
+        "sha256": "462926e0e79a29884623653fde5bbecd0c0175df99f00bd232d70b99952f3d91"
+      },
+      "20250414": {
+        "file": "adjustments\\20250414.pkl",
+        "rows": 5441,
+        "sha256": "8f2e9ce092be2c7ce22a24213e022593c1bbafb0a1a5ebf24a18f3dbf468a635"
+      },
+      "20250415": {
+        "file": "adjustments\\20250415.pkl",
+        "rows": 5442,
+        "sha256": "c7ea4cb902b70bb8eefdb9fb91f905924cf285622638a929696702ed1bb81bef"
+      },
+      "20250416": {
+        "file": "adjustments\\20250416.pkl",
+        "rows": 5443,
+        "sha256": "b4adccb84ba150d764757ce4d6b05eb44dcac6e46df96a019754e5a3205dc703"
+      },
+      "20250417": {
+        "file": "adjustments\\20250417.pkl",
+        "rows": 5444,
+        "sha256": "9e0dbfbce352233d302e452108aef40b0c5ec6c15a2c59d199646f3b6fa4a348"
+      },
+      "20250418": {
+        "file": "adjustments\\20250418.pkl",
+        "rows": 5444,
+        "sha256": "a02cb9a4b1f1f7ae8e50608329ad1b275e36e38db1d21f59f9aaf9539b8abd83"
+      },
+      "20250421": {
+        "file": "adjustments\\20250421.pkl",
+        "rows": 5444,
+        "sha256": "98b20088c8ec3d2b85ef7239dd37075a68d040b6d04167198e65f7f65012fbd9"
+      },
+      "20250422": {
+        "file": "adjustments\\20250422.pkl",
+        "rows": 5444,
+        "sha256": "5f810e9669e0224deddcaae2f5c80ca204ed36527231dff2e58e7693943ef481"
+      },
+      "20250423": {
+        "file": "adjustments\\20250423.pkl",
+        "rows": 5444,
+        "sha256": "389c6ecf67b9f80306e7bc69493299c40cc3354efe6fdaa5f9e491b9da57c68a"
+      },
+      "20250424": {
+        "file": "adjustments\\20250424.pkl",
+        "rows": 5446,
+        "sha256": "9dbcd91ea768b065c4ed7842eeb823424e1c78c44a95c3a917e6613883c27287"
+      },
+      "20250425": {
+        "file": "adjustments\\20250425.pkl",
+        "rows": 5447,
+        "sha256": "59a839b2480d72f20dae42e0e0139cadaa1139d4862b25aff19b4b8ca0ba946a"
+      },
+      "20250428": {
+        "file": "adjustments\\20250428.pkl",
+        "rows": 5447,
+        "sha256": "36722225f87a2b3ccf9b5c549ed5fc0c52c22f8491bae87087eff686152992eb"
+      },
+      "20250429": {
+        "file": "adjustments\\20250429.pkl",
+        "rows": 5444,
+        "sha256": "5c228dcec44620b30bb520cfe2e085e3dcccd28586687a91891c9fa7f5dc7695"
+      },
+      "20250430": {
+        "file": "adjustments\\20250430.pkl",
+        "rows": 5438,
+        "sha256": "fe48ef1063f1b787f122a6a5aa369e36075c4401d728a5764594345ee43abdbf"
+      },
+      "20250506": {
+        "file": "adjustments\\20250506.pkl",
+        "rows": 5435,
+        "sha256": "df0f190ef290693be08bea05e987752a2be8d66b0759e95989ea0d4f821d66dc"
+      },
+      "20250507": {
+        "file": "adjustments\\20250507.pkl",
+        "rows": 5435,
+        "sha256": "b94f162a32dd7183f90e71b3d67fcd83abe3ad5e3377ec481a012b3c86d72b59"
+      },
+      "20250508": {
+        "file": "adjustments\\20250508.pkl",
+        "rows": 5435,
+        "sha256": "cc2bbded2b45ae908039c6ea0bbff6f8cb2b5f1ea8d106feb1fc8a7157e1d5c6"
+      },
+      "20250509": {
+        "file": "adjustments\\20250509.pkl",
+        "rows": 5435,
+        "sha256": "607e41cff20b09e170580fcc7f669be9f98c270b53ebcf273d6b209d4e4a7eff"
+      },
+      "20250512": {
+        "file": "adjustments\\20250512.pkl",
+        "rows": 5435,
+        "sha256": "41f9147365366cf661571428c29d9a27ead3d2125ce4fccf8f59bd23499e1419"
+      },
+      "20250513": {
+        "file": "adjustments\\20250513.pkl",
+        "rows": 5436,
+        "sha256": "ae44a247139f903b9f8df8250ef978690997a741757c6615f3b2c70df56f8e24"
+      },
+      "20250514": {
+        "file": "adjustments\\20250514.pkl",
+        "rows": 5436,
+        "sha256": "26e1e43d32a704f3655d25158ef697f7ba5f7a49a02d6628c8bcb23f3df56dc1"
+      },
+      "20250515": {
+        "file": "adjustments\\20250515.pkl",
+        "rows": 5436,
+        "sha256": "e70405af7bbcec8bcaad8ce0d327b6e8bfacb1f3f485e9445301357ebfb2df00"
+      },
+      "20250516": {
+        "file": "adjustments\\20250516.pkl",
+        "rows": 5438,
+        "sha256": "5dc971668bc7e86e207244c9ca6f84e469ef45be3096afb43d1922a881dc7ac7"
+      },
+      "20250519": {
+        "file": "adjustments\\20250519.pkl",
+        "rows": 5440,
+        "sha256": "3205886ae1a5e752a66a0d329256d181e8e275f97c789a34385709e0e14cc4f6"
+      },
+      "20250520": {
+        "file": "adjustments\\20250520.pkl",
+        "rows": 5441,
+        "sha256": "de4e3568c1123cd92e2b4b1e6deb02641b1b40bb75220acbd6a89faaf22da34d"
+      },
+      "20250521": {
+        "file": "adjustments\\20250521.pkl",
+        "rows": 5441,
+        "sha256": "4fca56ae2b8351c55edcfbb9d5c5e810cefa45bafc7bfb446cab1fa07e35836b"
+      },
+      "20250522": {
+        "file": "adjustments\\20250522.pkl",
+        "rows": 5440,
+        "sha256": "3242e03dd2a2baae73a81d1f180b488a67fe0be8ac4a92fbe95d40241651efc7"
+      },
+      "20250523": {
+        "file": "adjustments\\20250523.pkl",
+        "rows": 5440,
+        "sha256": "5d8ade420de20f4bdd1b42296641d34fa0ace0d4c7dfaf60269e2a411d3f93b5"
+      },
+      "20250526": {
+        "file": "adjustments\\20250526.pkl",
+        "rows": 5440,
+        "sha256": "04ff037aed38b3512dd488b73f306e0cb7960c5f2e8285b7b5db1b344c5d2679"
+      },
+      "20250527": {
+        "file": "adjustments\\20250527.pkl",
+        "rows": 5438,
+        "sha256": "9d21112f7ef824bd7b9bff1139e99f287645b8410c0a12d7b8f98fed0ffbdd53"
+      },
+      "20250528": {
+        "file": "adjustments\\20250528.pkl",
+        "rows": 5438,
+        "sha256": "8b0f895e5aacaa8d00c6a9db28642d034f811692579d5980c60f1fa1c7c6c4ff"
+      },
+      "20250529": {
+        "file": "adjustments\\20250529.pkl",
+        "rows": 5438,
+        "sha256": "844e255a44af47846fdec408bb5f51b9d35b43fc1f6387758edafc426e41eab5"
+      },
+      "20250530": {
+        "file": "adjustments\\20250530.pkl",
+        "rows": 5438,
+        "sha256": "4851171460a305596317538478a2e89cbd0fdb946d4fc78fb8b1a873bb8d941b"
+      },
+      "20250603": {
+        "file": "adjustments\\20250603.pkl",
+        "rows": 5438,
+        "sha256": "8076c92a145753bcaac0b0ad7863d991ac780de1daecc4ed14f6d19e6dcf223c"
+      },
+      "20250604": {
+        "file": "adjustments\\20250604.pkl",
+        "rows": 5438,
+        "sha256": "3974ffd679849ed922901835cb5ff53ce628269e3613d773a4fa386707c57691"
+      },
+      "20250605": {
+        "file": "adjustments\\20250605.pkl",
+        "rows": 5440,
+        "sha256": "c894df2ab94dc69689f4a0221b93365aeaeacd4de45e4d2c407795eef3950b53"
+      },
+      "20250606": {
+        "file": "adjustments\\20250606.pkl",
+        "rows": 5440,
+        "sha256": "7dfd209b9e603e677bee65c144b1562e639651370c6eb6cb52e2a98d1e125352"
+      },
+      "20250609": {
+        "file": "adjustments\\20250609.pkl",
+        "rows": 5440,
+        "sha256": "ee73bbc6f6d158d1b3ea21a68d1decc50d565797543c1d1b0fc60c2ee7d9d549"
+      },
+      "20250610": {
+        "file": "adjustments\\20250610.pkl",
+        "rows": 5441,
+        "sha256": "aa15532ed33800f378d0037f87cbbf4bdf809cc2fac9a731cba58f3d21aeeaa7"
+      },
+      "20250611": {
+        "file": "adjustments\\20250611.pkl",
+        "rows": 5442,
+        "sha256": "4a3fbb27d0d3d14e26977712b36801bd35eabdefe636a2827201b55b23c95599"
+      },
+      "20250612": {
+        "file": "adjustments\\20250612.pkl",
+        "rows": 5443,
+        "sha256": "da84b0a21a243e42031419270c9abfbf6895ad67d7c5a753b6e0128cd5f7ce70"
+      },
+      "20250613": {
+        "file": "adjustments\\20250613.pkl",
+        "rows": 5443,
+        "sha256": "25082bed99e11e5980052ba132c8b95e36757ddf70707350cde445ac397a0011"
+      },
+      "20250616": {
+        "file": "adjustments\\20250616.pkl",
+        "rows": 5443,
+        "sha256": "0c8cf1097e19f935ff1ba107d14f3c0fd31e70ead43121c40c4e5cea849842f8"
+      },
+      "20250617": {
+        "file": "adjustments\\20250617.pkl",
+        "rows": 5443,
+        "sha256": "86e4f7164856f3a4d699f6d540f33813c3c6ea183f763f33150e720559c9c8d9"
+      },
+      "20250618": {
+        "file": "adjustments\\20250618.pkl",
+        "rows": 5443,
+        "sha256": "359726d0ecc424b4aa5255f57bceae33534e7419b2aa824189142c0f369ce76f"
+      },
+      "20250619": {
+        "file": "adjustments\\20250619.pkl",
+        "rows": 5443,
+        "sha256": "56c316161d776b51b9fcaa9ab666b9f008f6a21d86f7178732571bb4d71ee747"
+      },
+      "20250620": {
+        "file": "adjustments\\20250620.pkl",
+        "rows": 5445,
+        "sha256": "d4a1ba438bd099f33d80b1f3aa2e735220dd03e9b213d1965928bf50e5411d5b"
+      },
+      "20250623": {
+        "file": "adjustments\\20250623.pkl",
+        "rows": 5445,
+        "sha256": "90d135157d8d9d368efb6507bf2c6c787ade27b17ba91f49fe584106e2d4f6b1"
+      },
+      "20250624": {
+        "file": "adjustments\\20250624.pkl",
+        "rows": 5446,
+        "sha256": "c5775a90027652ebf1c18c7a451bc808df0acd165bcb6b28a4d398fda311309b"
+      },
+      "20250625": {
+        "file": "adjustments\\20250625.pkl",
+        "rows": 5446,
+        "sha256": "091d9183df03ca5cf77a062eafe86b22c2c8655bbb79e2359167ca74091152fd"
+      },
+      "20250626": {
+        "file": "adjustments\\20250626.pkl",
+        "rows": 5447,
+        "sha256": "b5494fbb81fda604cc829687a90b722ef4f5ed829bacf5ee655394487cc79619"
+      },
+      "20250627": {
+        "file": "adjustments\\20250627.pkl",
+        "rows": 5446,
+        "sha256": "f50759938baa6b259e1353c9515ab573d053187353ccba0a37e1518e126d5e58"
+      },
+      "20250630": {
+        "file": "adjustments\\20250630.pkl",
+        "rows": 5447,
+        "sha256": "e375918001ff300c2b024e0ca6957c036901c21575cefcc908bb1b9571118d53"
+      },
+      "20250701": {
+        "file": "adjustments\\20250701.pkl",
+        "rows": 5448,
+        "sha256": "e3f36356ca90b7f6889a04fb6ea80194b8e3b53af5f05511366d884d30df3a34"
+      },
+      "20250702": {
+        "file": "adjustments\\20250702.pkl",
+        "rows": 5448,
+        "sha256": "459e0bc1ee3ebf385184913769dc4a4a8e882d2cb5c8dcd49f49ceec2483e486"
+      },
+      "20250703": {
+        "file": "adjustments\\20250703.pkl",
+        "rows": 5446,
+        "sha256": "8f9e2e77cc1ca03a31bae1a0d741310e3fbbd6e243d5b0e792a9d9226c2b98bf"
+      },
+      "20250704": {
+        "file": "adjustments\\20250704.pkl",
+        "rows": 5445,
+        "sha256": "aebd492eb92585252aefd7625936801b00fa451011df7410ebcfb47509a296e5"
+      },
+      "20250707": {
+        "file": "adjustments\\20250707.pkl",
+        "rows": 5445,
+        "sha256": "87237497c6bab05a9bb1a431720c12b7a58aa65dd3052b7eeab423ff00ab66bc"
+      },
+      "20250708": {
+        "file": "adjustments\\20250708.pkl",
+        "rows": 5446,
+        "sha256": "589900d66c2cb122c62f08ffe995feef8db851c59c1cb66b400764a64290e8d4"
+      },
+      "20250709": {
+        "file": "adjustments\\20250709.pkl",
+        "rows": 5446,
+        "sha256": "c9796bd4ba79b2e960d7611d6149383c6ae460680176c5339e9052e96573996e"
+      },
+      "20250710": {
+        "file": "adjustments\\20250710.pkl",
+        "rows": 5447,
+        "sha256": "d0b5c6c9ba9561dc986470e6b5144483e21f60ada4735604f27b6903718b1b1e"
+      },
+      "20250711": {
+        "file": "adjustments\\20250711.pkl",
+        "rows": 5445,
+        "sha256": "fea01814dc4d58e5a7ca08d29c23acdba4becd77f83cf32a92bc7019e4239bb0"
+      },
+      "20250714": {
+        "file": "adjustments\\20250714.pkl",
+        "rows": 5445,
+        "sha256": "84b0d0b7a9b8e0a0366ccb68600dcdee849927b5a9f34e2d4b4f2488b6060b97"
+      },
+      "20250715": {
+        "file": "adjustments\\20250715.pkl",
+        "rows": 5445,
+        "sha256": "a3572e818e6c2cdaf106d6be4987d23c013eaf50b9d990d5403d213d4c02ea7c"
+      },
+      "20250716": {
+        "file": "adjustments\\20250716.pkl",
+        "rows": 5446,
+        "sha256": "08c33112a5095885c158f372554b15d1f9c4d0ef1a100fcc8de6fff30b52bd57"
+      },
+      "20250717": {
+        "file": "adjustments\\20250717.pkl",
+        "rows": 5446,
+        "sha256": "6a89e35f0bb69d29f40d1a58a1119733e7e2bb5a5e6d8c4c2fcf8519ae5b0c47"
+      },
+      "20250718": {
+        "file": "adjustments\\20250718.pkl",
+        "rows": 5446,
+        "sha256": "345215365cc8266c835fcfbb0b956dcbc0defd2e38e777418118f7123d5fc624"
+      },
+      "20250721": {
+        "file": "adjustments\\20250721.pkl",
+        "rows": 5444,
+        "sha256": "9dfd5bbee32217bc09e9a32714da4e5c32e090c62e4656617d8d98d9d67e63f5"
+      },
+      "20250722": {
+        "file": "adjustments\\20250722.pkl",
+        "rows": 5443,
+        "sha256": "5ca0a7f864bdda2dd550eeca5286fae1f3410d6f8da856febcaf9509fd11e3be"
+      },
+      "20250723": {
+        "file": "adjustments\\20250723.pkl",
+        "rows": 5445,
+        "sha256": "1dbb5cb3b514b4c83cc1193d3bc5ecbf80081c375b75cfaf02741fc16ac331c7"
+      },
+      "20250724": {
+        "file": "adjustments\\20250724.pkl",
+        "rows": 5445,
+        "sha256": "57abfb0d4aa6501a0060f87afb05dd5e0cb5601b92c7d81c43c18b5c461ffef7"
+      },
+      "20250725": {
+        "file": "adjustments\\20250725.pkl",
+        "rows": 5444,
+        "sha256": "fd4261b8cff8526fa32327b2716253e5e8767f730d05e6c81d0464dac41c5501"
+      },
+      "20250728": {
+        "file": "adjustments\\20250728.pkl",
+        "rows": 5444,
+        "sha256": "d8de97b55863c1e08a00d1e6fe35cd0bf62b16090a74e952c486cb6fe1e2b3ce"
+      },
+      "20250729": {
+        "file": "adjustments\\20250729.pkl",
+        "rows": 5444,
+        "sha256": "5b235f444398680a24923e868d81a182050891717f7be7ba3174afdc8d563c41"
+      },
+      "20250730": {
+        "file": "adjustments\\20250730.pkl",
+        "rows": 5445,
+        "sha256": "7767fbba81100c8a6b90d627d4cd9adc40ff74a2f67ad0bed006b983dbf2cd50"
+      },
+      "20250731": {
+        "file": "adjustments\\20250731.pkl",
+        "rows": 5446,
+        "sha256": "db1d12365076f4d4fa3f214b0a28a27db4df7732d28975031185bcb48c81cc8b"
+      },
+      "20250801": {
+        "file": "adjustments\\20250801.pkl",
+        "rows": 5446,
+        "sha256": "5a0f571df72d8aee5ecf6b0396167fe2eb82f8f38f5aafa078b1efdf805fe85d"
+      },
+      "20250804": {
+        "file": "adjustments\\20250804.pkl",
+        "rows": 5446,
+        "sha256": "9fb54cadd472a23e37b479f545ef20663c3471b62a3b1900310845be233ede0f"
+      },
+      "20250805": {
+        "file": "adjustments\\20250805.pkl",
+        "rows": 5446,
+        "sha256": "bcaa7ace7e14bac4e84f05c18f6263d3f47cb6ce65fcabc15c4a86a04cd379f9"
+      },
+      "20250806": {
+        "file": "adjustments\\20250806.pkl",
+        "rows": 5447,
+        "sha256": "d5849d44920dae9d594b583b2c4bd4afd44aa9cfd8c6df5b353557af92901597"
+      },
+      "20250807": {
+        "file": "adjustments\\20250807.pkl",
+        "rows": 5447,
+        "sha256": "80ad3116e56196618d5e550f0956a174bb7ea526bcea00c8efeaf4a558af4b25"
+      },
+      "20250808": {
+        "file": "adjustments\\20250808.pkl",
+        "rows": 5449,
+        "sha256": "e77166ded8cd47c8c6fc7a1071575dfe6f79ff63695355934085757a4ca9e43a"
+      },
+      "20250811": {
+        "file": "adjustments\\20250811.pkl",
+        "rows": 5449,
+        "sha256": "287b6ceb4429f70e3fb1776b04e4c7f0dfa0dce59b25e204c2a32095f889a9c2"
+      },
+      "20250812": {
+        "file": "adjustments\\20250812.pkl",
+        "rows": 5450,
+        "sha256": "b076afce3e48edc1389d9c4b14db1ac1eaf1dab380d10c3a7a2df0e046ad7671"
+      },
+      "20250813": {
+        "file": "adjustments\\20250813.pkl",
+        "rows": 5450,
+        "sha256": "35a7d01b1871868ec122b0a97d25a5f71574066e3b618400a339e5666a8de8bb"
+      },
+      "20250814": {
+        "file": "adjustments\\20250814.pkl",
+        "rows": 5452,
+        "sha256": "b7f50fc0e4b35783b49b767bd81985da122fc1b5279209dc9ab3c8abae0ada79"
+      },
+      "20250815": {
+        "file": "adjustments\\20250815.pkl",
+        "rows": 5424,
+        "sha256": "bf237f5763ff3aded7baf3de8b30bc80e3b340a91c894de3894f31623455bdc1"
+      },
+      "20250818": {
+        "file": "adjustments\\20250818.pkl",
+        "rows": 5424,
+        "sha256": "33a770a42f9e7772ffd4d6e497f30eee665b6a95c45f156f082427b60931b59c"
+      },
+      "20250819": {
+        "file": "adjustments\\20250819.pkl",
+        "rows": 5424,
+        "sha256": "7f51dbf6cc214d36e20daf976d36bdc4fbcb54430a0a1b1dc6cefd8edc0b902a"
+      },
+      "20250820": {
+        "file": "adjustments\\20250820.pkl",
+        "rows": 5425,
+        "sha256": "dc5a5050227acb4de8e2bdde081223667785b5e8422038e78ea367182057bf3e"
+      },
+      "20250821": {
+        "file": "adjustments\\20250821.pkl",
+        "rows": 5425,
+        "sha256": "10d7adc353e4f6bea6305a957cfe1254da214d73e86aa6950b22e6ddf73456a7"
+      },
+      "20250822": {
+        "file": "adjustments\\20250822.pkl",
+        "rows": 5426,
+        "sha256": "f9ad8534efc7d0316d4ec1e0ae7f8de3697bc088378b73c63a8c0ea597a217ba"
+      },
+      "20250825": {
+        "file": "adjustments\\20250825.pkl",
+        "rows": 5426,
+        "sha256": "cddfb3f5d2e93e5abdcd36acfa891c26f5205f84e3afbee6582a6af639d58b22"
+      },
+      "20250826": {
+        "file": "adjustments\\20250826.pkl",
+        "rows": 5426,
+        "sha256": "a3822a97758ff8e868e6c582f526d8525144468bce7ad49ebc9f057d588a0018"
+      },
+      "20250827": {
+        "file": "adjustments\\20250827.pkl",
+        "rows": 5426,
+        "sha256": "53a8dce47cc9f924453215dba23b8840a4b113a8c73c87c342832c56f7acc490"
+      },
+      "20250828": {
+        "file": "adjustments\\20250828.pkl",
+        "rows": 5427,
+        "sha256": "e5c22eb4eadbe89c04f09b5b304c53b531d3aac38a4ea37fd6bb5ee7f0fce422"
+      },
+      "20250829": {
+        "file": "adjustments\\20250829.pkl",
+        "rows": 5427,
+        "sha256": "6c2d840858e3d35a1ac23aaf0f029ea0543ecdc69c77bf173d2312fc31bcc901"
+      },
+      "20250901": {
+        "file": "adjustments\\20250901.pkl",
+        "rows": 5427,
+        "sha256": "48489b06c565ede3c4260d6d1f338547258eb02c7197a4d22fe67468ac03a2e4"
+      },
+      "20250902": {
+        "file": "adjustments\\20250902.pkl",
+        "rows": 5427,
+        "sha256": "b7f0a6e6788ad16c9592831bd52661d903e5797c66873296a12b2f5be2d75696"
+      },
+      "20250903": {
+        "file": "adjustments\\20250903.pkl",
+        "rows": 5427,
+        "sha256": "32069376c54f1a608235c3b4f5e79e8c65b706feffe418a4719f767af8668cdc"
+      },
+      "20250904": {
+        "file": "adjustments\\20250904.pkl",
+        "rows": 5427,
+        "sha256": "1b9fa6a4599e51f2d6f93f798c8d5efb50d8226c08a4af7b5d3ddb4cf0f421f0"
+      },
+      "20250905": {
+        "file": "adjustments\\20250905.pkl",
+        "rows": 5428,
+        "sha256": "9f37bdc52925d9019d6e105f6ab6c548717af7fcdb412f52c0cf1a9eaf382be1"
+      },
+      "20250908": {
+        "file": "adjustments\\20250908.pkl",
+        "rows": 5428,
+        "sha256": "ff6fb8a30bd6be047d80d8b3371af5ed7b23ea8da2b3e24f4dedfef81a077d95"
+      },
+      "20250909": {
+        "file": "adjustments\\20250909.pkl",
+        "rows": 5428,
+        "sha256": "44a9e4ec0fadf8b06265b1356b0df6e02271160a8c685a1653d4aa90c4efbd41"
+      },
+      "20250910": {
+        "file": "adjustments\\20250910.pkl",
+        "rows": 5429,
+        "sha256": "f3f8fdae26666fed50d3db7000cb3ec286f8984645794d21cafb90969aaf2f1a"
+      },
+      "20250911": {
+        "file": "adjustments\\20250911.pkl",
+        "rows": 5429,
+        "sha256": "961dabf954c07d4af67a8b6c092ca0c4c35854b08290707baab8a9ba808f0456"
+      },
+      "20250912": {
+        "file": "adjustments\\20250912.pkl",
+        "rows": 5429,
+        "sha256": "cea830b0580e665414e9ae9331ee2a80eb8f4aff4c0b6a9f925d729c885e5a50"
+      },
+      "20250915": {
+        "file": "adjustments\\20250915.pkl",
+        "rows": 5429,
+        "sha256": "9e14b0ca6b8e3fd4e6dab8a90fc9c4fce57d5608f880edad0f86c6cb49dcfa76"
+      },
+      "20250916": {
+        "file": "adjustments\\20250916.pkl",
+        "rows": 5429,
+        "sha256": "2926b3b9816dbab43adf22e9b73e84f81f53e820ad4b9c1c15b514a93d86277a"
+      },
+      "20250917": {
+        "file": "adjustments\\20250917.pkl",
+        "rows": 5429,
+        "sha256": "4298b397f142fda9df9969de48fa8904a544a00f48dca4096e2a11334da8a144"
+      },
+      "20250918": {
+        "file": "adjustments\\20250918.pkl",
+        "rows": 5429,
+        "sha256": "99450932888268b5c567d6890aada0edb92d30b87aaa02dd80953a11fd04da4c"
+      },
+      "20250919": {
+        "file": "adjustments\\20250919.pkl",
+        "rows": 5430,
+        "sha256": "9eba69ecc0dd75cd51384e6fcbe58396d4af3f2f623527ae707f14c5f42cf597"
+      },
+      "20250922": {
+        "file": "adjustments\\20250922.pkl",
+        "rows": 5430,
+        "sha256": "cdbe2363d1ce6ca7a461fb6508248be27367d5f26ccbbf935368217cfbf71dce"
+      },
+      "20250923": {
+        "file": "adjustments\\20250923.pkl",
+        "rows": 5431,
+        "sha256": "f92adfb252ff97f88caa71f1be8f9469fec12c8f0bc8bf0494ebebdc197b2cc4"
+      },
+      "20250924": {
+        "file": "adjustments\\20250924.pkl",
+        "rows": 5431,
+        "sha256": "423448a940c0a4aafc8dcf374b9de2b322cfb1d5bf987889f26d4927122a6f96"
+      },
+      "20250925": {
+        "file": "adjustments\\20250925.pkl",
+        "rows": 5434,
+        "sha256": "b6bead804fe8ee9c757fb6b942a263c978aa7dd827bc737d77f1febbfdecf1a0"
+      },
+      "20250929": {
+        "file": "adjustments\\20250929.pkl",
+        "rows": 5435,
+        "sha256": "a27583533ac91276862392d9f2ac48358413b8b6cd63ca8d69cae8a7dc4c69d2"
+      },
+      "20250930": {
+        "file": "adjustments\\20250930.pkl",
+        "rows": 5437,
+        "sha256": "9af7f2f6ee0c2adfa28bec5cf92c28e4475124cd8265c92a55d971547c6fc1d8"
+      },
+      "20251009": {
+        "file": "adjustments\\20251009.pkl",
+        "rows": 5437,
+        "sha256": "5e01a44cdbe04b5bb31150b1abfa12a9e9cf29bfc2631ba138a57fe4d924dfae"
+      },
+      "20251010": {
+        "file": "adjustments\\20251010.pkl",
+        "rows": 5438,
+        "sha256": "ee76fb38ad6546e2e1742181da8953d871196a7e384100cc862f0ef62d26a4f6"
+      },
+      "20250926": {
+        "file": "adjustments\\20250926.pkl",
+        "rows": 5435,
+        "sha256": "02a3189ca67b4e451a9eddfdf081a652871aace3740dc4290b239c1cce36e513"
+      },
+      "20251014": {
+        "file": "adjustments\\20251014.pkl",
+        "rows": 5438,
+        "sha256": "f80d490069a4a822a38a13777e0d8c9053fa6bdaa9f0883cc3936ab6e3e014db"
+      },
+      "20251013": {
+        "file": "adjustments\\20251013.pkl",
+        "rows": 5438,
+        "sha256": "b0dcc3cea03fc9418722af6ccb5de2d78630c4627397a4d0ec66782e90155203"
+      },
+      "20251015": {
+        "file": "adjustments\\20251015.pkl",
+        "rows": 5438,
+        "sha256": "9768e137bbf451c401da6638f0ea4e39b3374ee790728e88ee9b7d955a3397f3"
+      },
+      "20251016": {
+        "file": "adjustments\\20251016.pkl",
+        "rows": 5439,
+        "sha256": "9846ed61d14cb97e576b5cd5fef59978f7ed7d0624d4a51107e374f84eac93f7"
+      },
+      "20251017": {
+        "file": "adjustments\\20251017.pkl",
+        "rows": 5440,
+        "sha256": "43b4c373b59d76608a1163e37e08413d63b1c87654cf2b67312954f94b76944e"
+      },
+      "20251021": {
+        "file": "adjustments\\20251021.pkl",
+        "rows": 5440,
+        "sha256": "2028ba60ea7279f536cafc57041713b5b9e34df8769a81adc0a2e4dc1b268ef4"
+      },
+      "20251022": {
+        "file": "adjustments\\20251022.pkl",
+        "rows": 5441,
+        "sha256": "75b11563c93d36522cdb46dc2dc1ad0f14457d5fdbb3e3d8544d51d030f8dca0"
+      },
+      "20251023": {
+        "file": "adjustments\\20251023.pkl",
+        "rows": 5441,
+        "sha256": "bfdb2aba4476956e05bafffc7561a06d1a91773fdb759da9270663ee67cc1a20"
+      },
+      "20251024": {
+        "file": "adjustments\\20251024.pkl",
+        "rows": 5442,
+        "sha256": "6b1fdfde1ad71d9357a2456c0bf97e5e8321b6c6e1a8679d466b14aab9180089"
+      },
+      "20251027": {
+        "file": "adjustments\\20251027.pkl",
+        "rows": 5442,
+        "sha256": "14bdcd67634f61f11e1ab08b0b92d4f20df8e5359a629fe863f11f9b1a4aefbe"
+      },
+      "20251028": {
+        "file": "adjustments\\20251028.pkl",
+        "rows": 5446,
+        "sha256": "6c45958b944b94b6c2ac90714dfd11f3ddf5e5a766e39d478ed8b1e9e890ca4b"
+      },
+      "20251029": {
+        "file": "adjustments\\20251029.pkl",
+        "rows": 5446,
+        "sha256": "3a05c08772ed5b9f45b4b7ea455d59195507f77b4905e0420149c9f1d2bebe4c"
+      },
+      "20251030": {
+        "file": "adjustments\\20251030.pkl",
+        "rows": 5446,
+        "sha256": "9d8c4eab92fcb18794d14240bc09b097b61c43c048cf8a95a01e5f00f4a0f02c"
+      },
+      "20251031": {
+        "file": "adjustments\\20251031.pkl",
+        "rows": 5446,
+        "sha256": "d7991e0b995d42de3e33c7dca6ecb1cb43eb8ec65baba9b65252b254c69b325a"
+      },
+      "20251103": {
+        "file": "adjustments\\20251103.pkl",
+        "rows": 5447,
+        "sha256": "d06a0347cce9a5105d4c165b7e7c8777de7b6b0396d875d9a511409599352288"
+      },
+      "20251104": {
+        "file": "adjustments\\20251104.pkl",
+        "rows": 5447,
+        "sha256": "0bff61c7b02753a09dc2490827263a7136e034db61af6408963d0aa792903938"
+      },
+      "20251105": {
+        "file": "adjustments\\20251105.pkl",
+        "rows": 5448,
+        "sha256": "70b9ad53e9ad9177cb5206b2d79059a71ab98260d8c7406807ec5d563c6c52dc"
+      },
+      "20251106": {
+        "file": "adjustments\\20251106.pkl",
+        "rows": 5449,
+        "sha256": "cb682d3d99b8ec23671b43631b85400b2f0fcc267277593405676667c917e386"
+      },
+      "20251107": {
+        "file": "adjustments\\20251107.pkl",
+        "rows": 5451,
+        "sha256": "da45ec7642e6a8e7aca351942d5aac892850de13e315f16f6f2fca7e83d8b5f6"
+      },
+      "20251110": {
+        "file": "adjustments\\20251110.pkl",
+        "rows": 5451,
+        "sha256": "9275dba8bc63bc490f35eab3e40592e8a96d9cd9f681bb3e818c32cca89c985e"
+      },
+      "20251111": {
+        "file": "adjustments\\20251111.pkl",
+        "rows": 5451,
+        "sha256": "b0c9c3db3da263f988d0ee0a6dc0e8f1515c57e832dcdfe724bc7a3adc0f265d"
+      },
+      "20251112": {
+        "file": "adjustments\\20251112.pkl",
+        "rows": 5451,
+        "sha256": "531efd3c3813d8e238883ab5bfe118cc27dde8956ba3c52a499e53c5f962b2af"
+      },
+      "20251113": {
+        "file": "adjustments\\20251113.pkl",
+        "rows": 5451,
+        "sha256": "3b3492f6ed65772c73804a76c13241d27880f25074e36a0ec940c9cb2f0b997e"
+      },
+      "20251114": {
+        "file": "adjustments\\20251114.pkl",
+        "rows": 5451,
+        "sha256": "ef8300872c713f6396ce042e40aee23dfc68cbe3286ef581cf35f9f8f56596ec"
+      },
+      "20251117": {
+        "file": "adjustments\\20251117.pkl",
+        "rows": 5451,
+        "sha256": "01a44ad0e4f38a140f62e149181c497ffd5dae72331499690359f04d0b70d5cb"
+      },
+      "20251118": {
+        "file": "adjustments\\20251118.pkl",
+        "rows": 5454,
+        "sha256": "feaf5e08337c0c325d73af8758a39447ea05a76cb7dc8a3153e027e2fc4ddd01"
+      },
+      "20251119": {
+        "file": "adjustments\\20251119.pkl",
+        "rows": 5454,
+        "sha256": "977d6b4ebc66ac5fb95212a49e22c24aa0cafeeb8fca3cce3d0d3cca0cc13711"
+      },
+      "20251120": {
+        "file": "adjustments\\20251120.pkl",
+        "rows": 5454,
+        "sha256": "ccead63a77be2ba1a61b6d18066a3d77557f546aa8f40263cfb4e9c817b8b670"
+      },
+      "20251121": {
+        "file": "adjustments\\20251121.pkl",
+        "rows": 5455,
+        "sha256": "524741743191c9b297a27ab29aae175e8b89a3aa1655961b250faaa3b3c57c95"
+      },
+      "20251124": {
+        "file": "adjustments\\20251124.pkl",
+        "rows": 5455,
+        "sha256": "3ecfa07ab47698638faecc37dbff01b8d23492b7736d377cf39e63239e26c49f"
+      },
+      "20251125": {
+        "file": "adjustments\\20251125.pkl",
+        "rows": 5456,
+        "sha256": "ec3cb384ef67e7562a74ccb1799c71a1f050cbe09241e1cc428441aa532e12cf"
+      },
+      "20251126": {
+        "file": "adjustments\\20251126.pkl",
+        "rows": 5456,
+        "sha256": "a6cb5306c6abf6cfeacd0cb9dc3a312212f0ad898d3bb9f0e2443e65c11a4795"
+      },
+      "20251127": {
+        "file": "adjustments\\20251127.pkl",
+        "rows": 5457,
+        "sha256": "076141b66274c6f17c0e1bccb2424fbf8e32cca8c364d3fad3fcb93798f91fc5"
+      },
+      "20251128": {
+        "file": "adjustments\\20251128.pkl",
+        "rows": 5457,
+        "sha256": "0618756b8e34a83bd574eca8519eb963c9584d4cc06652f1b6b2c25b5ba466e0"
+      },
+      "20251201": {
+        "file": "adjustments\\20251201.pkl",
+        "rows": 5457,
+        "sha256": "5f1821dbb2096f88d07b980fda521cfce98812f27b0926f4e55bd6d4d94f0838"
+      },
+      "20251202": {
+        "file": "adjustments\\20251202.pkl",
+        "rows": 5458,
+        "sha256": "091bb7be9552fa0aac1e3bf89bdf641e8b5fdca7cfa3721fb112174fc54a3bd3"
+      },
+      "20251203": {
+        "file": "adjustments\\20251203.pkl",
+        "rows": 5459,
+        "sha256": "504cb4ce88bf0656c7ced01230a3925b362880ab2a4395d37630807657d202b1"
+      },
+      "20251204": {
+        "file": "adjustments\\20251204.pkl",
+        "rows": 5459,
+        "sha256": "de6cbad64fecf3a31daa36b6710eb37a552c39f7c1313b6e51962e2b7287319f"
+      },
+      "20251205": {
+        "file": "adjustments\\20251205.pkl",
+        "rows": 5460,
+        "sha256": "1bb3f72a10c63116a642d3a52613b736d30b8062467a6065db4e59b9d913051c"
+      },
+      "20251208": {
+        "file": "adjustments\\20251208.pkl",
+        "rows": 5460,
+        "sha256": "299152d5937777bbac98814937ab3135998aefe4a0b6ab5d112ee9180e728221"
+      },
+      "20251209": {
+        "file": "adjustments\\20251209.pkl",
+        "rows": 5460,
+        "sha256": "1e64a9155b271da34dd1c77cefbea7aec56e5762d573c1a698ad196ecc27d5d9"
+      },
+      "20251020": {
+        "file": "adjustments\\20251020.pkl",
+        "rows": 5440,
+        "sha256": "c9917844d8fc6779baadfcc4d2c8d1959c56ee82641fb031708b49b678ea5064"
+      },
+      "20251210": {
+        "file": "adjustments\\20251210.pkl",
+        "rows": 5461,
+        "sha256": "4f43375fa57afdc397362915c3f1e98b0c4e5ad6e33f07d4c1342268a4f36e10"
+      },
+      "20251211": {
+        "file": "adjustments\\20251211.pkl",
+        "rows": 5461,
+        "sha256": "c8178d40299fbe322dc3b5110fec6f7e9d6312399d756b7ac6f32285f530d0cc"
+      },
+      "20251212": {
+        "file": "adjustments\\20251212.pkl",
+        "rows": 5461,
+        "sha256": "ca094d2c3461c9ffb3d0a4edf078eb67dfa0857f83339aa3b3064ac129d71d68"
+      },
+      "20251215": {
+        "file": "adjustments\\20251215.pkl",
+        "rows": 5461,
+        "sha256": "8ad63f4cd4522f6965ab71f743061ac735e6c377745c7d109b12edc85383095d"
+      },
+      "20251216": {
+        "file": "adjustments\\20251216.pkl",
+        "rows": 5462,
+        "sha256": "08a21c629e0f44058d31ecd7d95d8de138b4a2d14c8d456186444cbda37ef722"
+      },
+      "20251217": {
+        "file": "adjustments\\20251217.pkl",
+        "rows": 5463,
+        "sha256": "a55a4621d8b845155b855fc969f445ce9afe5217567474f009eff1607753ada6"
+      },
+      "20251218": {
+        "file": "adjustments\\20251218.pkl",
+        "rows": 5464,
+        "sha256": "13d5e395b762e79dd8e8f873984139b78b9c3ad947643b521e1c0f5687aea505"
+      },
+      "20251219": {
+        "file": "adjustments\\20251219.pkl",
+        "rows": 5465,
+        "sha256": "5657059354a9d09859697a0836b6b67fff7e8c25afe1f02e83b9f65230372649"
+      },
+      "20251222": {
+        "file": "adjustments\\20251222.pkl",
+        "rows": 5465,
+        "sha256": "883c0e78c9dfb245308314676955af43a0ed3459fb448eec2f5ec6111c46a135"
+      },
+      "20251223": {
+        "file": "adjustments\\20251223.pkl",
+        "rows": 5468,
+        "sha256": "6b6c87154e2e20096da9d15874e3a761bd30d1044bf42cccfb943b5c3b3850f5"
+      },
+      "20251224": {
+        "file": "adjustments\\20251224.pkl",
+        "rows": 5469,
+        "sha256": "b51f791bbd0919f9aaf1fc201aedb82ce58ef20ae60a1c0fbe60e2ac1a35a105"
+      },
+      "20251225": {
+        "file": "adjustments\\20251225.pkl",
+        "rows": 5470,
+        "sha256": "cd50d097021902080980966183669d20596d3a0195ffcf055cdfdcc960e359b2"
+      },
+      "20251226": {
+        "file": "adjustments\\20251226.pkl",
+        "rows": 5470,
+        "sha256": "049b29f40e6d22a24eb4b6b21083e2ca522e6677cfa5de20b900574c9a442c39"
+      },
+      "20251229": {
+        "file": "adjustments\\20251229.pkl",
+        "rows": 5470,
+        "sha256": "d4373e9d6b3a6d164935d6d6f37536fd103ca67a04a00557e524fe9b86b2bc52"
+      },
+      "20251230": {
+        "file": "adjustments\\20251230.pkl",
+        "rows": 5473,
+        "sha256": "b78691630f755e9814003d7563f7a95df691e4321b2ba87b6e592cdbbecbf2a8"
+      },
+      "20251231": {
+        "file": "adjustments\\20251231.pkl",
+        "rows": 5475,
+        "sha256": "2afd985b9a7bce2d008a078ef0502b1d15f467e6d353fde06dbbfdc08f8d9931"
+      },
+      "20260105": {
+        "file": "adjustments\\20260105.pkl",
+        "rows": 5475,
+        "sha256": "b01c50c8964fe44f7c3d1dd0a83cb437295024c6ba65bd16ec5b7520481150cb"
+      },
+      "20260106": {
+        "file": "adjustments\\20260106.pkl",
+        "rows": 5476,
+        "sha256": "d034f052cd300185f76d07a889c59f1dbd1112fdaa8fae85181232c5b100b246"
+      },
+      "20260107": {
+        "file": "adjustments\\20260107.pkl",
+        "rows": 5476,
+        "sha256": "256a402262ddbedb4f1bed47a63cf60dc0da46406476d92c0b6aba5c64b87b79"
+      },
+      "20260108": {
+        "file": "adjustments\\20260108.pkl",
+        "rows": 5476,
+        "sha256": "3b4ecc222b0be6a55f1f59290a245ea68cad1ed0f92ff77a6131bd5618b0a061"
+      },
+      "20260109": {
+        "file": "adjustments\\20260109.pkl",
+        "rows": 5476,
+        "sha256": "368323587c397596a2c712040c0a57783941f4280f7988993ad03f5ce0378627"
+      },
+      "20260112": {
+        "file": "adjustments\\20260112.pkl",
+        "rows": 5476,
+        "sha256": "b77a8ee3bd26af1599ca261ada4ad848693daccb629e94fdf57210cc339c4f8c"
+      },
+      "20260113": {
+        "file": "adjustments\\20260113.pkl",
+        "rows": 5476,
+        "sha256": "5fad7d11c7a254cfc666914e465a715dfd310b680e3fa868a6f97cde7bd58f50"
+      },
+      "20260114": {
+        "file": "adjustments\\20260114.pkl",
+        "rows": 5476,
+        "sha256": "625995c30d9cf666e3b178094ea5ea9cecd2be77ba6fdbae981d9443ede77652"
+      },
+      "20260115": {
+        "file": "adjustments\\20260115.pkl",
+        "rows": 5477,
+        "sha256": "63aaebe465a4bcddb30dc1d4197c1680cf4415a8ad7787bdcfe0553987a8474a"
+      },
+      "20260116": {
+        "file": "adjustments\\20260116.pkl",
+        "rows": 5478,
+        "sha256": "ee3cca6fdc6e56e34203e29d1bf97eaa0ca057235bc6e68880695f96933f3289"
+      },
+      "20260119": {
+        "file": "adjustments\\20260119.pkl",
+        "rows": 5478,
+        "sha256": "3c139ebf1ea0dd5c6cfdb2ccfb917a86809593c684c569b9add040184444d8e3"
+      },
+      "20260120": {
+        "file": "adjustments\\20260120.pkl",
+        "rows": 5472,
+        "sha256": "b3af48d6f7b75141863691a7e65ba6f31365773b4ac4d13b771c1510f5923bf9"
+      },
+      "20260121": {
+        "file": "adjustments\\20260121.pkl",
+        "rows": 5473,
+        "sha256": "501af64c8dba83e76413069b7d79e316c434b998ad294e53940f7e85dd3a9226"
+      },
+      "20260122": {
+        "file": "adjustments\\20260122.pkl",
+        "rows": 5474,
+        "sha256": "c51812afffd101cd7b51eea0e5f2308f34449338a08f91dad65fd0526b5cbab3"
+      },
+      "20260123": {
+        "file": "adjustments\\20260123.pkl",
+        "rows": 5474,
+        "sha256": "47594d42331bf7f58f11315c28789ef9216a05657f7aa93f3416d367720cf30b"
+      },
+      "20260126": {
+        "file": "adjustments\\20260126.pkl",
+        "rows": 5474,
+        "sha256": "350a7fe922e8eb6525e9aadecb6da7d31c0985c2d4dbb9aecc52b0b91d665c20"
+      },
+      "20260127": {
+        "file": "adjustments\\20260127.pkl",
+        "rows": 5474,
+        "sha256": "cdd840a69ce54225c4a07a7ef1449e90374968e5c91030b71179334741bdc12c"
+      },
+      "20260128": {
+        "file": "adjustments\\20260128.pkl",
+        "rows": 5476,
+        "sha256": "257f929884eeaae8730fb85019a35b26d015bb6e56ae76657431de6d2c1eac2e"
+      },
+      "20260129": {
+        "file": "adjustments\\20260129.pkl",
+        "rows": 5477,
+        "sha256": "6128dfca36e94aa487793ba08ee8e93996b974a881fd37335445a485b9a397ba"
+      },
+      "20260130": {
+        "file": "adjustments\\20260130.pkl",
+        "rows": 5478,
+        "sha256": "b8c6bdc50c3a1258d31c2747cee14733e9bc3b74c448ac29baadd533a6a98b2a"
+      },
+      "20260202": {
+        "file": "adjustments\\20260202.pkl",
+        "rows": 5478,
+        "sha256": "b63c309bad7ea34634be6ef48a1bc856a43ce8ed3b6467a8d46169a35d33ac23"
+      },
+      "20260203": {
+        "file": "adjustments\\20260203.pkl",
+        "rows": 5465,
+        "sha256": "bcafd18a4830a3d55192a19ff30f337c09f5801387bcec50e2fd610e7588f996"
+      },
+      "20260204": {
+        "file": "adjustments\\20260204.pkl",
+        "rows": 5479,
+        "sha256": "efe053207c8af8b0f437048065579b4677203a2f15214d286b2592e0ab4d1a17"
+      },
+      "20260205": {
+        "file": "adjustments\\20260205.pkl",
+        "rows": 5480,
+        "sha256": "4912ddb6aa0f7f9763e4b0d94a71656b706737b214957b0167c4820c4f65f394"
+      },
+      "20260206": {
+        "file": "adjustments\\20260206.pkl",
+        "rows": 5480,
+        "sha256": "f55609f58d65545def02b083f14a3f7fefe91c1c04e961123fcf339a074d6a6e"
+      },
+      "20260209": {
+        "file": "adjustments\\20260209.pkl",
+        "rows": 5480,
+        "sha256": "a9657243eb3a6e034104a691c4b09e80bbbace8a309b1442a0590f0938c55fae"
+      },
+      "20260210": {
+        "file": "adjustments\\20260210.pkl",
+        "rows": 5483,
+        "sha256": "dfe020f96c269e8ee1a9b1fa3605932c9368a3fb61d9083510097a366f0b0cd1"
+      },
+      "20260211": {
+        "file": "adjustments\\20260211.pkl",
+        "rows": 5484,
+        "sha256": "121454907874a67398a5b9be4efc25e154e34cec28f32a079e865eed02875d9a"
+      },
+      "20260212": {
+        "file": "adjustments\\20260212.pkl",
+        "rows": 5485,
+        "sha256": "cae81ce416a1be12ac140f0f772209e9281f5addb96588717cc5d633390aa346"
+      },
+      "20260213": {
+        "file": "adjustments\\20260213.pkl",
+        "rows": 5485,
+        "sha256": "a508b7f16ddb08d36bb7d354b0f07c5a241f112f10e8e7ccc910eb53bf52ba47"
+      },
+      "20260224": {
+        "file": "adjustments\\20260224.pkl",
+        "rows": 5485,
+        "sha256": "1f68a3be24c580e250fba75a47473fa122cf0fdfdaa4b6396535a28a907bd79c"
+      },
+      "20260225": {
+        "file": "adjustments\\20260225.pkl",
+        "rows": 5485,
+        "sha256": "55da6a56be396fffd66b9923da34f78ce97dc097e060e9d4223f39c920dd0bd8"
+      },
+      "20260226": {
+        "file": "adjustments\\20260226.pkl",
+        "rows": 5486,
+        "sha256": "e0567c7f2609f79d93a588e6c20d70fbefb48dd8b79e944c19fa1ea8eb799dea"
+      },
+      "20260227": {
+        "file": "adjustments\\20260227.pkl",
+        "rows": 5486,
+        "sha256": "da9b260a4f0ba2f87491517b9fcbb214c8de4d680696c0ed3ca994cbe096bc40"
+      },
+      "20260302": {
+        "file": "adjustments\\20260302.pkl",
+        "rows": 5486,
+        "sha256": "a72333adb08d93ab9fff9514e127cfd5f4a47de018ba2a5709aad3b9fde15023"
+      },
+      "20260303": {
+        "file": "adjustments\\20260303.pkl",
+        "rows": 5486,
+        "sha256": "f54163a71f12ee5b53385dccc31b827524cc4095e921b9403c0f5d4766002068"
+      },
+      "20260304": {
+        "file": "adjustments\\20260304.pkl",
+        "rows": 5487,
+        "sha256": "ed56627950598bee8b9e28354a8216ec615ba7fdefcc63dd18e17d2fb634af7b"
+      },
+      "20260305": {
+        "file": "adjustments\\20260305.pkl",
+        "rows": 5488,
+        "sha256": "6e9661ff4000580d5bae93e2dc8eba659ea8ab3a5f839b6ce8988355730465d5"
+      },
+      "20260306": {
+        "file": "adjustments\\20260306.pkl",
+        "rows": 5489,
+        "sha256": "a956f8529fdbf3fbf380f2b7a041e9dcba94734ea811d3df0d22c8aac34996c1"
+      },
+      "20260309": {
+        "file": "adjustments\\20260309.pkl",
+        "rows": 5490,
+        "sha256": "f8f8530ba11986c6b2b44d7586a0c9af563799f678907eeca7d8ccfa9dbc7eb2"
+      },
+      "20260310": {
+        "file": "adjustments\\20260310.pkl",
+        "rows": 5490,
+        "sha256": "3f707aeab30e6dfd68057a8346fecf8468d567e09ca88f8a710abdf718049653"
+      },
+      "20260311": {
+        "file": "adjustments\\20260311.pkl",
+        "rows": 5490,
+        "sha256": "884af199c4fce6ccbb823e63fa3778843354ef386f8b2a087f531d1326e14321"
+      },
+      "20260312": {
+        "file": "adjustments\\20260312.pkl",
+        "rows": 5490,
+        "sha256": "f4d5204842b9811a7ab7d7cdc77a197ebfcc88f6febd7e4dbdfb0dab50809b14"
+      },
+      "20260313": {
+        "file": "adjustments\\20260313.pkl",
+        "rows": 5490,
+        "sha256": "7993e76cf1e845f6dd33330969ee57411a03ff901f85ca8222d8e85fe7140e9a"
+      },
+      "20260316": {
+        "file": "adjustments\\20260316.pkl",
+        "rows": 5490,
+        "sha256": "da3ca5f371cc0c1490ce3b27ca9869f93516cb9b1e0661038548eb1ac4da00ed"
+      },
+      "20260317": {
+        "file": "adjustments\\20260317.pkl",
+        "rows": 5490,
+        "sha256": "a6dd39ed15a78939f286fa640977482f4bdf541b90abb1405965c7a590b61d24"
+      },
+      "20260318": {
+        "file": "adjustments\\20260318.pkl",
+        "rows": 5491,
+        "sha256": "521af1baf7e7dfce0a6b6fc7f75f9051630194d6ba7b1e4253be29a9d5e5510c"
+      },
+      "20260319": {
+        "file": "adjustments\\20260319.pkl",
+        "rows": 5491,
+        "sha256": "dd9e87e8b252800abb5608b2f0cd1a9c58adb5013289b505b44819d3f19930ea"
+      },
+      "20260320": {
+        "file": "adjustments\\20260320.pkl",
+        "rows": 5492,
+        "sha256": "9a0297875b705f2b75f7578e6a26e13f85f59738029842b99b6b7c5e0b5dfc67"
+      },
+      "20260323": {
+        "file": "adjustments\\20260323.pkl",
+        "rows": 5492,
+        "sha256": "d50a4b2439090f27cb26980573856f9e29a595168ab1866f95653bcfc3f64a6a"
+      },
+      "20260324": {
+        "file": "adjustments\\20260324.pkl",
+        "rows": 5492,
+        "sha256": "2d20bf001de3f9ece3e492a19e77941860b2a11cbbc3f5e6e1b0fe695fd3ebfd"
+      },
+      "20260325": {
+        "file": "adjustments\\20260325.pkl",
+        "rows": 5494,
+        "sha256": "df44f5e72d6a3cd2b6d05c822d8c496bd27e2766ed52dcd689a1f0fc2653c206"
+      },
+      "20260326": {
+        "file": "adjustments\\20260326.pkl",
+        "rows": 5494,
+        "sha256": "ffdc38aa5b68c02f81359b6896593da54d625826dffb9b560fd2d1be5499f831"
+      },
+      "20260327": {
+        "file": "adjustments\\20260327.pkl",
+        "rows": 5495,
+        "sha256": "19d7f4f5d614f95e7cd8cf519fc1d1e04f8c2c93403830fceb7e8a0c854c8339"
+      },
+      "20260330": {
+        "file": "adjustments\\20260330.pkl",
+        "rows": 5496,
+        "sha256": "a1c128c9a5b8d56577c0e3978aacd4e30b2976a732812754a0083ee24d1e13dd"
+      },
+      "20260331": {
+        "file": "adjustments\\20260331.pkl",
+        "rows": 5499,
+        "sha256": "966e74a316e275b35e0aef8bceafacbd1dad7115511894205dde1fe0731c84cb"
+      },
+      "20260401": {
+        "file": "adjustments\\20260401.pkl",
+        "rows": 5500,
+        "sha256": "e3dc5d178a2c761ea96643efa22a9a053ee78f3ce8253dd33280e11c1d0a9442"
+      },
+      "20260402": {
+        "file": "adjustments\\20260402.pkl",
+        "rows": 5500,
+        "sha256": "7eb20d0931696c5189de227514288396890bbfd1d35f106238623fd91e0ffddd"
+      },
+      "20260403": {
+        "file": "adjustments\\20260403.pkl",
+        "rows": 5500,
+        "sha256": "676fcee64beb7a97016c2e6b1bac9a586ce1e08659ca70c9e00b0023465ff2cb"
+      },
+      "20260407": {
+        "file": "adjustments\\20260407.pkl",
+        "rows": 5500,
+        "sha256": "06d903907047e355c4ca6dc11cd0d7966d39ae62b474c0c9e91b4472484fda7a"
+      },
+      "20260408": {
+        "file": "adjustments\\20260408.pkl",
+        "rows": 5502,
+        "sha256": "f5c4f157312299d898857ab050354ec44d56b9924f81ef01b8683018db694ab8"
+      },
+      "20260409": {
+        "file": "adjustments\\20260409.pkl",
+        "rows": 5502,
+        "sha256": "6da60feee64450f9a0157c42fb07bea02381e6b3f394d78cb3e36857b2c0ebfc"
+      },
+      "20260410": {
+        "file": "adjustments\\20260410.pkl",
+        "rows": 5505,
+        "sha256": "d0e66011869fceb0c65f349a3ad7d3246885b2b80d6ede47bc4095494dbd00d6"
+      },
+      "20260413": {
+        "file": "adjustments\\20260413.pkl",
+        "rows": 5506,
+        "sha256": "3981ddbc793fb49cf7fdbd08d02c90473b8471b69e65d0d2beb73cb9f3efdf38"
+      },
+      "20260414": {
+        "file": "adjustments\\20260414.pkl",
+        "rows": 5506,
+        "sha256": "0d121087ef8418f8c6603435a7d4c62572192a00631715acea664670233d4d0a"
+      },
+      "20260415": {
+        "file": "adjustments\\20260415.pkl",
+        "rows": 5506,
+        "sha256": "571aaaab562f7d197cb7c021c830237fbb2c3375495ac98f6b677cb64c8845ca"
+      },
+      "20260416": {
+        "file": "adjustments\\20260416.pkl",
+        "rows": 5509,
+        "sha256": "49ae2b6506df21845f299ed5726c5c2411fa559f51d718c4e5e36884d931576e"
+      },
+      "20260417": {
+        "file": "adjustments\\20260417.pkl",
+        "rows": 5510,
+        "sha256": "15d14b95d57a736dc6f356e7e3bfd2de904086760bd48abfc332e7edd66bd253"
+      },
+      "20260420": {
+        "file": "adjustments\\20260420.pkl",
+        "rows": 5511,
+        "sha256": "bb98bb211b7094aaee580e896091671bc37cbc9f8b45540705b8d2157a374f35"
+      },
+      "20260421": {
+        "file": "adjustments\\20260421.pkl",
+        "rows": 5513,
+        "sha256": "b3d5091b40e7c8ad9c3ea7917f095f59131e0518d67b26df3196991802ecc541"
+      },
+      "20260422": {
+        "file": "adjustments\\20260422.pkl",
+        "rows": 5513,
+        "sha256": "55b8dab8f802344e3a07dbd409ea75ab1c4625943c49a88b3d4cbd7fff48b531"
+      },
+      "20260423": {
+        "file": "adjustments\\20260423.pkl",
+        "rows": 5513,
+        "sha256": "c209e540330a9969b90967b24f42cff7a852220febb25385bd4fc9b10ae7bf7d"
+      },
+      "20260424": {
+        "file": "adjustments\\20260424.pkl",
+        "rows": 5515,
+        "sha256": "0ff365ae95789852adaa441f331dd8bef87e40e24d00a73e3404e6afaebb3155"
+      },
+      "20260427": {
+        "file": "adjustments\\20260427.pkl",
+        "rows": 5516,
+        "sha256": "46b298b4324b1c1be9bd3fcfb24c754e270e9ad7b711ed240f1ad4da33b5a720"
+      },
+      "20260428": {
+        "file": "adjustments\\20260428.pkl",
+        "rows": 5516,
+        "sha256": "e6a3bbe65d61bd0c16430aecb5dbbe37217891882995d5cfc04c910bc64c145c"
+      },
+      "20260429": {
+        "file": "adjustments\\20260429.pkl",
+        "rows": 5517,
+        "sha256": "db4301af56cbddb6eff69610087d975559526cde3feb94c3a3d2b4505779fc5f"
+      },
+      "20260430": {
+        "file": "adjustments\\20260430.pkl",
+        "rows": 5518,
+        "sha256": "ee85c0733395c46eda74ce0081cc7c006dd6196560fa54712dfc2e08ca129191"
+      },
+      "20260506": {
+        "file": "adjustments\\20260506.pkl",
+        "rows": 5518,
+        "sha256": "e63d9f1667d77a9e056413adfacf5b7fa274b5ec20fde348e3428d8d170a60e2"
+      },
+      "20260507": {
+        "file": "adjustments\\20260507.pkl",
+        "rows": 5519,
+        "sha256": "50ebc791acdcad9ea954fbaf32ae9fd89f4d9aa7b0a64b0c332d5769dc8cf50a"
+      },
+      "20260508": {
+        "file": "adjustments\\20260508.pkl",
+        "rows": 5519,
+        "sha256": "d7ff97e7b46ae0db10a25b39ecc7144d4ebd442704fd0558dbd7fcf4211a7639"
+      },
+      "20260511": {
+        "file": "adjustments\\20260511.pkl",
+        "rows": 5521,
+        "sha256": "1b6dc85747394145f931d86dca387b124428e0e924810bceeb453b27cbb46f7f"
+      },
+      "20260512": {
+        "file": "adjustments\\20260512.pkl",
+        "rows": 5521,
+        "sha256": "f70922aa96a76cdc80e2e64ba1b7ae661e7e008942ccabfff5d1c219f7a52210"
+      },
+      "20260513": {
+        "file": "adjustments\\20260513.pkl",
+        "rows": 5521,
+        "sha256": "d2bc04e1df0fde4548f0c998087afd8a2cd3bd2a31e5ccf714c2120a8299c148"
+      },
+      "20260514": {
+        "file": "adjustments\\20260514.pkl",
+        "rows": 5521,
+        "sha256": "bc02cb4870254723a17a6c9f0cc5549b164d8fb46bb91f2fcd5cefe1c0295f14"
+      },
+      "20260515": {
+        "file": "adjustments\\20260515.pkl",
+        "rows": 5523,
+        "sha256": "95364b3150f08b7266acaf3a40402238647fbdc8ebe9793640f1e0b7d93e1c0d"
+      },
+      "20260518": {
+        "file": "adjustments\\20260518.pkl",
+        "rows": 5525,
+        "sha256": "fdd5e3eafe95ed2460163bda0516a311339a901917c20757e1e943c794d40580"
+      },
+      "20260519": {
+        "file": "adjustments\\20260519.pkl",
+        "rows": 5525,
+        "sha256": "af0cfa387b98b74439d384b0cc84488739017e1cec75203ca3cf64bb7e533bda"
+      },
+      "20260520": {
+        "file": "adjustments\\20260520.pkl",
+        "rows": 5525,
+        "sha256": "d736bafaa8dacf5e0a53be94591da6d844a45bd4b16e4bfdf51de61050b5611d"
+      },
+      "20260521": {
+        "file": "adjustments\\20260521.pkl",
+        "rows": 5519,
+        "sha256": "f1add2bb13a018287418edce06ea216cdb32dd21a575df58fac0ee49f7158c9a"
+      },
+      "20260522": {
+        "file": "adjustments\\20260522.pkl",
+        "rows": 5522,
+        "sha256": "471724314fe64517e71854dda888fc38f8bb1a398964729a08569fb7769fea42"
+      },
+      "20260525": {
+        "file": "adjustments\\20260525.pkl",
+        "rows": 5522,
+        "sha256": "fcf0fdd9530cd2e130690c3aeb8345186f98b2f5e3e39df9c974bb2eb7c28a5e"
+      },
+      "20260526": {
+        "file": "adjustments\\20260526.pkl",
+        "rows": 5522,
+        "sha256": "bfec90ac218d88da231c72ec7edb0508fab3e02e99b9f8c8d4f20357f9cc2ce1"
+      },
+      "20260527": {
+        "file": "adjustments\\20260527.pkl",
+        "rows": 5524,
+        "sha256": "122d48fd1e34dd16437940a4982cd75e81a9d88cc9e5ce31894b8cee83052cfc"
+      },
+      "20260528": {
+        "file": "adjustments\\20260528.pkl",
+        "rows": 5524,
+        "sha256": "3a63f9ba669ead6101edae6878b2b797da5eae66ab4955fa7435f2512b02984c"
+      },
+      "20260529": {
+        "file": "adjustments\\20260529.pkl",
+        "rows": 5525,
+        "sha256": "38c00158a4d261baaa342e7cc4bb15e30a3c384278031859704de3de8d0dcd12"
+      },
+      "20260601": {
+        "file": "adjustments\\20260601.pkl",
+        "rows": 5525,
+        "sha256": "a707470850bf9f871cc9b10d2196ab4b72a8b1bfb07be2a59745de0dff655b71"
+      },
+      "20260602": {
+        "file": "adjustments\\20260602.pkl",
+        "rows": 5525,
+        "sha256": "4851afb0ad1e8b1122e07d607df0494baf8de4c59d2d56c38ac3072afbb85c89"
+      },
+      "20260603": {
+        "file": "adjustments\\20260603.pkl",
+        "rows": 5525,
+        "sha256": "9172146fd24d24f058bb4a0dbd2906c7af416a14468b23d65b92aee9966bdc47"
+      },
+      "20260604": {
+        "file": "adjustments\\20260604.pkl",
+        "rows": 5525,
+        "sha256": "1f2a3c71bdf7a810752b57097c2b80143716c9f65b4105270064f06fe4682c2b"
+      },
+      "20260605": {
+        "file": "adjustments\\20260605.pkl",
+        "rows": 5526,
+        "sha256": "f4d3244c69d9be81e160daac62006bb0141aae7d719a1c8467bbd2bfd2b81b29"
+      },
+      "20260608": {
+        "file": "adjustments\\20260608.pkl",
+        "rows": 5527,
+        "sha256": "4333335f5bdda2b9b8cf0bdea268a8e4cc12a8b0779357e732d1106016f020dc"
+      },
+      "20260609": {
+        "file": "adjustments\\20260609.pkl",
+        "rows": 5528,
+        "sha256": "f8abce223694d1cf737da359a1f9451c3a0935ce058f7c3dcc40ac8092d62ea2"
+      },
+      "20260610": {
+        "file": "adjustments\\20260610.pkl",
+        "rows": 5528,
+        "sha256": "f24c5a1ed158846e6180f23745ff6279bb6e98e9f2899df476458145fd474b97"
+      },
+      "20260611": {
+        "file": "adjustments\\20260611.pkl",
+        "rows": 5529,
+        "sha256": "18152bf8e70e5cb0a35c960d9e75224b04eaeb1d8648aa2a49e73f357983b87f"
+      },
+      "20260612": {
+        "file": "adjustments\\20260612.pkl",
+        "rows": 5529,
+        "sha256": "7c7c81aca95c2fdfba070e16f4a8866c49401b491311d698276d77bc547a497d"
+      },
+      "20260615": {
+        "file": "adjustments\\20260615.pkl",
+        "rows": 5530,
+        "sha256": "b1d09215b71b5e851c7d6fcead90910932e13c3605a49326173bba4fa0fc44bd"
+      },
+      "20260616": {
+        "file": "adjustments\\20260616.pkl",
+        "rows": 5530,
+        "sha256": "b9f9da4e1c09bf6d81fa5c5db91f7393f4bcf0900b8efa64855df76a5dece119"
+      },
+      "20260617": {
+        "file": "adjustments\\20260617.pkl",
+        "rows": 5530,
+        "sha256": "da10b11b4eae3536a9d4b1e98f2c001be9abc86422d039d2c973632982327d7f"
+      },
+      "20260618": {
+        "file": "adjustments\\20260618.pkl",
+        "rows": 5530,
+        "sha256": "bcd6cbb568c9969e3746c50f64105f44bbf71d9e75ff035c3310ff763d88d830"
+      },
+      "20260622": {
+        "file": "adjustments\\20260622.pkl",
+        "rows": 5530,
+        "sha256": "e534dd30058be91c94312b2a1a0fd756a56b06961ca5e8c2a0a9e29cbc3b804a"
+      },
+      "20260623": {
+        "file": "adjustments\\20260623.pkl",
+        "rows": 5530,
+        "sha256": "f293a216614bb1d025cf715a481b636f2ed80c74e2e3e05333e340e65cfe1495"
+      },
+      "20260624": {
+        "file": "adjustments\\20260624.pkl",
+        "rows": 5531,
+        "sha256": "ab8e735cb823bf8f0228c9888c03dd82b617bb13d7872f9c7fc3fa30f78c62d9"
+      },
+      "20260625": {
+        "file": "adjustments\\20260625.pkl",
+        "rows": 5531,
+        "sha256": "e957108c2839fb47239aa631c104a4a5bbf99fd8c2318ba64f8841779c8a57e4"
+      },
+      "20260626": {
+        "file": "adjustments\\20260626.pkl",
+        "rows": 5532,
+        "sha256": "2c55fd5c36976b2e5ba2d50666902339ddf1fa4bd7c2fe387454ce02894d6e4c"
+      },
+      "20260629": {
+        "file": "adjustments\\20260629.pkl",
+        "rows": 5533,
+        "sha256": "997412e5c540c7c37715a230d5cc62b95a6abb471842fb6d19a10d631a17df97"
+      },
+      "20260630": {
+        "file": "adjustments\\20260630.pkl",
+        "rows": 5534,
+        "sha256": "0533ac948f044bfede786d70d17b6ea066639b17aced1dc2edc5ceff8c73035a"
+      },
+      "20260701": {
+        "file": "adjustments\\20260701.pkl",
+        "rows": 5534,
+        "sha256": "a62816d4d8ba72298fbdc252d2bcd814471d4691817f18a6273ffd1f0c140e97"
+      },
+      "20260702": {
+        "file": "adjustments\\20260702.pkl",
+        "rows": 5536,
+        "sha256": "672931db1a97e4e58f345ba6554f060447292f6cc83ceaaed88fa875dcfa44d0"
+      },
+      "20260703": {
+        "file": "adjustments\\20260703.pkl",
+        "rows": 5536,
+        "sha256": "be771a7290db03b40f098e4ef02980f876cc177242b9c2fcd822122bfe24132a"
+      },
+      "20260706": {
+        "file": "adjustments\\20260706.pkl",
+        "rows": 5536,
+        "sha256": "c31ef7d30a6eb3b654374267c792dbc493e7dc636b817bdebb1e230d01d55935"
+      },
+      "20260707": {
+        "file": "adjustments\\20260707.pkl",
+        "rows": 5536,
+        "sha256": "4bed53bcba5059bbe4f12dea3eb80b9670a5b642f1b2f5d0467ee01502babaf7"
+      },
+      "20260708": {
+        "file": "adjustments\\20260708.pkl",
+        "rows": 5537,
+        "sha256": "9cb7f48c73296f5dd4a5a7d2c0c31cd163a72ace7349d76a3f16a02abc54772d"
+      },
+      "20260709": {
+        "file": "adjustments\\20260709.pkl",
+        "rows": 5538,
+        "sha256": "0be1ae8f34a4b9142defa465d03c70e2c505488aa83518712aba2a3ee18b16b0"
+      },
+      "20260710": {
+        "file": "adjustments\\20260710.pkl",
+        "rows": 5540,
+        "sha256": "7c919083e3da06c1e01e0931da4d075a565f023668153bfcdd11b00ae1937d8b"
+      },
+      "20260713": {
+        "file": "adjustments\\20260713.pkl",
+        "rows": 5540,
+        "sha256": "c77265db807e3eeb7eb63c1f212940461468acf787e9f84dab6ea211bf3f1aac"
+      },
+      "20260714": {
+        "file": "adjustments\\20260714.pkl",
+        "rows": 5540,
+        "sha256": "4bdbcd92c92bb9b004293fab9b969cda03f0fc2a8e797377e3d22777661b8da7"
+      },
+      "20260715": {
+        "file": "adjustments\\20260715.pkl",
+        "rows": 5540,
+        "sha256": "954eef9d3e0b01a503ce8054a62aeeeed7814ebfd4e6a65184231287e0419f2f"
+      },
+      "20260716": {
+        "file": "adjustments\\20260716.pkl",
+        "rows": 5541,
+        "sha256": "b1d82b8fa6ebb7f46c683be1882ac6e524825fc178393a84f250302c479fe7cd"
+      },
+      "20260717": {
+        "file": "adjustments\\20260717.pkl",
+        "rows": 5541,
+        "sha256": "e73f599038041ba2aa45664b5c46d07e1c79716fc1ddad299b073257f2bd9749"
+      },
+      "20260720": {
+        "file": "adjustments\\20260720.pkl",
+        "rows": 5541,
+        "sha256": "dfb85981ec09d0a86b0bf9f26f151a9b89f67cd5f3516103b6fb1afd2d24e854"
+      },
+      "20260721": {
+        "file": "adjustments\\20260721.pkl",
+        "rows": 5542,
+        "sha256": "c14c9f2682a44f10d2622f79fa7015905a2a8bfbd340ade8a39f31fa5259523e"
+      },
+      "20260722": {
+        "file": "adjustments\\20260722.pkl",
+        "rows": 5543,
+        "sha256": "b85087c8a3334983a041a5263f838cf24c74bd0f43cffad7871e6446f509094f"
+      },
+      "20260723": {
+        "file": "adjustments\\20260723.pkl",
+        "rows": 5543,
+        "sha256": "47af69821b0f75a08cc0fd64f3c1b3e3fe1ce20be93d70173326504a31252ffd"
+      },
+      "20260724": {
+        "file": "adjustments\\20260724.pkl",
+        "rows": 5544,
+        "sha256": "9e11b67a88372a60b13bf944c40dce81c275a1280d2a79eee9a0b42aea360f98"
+      },
+      "20260727": {
+        "file": "adjustments\\20260727.pkl",
+        "rows": 5546,
+        "sha256": "01aa99e34f06edf48ee0672579fdf47a41d6c09dfa18c4de2a2cabc6181665aa"
+      },
+      "20260728": {
+        "file": "adjustments\\20260728.pkl",
+        "rows": 5546,
+        "sha256": "d86a1e1b8736c67325c32344042bf00658e52b72beaec9f74668a1fd9031eefd"
+      },
+      "20260729": {
+        "file": "adjustments\\20260729.pkl",
+        "rows": 5547,
+        "sha256": "7609362a7d32b6070d876e61b992800454503a7d4aaf9ed1047fdc38e752397f"
+      },
+      "20260730": {
+        "file": "adjustments\\20260730.pkl",
+        "rows": 5548,
+        "sha256": "13ad6b1257cd6d2302fdfb50ff4c1649fa6773ef4081328c620d9f97876e8771"
+      },
+      "20260731": {
+        "file": "adjustments\\20260731.pkl",
+        "rows": 5548,
+        "sha256": "f55fd007413d2668d1d331e71a5ee0fa86a28c0f1009d71fb78bd77d1f14989f"
+      },
+      "20260803": {
+        "file": "adjustments\\20260803.pkl",
+        "rows": 5549,
+        "sha256": "d235baa428787415eefd6a0cae8d825b6b54255b43433c30f5d8924e32b1607b"
+      },
+      "20260804": {
+        "file": "adjustments\\20260804.pkl",
+        "rows": 5550,
+        "sha256": "68974a78984c4554c9664f728553c1cfa88d3e047973fab08920643c4d7cf84f"
+      },
+      "20260805": {
+        "file": "adjustments\\20260805.pkl",
+        "rows": 5551,
+        "sha256": "9363181db1ef52aa5ab3dfe29b7bac385f6cc3f234a16b1cb1c51901a45633db"
+      },
+      "20260806": {
+        "file": "adjustments\\20260806.pkl",
+        "rows": 5552,
+        "sha256": "7894b5948c5a0695e61728dbcdb670c1e08b291f818d60b3d8a433b8b61acade"
+      },
+      "20260807": {
+        "file": "adjustments\\20260807.pkl",
+        "rows": 5553,
+        "sha256": "cef56b1ed685c3d8a50ae8616968ae553e69dfa3c55237f161a5d2f782bc8491"
+      },
+      "20260810": {
+        "file": "adjustments\\20260810.pkl",
+        "rows": 5553,
+        "sha256": "689ce935570f9c7b197953a1effaac919dae327dd336653d645cdd4b14fe0de7"
+      },
+      "20260811": {
+        "file": "adjustments\\20260811.pkl",
+        "rows": 5556,
+        "sha256": "1620bc86bfbc360737690022ea29280636d0e1c3a2485ed494c1312c7bfb9607"
+      },
+      "20260812": {
+        "file": "adjustments\\20260812.pkl",
+        "rows": 5557,
+        "sha256": "74f70107660c5b3d3236765beb9a23fbb6756206f06460f0dbe768041a2f86fe"
+      },
+      "20260813": {
+        "file": "adjustments\\20260813.pkl",
+        "rows": 5557,
+        "sha256": "6da0a0af06a5c56532b44ff6b922416e2542e8ee88075f44340eb694258b85db"
+      },
+      "20260814": {
+        "file": "adjustments\\20260814.pkl",
+        "rows": 5557,
+        "sha256": "6ad18508a28e0fe9955e3702101e1d9caa079a249aae25a67927bf229f41a01a"
+      },
+      "20260817": {
+        "file": "adjustments\\20260817.pkl",
+        "rows": 5558,
+        "sha256": "f9aa1f73cd6d9f5d8556f5a399c23fd606c7983dbb567f3ea60e1227c7653b20"
+      },
+      "20260818": {
+        "file": "adjustments\\20260818.pkl",
+        "rows": 5559,
+        "sha256": "710ca32759d49aa7d774404f56772c2f33b86d26e177c686a4dd1978c5875085"
+      },
+      "20260819": {
+        "file": "adjustments\\20260819.pkl",
+        "rows": 5561,
+        "sha256": "b7b7fac7985de30d3811279aab8d190bc0a5121afaac08c90584dda371da8e6e"
+      },
+      "20260820": {
+        "file": "adjustments\\20260820.pkl",
+        "rows": 5562,
+        "sha256": "4a4e85a43ce5c0f89a0e457fabe0be9dd021e8a1e41f23e420bbe5850256f29d"
+      },
+      "20260821": {
+        "file": "adjustments\\20260821.pkl",
+        "rows": 5563,
+        "sha256": "0e79d5f41bf9e9c5124924e40f75dba45f140301a5194121879758f5b0c48c05"
+      },
+      "20260824": {
+        "file": "adjustments\\20260824.pkl",
+        "rows": 5563,
+        "sha256": "b2434ab1e0801c64d1d15d17d2097f21abea450795c793bc054e6923b9fef1a6"
+      },
+      "20260825": {
+        "file": "adjustments\\20260825.pkl",
+        "rows": 5564,
+        "sha256": "54103c2b4f942a194db0e81a79fb7520a53851cffdb398917eadd2105b41ab4b"
+      },
+      "20260826": {
+        "file": "adjustments\\20260826.pkl",
+        "rows": 5564,
+        "sha256": "34fdf324e4aeb2cf6b98e9b807d2669b66568a33d82845aa12bfc1d563b5f309"
+      },
+      "20260827": {
+        "file": "adjustments\\20260827.pkl",
+        "rows": 5564,
+        "sha256": "5fa270d589c699dd91baa76d41b351767ec997f903d4b78fbbdb36cf44436eba"
+      },
+      "20260828": {
+        "file": "adjustments\\20260828.pkl",
+        "rows": 5565,
+        "sha256": "4a2dabc17d29ef9af9f0026aff888e4be2585e11190398f283cd9b9bebf7361d"
+      },
+      "20260831": {
+        "file": "adjustments\\20260831.pkl",
+        "rows": 5565,
+        "sha256": "8ef802449e2534ff4d8b4ee6e7f147c881937d86a2833e64cac18c32bca3a01e"
+      },
+      "20260901": {
+        "file": "adjustments\\20260901.pkl",
+        "rows": 5567,
+        "sha256": "6014b44be4cd3349c9431301f35e4677b0bf02ce3bc31f4687933af456c1e639"
+      },
+      "20260902": {
+        "file": "adjustments\\20260902.pkl",
+        "rows": 5568,
+        "sha256": "0bdd81d6b80bb9a2a4b40ecd1d40744638dde558191ac53b93457ad2bdc5c78c"
+      },
+      "20260903": {
+        "file": "adjustments\\20260903.pkl",
+        "rows": 5569,
+        "sha256": "ce9a85e7e276fed9dc0cf812f942e5da882856a33016a7798dc4a59f0f56ca76"
+      },
+      "20260904": {
+        "file": "adjustments\\20260904.pkl",
+        "rows": 5556,
+        "sha256": "26cb96302795e110e757f56d4057fe70979f987f2e16a416995036fa2762a74e"
+      },
+      "20260907": {
+        "file": "adjustments\\20260907.pkl",
+        "rows": 5558,
+        "sha256": "b221979ee5f2e9ac4767ecbdefe7da5cbf9654ba6090523b14fe9f005b1797f9"
+      },
+      "20260908": {
+        "file": "adjustments\\20260908.pkl",
+        "rows": 5558,
+        "sha256": "9ecadd0ee2df0a5c31d00afb94df6fd6a0aa29392c09395994bf9b18ef7eb890"
+      },
+      "20260909": {
+        "file": "adjustments\\20260909.pkl",
+        "rows": 5560,
+        "sha256": "1fbdb2f2ddf4aad99dd458e01ee052b4532c757c75008592e0bd61bfaf536bdb"
+      },
+      "20260910": {
+        "file": "adjustments\\20260910.pkl",
+        "rows": 5561,
+        "sha256": "a5e1aa5da62f4cf7c8fc651f8185d14925006a60f2aa480369612b1f0a382904"
+      },
+      "20260911": {
+        "file": "adjustments\\20260911.pkl",
+        "rows": 5562,
+        "sha256": "b215fe05489d43967200bd5682cfb51600cea9f7a26897a18cdce06d3997319c"
+      },
+      "20260914": {
+        "file": "adjustments\\20260914.pkl",
+        "rows": 5562,
+        "sha256": "ac9fae1a542e4533bde3b2f3d8151f1d7e399a8540ed76268e9ef2972a823801"
+      },
+      "20260915": {
+        "file": "adjustments\\20260915.pkl",
+        "rows": 5562,
+        "sha256": "1686a2afc0a4f91cf08196dda8c19bdca63536d2c3730187e245a861bfe6b9f0"
+      },
+      "20260916": {
+        "file": "adjustments\\20260916.pkl",
+        "rows": 5564,
+        "sha256": "4ef07bb85facf3a58696845d91a6fbd2902b49e8d848d64973c4a5cbea029525"
+      },
+      "20260917": {
+        "file": "adjustments\\20260917.pkl",
+        "rows": 5565,
+        "sha256": "c1636a9c706cceeed284b010f0297c392804c40a9e9316e8f1bddc6318225a28"
+      },
+      "20260918": {
+        "file": "adjustments\\20260918.pkl",
+        "rows": 5565,
+        "sha256": "8093a8de2b0ab8c5e5aafddbb573aada20efe95cfeeddc2d5312451a93832754"
+      },
+      "20260921": {
+        "file": "adjustments\\20260921.pkl",
+        "rows": 5565,
+        "sha256": "3f25977810614d2dc7bf9b4080a0c1e4d5dca5117eec7264f45e2c575393ebd0"
+      },
+      "20260922": {
+        "file": "adjustments\\20260922.pkl",
+        "rows": 5567,
+        "sha256": "017ecea0b36d8c5d76b14f8ae57cf726c1157e39132d243cbad1f54c83b97fd6"
+      },
+      "20260923": {
+        "file": "adjustments\\20260923.pkl",
+        "rows": 5568,
+        "sha256": "21bc5e3c1dbfb33049395d36465337af4cb052d005cee33779f80dacf5639a9f"
+      },
+      "20260924": {
+        "file": "adjustments\\20260924.pkl",
+        "rows": 5569,
+        "sha256": "ba3d2ce014ecaee7e28e4e28b76bc498dd81fba0c2ae421cf0e0bae1289559f9"
+      }
+    },
+    "daily_source": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\dc_context_inputs_20261002\\daily.pkl",
+      "sha256": "511f89925e9bcdd759ef21e175f67e1dbd60830f6743dabba9c2944ee39f8f9b"
+    },
+    "collector_sha256": "078a0b5bec9570ac55605e1c6cf907a6cffabcdc0f49da1e69d9aa3afb0686e9",
+    "validator_sha256": "531611be92e09e484362b0235ce0ca90d7651f1dc3c870795f52b5d1102a695f",
+    "factor_fill": false,
+    "qfq_end_sample_normalization": false,
+    "aggregate": {
+      "file": "adjustments.pkl",
+      "rows": 2735789,
+      "sha256": "f2828e691b21acad0fcc735545190c68e6c99d4bca0b05a65d3b3108f3ea8053"
+    },
+    "adjusted_daily": {
+      "file": "adjusted_daily.pkl",
+      "rows": 2579146,
+      "sha256": "056d377c51f5de2500e9fbf0f5943911046a08e374b18ae28848b651c0fe7262"
+    }
+  },
+  "edges": {
+    "path": "results\\daily_opportunity_no_graph_20261002\\frozen_edges.pkl",
+    "sha256": "1a4da9ffb25390e164bf18d151f3f572a9984b4f15e8a9ed59fc38bf66d7b07c"
+  },
+  "use_graph": false,
+  "graph_coverage": {
+    "status": "disabled",
+    "reason": "Explicit no-graph ablation; no collection result enters this model"
+  },
+  "feature_store_sha256": "703f0250c6309a3ce5203a55c97072f552a689265e668ee61f572015090e4143",
+  "first_date": "2024-09-02",
+  "last_date": "2026-09-24",
+  "market_sessions": 501,
+  "all_board_stocks": 5271,
+  "feature_valid_observations": 2208061,
+  "graph_freshness": "Latest verified dated snapshot only, carried forward; no current backfill",
+  "graph_gaps": "Unknown edges do not exclude stocks; collection failures are retained in graph coverage",
+  "feature_builder_sha256": "2ee140d8bbe254e00af9cc7adef31de3a2ebbb657652b31b4277e00552a610c0"
+}

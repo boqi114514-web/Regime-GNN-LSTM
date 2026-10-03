@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "rows": 919874,
+  "sessions": 178,
+  "artifacts": {
+    "predictions.pkl": "4619ec8db276a7177d1ef0f2e73d0def80d901cba4c49a480be3eaecd31ae887",
+    "fit_audits.json": "8a01bb31bfddcc499e5b2ed8727428f4001d694eb2a50984574ae78726a60b90",
+    "experiment_protocol.json": "64dc6feea94f32de5498cdc7e80b41a10322605488c8258c34d4258efb90373d",
+    "feature_manifest.json": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6",
+    "prior_band_checks.csv": "cbe9ca97f38db60a165ac4c4af54ee08eabf66c29d749cf28817467dd51a3c35",
+    "prior_band_manifest.json": "6129f758faf5a83003d86eca2a58e51ba90faf35fda1d88bfa7065ad9760ca12",
+    "path_targets.pkl": "2d8e31ac46f07cc1707f720c485848e54c0201bedf6b08fcc506a0f0609ea904",
+    "path_targets_manifest.json": "3d0c651d0a41a437a7233c2dd79833e7eea70b60d3050470cfbabceb41251ed9",
+    "path_filter_manifest.json": "55c118ba9ceeb0f90eb6d2af38bed4b5f0751a8c76344c7f88d722f73bd898d9"
+  }
+}

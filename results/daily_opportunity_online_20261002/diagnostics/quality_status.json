@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "source_predictions_sha256": "aa334ba000f1d36c315a8f8cc0cb39ef2ba20316dcc7b09bd9f657ae28c7346e",
+  "source_feature_store_sha256": "703f0250c6309a3ce5203a55c97072f552a689265e668ee61f572015090e4143",
+  "metric": "Forecast diagnostics only. Overlapping horizon returns are NOT monthly cash-account returns.",
+  "label_selection": "Rank top five first; missing future labels masked only in metrics",
+  "source_sha256": "9edb672efe1f6535ebf51cc5ed2d8b2ea6ba8a6c71e3ccefcc86720b666a7b01"
+}

@@ -1,0 +1,18 @@
+{
+  "status": "complete_for_listed_audited_accounts",
+  "period": [
+    "2026-01-01",
+    "2026-09-24"
+  ],
+  "initial_cash": 25000,
+  "budget_denominator": 25000,
+  "target_monthly_profit": 7500,
+  "month_splice": false,
+  "source_sha256": "04245e7bd3c5c5456283653259e62f7eef71ba9c747c3a83b723d9ce647a23b2",
+  "artifacts": {
+    "monthly_results.csv": "c742eefe0995ff68baddc278dad77b88feca6f12863814b0ac2edd9393f40469",
+    "monthly_profit_matrix.csv": "0dcadf106aea49fc20fc35ce0eb06c7bfd4a782cb2197e8da2475eb32583e358",
+    "metrics.csv": "674873e2ff336c50cd3971e0e5a37304dd7b3cbc96e9e5d74ff32c1814073264",
+    "accounts.json": "f73f747dd7c175b3b79aee04fc559a706cdbb23286fc85123cf2e37cfa4a6f9b"
+  }
+}

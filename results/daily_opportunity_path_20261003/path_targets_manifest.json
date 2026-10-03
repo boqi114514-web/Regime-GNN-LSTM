@@ -1,0 +1,53 @@
+{
+  "status": "complete",
+  "protocol": {
+    "version": "daily_close_trigger_next_open_path_targets_v1",
+    "entry": "Actual factor-adjusted open at market session t+1",
+    "stop": "Close <= entry*(1-.08); trigger at close, exit at next market-session actual open",
+    "trailing": "Peak starts at entry and uses subsequent closes only; activate at +20%, trigger at 8% retreat from that peak",
+    "horizon_exit": "If no earlier trigger, exit at actual open t+h+1; a trigger on close t+h retains its stop reason",
+    "stop_priority": "First trigger wins; if hard and trailing trigger together, hard stop takes priority",
+    "downside": "max(0, 1-min(entry open, intraday lows through last held close, exit open)/entry); exclude all exit-day intraday lows",
+    "first_passage": "First close at upper gain (.10,.15,.30) or at -8% during t+1...t+h, independently of any earlier trailing exit; otherwise neither",
+    "passage_ties": "Inclusive boundaries; positive upper and negative lower are disjoint, so a close cannot hit both; earliest session wins",
+    "boundary_rtol": 1e-12,
+    "complete_window": "Require every actual OHLC/factor quote from t+1 through t+h+1, including after an early reference exit; no fill or compressed calendar",
+    "label_maturity": "Always market session t+h+1, not early exit date; training requires label_end strictly before cutoff",
+    "missing_labels": "NaN payoff/downside, -1 passage/reason/indices, valid=False; label_end remains calendar-based when that session exists",
+    "quote_presence": "Actual supplied OHLC and adjustment-factor quote; this label-only flag never changes feature eligibility",
+    "adjustment": "Raw OHLC times actual same-day adj_factor; no future-normalised qfq series",
+    "execution_scope": "Reference label omits official future locked-limit execution, fees and model-switch exits; exact account execution remains separate",
+    "configuration": {
+      "horizons": [
+        5,
+        10,
+        20
+      ],
+      "upper_thresholds": [
+        0.1,
+        0.15,
+        0.3
+      ],
+      "hard_stop": 0.08,
+      "trailing_activation": 0.2,
+      "trailing_distance": 0.08
+    }
+  },
+  "raw_adjusted_daily": {
+    "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\data\\raw\\daily_opportunity_20261002\\adjusted_daily.pkl",
+    "sha256": "056d377c51f5de2500e9fbf0f5943911046a08e374b18ae28848b651c0fe7262"
+  },
+  "dates": 501,
+  "stocks": 5271,
+  "valid_labels_by_horizon": [
+    2542346,
+    2510805,
+    2448239
+  ],
+  "path_builder_sha256": "382dc152169d67690211155b16d9ca9b71efa768e421c2256ea762cd228aa55b",
+  "artifacts": {
+    "path_targets.pkl": "2d8e31ac46f07cc1707f720c485848e54c0201bedf6b08fcc506a0f0609ea904",
+    "feature_store.pkl": "155c5459484cff7a4d704e38ab5dfba31bb9672b8ae8d86bb657e018d1143107",
+    "feature_manifest.json": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+  }
+}

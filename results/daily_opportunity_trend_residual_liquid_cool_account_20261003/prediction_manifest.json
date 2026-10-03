@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "rows": 919874,
+  "sessions": 178,
+  "artifacts": {
+    "predictions.pkl": "15b6138ee1b347cbe7add1f2303160356fb908db2a22ad974f28ae6c8ccde92b",
+    "fit_audits.json": "ca3e832a086765378f46acafb70e11f5a319e8523c3c8053ec99b058eb3b180f",
+    "experiment_protocol.json": "6cd2e0ae8f7d66981fce16c10080e6bd075f710dd283918cdb7f2191855d1b32",
+    "feature_manifest.json": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6",
+    "prior_band_checks.csv": "1e27116cb4ed36fa57fed2371af137b42d6eb26fac78197bec9e2c577027ea2e",
+    "prior_band_manifest.json": "725d2ed4b484c8fd2b73415cc532fc3b3a0d1229a20806a51672a73e5432f8b5",
+    "liquidity_checks.csv": "c601f8808a89a14941a0aa0ad4b8bb44b5bac10c3d51557b2b0c7b09b3d387ba",
+    "liquidity_manifest.json": "44a40ec7b78da90b8be7544f31f139acd2d049bb7c23a1135fc71da033c7bd30",
+    "extension_manifest.json": "d730b507f24370cd812abe11432e6c837c608b78c8809ec0f941decc639ad615"
+  }
+}

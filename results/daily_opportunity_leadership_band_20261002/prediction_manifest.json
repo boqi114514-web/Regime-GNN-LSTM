@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "rows": 919874,
+  "sessions": 178,
+  "artifacts": {
+    "predictions.pkl": "b980f18d9a740752c89a309cd9d9429706fa7b9cade47cf1f9edfa546aeefdb1",
+    "fit_audits.json": "19bd483f728ad7b1669ad30d698cf8817537499df1708c7f0377020bca12b3a6",
+    "experiment_protocol.json": "83e84dc0ef17712ef2a9d015e004d523f6e0d6bc29d46a45c5c4091aab44efe5",
+    "feature_manifest.json": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6",
+    "prior_band_checks.csv": "198930010f1e309204ecb29ad75b678f9588a50dca1c575c90d330a247082949",
+    "prior_band_manifest.json": "6b60987b45c31dce6cb24fcdd14e0f5434b2f9161f83005f7d0f8a1b5b6aadf2"
+  }
+}

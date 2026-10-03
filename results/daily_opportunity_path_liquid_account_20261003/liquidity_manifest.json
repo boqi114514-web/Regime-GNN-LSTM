@@ -1,0 +1,41 @@
+{
+  "status": "complete",
+  "protocol": {
+    "hypothesis": "Fixed current signal-day all-market amount percentile >= .95",
+    "purpose": "Research stock leadership/liquidity selection; not a capital-capacity necessity",
+    "inputs": "V3 frozen amount_percentile, explicit availability and current feature eligibility only",
+    "order": "Current known amount gate, then positive native utility and mainboard top 40, then exact signal-day official band >= .075",
+    "precision": "Threshold represented in the stored factor dtype; no decimal rounding of percentiles",
+    "retained_positions": "Unchanged; eligibility controls new purchases, never a forced-sale rule",
+    "predictions": "All source rows and all native forecast columns retained without changes"
+  },
+  "rows": 919874,
+  "amount_threshold": 0.95,
+  "candidate_limit": 40,
+  "minimum_band_fraction": 0.075,
+  "source_directory": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003",
+  "source_artifacts": {
+    "predictions.pkl": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\predictions.pkl",
+      "sha256": "cce61536c51a3f5cf74fbbc77486714f46de99b8c05408953fbfaf47b9e045d9"
+    },
+    "prediction_manifest.json": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\prediction_manifest.json",
+      "sha256": "a203b33721257ab89ce9c605de451bb5ef32e0ac15321d144a955335386138d7"
+    },
+    "feature_store.pkl": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\feature_store.pkl",
+      "sha256": "155c5459484cff7a4d704e38ab5dfba31bb9672b8ae8d86bb657e018d1143107"
+    },
+    "feature_manifest.json": {
+      "path": "D:\\desktop\\有意思的事情\\量化\\项目\\Regime-GNN-LSTM\\results\\daily_opportunity_path_20261003\\feature_manifest.json",
+      "sha256": "b8bfada5abec45c5b9b22a89f3a4e5018f496ab6c42ccfb462afc614e43172f6"
+    }
+  },
+  "feature_store_sha256": "155c5459484cff7a4d704e38ab5dfba31bb9672b8ae8d86bb657e018d1143107",
+  "checks_sha256": "41b75639abfd8a6011e2ba94760a40b33f957a0b06412c7067fdf96b35a63db7",
+  "source_sha256": "ec5f220d8dbbddc167be98fde0181fe501a23ea528f303900abe04fb5581d42a",
+  "amount_eligible": 45747,
+  "model_pool": 1377,
+  "accepted": 1377
+}

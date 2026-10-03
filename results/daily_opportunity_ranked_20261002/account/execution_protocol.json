@@ -1,0 +1,26 @@
+{
+  "architecture": "Daily stock-level forecast and expected-utility whole-lot account",
+  "policy": {
+    "initial_cash": 25000.0,
+    "capital_cap": 25000.0,
+    "max_names": 3,
+    "candidate_limit": 40,
+    "minimum_holding_sessions": 5,
+    "switch_margin": 0.01,
+    "cooldown_sessions": 2,
+    "hard_stop": 0.08,
+    "trailing_activation": 0.2,
+    "trailing_distance": 0.15,
+    "risk_aversion": 0.5
+  },
+  "fees": 0,
+  "external_topups": false,
+  "timing": "Previous completed exchange session predictions; next-session observed open/official limits",
+  "monthly_forced_liquidation": false,
+  "intraday_fill_model": false,
+  "appreciated_positions": "No forced trimming; residual new investment max(0,min(equity,25000)-retained_open_value)",
+  "stop": "Raw close thresholds adjusted only for verified corporate actions; earliest next executable open",
+  "cooldown": "Per sold stock, including model exits; fresh other stocks allowed on the next daily prediction",
+  "actions": "Existing scoped validated raw histories and event ledger; no inferred event dates",
+  "factor_crosscheck": "All observed held-factor changes must have a verified in-window corporate action"
+}
